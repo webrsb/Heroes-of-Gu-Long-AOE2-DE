@@ -27,7 +27,8 @@ def pieces():
 
 def test_gate_fix_removes_six_places_one_at_envelope_center():
     um = make_um(pieces())
-    changes = apply_gate_fix(um, ENTRY)
+    changes, gate_ref = apply_gate_fix(um, ENTRY)
+    assert gate_ref == 99999
     assert sorted(um.removed) == [0, 1, 2, 3, 4, 5]
     assert len(um.added) == 1
     add = um.added[0]

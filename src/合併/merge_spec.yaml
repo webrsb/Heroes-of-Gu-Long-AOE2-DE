@@ -70,7 +70,16 @@ params:
       expect_count: 6
       gate_const: 88             # Gate(down)＝沿 y 軸，奇偶性與既有 c88 實例一致
       player: 8
+      hp: 2750                   # 原版門血；逐ref校正（防波及既有6座c88）
     collision_waivers: []        # audit_const_collision 告警的豁免子字串清單
+  attr_fixes:                    # spec §二：校正到 1.21z 原版值（分數屬性=[分子, 分母]）
+    - {unit_const: 1811, players: [1,2,3,4,5,6,7,8], reason: 拳原版94值,
+       attrs: {hit_points: 75, attack_c4: 10, armor_c4: 0, armor_c3: 0,
+               attack_reload_time: [3, 2], movement_speed: [88, 100]}}
+    - {unit_const: 329, players: [7, 8], reason: 37原版值,
+       attrs: {hit_points: 110, attack_c4: 7}}
+    - {unit_const: 74, players: [8], reason: 573原版·和平NPC攻歸0·波及P8既存民兵ref24947裁決豁免,
+       attrs: {hit_points: 45, attack_c4: 0}}
 # 【待辦・非本輪】無法無天新內容中發現多個未知 const 的大量灌血物件
 # （const 176/76/852/652/556/847/172/197/426 等），需 test14 式實機夾血測試
 # 判定是否建築行為；若夾血則要加入雙0血名單。

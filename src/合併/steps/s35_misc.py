@@ -52,7 +52,7 @@ def apply_gate_fix(um, entry) -> list:
     changes.append(Change('s35', 'unit_add',
                           f'ref{g.reference_id} ({cx},{cy})', 'unit_const',
                           '（新增）', str(entry['gate_const']), '置換石門（包絡中點）'))
-    return changes
+    return changes, g.reference_id
 
 
 def _area_covers(x1, y1, x2, y2, ux, uy):
@@ -104,7 +104,9 @@ class MiscStep(Step):
             changes.extend(apply_replacement(all_units, entry))
         gate = misc.get('gate_fix')
         if gate:
-            changes.extend(apply_gate_fix(ctx.base.unit_manager, gate))
+            gate_changes, gate_ref = apply_gate_fix(ctx.base.unit_manager, gate)
+            changes.extend(gate_changes)
+            ctx.notes['gate_ref'] = gate_ref
         # 換皮碰撞稽核：新 const 的既有過濾與換皮單位交集 → 無豁免即 BuildError
         new_consts = sorted({e['to_const'] for e in entries} |
                             ({gate['gate_const']} if gate else set()))

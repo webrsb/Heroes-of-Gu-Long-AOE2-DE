@@ -71,3 +71,32 @@ def test_apply_builds_single_trigger_with_all_effects():
     assert len(t.new_effect.calls) == 14
     assert all(c['object_list_unit_id'] == 1811 for c in t.new_effect.calls)
     assert len(changes) == 14
+
+
+class FakeEffectFactory2(FakeEffectFactory):
+    def change_object_hp(self, **kw):
+        self.calls.append(('hp', kw))
+
+
+def test_step_sets_gate_hp_per_ref():
+    from steps.s36_attrfix import AttrFixStep
+    made = {}
+
+    def add_trigger(name, enabled=True, looping=False):
+        t = NS(name=name, enabled=enabled, looping=looping,
+               new_effect=FakeEffectFactory2(),
+               new_condition=NS(timer=lambda timer: None))
+        made[name] = t
+        return t
+
+    ctx = NS(base=NS(trigger_manager=NS(add_trigger=add_trigger)),
+             spec=NS(params={'attr_fixes': [dict(unit_const=329, players=[8], reason='',
+                                                 attrs={'hit_points': 110})],
+                             'misc': {'gate_fix': {'hp': 2750}}}),
+             notes={'gate_ref': 99999})
+    changes = AttrFixStep().apply(ctx)
+    hp_calls = [kw for tag, kw in [c for c in made['屬性校正'].new_effect.calls if isinstance(c, tuple)]
+                if True]
+    assert any(kw.get('selected_object_ids') == [99999] and kw.get('quantity') == 2750
+               for kw in hp_calls)
+    assert any(c.kind == 'gate_hp' for c in changes)

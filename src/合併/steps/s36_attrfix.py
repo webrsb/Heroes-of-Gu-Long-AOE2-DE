@@ -43,7 +43,7 @@ def expand_attr_entries(entries) -> list:
     return rows
 
 
-def apply_attr_fixes(tm, entries) -> list:
+def apply_attr_fixes(tm, entries, gate=None) -> list:
     rows = expand_attr_entries(entries)
     t = tm.add_trigger('屬性校正', enabled=True, looping=False)
     t.new_condition.timer(timer=0)
@@ -59,6 +59,12 @@ def apply_attr_fixes(tm, entries) -> list:
                               f"P{r['player']} const{r['unit_const']}",
                               f"attr{r['attribute']}",
                               f"op{r['operation']}", str(val), '換皮屬性校正'))
+    if gate:
+        ref, hp = gate
+        t.new_effect.change_object_hp(quantity=hp, selected_object_ids=[ref],
+                                      source_player=8, operation=SET)
+        changes.append(Change('s36', 'gate_hp', f'ref{ref}', 'hit_points',
+                              '（dat 1650）', str(hp), '城門血逐ref校正（防波及既有c88）'))
     return changes
 
 
@@ -69,9 +75,13 @@ class AttrFixStep(Step):
 
     def apply(self, ctx):
         entries = ctx.spec.params.get('attr_fixes') or []
-        if not entries:
+        gate_ref = ctx.notes.get('gate_ref')
+        gate_hp = ((ctx.spec.params.get('misc') or {}).get('gate_fix') or {}).get('hp')
+        if not entries and gate_ref is None:
             return []
-        return apply_attr_fixes(ctx.base.trigger_manager, entries)
+        changes = apply_attr_fixes(ctx.base.trigger_manager, entries,
+                                   gate=(gate_ref, gate_hp) if gate_ref is not None and gate_hp else None)
+        return changes
 
     def test_guide(self, changes):
         consts = sorted({c.target.split('const')[1] for c in changes})
