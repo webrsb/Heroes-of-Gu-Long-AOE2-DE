@@ -4,7 +4,7 @@ import pytest
 from core.revive_model import load_revive
 from steps.base import BuildError
 
-BASE = dict(lives=3, respawn=[81.5, 111.5],
+BASE = dict(lives=3, respawn=[77.5, 103.5],
             displays={1: [78.5, 108.5], 2: [80.5, 108.5], 3: [82.5, 108.5],
                       4: [83.5, 109.5], 5: [83.5, 111.5], 6: [83.5, 113.5]},
             hero_refs={1: 0, 2: 1, 3: 2, 4: 502, 5: 7, 6: 45117},
@@ -15,7 +15,7 @@ BASE = dict(lives=3, respawn=[81.5, 111.5],
 def test_load_ok():
     r = load_revive(BASE)
     assert r.lives == 3
-    assert r.respawn == (81.5, 111.5)
+    assert r.respawn == (77.5, 103.5)
     assert r.displays[5] == (83.5, 111.5)
     assert r.hero_refs[6] == 45117
     assert 3821 in r.retired
