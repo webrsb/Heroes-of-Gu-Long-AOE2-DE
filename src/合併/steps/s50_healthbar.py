@@ -35,6 +35,7 @@ class HealthbarStep(Step):
             return changes
         boss_refs = ctx.notes.get('boss_refs') or {}
         tm = ctx.base.trigger_manager
+        rung_ids = []
         for tg in hb.get('targets') or []:
             label = tg['label']
             ref = boss_refs.get(label)
@@ -43,16 +44,27 @@ class HealthbarStep(Step):
                                  f'（先在 params.boss_hp.targets 補上同 label）')
             name = tg.get('display_name', label)
             for pct, hp in thresholds(float(tg['start_hp'])):
+                # enabled=False：血池要到 t≈10 才灌滿，太早啟動會被低血量期
+                # 一路誤燒到 1%（階梯非循環、只發一次）。t=activate_at 統一啟動。
                 t = tm.add_trigger(f'ZZ_血條_{label}_{pct:02d}',
-                                   enabled=True, looping=False)
+                                   enabled=False, looping=False)
                 t.new_condition.object_hp(quantity=int(hp), unit_object=ref,
                                           comparison=int(Comparison.LESS))
                 t.new_effect.change_object_caption(message=bar_text(name, pct),
                                                    selected_object_ids=[ref])
+                rung_ids.append(t.trigger_id)
                 changes.append(Change(self.id, 'trigger_add',
                                       f'T{t.trigger_id}「ZZ_血條_{label}_{pct:02d}」',
                                       'threshold', '—', f'HP<{int(hp)}',
                                       '§5.7a 樣式3'))
+        act_at = int(hb.get('activate_at', 20))
+        ta = tm.add_trigger('ZZ_血條_啟動', enabled=True, looping=False)
+        ta.new_condition.timer(timer=act_at)
+        for rid in rung_ids:
+            ta.new_effect.activate_trigger(trigger_id=rid)
+        changes.append(Change(self.id, 'trigger_add', f'T{ta.trigger_id}「ZZ_血條_啟動」',
+                              'timer', '—', f't={act_at}s 啟動 {len(rung_ids)} 階',
+                              '血池 t≈10 才灌滿，延後啟動防誤燒'))
         return changes
 
     def test_guide(self, changes):

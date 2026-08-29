@@ -30,8 +30,12 @@ params:
       - {label: 界線牆73_6, unit_const: 72, tile: [73, 6], base_hp: 250, heal: 576125}
       - {label: 界線牆73_7, unit_const: 72, tile: [73, 7], base_hp: 250, heal: 576125}
   healthbar:
-    enabled: false   # 等 s40 實測回報兩魔王的起始當前血量後開
-    targets: []
+    enabled: true
+    activate_at: 20   # 城堡血池 t=10 才灌滿（馬 +6,000,000），t=20 統一啟動階梯
+    targets:
+      - {label: 亡魂之堡, display_name: 亡魂之堡, start_hp: 6000780}
+        # 5280(heal) → t4 客棧 −4500 → 780 → t10 馬 +6,000,000 → 6,000,780
+      - {label: 聚魂塔, display_name: 聚魂塔, start_hp: 1895504}
   misc:
     const_replacements:
       - label: 聚魂塔換皮
