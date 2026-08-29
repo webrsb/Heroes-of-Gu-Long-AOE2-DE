@@ -51,8 +51,15 @@ class Factory:
 
             def __getattr__(self, name):
                 def _rec(**kw):
-                    self.calls.append((name, kw))
-                    return NS(**kw)
+                    class _Obj(dict):          # 記錄與回傳同體：事後屬性寫入可被斷言
+                        def __getattr__(self, k):
+                            return self.get(k)
+
+                        def __setattr__(self, k, v):
+                            self[k] = v
+                    obj = _Obj(kw)
+                    self.calls.append((name, obj))
+                    return obj
                 return _rec
 
         def add_trigger(name, enabled=True, looping=False):

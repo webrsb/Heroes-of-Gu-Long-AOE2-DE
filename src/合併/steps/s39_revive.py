@@ -12,6 +12,7 @@
 import copy
 from core.change import Change
 from .base import Step, BuildError
+from .revive_chains import build_chains, FLAG_CONST, REVEALER  # T9a 復活鏈
 
 APPEND_TYPES = {26, 24, 27, 28}          # 改名/傷害/改血/改攻
 PLAYERS = range(1, 7)
