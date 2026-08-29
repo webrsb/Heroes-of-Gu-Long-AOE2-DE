@@ -20,7 +20,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 檔案佈局
 
-所有工作檔都在 `src/`（**`src/` 是獨立 git repo**；F:\aoe2de 本身不是）：
+**F:\aoe2de 整個目錄就是 git repo**（2026-08-29 由 src/ 內移到最外層）。工作檔都在 `src/`：
 
 - `src/origin/` — 乾淨基底，**絕不覆寫**
   - `古龍921_新負血劍譜5.aoe2scenario` — utf8 轉檔後的主要遷移標的
