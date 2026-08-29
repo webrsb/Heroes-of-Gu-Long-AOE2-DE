@@ -15,26 +15,26 @@ s40	unit	ref38862 亡魂之堡	max_hp	5280	ADD 60256 → 0(回繞)	§5.6/01n 雙
 s40	unit	ref38862 亡魂之堡	current_hp	0(縮放歸零)	+5280(灌血)	01n N1 第二步
 s40	unit	ref31245 聚魂塔	max_hp	1650	ADD 63886 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref31245 聚魂塔	current_hp	0(縮放歸零)	+1895504(灌血)	01n N1 第二步
-s40	unit	ref30806 界線牆91_2	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30806 界線牆91_2	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30806 界線牆91_2	current_hp	0(縮放歸零)	+1312211(灌血)	01n N1 第二步
-s40	unit	ref30807 界線牆91_3	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30807 界線牆91_3	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30807 界線牆91_3	current_hp	0(縮放歸零)	+1312211(灌血)	01n N1 第二步
-s40	unit	ref30808 界線牆80_6	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30808 界線牆80_6	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30808 界線牆80_6	current_hp	0(縮放歸零)	+936125(灌血)	01n N1 第二步
-s40	unit	ref30370 界線牆73_0	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30370 界線牆73_0	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30370 界線牆73_0	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30371 界線牆73_1	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30371 界線牆73_1	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30371 界線牆73_1	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30809 界線牆73_2	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30809 界線牆73_2	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30809 界線牆73_2	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30810 界線牆73_3	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30810 界線牆73_3	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30810 界線牆73_3	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30811 界線牆73_4	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30811 界線牆73_4	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30811 界線牆73_4	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30812 界線牆73_5	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30812 界線牆73_5	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30812 界線牆73_5	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30388 界線牆73_6	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30388 界線牆73_6	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30388 界線牆73_6	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30387 界線牆73_7	max_hp	275	ADD 65261 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30387 界線牆73_7	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30387 界線牆73_7	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
 s40	trigger_add	T5599「ZZ_雙0血」	—	—	26 個效果	§5.7

@@ -11,24 +11,24 @@ params:
   boss_hp:
     # 確定性版（第六輪）：s40 會先把本體對這些目標的所有 ChangeHP 歸零
     # （+32767 開門改 Kill Object），max 從此恆為 base_hp，回繞 65536−base_hp → 0。
-    # base_hp = 有效基血（含 P7 石工×1.1）：城堡 5280、守衛塔 1650、柵欄牆 275（實測回推）。
+    # base_hp = 有效基血（含 P7 石工×1.1）：城堡 5280、守衛塔 1650（吃石工×1.1）、柵欄牆 250（不吃，實測 −25 回推）。
     targets:
       - {label: 亡魂之堡, unit_const: 82, tile: [4, 5], base_hp: 5280, heal: 5280}
         # 實測 480/480 ⇒ 石工技術×1.1，基血 5280。heal 5280 復刻基準線；
         # 客棧 t4 −4500（已等價遷移為當前血量）→ 780；馬 t10 +6,000,000 → 6,000,780
       - {label: 聚魂塔, unit_const: 234, tile: [0, 4], base_hp: 1650, heal: 1895504}
         # 舊版實測血池 1,895,504（截圖 1895504/2704）
-      - {label: 界線牆91_2, unit_const: 72, tile: [91, 2], base_hp: 275, heal: 1312211}
-      - {label: 界線牆91_3, unit_const: 72, tile: [91, 3], base_hp: 275, heal: 1312211}
-      - {label: 界線牆80_6, unit_const: 72, tile: [80, 6], base_hp: 275, heal: 936125}
-      - {label: 界線牆73_0, unit_const: 72, tile: [73, 0], base_hp: 275, heal: 576125}
-      - {label: 界線牆73_1, unit_const: 72, tile: [73, 1], base_hp: 275, heal: 576125}
-      - {label: 界線牆73_2, unit_const: 72, tile: [73, 2], base_hp: 275, heal: 576125}
-      - {label: 界線牆73_3, unit_const: 72, tile: [73, 3], base_hp: 275, heal: 576125}
-      - {label: 界線牆73_4, unit_const: 72, tile: [73, 4], base_hp: 275, heal: 576125}
-      - {label: 界線牆73_5, unit_const: 72, tile: [73, 5], base_hp: 275, heal: 576125}
-      - {label: 界線牆73_6, unit_const: 72, tile: [73, 6], base_hp: 275, heal: 576125}
-      - {label: 界線牆73_7, unit_const: 72, tile: [73, 7], base_hp: 275, heal: 576125}
+      - {label: 界線牆91_2, unit_const: 72, tile: [91, 2], base_hp: 250, heal: 1312211}
+      - {label: 界線牆91_3, unit_const: 72, tile: [91, 3], base_hp: 250, heal: 1312211}
+      - {label: 界線牆80_6, unit_const: 72, tile: [80, 6], base_hp: 250, heal: 936125}
+      - {label: 界線牆73_0, unit_const: 72, tile: [73, 0], base_hp: 250, heal: 576125}
+      - {label: 界線牆73_1, unit_const: 72, tile: [73, 1], base_hp: 250, heal: 576125}
+      - {label: 界線牆73_2, unit_const: 72, tile: [73, 2], base_hp: 250, heal: 576125}
+      - {label: 界線牆73_3, unit_const: 72, tile: [73, 3], base_hp: 250, heal: 576125}
+      - {label: 界線牆73_4, unit_const: 72, tile: [73, 4], base_hp: 250, heal: 576125}
+      - {label: 界線牆73_5, unit_const: 72, tile: [73, 5], base_hp: 250, heal: 576125}
+      - {label: 界線牆73_6, unit_const: 72, tile: [73, 6], base_hp: 250, heal: 576125}
+      - {label: 界線牆73_7, unit_const: 72, tile: [73, 7], base_hp: 250, heal: 576125}
   healthbar:
     enabled: false   # 等 s40 實測回報兩魔王的起始當前血量後開
     targets: []
