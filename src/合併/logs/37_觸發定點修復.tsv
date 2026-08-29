@@ -1,0 +1,19 @@
+step	kind	target	field	old	new	reason
+s37	condition_field	T3958「6馬召」C#0	unit_object	8	45117	6P本體換單位漏改（紅字）
+s37	condition_field	T4197「6召」C#0	unit_object	8	45117	6P本體換單位漏改（紅字）
+s37	condition_field	T4209「6哥8」C#0	unit_object	8	45117	6P本體換單位漏改（紅字）
+s37	effect_field	T5091「」E#0	selected_object_ids	8	45117	暗刁6系統 6P本體漏改（紅字）
+s37	condition_field	T5104「」C#7	unit_object	8	45117	暗刁6系統 6P本體漏改（紅字）
+s37	condition_field	T5105「」C#7	unit_object	8	45117	暗刁6系統 6P本體漏改（紅字）
+s37	effect_field	T3290「6 1-5Lv」E#3	source_player	5	6	6P升級的技能點錯發5P（進貢）
+s37	effect_field	T2911「2孽」E#1	source_player	1	2	2P孽功的60銀兩錯發1P（進貢）
+s37	condition_field	T3551「1林4」C#0	source_player	2	1	1P觸發錯看2P區域物件
+s37	effect_field	T3782「2船」E#0	source_player	1	2	停止單位錯停1P
+s37	effect_field	T3800「5船」E#0	source_player	8	5	停止單位錯停8P（同名第2支寫法正確sp=5可證）
+s37	effect_field	T1674「4啞」E#0	source_player	5	4	聊天訊息錯發5P
+s37	effect_field	T1831「2女4」E#1	source_player	3	2	聊天訊息錯發3P
+s37	effect_field	T4157「1幫」E#0	source_player	3	1	聊天訊息錯發3P
+s37	effect_field	T2971「5幽」E#4	source_player	4	5	聊天訊息錯發4P
+s37	effect_field	T542「5教頭」E#0	source_player	3	5	聊天訊息錯發3P
+s37	effect_field	T2674「3生2」E#0	source_player	2	3	聊天訊息錯發2P
+s37	effect_field	T1197「4當2」E#1	source_player	2	4	聊天訊息錯發2P

@@ -52,3 +52,27 @@ params:
 # 【待辦・非本輪】無法無天新內容中發現多個未知 const 的大量灌血物件
 # （const 176/76/852/652/556/847/172/197/426 等），需 test14 式實機夾血測試
 # 判定是否建築行為；若夾血則要加入雙0血名單。
+  # 【2026-08-29 裁決：全修】原作者複製貼上錯誤 18 處（s37）。
+  # 前 6 條＝編輯器紅字根因：無法無天把 6P 本體從 ref8（劍譜5：const493）換成
+  # ref45117（const765 @85.5,103.5），25 處引用重指了、漏了這 6 處（鏡像觸發
+  # 暗刁666 已用 ref45117 可證原意）。後 12 條＝player 欄位錯家（不紅字的隱形版），
+  # 兄弟觸發 4/6 以上一致為準；全部與劍譜5 同值＝劍譜5 時代老 bug，使用者裁決全修。
+  trigger_fixes:
+    - {trigger_id: 3958, name: 6馬召, kind: condition, index: 0, field: unit_object, old: 8, new: 45117, reason: 6P本體換單位漏改（紅字）}
+    - {trigger_id: 4197, name: 6召, kind: condition, index: 0, field: unit_object, old: 8, new: 45117, reason: 6P本體換單位漏改（紅字）}
+    - {trigger_id: 4209, name: 6哥8, kind: condition, index: 0, field: unit_object, old: 8, new: 45117, reason: 6P本體換單位漏改（紅字）}
+    - {trigger_id: 5091, name: '', kind: effect, index: 0, field: selected_object_ids, old: 8, new: 45117, reason: 暗刁6系統 6P本體漏改（紅字）}
+    - {trigger_id: 5104, name: '', kind: condition, index: 7, field: unit_object, old: 8, new: 45117, reason: 暗刁6系統 6P本體漏改（紅字）}
+    - {trigger_id: 5105, name: '', kind: condition, index: 7, field: unit_object, old: 8, new: 45117, reason: 暗刁6系統 6P本體漏改（紅字）}
+    - {trigger_id: 3290, name: 6 1-5Lv, kind: effect, index: 3, field: source_player, old: 5, new: 6, reason: 6P升級的技能點錯發5P（進貢）}
+    - {trigger_id: 2911, name: 2孽, kind: effect, index: 1, field: source_player, old: 1, new: 2, reason: 2P孽功的60銀兩錯發1P（進貢）}
+    - {trigger_id: 3551, name: 1林4, kind: condition, index: 0, field: source_player, old: 2, new: 1, reason: 1P觸發錯看2P區域物件}
+    - {trigger_id: 3782, name: 2船, kind: effect, index: 0, field: source_player, old: 1, new: 2, reason: 停止單位錯停1P}
+    - {trigger_id: 3800, name: 5船, kind: effect, index: 0, field: source_player, old: 8, new: 5, reason: 停止單位錯停8P（同名第2支寫法正確sp=5可證）}
+    - {trigger_id: 1674, name: 4啞, kind: effect, index: 0, field: source_player, old: 5, new: 4, reason: 聊天訊息錯發5P}
+    - {trigger_id: 1831, name: 2女4, kind: effect, index: 1, field: source_player, old: 3, new: 2, reason: 聊天訊息錯發3P}
+    - {trigger_id: 4157, name: 1幫, kind: effect, index: 0, field: source_player, old: 3, new: 1, reason: 聊天訊息錯發3P}
+    - {trigger_id: 2971, name: 5幽, kind: effect, index: 4, field: source_player, old: 4, new: 5, reason: 聊天訊息錯發4P}
+    - {trigger_id: 542, name: 5教頭, kind: effect, index: 0, field: source_player, old: 3, new: 5, reason: 聊天訊息錯發3P}
+    - {trigger_id: 2674, name: 3生2, kind: effect, index: 0, field: source_player, old: 2, new: 3, reason: 聊天訊息錯發2P}
+    - {trigger_id: 1197, name: 4當2, kind: effect, index: 1, field: source_player, old: 2, new: 4, reason: 聊天訊息錯發2P}

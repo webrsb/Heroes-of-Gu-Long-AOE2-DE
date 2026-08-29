@@ -1,3 +1,0 @@
-step	kind	target	field	old	new	reason
-s60	unit_field	ref31245 (0.5,4.5)	unit_const	208	234	const208 在 DE 為未知 ID 無外觀（舊版為小石塔，1895504/2704）
-s60	unit_field	ref21356 (104.5,131.5)	unit_const	436	2353	436 在 DE 無外觀，使用者 2026-08-29 選定 2353（巨魚怪船隻遺骸）替代

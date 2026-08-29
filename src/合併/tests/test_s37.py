@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import pytest
+from types import SimpleNamespace as NS
+from steps.s37_trigfix import apply_fix
+from steps.base import BuildError
+
+
+def _tm():
+    t0 = NS(trigger_id=0, name='6馬召',
+            conditions=[NS(condition_type=6, unit_object=8)],
+            effects=[])
+    t1 = NS(trigger_id=1, name='',
+            conditions=[],
+            effects=[NS(effect_type=27, selected_object_ids=[8, 99], source_player=6)])
+    t2 = NS(trigger_id=2, name='4啞',
+            conditions=[],
+            effects=[NS(effect_type=3, selected_object_ids=[], source_player=5)])
+    return NS(triggers=[t0, t1, t2])
+
+
+def test_fix_condition_scalar():
+    tm = _tm()
+    c = apply_fix(tm, {'trigger_id': 0, 'name': '6馬召', 'kind': 'condition', 'index': 0,
+                       'field': 'unit_object', 'old': 8, 'new': 45117, 'reason': 'r'})
+    assert tm.triggers[0].conditions[0].unit_object == 45117
+    assert c.field == 'unit_object' and c.old == '8' and c.new == '45117'
+
+
+def test_fix_effect_list_replaces_only_old():
+    tm = _tm()
+    apply_fix(tm, {'trigger_id': 1, 'name': '', 'kind': 'effect', 'index': 0,
+                   'field': 'selected_object_ids', 'old': 8, 'new': 45117, 'reason': 'r'})
+    assert tm.triggers[1].effects[0].selected_object_ids == [45117, 99]
+
+
+def test_fix_effect_player():
+    tm = _tm()
+    apply_fix(tm, {'trigger_id': 2, 'name': '4啞', 'kind': 'effect', 'index': 0,
+                   'field': 'source_player', 'old': 5, 'new': 4, 'reason': 'r'})
+    assert tm.triggers[2].effects[0].source_player == 4
+
+
+def test_name_mismatch_raises():
+    with pytest.raises(BuildError):
+        apply_fix(_tm(), {'trigger_id': 0, 'name': '別支', 'kind': 'condition', 'index': 0,
+                          'field': 'unit_object', 'old': 8, 'new': 45117, 'reason': 'r'})
+
+
+def test_old_value_mismatch_raises():
+    with pytest.raises(BuildError):
+        apply_fix(_tm(), {'trigger_id': 0, 'name': '6馬召', 'kind': 'condition', 'index': 0,
+                          'field': 'unit_object', 'old': 999, 'new': 45117, 'reason': 'r'})
+
+
+def test_list_old_value_missing_raises():
+    with pytest.raises(BuildError):
+        apply_fix(_tm(), {'trigger_id': 1, 'name': '', 'kind': 'effect', 'index': 0,
+                          'field': 'selected_object_ids', 'old': 777, 'new': 45117, 'reason': 'r'})
