@@ -24,8 +24,8 @@ def retire_and_cut(tm, retired, repoint):
                               '原', '退役_', '退役'))
     orphans = []
     for t in tm.triggers:
-        if t.trigger_id in retired:
-            continue
+        if t.trigger_id in retired or (t.name or '').startswith('退役_'):
+            continue          # 退役來源的殘邊無害（無人再啟動它們）
         for i, e in enumerate(t.effects):
             if getattr(e, 'effect_type', None) == 8 \
                     and getattr(e, 'trigger_id', -1) in retired:

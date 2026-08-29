@@ -81,15 +81,20 @@ def setup_bodies(um, tm, rspec, extract=extract_class_names):
     changes.append(Change('s38', 'trigger_add', '選角初始化', 'trigger', '', '新增',
                           '展示改名/凍結/備身轉Gaia'))
 
-    inv = tm.add_trigger('展示無敵', enabled=True, looping=True)
-    inv.new_effect.damage_object(source_player=-1, quantity=-32000,
-                                 selected_object_ids=[rspec.hero_refs[c] for c in range(1, 7)])
-    changes.append(Change('s38', 'trigger_add', '展示無敵', 'trigger', '', '新增',
-                          '循環灌血；選角時停用並重設血量（s39）'))
+    invuln_tids = {}
+    for cid in range(1, 7):
+        inv = tm.add_trigger(f'展示無敵{cid}', enabled=True, looping=True)
+        inv.new_effect.damage_object(source_player=-1, quantity=-32000,
+                                     selected_object_ids=[rspec.hero_refs[cid]])
+        invuln_tids[cid] = inv.trigger_id
+        changes.append(Change('s38', 'trigger_add', f'展示無敵{cid}', 'trigger', '', '新增',
+                              '循環灌血；選角時停用並重設血量（s39）'))
 
+    hero_consts = {cid: by_ref[rspec.hero_refs[cid]].unit_const for cid in range(1, 7)}
+    rspec.hero_consts = hero_consts
     return dict(spec=rspec, life_refs=life_refs, containers=containers,
-                class_names=class_names, changes=changes,
-                init_tid=t.trigger_id, invuln_tid=inv.trigger_id)
+                class_names=class_names, changes=changes, hero_consts=hero_consts,
+                init_tid=t.trigger_id, invuln_tids=invuln_tids)
 
 
 class ChooseStep(Step):

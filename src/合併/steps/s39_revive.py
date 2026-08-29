@@ -28,14 +28,17 @@ def _primary_ref2cid(life_refs):
     return {refs[0]: cid for cid, refs in life_refs.items()}
 
 
-def append_life_refs(tm, life_refs, skip_tids=frozenset()) -> list:
-    """可追加型效果：sel 含任一命 ref → 補齊該職業全部命 ref＋玩家欄 -1。"""
+def append_life_refs(tm, life_refs, skip_tids=frozenset(), skip_effects=frozenset()) -> list:
+    """可追加型效果：sel 含任一命 ref → 補齊該職業全部命 ref＋玩家欄 -1。
+    skip_effects={(tid, ei)}：池效果等逐效果排除（spec §七之三.5）。"""
     ref2cid = _all_ref2cid(life_refs)
     changes = []
     for t in tm.triggers:
         if t.trigger_id in skip_tids:
             continue
         for ei, e in enumerate(t.effects):
+            if (t.trigger_id, ei) in skip_effects:
+                continue
             if getattr(e, 'effect_type', None) not in APPEND_TYPES:
                 continue
             sel = list(getattr(e, 'selected_object_ids', None) or [])
@@ -178,15 +181,166 @@ def build_matrix(tm, matrix_sets):
     return variant_map, enable_lists, changes
 
 
+def run_revive(ctx):
+    """s39 總裝（plan T9b-iii）：矩陣→flag_swap換裝→連動變體→跨集重指→效果拆分→
+    池盤點→ref追加→OR展開→locref→復活鏈→上馬改造→補池→轉生旗→退役斷邊→踢人整備。"""
+    from analysis.revive_inventory import build_inventory
+    from .revive_chains import build_chains
+    from .dl_variants import build_death_linked, convert_flag_swap_conditions
+    from .revive_mount import (rebuild_mount, split_effects, inventory_pools,
+                               build_pool_grants)
+    from .revive_retire import (retire_and_cut, build_rebirth_flag_triggers,
+                                repoint_cross, build_kick_cleanup)
+
+    params = ctx.spec.params['revive']
+    rv0 = ctx.notes.get('revive')
+    if not rv0:
+        raise BuildError('缺裁決：s38 未產出 ctx.notes[revive]（步驟順序異常）')
+    tm = ctx.base.trigger_manager
+    rspec = rv0['spec']
+    life_refs = rv0['life_refs']
+    hero_consts = rv0['hero_consts']
+    slots = (1, 2, 3, 4, 5, 6)
+    changes = []
+
+    # ---- mount / cells 組態 ----
+    mount_refs = {int(k): int(v) for k, v in params['mount_refs'].items()}
+    by_ref = {u.reference_id: u for p in range(9) for u in ctx.base.unit_manager.units[p]}
+    cells = params['cells']
+    mount = {}
+    for cid in range(1, 7):
+        row = 239 - (cid - 1)
+        mu = by_ref.get(mount_refs[cid])
+        if mu is None:
+            raise BuildError(f'缺裁決：職業{cid} 預置馬騎 ref{mount_refs[cid]} 不存在')
+        mount[cid] = dict(mount_ref=mount_refs[cid], mount_const=mu.unit_const,
+                          flag_cell=(221, row),
+                          rebirth_cell=(int(cells['rebirth_x']), row),
+                          final_cell=(int(cells['final_x']), row),
+                          pool_cells=[(int(cells['pool_x_base']) - i, row)
+                                      for i in range(int(cells['pool_slots']))])
+
+    retired_all = set(rspec.retired) | {int(x) for x in (params.get('retired_extra') or [])}
+    rulings = ctx.spec.params.get('death_linked_rulings')
+    if rulings is None:
+        raise BuildError('缺裁決：params.death_linked_rulings 不存在')
+
+    # ---- 盤點＋矩陣（flag_swap 併入矩陣集）----
+    inv = build_inventory(tm, rspec.hero_refs, hero_consts, exclude=sorted(retired_all))
+    ref2cid = {r: c for c, r in rspec.hero_refs.items()}
+    matrix_sets = {cid: set(inv.matrix.get(cid, set())) for cid in range(1, 7)}
+    for r in rulings:
+        if r['category'] != 'flag_swap':
+            continue
+        t = tm.triggers_by_id.get(r['tid'])
+        cids = {ref2cid[c.unit_object] for c in t.conditions
+                if getattr(c, 'condition_type', None) == 6
+                and getattr(c, 'unit_object', -1) in ref2cid}
+        if len(cids) != 1:
+            raise BuildError(f'缺裁決：flag_swap T{r["tid"]} 職業判定異常 {cids}')
+        matrix_sets[cids.pop()].add(r['tid'])
+    x3 = {int(k): int(v) for k, v in params['mount_x3'].items()}
+    for cid, tid in x3.items():
+        if tid not in matrix_sets[cid]:
+            raise BuildError(f'缺裁決：X馬3 T{tid}（職業{cid}）不在矩陣集——定址分類異常，請查盤點')
+    vm, el, ch = build_matrix(tm, matrix_sets)
+    changes += ch
+    changes += convert_flag_swap_conditions(tm, rulings, vm, rspec.hero_refs, mount, slots)
+
+    # ---- 連動變體＋跨集重指＋效果拆分 ----
+    dl = build_death_linked(tm, rulings, rspec.hero_refs, mount, slots)
+    changes += dl.changes
+    changes += repoint_cross(tm, vm, dl.variant_map)
+    anti_lists = {}
+    changes += split_effects(tm, params.get('effect_splits') or [], el, anti_lists, slots)
+
+    # ---- 池盤點（追加排除）→ ref 追加 → OR 展開 → locref ----
+    mount_ref2cid = {v: k for k, v in mount_refs.items()}
+    pools = inventory_pools(tm, mount_ref2cid)
+    skip_eff = {(p['tid'], p['ei']) for p in pools}
+    changes += append_life_refs(tm, life_refs, skip_effects=skip_eff)
+    x3_all = set(x3.values()) | {vm[(t, s)] for c, t in x3.items() for s in slots}
+    excl = ({r['tid'] for r in rulings} | retired_all | x3_all
+            | {v for k, v in dl.variant_map.items()})
+    ech, dups = expand_conditions(tm, life_refs, death_linked=excl, use_or=True)
+    changes += ech
+    el_index = {tid: key for key, lst in el.items() for tid in lst}
+    for orig, m in dups.items():
+        if orig in el_index:
+            el[el_index[orig]] += list(m.values())
+    lch, gates = dup_locref(tm, life_refs)
+    changes += lch
+
+    # ---- 掛勾（連動 + locref 逐命閘）----
+    hooks = {}
+    for key, hk in dl.hooks.items():
+        hooks[key] = dict(hk)
+    for cid in range(1, 7):
+        for s in slots:
+            hk = hooks.setdefault((cid, s), {})
+            act_L, deact_L = {}, {}
+            for L in range(1, rspec.lives):
+                act_L[L] = list(gates.get((cid, L + 1), []))
+                deact_L[L] = list(gates.get((cid, L), []))
+            hk['timer_activate_L'] = act_L
+            hk['timer_deactivate_L'] = deact_L
+
+    # ---- 復活鏈 → 上馬改造 → 補池 ----
+    chains = build_chains(tm, dict(
+        spec=rspec, life_refs=life_refs, containers=rv0['containers'],
+        class_names=rv0['class_names'], invuln_tids=rv0['invuln_tids'],
+        base_hp={int(k): int(v) for k, v in params['base_hp'].items()},
+        enable_lists=el, anti_lists=anti_lists, mount=mount,
+        classes=tuple(range(1, 7)), slots=slots, dl_hooks=hooks))
+    changes += chains.changes
+    mo = rebuild_mount(tm, x3_variants={(cid, s): vm[(x3[cid], s)]
+                                        for cid in range(1, 7) for s in slots},
+                       life_refs=life_refs, mount=mount, watch=chains.watch,
+                       final=chains.final, horse=chains.horse,
+                       retired=retired_all, lives=rspec.lives)
+    changes += mo.changes
+    changes += build_pool_grants(tm, pools, life_refs, mount)
+
+    # ---- 轉生旗＋退役斷邊＋踢人整備 ----
+    fmap, fch = build_rebirth_flag_triggers(tm, mount)
+    changes += fch
+    repoint = {1804 + cid: fmap[cid] for cid in range(1, 7)}
+    changes += retire_and_cut(tm, retired_all, repoint)
+    kf = params.get('kick_fences')
+    if kf is None:
+        raise BuildError('缺裁決：revive.kick_fences 未提供（明確跳過請填 {}）')
+    if kf:
+        changes += build_kick_cleanup(
+            tm, dict(watch=chains.watch, timer=chains.timer, final=chains.final,
+                     horse=chains.horse, select=chains.select),
+            {int(k): int(v) for k, v in kf.items()})
+
+    ctx.notes['revive_out'] = dict(enable_lists=el, anti_lists=anti_lists,
+                                   variant_count=len(vm), pools=len(pools),
+                                   chains=dict(watch=chains.watch, timer=chains.timer,
+                                               final=chains.final, horse=chains.horse,
+                                               select=chains.select))
+    return changes
+
+
 class ReviveStep(Step):
     id = 's39'
     title = '復活與選職業'
-    intro = '接線改造＋矩陣＋選角＋復活鏈（T9 完工前：無 revive 參數時跳過）。'
+    intro = '接線改造＋矩陣＋選角＋復活鏈＋連動狀態機＋上馬改造（無 revive 參數時跳過）。'
 
     def apply(self, ctx):
         if not ctx.spec.params.get('revive'):
             return []
-        raise BuildError('缺裁決：params.revive 已存在但 s39 復活鏈尚未完工（plan T9）')
+        return run_revive(ctx)
+
+    def test_guide(self, changes):
+        n_add = sum(1 for c in changes if c.kind == 'trigger_add')
+        return (f'復活與選職業：新增觸發 {n_add} 支。\n'
+                '單人驗收（spec §九）：點展示英雄選角（互斥）→ 死亡10秒重生 → 第2命找職業NPC升級 →'
+                '打坐跨命 → 連動（召寵陪葬/修端木護送失敗/哥8命盡才發）→ 騎馬全流程'
+                '（上馬不燒命、預存池、馬死重生仍馬形態）→ 命盡訊息 → 未選職業鎖定 → 存讀檔迴圈。\n'
+                '陽性對照：原有任一技能照常運作。\n'
+                '警告：步行箭俠勿踩叛變格(31-33,14-16)——沒收無解（原作設計）。')
 
 
 STEP = ReviveStep()

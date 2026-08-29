@@ -91,6 +91,10 @@ def build_chains(tm, rv):
                     tmr.new_effect.deactivate_trigger(trigger_id=x)
                 for x in hk.get('timer_activate', []):
                     tmr.new_effect.activate_trigger(trigger_id=x)
+                for x in hk.get('timer_deactivate_L', {}).get(L, []):
+                    tmr.new_effect.deactivate_trigger(trigger_id=x)
+                for x in hk.get('timer_activate_L', {}).get(L, []):
+                    tmr.new_effect.activate_trigger(trigger_id=x)
                 tmr.new_effect.activate_trigger(trigger_id=next_tid)
                 out.timer[(cid, s, L)] = tmr.trigger_id
 
