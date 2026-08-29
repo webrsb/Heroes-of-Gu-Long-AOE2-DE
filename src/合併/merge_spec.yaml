@@ -1,13 +1,39 @@
 # 合併規格 —— 圈選與裁決的唯一權威。
-# 首輪 fix-only：不搬任何群，先驗流水線與基底修復。
-# 圈選方式：看 reports/盤點報告.md，把要搬的群抄進 groups。
+#
+# 【2026-08-29 裁決記錄】
+# - 搬運圈選：全數不搬。逐一追查證實無法無天是劍譜5 遊玩內容的完整超集
+#   （見 reports/配對分析.md §五）；陳卓林彩蛋（a5231）使用者裁決捨棄。
+# - 雙0血 13 目標：對無法無天重跑建築血量盤點確認 ref 與劍譜5 完全相同。
+# - wrap_add 皆為首輪估值，等實機 tooltip 回報後校正（s40 測試指引）。
 groups: []
 overrides: []
 params:
   boss_hp:
-    targets: []      # 待使用者確認合併版 13 目標後填（§5.7 表為劍譜5 座標，需盤點核對）
+    targets:
+      - {label: 亡魂之堡, unit_const: 82, tile: [4, 5], wrap_add: 63736}    # 估 A=4800-3000=1800
+      - {label: 聚魂塔, unit_const: 208, tile: [0, 4], wrap_add: 42736}     # 估 A≈22800（Δ+88136 mod 65536 + 基值猜 200）
+      # 11 面界線牆：基值 250 ＋ 賓名 +9750（開場觸發）= 10000（舊版實機觀察值）
+      - {label: 界線牆91_2, unit_const: 72, tile: [91, 2], wrap_add: 55536}
+      - {label: 界線牆91_3, unit_const: 72, tile: [91, 3], wrap_add: 55536}
+      - {label: 界線牆80_6, unit_const: 72, tile: [80, 6], wrap_add: 55536}
+      - {label: 界線牆73_0, unit_const: 72, tile: [73, 0], wrap_add: 55536}
+      - {label: 界線牆73_1, unit_const: 72, tile: [73, 1], wrap_add: 55536}
+      - {label: 界線牆73_2, unit_const: 72, tile: [73, 2], wrap_add: 55536}
+      - {label: 界線牆73_3, unit_const: 72, tile: [73, 3], wrap_add: 55536}
+      - {label: 界線牆73_4, unit_const: 72, tile: [73, 4], wrap_add: 55536}
+      - {label: 界線牆73_5, unit_const: 72, tile: [73, 5], wrap_add: 55536}
+      - {label: 界線牆73_6, unit_const: 72, tile: [73, 6], wrap_add: 55536}
+      - {label: 界線牆73_7, unit_const: 72, tile: [73, 7], wrap_add: 55536}
   healthbar:
-    enabled: false   # 等 s40 實測回報 start_hp 後開
+    enabled: false   # 等 s40 實測回報兩魔王的起始當前血量後開
     targets: []
   misc:
-    const_replacements: []   # 待盤點確認無法無天是否有 436
+    const_replacements:
+      - label: 擱淺沉船
+        find: {unit_const: 436}
+        to_const: 2353
+        expect_count: 1        # b 實查：僅 ref21356 (104.5,131.5)
+        reason: 436 在 DE 無外觀，使用者 2026-08-29 選定 2353（巨魚怪船隻遺骸）替代
+# 【待辦・非本輪】無法無天新內容中發現多個未知 const 的大量灌血物件
+# （const 176/76/852/652/556/847/172/197/426 等），需 test14 式實機夾血測試
+# 判定是否建築行為；若夾血則要加入雙0血名單。
