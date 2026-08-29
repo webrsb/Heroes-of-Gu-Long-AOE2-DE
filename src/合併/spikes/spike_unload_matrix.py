@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-"""卸載組合矩陣：5 棚並排，t=10/12/14/16/18 逐棚下卸載令，找出會出兵的組合。
-棚1: Gaia帳+Gaia兵, 卸載sp=0
-棚2: Gaia帳+Gaia兵, t=8先把兵轉P1, 卸載sp=0（Gaia帳吐外家兵?）
-棚3: P8帳+Gaia兵, 卸載當下帳與兵都先轉P1, 卸載sp=1（全套換主舞步）
-棚4: P8帳+Gaia兵, 兵先轉P1, 卸載sp=8+座標（全流程失敗案重試+補座標）
-棚5: P8帳+Gaia兵, 直接卸載sp=8+座標（B5帳1原樣重測）
-全部卸載都帶座標。觀察: 哪幾棚的民兵站出來了；棚3換帳主時是否兵先彈出。
+"""卸載矩陣 v2：杜絕自動歸順——所有帳棚與兵建檔一律 P8，兵於 t=0 轉 Gaia（遊戲中轉的
+Gaia 無歸順旗標）。五棚驗不同的重生順序/歸屬組合：
+棚1: t=0兵轉Gaia → 卸載時 兵先轉P1(駐軍中) → sp=8卸載
+棚2: t=0兵轉Gaia → sp=8先卸載(兵仍Gaia) → 2秒後兵轉P1
+棚3: t=0兵轉Gaia → 卸載時 帳+兵都轉P1 → sp=1卸載
+棚4: 兵一直P8(對照,AI同主卸載已證) → sp=8卸載 → 兵轉P1
+棚5: t=0兵轉Gaia → sp=8卸載 → 永不轉家（驗:出來的兵保持Gaia不被吸走）
+★驗證訊息自動報 P1 民兵數(1~4)。棚4的兵若在下令前自己跑出來=P8 AI亂卸(記錄)。
 用法: python spike_unload_matrix.py <template> <輸出>"""
 import sys, io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -25,13 +26,12 @@ def main(src, out):
         return um.add_unit(player=player, unit_const=const, x=x + .5, y=yy + .5, **kw).reference_id
 
     um.add_unit(player=P1, unit_const=FLAG, x=cx + .5, y=y - 6 + .5)
-    plan = [('棚1', P0), ('棚2', P0), ('棚3', P8), ('棚4', P8), ('棚5', P8)]
     T = {}
-    for i, (label, towner) in enumerate(plan):
-        x = cx - 16 + i * 7
-        b = add(towner, TENT, x, y)
-        g = add(P0, MILITIA, x, y, garrisoned_in_id=b)
-        T[label] = dict(b=b, g=g, x=x)
+    for i in range(1, 6):
+        x = cx - 16 + (i - 1) * 7
+        b = add(P8, TENT, x, y)
+        g = add(P8, MILITIA, x, y, garrisoned_in_id=b)
+        T[i] = dict(b=b, g=g, x=x)
 
     def trig(name, timer):
         t = tm.add_trigger(name, enabled=True, looping=False)
@@ -39,36 +39,39 @@ def main(src, out):
         return t
     def chat(t, m):
         t.new_effect.send_chat(source_player=P1, message=m)
-    def unload(t, ref, sp, x):
-        t.new_effect.unload(source_player=sp, selected_object_ids=[ref], location_x=x, location_y=y + 3)
     def own(t, ref, frm, to):
         t.new_effect.change_ownership(source_player=frm, target_player=to, selected_object_ids=[ref])
+    def unload(t, i, sp):
+        t.new_effect.unload(source_player=sp, selected_object_ids=[T[i]['b']],
+                            location_x=T[i]['x'], location_y=y + 3)
 
     t = trig('開場', 0)
     t.new_effect.change_diplomacy(diplomacy=0, source_player=P1, target_player=P8)
     t.new_effect.change_diplomacy(diplomacy=0, source_player=P8, target_player=P1)
-    for label, _ in plan:
-        t.new_effect.change_object_name(source_player=-1, selected_object_ids=[T[label]['b']], message=label)
-    chat(t, '卸載矩陣: 左起棚1~5，各藏一隻Gaia民兵。t=10起每2秒卸一棚，看誰出兵')
+    for i in (1, 2, 3, 5):
+        own(t, T[i]['g'], P8, P0)     # 駐軍中 P8→Gaia（棚4 對照維持 P8）
+    for i in range(1, 6):
+        t.new_effect.change_object_name(source_player=-1, selected_object_ids=[T[i]['b']], message=f'棚{i}')
+    chat(t, '矩陣v2: 全部P8建檔。棚1235兵已轉Gaia，棚4兵留P8。t=10起每3秒卸一棚')
 
-    t = trig('棚2兵先轉P1', 8)
-    own(t, T['棚2']['g'], P0, P1)
-    chat(t, 't8: 棚2的兵已轉P1（帳仍Gaia）')
+    for n in range(1, 5):
+        t = tm.add_trigger(f'驗{n}', enabled=True, looping=False)
+        t.new_condition.own_objects(quantity=n, object_list=MILITIA, source_player=P1)
+        chat(t, f'★驗證: P1 已擁有 {n} 隻民兵')
 
-    t = trig('棚1卸', 10); unload(t, T['棚1']['b'], P0, T['棚1']['x']); chat(t, 't10: 棚1卸載(Gaia帳Gaia兵sp=0)')
-    t = trig('棚2卸', 12); unload(t, T['棚2']['b'], P0, T['棚2']['x']); chat(t, 't12: 棚2卸載(Gaia帳P1兵sp=0)')
-    t = trig('棚3舞步', 14)
-    own(t, T['棚3']['g'], P0, P1)
-    own(t, T['棚3']['b'], P8, P1)
-    unload(t, T['棚3']['b'], P1, T['棚3']['x'])
-    chat(t, 't14: 棚3帳+兵全轉P1後卸載sp=1（注意換帳主瞬間兵有沒有先彈出）')
-    t = trig('棚4卸', 16)
-    own(t, T['棚4']['g'], P0, P1)
-    unload(t, T['棚4']['b'], P8, T['棚4']['x'])
-    chat(t, 't16: 棚4兵轉P1後P8卸載+座標')
-    t = trig('棚5卸', 18); unload(t, T['棚5']['b'], P8, T['棚5']['x']); chat(t, 't18: 棚5直接P8卸載Gaia兵+座標')
-    t = trig('總結', 25)
-    chat(t, 't25: 回報哪幾棚出兵、出兵當下歸屬（Gaia灰/藍P1）、棚3是否在換主瞬間彈兵')
+    t = trig('棚1', 10); own(t, T[1]['g'], P0, P1); unload(t, 1, P8)
+    chat(t, 't10 棚1: 兵駐軍中轉P1 → P8卸載')
+    t = trig('棚2卸', 13); unload(t, 2, P8); chat(t, 't13 棚2: 先卸載(Gaia兵)')
+    t = trig('棚2轉', 15); own(t, T[2]['g'], P0, P1); chat(t, 't15 棚2: 出棚兵轉P1')
+    t = trig('棚3', 18)
+    own(t, T[3]['b'], P8, P1); own(t, T[3]['g'], P0, P1); unload(t, 3, P1)
+    chat(t, 't18 棚3: 帳+兵全轉P1 → sp=1卸載（注意換帳主瞬間是否彈兵）')
+    t = trig('棚4', 21); unload(t, 4, P8); own(t, T[4]['g'], P8, P1)
+    chat(t, 't21 棚4: P8同主卸載 → 轉P1（若它更早自己出來=AI亂卸）')
+    t = trig('棚5', 24); unload(t, 5, P8)
+    chat(t, 't24 棚5: 卸載後永不轉家——出來的兵應保持Gaia灰色且不被吸走')
+    t = trig('總結', 32)
+    chat(t, 't32 回報: 各棚出兵?順序?顏色?★驗證幾隻?棚5是否維持Gaia?')
 
     tm.legacy_execution_order = True
     scn.write_to_file(out)
