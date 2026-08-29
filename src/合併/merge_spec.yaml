@@ -117,43 +117,45 @@ params:
     - {tid: 4195, name: 4召, category: a, reason: 同4192寵12700, extras: 同4192}
     - {tid: 4196, name: 5召, category: a, reason: 同4192寵12701, extras: 同4192}
     - {tid: 4197, name: 6召, category: a, reason: 同4192寵12702, extras: 同4192}
-    - {tid: 4204, name: 1哥8, category: a+flag, reason: 哥5後死亡贈兵29334, extras: 改T4189.E12為建旗}
-    - {tid: 4205, name: 2哥8, category: a+flag, reason: 贈兵29331, extras: 改T4220.E12為建旗}
-    - {tid: 4206, name: 3哥8, category: a+flag, reason: 贈兵29329, extras: 改T4227.E12為建旗}
-    - {tid: 4207, name: 4哥8, category: a+flag, reason: 贈兵29335, extras: 改T4234.E12為建旗}
-    - {tid: 4208, name: 5哥8, category: a+flag, reason: 贈兵29330, extras: 改T4241.E12為建旗}
-    - {tid: 4209, name: 6哥8, category: a+flag, reason: 贈兵29332, extras: 改T4248.E12為建旗}
+    - {tid: 4204, name: 1哥8, category: c_flag, reason: 哥5後死亡贈兵29334, extras: 命盡才發(使用者2026-08-30)·final建命盡旗標·變體去destroy加旗標條件·任務啟停邊跨集重指}
+    - {tid: 4205, name: 2哥8, category: c_flag, reason: 贈兵29331, extras: 命盡才發(使用者2026-08-30)·final建命盡旗標·變體去destroy加旗標條件·任務啟停邊跨集重指}
+    - {tid: 4206, name: 3哥8, category: c_flag, reason: 贈兵29329, extras: 命盡才發(使用者2026-08-30)·final建命盡旗標·變體去destroy加旗標條件·任務啟停邊跨集重指}
+    - {tid: 4207, name: 4哥8, category: c_flag, reason: 贈兵29335, extras: 命盡才發(使用者2026-08-30)·final建命盡旗標·變體去destroy加旗標條件·任務啟停邊跨集重指}
+    - {tid: 4208, name: 5哥8, category: c_flag, reason: 贈兵29330, extras: 命盡才發(使用者2026-08-30)·final建命盡旗標·變體去destroy加旗標條件·任務啟停邊跨集重指}
+    - {tid: 4209, name: 6哥8, category: c_flag, reason: 贈兵29332, extras: 命盡才發(使用者2026-08-30)·final建命盡旗標·變體去destroy加旗標條件·任務啟停邊跨集重指}
     - {tid: 4896, name: 修端木1, category: b, reason: 護送中死亡任務永久失敗, extras: 去destroy其餘照抄}
     - {tid: 4898, name: 修端木2, category: b, reason: 同4896, extras: 剝除E2空REMOVE}
     - {tid: 4900, name: 修端木3, category: b, reason: 同4896, extras: 剝除E2空REMOVE}
     - {tid: 4902, name: 修端木4, category: b, reason: 同4896, extras: 剝除E4空REMOVE}
     - {tid: 4904, name: 修端木5, category: b, reason: 同4896, extras: 剝除E2空REMOVE}
     - {tid: 4906, name: 修端木6, category: b, reason: 同4896, extras: 剝除E2空REMOVE}
-    - {tid: 3953, name: 1馬召, category: d, reason: 騎馬適配層, extras: 斷T1548.E9}
-    - {tid: 3954, name: 2馬召, category: d, reason: 騎馬適配層, extras: 斷T1553.E9}
-    - {tid: 3955, name: 3馬召, category: d, reason: 騎馬適配層, extras: 斷T1558.E9}
-    - {tid: 3956, name: 4馬召, category: d, reason: 騎馬適配層, extras: 斷T1563.E9}
-    - {tid: 3957, name: 5馬召, category: d, reason: 騎馬適配層, extras: 斷T1568.E9}
-    - {tid: 3958, name: 6馬召, category: d, reason: 騎馬適配層, extras: 斷T1573.E9}
-    - {tid: 5095, name: 暗刁1死變體, category: d, reason: 騎馬替代路徑, extras: 接管T5094·建置停用}
-    - {tid: 5097, name: 暗刁2死變體, category: d, reason: 同5095, extras: 接管T5096}
-    - {tid: 5099, name: 暗刁3死變體, category: d, reason: 同5095, extras: 接管T5098}
-    - {tid: 5101, name: 暗刁4死變體, category: d, reason: 同5095, extras: 接管T5100}
-    - {tid: 5103, name: 暗刁5死變體, category: d, reason: 同5095, extras: 接管T5102}
-    - {tid: 5105, name: 暗刁6死變體, category: d, reason: 同5095, extras: 接管T5104}
-    - {tid: 5302, name: 魂移1, category: d, reason: 騎馬適配層, extras: 接管T5274}
-    - {tid: 5303, name: 魂移2, category: d, reason: 同5302, extras: 接管T5277}
-    - {tid: 5304, name: 魂移3, category: d, reason: 同5302, extras: 接管T5280}
-    - {tid: 5305, name: 魂移4, category: d, reason: 同5302, extras: 接管T5283}
-    - {tid: 5306, name: 魂移5, category: d, reason: 同5302且滅原生bug(en=1一死斷全域石農), extras: 覆寫盤點a提案}
-    - {tid: 5307, name: 魂移6, category: d, reason: 同5302, extras: 接管T5289}
-    - {tid: 5308, name: 馬1, category: d, reason: 騎馬偵測器, extras: 必斷T5273.E7}
-    - {tid: 5309, name: 馬2, category: d, reason: 同5308, extras: 斷T5276.E6}
-    - {tid: 5310, name: 馬3, category: d, reason: 同5308, extras: 斷T5279.E8}
-    - {tid: 5311, name: 馬4, category: d, reason: 同5308, extras: 斷T5282.E8}
-    - {tid: 5312, name: 馬5, category: d, reason: 同5308, extras: 斷T5285.E8}
-    - {tid: 5313, name: 馬6, category: d, reason: 同5308, extras: 斷T5288.E8}
+    - {tid: 3953, name: 1馬召, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤斷邊·邊照舊}
+    - {tid: 3954, name: 2馬召, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤斷邊}
+    - {tid: 3955, name: 3馬召, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤斷邊}
+    - {tid: 3956, name: 4馬召, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤斷邊}
+    - {tid: 3957, name: 5馬召, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤斷邊}
+    - {tid: 3958, name: 6馬召, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤斷邊}
+    - {tid: 5095, name: 暗刁1死變體, category: flag_swap, reason: 騎馬替代路徑, extras: destroy條件換騎馬旗標讀取·保留原樣·僅換條件}
+    - {tid: 5097, name: 暗刁2死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5099, name: 暗刁3死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5101, name: 暗刁4死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5103, name: 暗刁5死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5105, name: 暗刁6死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5302, name: 魂移1, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤接管註記·邊照舊}
+    - {tid: 5303, name: 魂移2, category: flag_swap, reason: 同5302, extras: destroy條件換騎馬旗標讀取·同5302}
+    - {tid: 5304, name: 魂移3, category: flag_swap, reason: 同5302, extras: destroy條件換騎馬旗標讀取·同5302}
+    - {tid: 5305, name: 魂移4, category: flag_swap, reason: 同5302, extras: destroy條件換騎馬旗標讀取·同5302}
+    - {tid: 5306, name: 魂移5, category: flag_swap, reason: 同5302且滅原生bug(en=1一死斷全域石農), extras: destroy條件換騎馬旗標讀取·同5302·原生bug另由en正規化處理}
+    - {tid: 5307, name: 魂移6, category: flag_swap, reason: 同5302, extras: destroy條件換騎馬旗標讀取·同5302}
+    - {tid: 5308, name: 馬1, category: flag_swap, reason: 騎馬偵測器, extras: destroy條件換騎馬旗標讀取·撤斷邊·邊照舊}
+    - {tid: 5309, name: 馬2, category: flag_swap, reason: 同5308, extras: destroy條件換騎馬旗標讀取·同5308}
+    - {tid: 5310, name: 馬3, category: flag_swap, reason: 同5308, extras: destroy條件換騎馬旗標讀取·同5308}
+    - {tid: 5311, name: 馬4, category: flag_swap, reason: 同5308, extras: destroy條件換騎馬旗標讀取·同5308}
+    - {tid: 5312, name: 馬5, category: flag_swap, reason: 同5308, extras: destroy條件換騎馬旗標讀取·同5308}
+    - {tid: 5313, name: 馬6, category: flag_swap, reason: 同5308, extras: destroy條件換騎馬旗標讀取·同5308}
   death_linked_companions:
-    - {tids: [4210, 4211, 4212, 4213, 4214, 4215], action: retire, reason: 騎馬壓制器·REPLACE下無誤報可防}
-    - {note: X馬3改寫REPLACE時保留CREATE const720@(221,x)——X船×6與4棍2以此為閘門}
-    - {note: a/a+flag/b變體建置停用·watch啟·timer停·final命盡亦啟動}
+    - {tids: [4210, 4211, 4212, 4213, 4214, 4215], action: retire, reason: 騎馬壓制器·由watch反相旗標條件取代}
+    - {tids: [3827, 3828, 3829, 3830, 3831, 3832], action: retire, reason: X死2原馬死訊息·由watch_馬接管（斷邊）}
+    - {note: 換馬流程原樣保留（§七之三v3）·X馬3的REMOVE逐命複製鏈啟停·建旗移到REMOVE前}
+    - {note: a/b變體建置停用·watch啟·timer停；c_flag變體讀命盡旗標；watch一律帶NOT騎馬旗標反相條件}
+    - {note: 馬騎ref 26109/26186/26136/26139/26138/26110 各配 watch_馬(C,S)·馬死移除騎馬旗標}
