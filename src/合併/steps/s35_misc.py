@@ -19,6 +19,15 @@ def apply_replacement(units, spec_entry) -> list:
                               f'ref{u.reference_id} ({u.x},{u.y})', 'unit_const',
                               str(find_const), str(spec_entry['to_const']),
                               spec_entry.get('reason', '')))
+        deg = spec_entry.get('rotate_deg')
+        if deg:
+            import math
+            old = u.rotation
+            u.rotation = (u.rotation + math.radians(deg)) % (2 * math.pi)
+            changes.append(Change('s35', 'unit_field',
+                                  f'ref{u.reference_id} ({u.x},{u.y})', 'rotation',
+                                  f'{old:.3f}', f'{u.rotation:.3f}（+{deg}°）',
+                                  spec_entry.get('reason', '')))
     return changes
 
 
