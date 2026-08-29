@@ -47,6 +47,9 @@ def main():
     base = scenario_io.load(scenario_io.ORIGIN_BASE)
     source = scenario_io.load(scenario_io.ORIGIN_SOURCE)
     ctx = BuildContext(base=base, source=source, spec=spec, pairing=None, notes={})
+    from steps.s90_audit import collect_dangling
+    ctx.notes['initial_trigger_count'] = len(base.trigger_manager.triggers)
+    ctx.notes['baseline_dangling'] = collect_dangling(base)
     steps = filter_until(get_steps(), a.until)
     try:
         results = run_pipeline(ctx, steps, LOGS)

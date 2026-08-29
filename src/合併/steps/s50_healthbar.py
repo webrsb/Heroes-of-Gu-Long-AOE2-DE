@@ -49,9 +49,10 @@ class HealthbarStep(Step):
                                           comparison=int(Comparison.LESS))
                 t.new_effect.change_object_caption(message=bar_text(name, pct),
                                                    selected_object_ids=[ref])
-            changes.append(Change(self.id, 'trigger_add', f'ZZ_血條_{label}_*',
-                                  '—', '—', f'99 階（start_hp={tg["start_hp"]}）',
-                                  '§5.7a 樣式3'))
+                changes.append(Change(self.id, 'trigger_add',
+                                      f'T{t.trigger_id}「ZZ_血條_{label}_{pct:02d}」',
+                                      'threshold', '—', f'HP<{int(hp)}',
+                                      '§5.7a 樣式3'))
         return changes
 
     def test_guide(self, changes):
