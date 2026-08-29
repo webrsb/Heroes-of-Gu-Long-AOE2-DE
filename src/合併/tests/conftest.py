@@ -25,9 +25,22 @@ class Factory:
         return t
 
     def tm(self, trigs):
+        import copy
         trigs = list(trigs)
-        return NS(triggers=trigs,
-                  triggers_by_id={t.trigger_id: t for t in trigs})
+        tm = NS(triggers=trigs,
+                triggers_by_id={t.trigger_id: t for t in trigs})
+
+        def copy_trigger(tid, append_after_source=True, add_suffix=True):
+            assert append_after_source is False and add_suffix is False,                 'copy_trigger 必須用 append_after_source=False, add_suffix=False（鐵律）'
+            src = tm.triggers_by_id[tid]
+            v = copy.deepcopy(src)
+            v.trigger_id = max(tm.triggers_by_id) + 1
+            tm.triggers.append(v)
+            tm.triggers_by_id[v.trigger_id] = v
+            return v
+
+        tm.copy_trigger = copy_trigger
+        return tm
 
     # ---- 效果 ----
     def _eff(self, etype, **kw):
