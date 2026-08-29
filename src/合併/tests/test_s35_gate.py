@@ -12,8 +12,8 @@ def U(ref, const, x, y):
     return NS(reference_id=ref, unit_const=const, x=x, y=y)
 
 
-def make_um(units8):
-    um = NS(units=[list(units8) if p == 8 else [] for p in range(9)],
+def make_um(units8, player=8):
+    um = NS(units=[list(units8) if p == player else [] for p in range(9)],
             added=[], removed=[])
     um.add_unit = lambda **kw: (um.added.append(kw), NS(reference_id=99999, **kw))[1]
     um.remove_unit = lambda reference_id=None, unit=None: um.removed.append(
@@ -68,7 +68,7 @@ def test_collision_audit_flags_effect_side():
     t = NS(trigger_id=7, name='假船塢', conditions=[],
            effects=[_eff(object_list_unit_id=329, source_player=7,
                          area_x1=38, area_y1=34, area_x2=41, area_y2=37)])
-    um = make_um([U(50, 329, 39.5, 35.5)])
+    um = make_um([U(50, 329, 39.5, 35.5)], player=7)
     hits = audit_const_collision(_tm([t]), um, [329])
     assert len(hits) == 1 and 'T7' in hits[0]
 
@@ -97,3 +97,20 @@ def test_collision_audit_no_area_means_global_hit():
     um = make_um([U(53, 1811, 75.5, 111.5)])
     hits = audit_const_collision(_tm([t]), um, [1811])
     assert len(hits) == 1
+
+
+def test_collision_audit_ignores_player_disjoint():
+    # 過濾 sp=7、換皮單位屬 P8 → 玩家不相交，不告警（民團/T3483 型假陽性）
+    t = NS(trigger_id=15, name='民團型', effects=[],
+           conditions=[_cond(object_list=74, source_player=7,
+                             area_x1=-1, area_y1=-1, area_x2=-1, area_y2=-1)])
+    um = make_um([U(54, 74, 78.5, 234.5)], player=8)
+    assert audit_const_collision(_tm([t]), um, [74]) == []
+
+
+def test_collision_audit_flags_any_player_filter():
+    t = NS(trigger_id=17, name='任意家', effects=[],
+           conditions=[_cond(object_list=74, source_player=-1,
+                             area_x1=-1, area_y1=-1, area_x2=-1, area_y2=-1)])
+    um = make_um([U(55, 74, 78.5, 234.5)], player=8)
+    assert len(audit_const_collision(_tm([t]), um, [74])) == 1

@@ -2,3 +2,26 @@ step	kind	target	field	old	new	reason
 s35	unit_field	ref31245 (0.5,4.5)	unit_const	208	234	const208 在 DE 為未知 ID 無外觀（舊版為小石塔，1895504/2704）
 s35	unit_field	ref21356 (104.5,131.5)	unit_const	436	2353	436 在 DE 無外觀，使用者 2026-08-29 選定 2353（巨魚怪船隻遺骸）替代
 s35	unit_field	ref21356 (104.5,131.5)	rotation	4.712	6.283（+90°）	436 在 DE 無外觀，使用者 2026-08-29 選定 2353（巨魚怪船隻遺骸）替代
+s35	unit_field	ref7 (75.5,111.5)	unit_const	94	1811	const94 DE 無圖；數值校正見 attr_fixes
+s35	unit_field	ref14168 (236.5,235.5)	unit_const	94	1811	const94 DE 無圖；數值校正見 attr_fixes
+s35	unit_field	ref30319 (57.5,3.5)	unit_const	94	1811	const94 DE 無圖；數值校正見 attr_fixes
+s35	unit_field	ref27972 (39.5,35.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref27973 (67.5,154.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref27977 (193.5,127.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref27976 (193.5,41.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref27975 (183.5,223.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref30858 (87.5,1.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref30786 (84.5,4.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref30857 (83.5,0.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref30859 (81.5,8.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref30785 (89.5,0.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref27974 (64.5,152.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref30787 (88.5,6.5)	unit_const	37	329	const37 DE 無圖；校正見 attr_fixes
+s35	unit_field	ref28463 (192.5,138.5)	unit_const	573	74	const573 DE 無圖、原版和平NPC；校正含攻歸0
+s35	unit_remove	ref31762 (225.5,14.5)	unit_const	95	（移除）	城門構件拆除
+s35	unit_remove	ref31763 (225.5,11.5)	unit_const	95	（移除）	城門構件拆除
+s35	unit_remove	ref14330 (225.5,14.5)	unit_const	95	（移除）	城門構件拆除
+s35	unit_remove	ref14331 (225.5,11.5)	unit_const	95	（移除）	城門構件拆除
+s35	unit_remove	ref13332 (225.5,14.5)	unit_const	95	（移除）	城門構件拆除
+s35	unit_remove	ref13333 (225.5,11.5)	unit_const	95	（移除）	城門構件拆除
+s35	unit_add	ref50437 (225.5,13.0)	unit_const	（新增）	88	置換石門（包絡中點）

@@ -70,7 +70,7 @@ def test_apply_builds_single_trigger_with_all_effects():
     t = made['屬性校正']
     assert len(t.new_effect.calls) == 14
     assert all(c['object_list_unit_id'] == 1811 for c in t.new_effect.calls)
-    assert len(changes) == 14
+    assert len(changes) == 15   # 14效果+1觸發申報
 
 
 class FakeEffectFactory2(FakeEffectFactory):

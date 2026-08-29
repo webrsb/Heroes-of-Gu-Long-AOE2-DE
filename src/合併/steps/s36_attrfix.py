@@ -47,7 +47,8 @@ def apply_attr_fixes(tm, entries, gate=None) -> list:
     rows = expand_attr_entries(entries)
     t = tm.add_trigger('屬性校正', enabled=True, looping=False)
     t.new_condition.timer(timer=0)
-    changes = []
+    changes = [Change('s36', 'trigger_add', '屬性校正', 'trigger', '', '新增',
+                      '換皮屬性校正初始化觸發')]
     for r in rows:
         t.new_effect.modify_attribute(
             quantity=r['quantity'], armour_attack_quantity=r['aaq'],
@@ -84,7 +85,7 @@ class AttrFixStep(Step):
         return changes
 
     def test_guide(self, changes):
-        consts = sorted({c.target.split('const')[1] for c in changes})
+        consts = sorted({c.target.split('const')[1] for c in changes if c.kind == 'attr_fix'})
         return ('屬性校正：const ' + '、'.join(consts) + '\n'
                 '怎麼測：點選換皮單位看 tooltip（拳 HP75/攻10；37怪 HP110/攻7；'
                 '573民兵 HP45/攻0；城門 HP2750）。攻擊顯示為基礎+加成、合計正確即過。\n'

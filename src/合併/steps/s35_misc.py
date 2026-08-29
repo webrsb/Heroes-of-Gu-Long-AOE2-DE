@@ -68,24 +68,30 @@ def audit_const_collision(tm, um, new_consts) -> list:
     for p in range(9):
         for u in um.units[p]:
             if u.unit_const in new_consts:
-                targets.setdefault(u.unit_const, []).append((u.x, u.y))
+                targets.setdefault(u.unit_const, []).append((u.x, u.y, p))
     hits = []
+
+    def player_meets(field_player, owner):
+        return field_player in (-1, None, owner)   # -1=任意玩家才可能誤中
+
     for t in tm.triggers:
         for i, c in enumerate(t.conditions):
             ol = getattr(c, 'object_list', -1)
             if ol in targets:
-                for ux, uy in targets[ol]:
-                    if _area_covers(c.area_x1, c.area_y1, c.area_x2, c.area_y2, ux, uy):
+                for ux, uy, owner in targets[ol]:
+                    if (player_meets(getattr(c, 'source_player', -1), owner)
+                            and _area_covers(c.area_x1, c.area_y1, c.area_x2, c.area_y2, ux, uy)):
                         hits.append(f'T{t.trigger_id}「{t.name or "(無名)"}」C{i} '
-                                    f'object_list={ol} 涵蓋換皮單位 ({ux},{uy})')
+                                    f'object_list={ol} 涵蓋換皮單位 P{owner}({ux},{uy})')
                         break
         for i, e in enumerate(t.effects):
             ol = getattr(e, 'object_list_unit_id', -1)
             if ol in targets and not (getattr(e, 'selected_object_ids', None) or []):
-                for ux, uy in targets[ol]:
-                    if _area_covers(e.area_x1, e.area_y1, e.area_x2, e.area_y2, ux, uy):
+                for ux, uy, owner in targets[ol]:
+                    if (player_meets(getattr(e, 'source_player', -1), owner)
+                            and _area_covers(e.area_x1, e.area_y1, e.area_x2, e.area_y2, ux, uy)):
                         hits.append(f'T{t.trigger_id}「{t.name or "(無名)"}」E{i} '
-                                    f'object_list_unit_id={ol} 涵蓋換皮單位 ({ux},{uy})')
+                                    f'object_list_unit_id={ol} 涵蓋換皮單位 P{owner}({ux},{uy})')
                         break
     return hits
 
