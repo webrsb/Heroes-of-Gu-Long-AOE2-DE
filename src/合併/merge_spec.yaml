@@ -1,0 +1,13 @@
+# 合併規格 —— 圈選與裁決的唯一權威。
+# 首輪 fix-only：不搬任何群，先驗流水線與基底修復。
+# 圈選方式：看 reports/盤點報告.md，把要搬的群抄進 groups。
+groups: []
+overrides: []
+params:
+  boss_hp:
+    targets: []      # 待使用者確認合併版 13 目標後填（§5.7 表為劍譜5 座標，需盤點核對）
+  healthbar:
+    enabled: false   # 等 s40 實測回報 start_hp 後開
+    targets: []
+  misc:
+    const_replacements: []   # 待盤點確認無法無天是否有 436
