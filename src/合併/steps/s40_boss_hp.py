@@ -21,9 +21,11 @@ from AoE2ScenarioParser.datasets.trigger_lists import Operation
 from core.change import Change
 from analysis.dependency import build_unit_index, effect_target_refs
 from .base import Step, BuildError
+from .s30_attackfix import as_int16
 
 _CH_HP = int(EffectId.CHANGE_OBJECT_HP)
 _KILL = int(EffectId.KILL_OBJECT)
+_DMG = int(EffectId.DAMAGE_OBJECT)
 _GATE_Q = 32767   # AoC「殺牆開門」慣用值
 
 
@@ -64,8 +66,12 @@ class BossHpStep(Step):
             ctx.notes['boss_refs'][tg['label']] = tg['_ref']
         boss_refs = set(ctx.notes['boss_refs'].values())
 
-        # 1. 歸零 / 改 Kill
-        conflicts = []
+        # 1. 等價遷移本體的 max 操作（原有功能不刪除）：
+        #    AoC 改 max 會等比帶動當前血量；雙0血下 max 恆為 0，
+        #    故把每個 max 操作換成對當前血量的同量增減（Damage 負值＝增），
+        #    數值先用 as_int16 還原 65536−N 回繞寫法（+55537 其實是 −9999）。
+        #    +32767 是「回繞負 max 殺牆開門」→ 依原意改 Kill Object。
+        conflicts, plan = [], []
         for t in ctx.base.trigger_manager.triggers:
             for i, e in enumerate(t.effects):
                 if int(e.effect_type) != _CH_HP or not e.quantity:
@@ -74,29 +80,39 @@ class BossHpStep(Step):
                 act = classify_hp_effect(e.quantity, hit, boss_refs)
                 if act is None:
                     continue
-                tag = f'T{t.trigger_id}「{t.name}」效果{i}'
                 if act == 'conflict':
-                    conflicts.append(f'{tag} 同時命中目標與非目標 {sorted(hit - boss_refs)[:5]}')
-                elif act == 'split':
-                    keep = sorted(hit - boss_refs)
-                    e.selected_object_ids = keep
-                    changes.append(Change(self.id, 'effect', tag, 'targets',
-                                          f'區域過濾(含 {len(hit & boss_refs)} 個魔王目標)',
-                                          f'指名非目標 {keep}',
-                                          '目標混雜：保留無辜者 buff、剔除魔王'))
-                elif act == 'kill':
-                    e.effect_type = _KILL
-                    changes.append(Change(self.id, 'effect', tag, 'effect_type',
-                                          f'ChangeHP +{_GATE_Q}', 'KillObject',
-                                          'AoC 回繞殺牆開門 → 依原意改摧毀'))
+                    conflicts.append(f'T{t.trigger_id}「{t.name}」效果{i} '
+                                     f'開門效果同時命中非目標 {sorted(hit - boss_refs)[:5]}')
                 else:
-                    old = e.quantity
-                    e.quantity = 0
-                    changes.append(Change(self.id, 'effect', tag, 'quantity',
-                                          str(old), '0', '收歸 max 控制權（防夾血復活）'))
+                    plan.append((t, i, e, hit, act))
         if conflicts:
-            raise BuildError('缺裁決：以下 ChangeHP 效果的目標混雜，無法安全歸零：'
-                             + '；'.join(conflicts))
+            raise BuildError('缺裁決：' + '；'.join(conflicts))
+        for t, i, e, hit, act in plan:
+            tag = f'T{t.trigger_id}「{t.name}」效果{i}'
+            sem = as_int16(e.quantity)   # 作者語意值（還原回繞寫法）
+            if act == 'kill':
+                e.effect_type = _KILL
+                changes.append(Change(self.id, 'effect', tag, 'effect_type',
+                                      f'ChangeHP +{_GATE_Q}', 'KillObject',
+                                      'AoC 回繞殺牆開門 → 依原意改摧毀'))
+            elif act == 'zero':
+                old_q = e.quantity
+                e.effect_type = _DMG
+                e.quantity = -sem   # max+Δ ⇒ 當前血量+Δ（Damage 負值＝增）
+                changes.append(Change(self.id, 'effect', tag, 'effect_type/quantity',
+                                      f'ChangeHP Δmax {old_q}（語意 {sem:+}）',
+                                      f'Damage {-sem:+}（當前血量 {sem:+}）',
+                                      '等價遷移：max 操作 → 當前血量操作'))
+            else:  # split：非目標保留原 max 語意，魔王部分補等價當前血量效果
+                keep = sorted(hit - boss_refs)
+                bosses = sorted(hit & boss_refs)
+                e.selected_object_ids = keep
+                comp = t.new_effect.damage_object(quantity=-sem,
+                                                  selected_object_ids=bosses)
+                changes.append(Change(self.id, 'effect', tag, 'targets',
+                                      f'區域過濾(混雜 {len(bosses)} 個魔王目標)',
+                                      f'原效果限縮至 {keep}；魔王改補 Damage {-sem:+}',
+                                      '等價遷移：目標混雜分拆'))
 
         # 2. 確定性回繞＋灌血（同觸發成對）
         t = ctx.base.trigger_manager.add_trigger('ZZ_雙0血', enabled=True, looping=False)
