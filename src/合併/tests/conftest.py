@@ -17,11 +17,15 @@ class Factory:
         self._next = 0
 
     # ---- 觸發/管理器 ----
-    def trig(self, conds=(), effects=(), enabled=True, looping=False, name=''):
-        t = NS(trigger_id=self._next, name=name, enabled=1 if enabled else 0,
+    def trig(self, conds=(), effects=(), enabled=True, looping=False, name='', tid=None):
+        if tid is not None:
+            self._next = max(self._next, tid + 1)
+        else:
+            tid = self._next
+            self._next += 1
+        t = NS(trigger_id=tid, name=name, enabled=1 if enabled else 0,
                looping=1 if looping else 0,
                conditions=list(conds), effects=list(effects))
-        self._next += 1
         return t
 
     def tm(self, trigs):
@@ -40,6 +44,27 @@ class Factory:
             return v
 
         tm.copy_trigger = copy_trigger
+
+        class _Recorder:
+            def __init__(self):
+                self.calls = []
+
+            def __getattr__(self, name):
+                def _rec(**kw):
+                    self.calls.append((name, kw))
+                    return NS(**kw)
+                return _rec
+
+        def add_trigger(name, enabled=True, looping=False):
+            t = NS(trigger_id=max(tm.triggers_by_id, default=-1) + 1, name=name,
+                   enabled=1 if enabled else 0, looping=1 if looping else 0,
+                   conditions=[], effects=[],
+                   new_effect=_Recorder(), new_condition=_Recorder())
+            tm.triggers.append(t)
+            tm.triggers_by_id[t.trigger_id] = t
+            return t
+
+        tm.add_trigger = add_trigger
         return tm
 
     # ---- 效果 ----
