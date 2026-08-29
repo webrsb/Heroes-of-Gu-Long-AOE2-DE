@@ -9,21 +9,25 @@ groups: []
 overrides: []
 params:
   boss_hp:
+    # 每目標兩效果成對：ADD wrap_add 回繞 max→0，緊接 Damage −heal 灌血（01n N1 配方）。
+    # 2026-08-29 第二輪教訓：只回繞不灌血＝當前血量等比縮放歸 0 → 開場即死（01n N2）。
     targets:
-      - {label: 亡魂之堡, unit_const: 82, tile: [4, 5], wrap_add: 63736}    # 估 A=4800-3000=1800
-      - {label: 聚魂塔, unit_const: 208, tile: [0, 4], wrap_add: 42736}     # 估 A≈22800（Δ+88136 mod 65536 + 基值猜 200）
-      # 11 面界線牆：基值 250 ＋ 賓名 +9750（開場觸發）= 10000（舊版實機觀察值）
-      - {label: 界線牆91_2, unit_const: 72, tile: [91, 2], wrap_add: 55536}
-      - {label: 界線牆91_3, unit_const: 72, tile: [91, 3], wrap_add: 55536}
-      - {label: 界線牆80_6, unit_const: 72, tile: [80, 6], wrap_add: 55536}
-      - {label: 界線牆73_0, unit_const: 72, tile: [73, 0], wrap_add: 55536}
-      - {label: 界線牆73_1, unit_const: 72, tile: [73, 1], wrap_add: 55536}
-      - {label: 界線牆73_2, unit_const: 72, tile: [73, 2], wrap_add: 55536}
-      - {label: 界線牆73_3, unit_const: 72, tile: [73, 3], wrap_add: 55536}
-      - {label: 界線牆73_4, unit_const: 72, tile: [73, 4], wrap_add: 55536}
-      - {label: 界線牆73_5, unit_const: 72, tile: [73, 5], wrap_add: 55536}
-      - {label: 界線牆73_6, unit_const: 72, tile: [73, 6], wrap_add: 55536}
-      - {label: 界線牆73_7, unit_const: 72, tile: [73, 7], wrap_add: 55536}
+      - {label: 亡魂之堡, unit_const: 82, tile: [4, 5], wrap_add: 65236, heal: 7000200}
+        # A=300（舊版實機顯示 6000300/300，開場觸發已含 −3000）
+      - {label: 聚魂塔, unit_const: 208, tile: [0, 4], wrap_add: 65536, heal: 1000880}
+        # 探針輪：wrap_add=65536 ≡ 不變，先讀 tooltip 的 max 回報，下一輪填 65536−max
+      # 11 面界線牆：A = 250 ＋ 賓名 +9750 = 10000（舊版實機觀察值）
+      - {label: 界線牆91_2, unit_const: 72, tile: [91, 2], wrap_add: 55536, heal: 1312211}
+      - {label: 界線牆91_3, unit_const: 72, tile: [91, 3], wrap_add: 55536, heal: 1312211}
+      - {label: 界線牆80_6, unit_const: 72, tile: [80, 6], wrap_add: 55536, heal: 936125}
+      - {label: 界線牆73_0, unit_const: 72, tile: [73, 0], wrap_add: 55536, heal: 576125}
+      - {label: 界線牆73_1, unit_const: 72, tile: [73, 1], wrap_add: 55536, heal: 576125}
+      - {label: 界線牆73_2, unit_const: 72, tile: [73, 2], wrap_add: 55536, heal: 576125}
+      - {label: 界線牆73_3, unit_const: 72, tile: [73, 3], wrap_add: 55536, heal: 576125}
+      - {label: 界線牆73_4, unit_const: 72, tile: [73, 4], wrap_add: 55536, heal: 576125}
+      - {label: 界線牆73_5, unit_const: 72, tile: [73, 5], wrap_add: 55536, heal: 576125}
+      - {label: 界線牆73_6, unit_const: 72, tile: [73, 6], wrap_add: 55536, heal: 576125}
+      - {label: 界線牆73_7, unit_const: 72, tile: [73, 7], wrap_add: 55536, heal: 576125}
   healthbar:
     enabled: false   # 等 s40 實測回報兩魔王的起始當前血量後開
     targets: []

@@ -39,24 +39,33 @@ class BossHpStep(Step):
         for tg in targets:
             ref = locate_target(idx, tg['unit_const'], tg['tile'], tg['label'])
             ctx.notes['boss_refs'][tg['label']] = ref
+            # 01n N1 配方：回繞後**同觸發內立刻**灌血。max→0 會把當前血量等比
+            # 縮放成 0，沒有緊接的灌血就是 01n N2 的開場即死（2026-08-29 實測重演）。
             t.new_effect.change_object_hp(
                 quantity=int(tg['wrap_add']),
                 operation=int(Operation.ADD),
                 selected_object_ids=[ref])
+            t.new_effect.damage_object(
+                quantity=-int(tg['heal']),
+                selected_object_ids=[ref])
             changes.append(Change(self.id, 'unit', f'ref{ref} {tg["label"]}',
                                   'max_hp', 'A', f'ADD {tg["wrap_add"]} → 0(回繞)',
                                   '§5.6/01n 雙0血'))
+            changes.append(Change(self.id, 'unit', f'ref{ref} {tg["label"]}',
+                                  'current_hp', '0(縮放歸零)', f'+{tg["heal"]}(灌血)',
+                                  '01n N1 第二步'))
         changes.append(Change(self.id, 'trigger_add', f'T{t.trigger_id}「ZZ_雙0血」',
                               '—', '—', f'{len(targets)} 個效果', '§5.7'))
         return changes
 
     def test_guide(self, changes):
-        labels = [c.target.split(' ', 1)[1] for c in changes if c.kind == 'unit']
-        return (f'目標 {"、".join(labels)} 已套雙0血（wrap_add 目前是估值）。\n'
-                '怎麼測：進遊戲滑鼠移到各目標上看 tooltip；派兵打亡魂之堡 30 秒。\n'
-                '預期：tooltip 顯示「生命 0」；血持續下降、不回滿、不被秒殺。\n'
-                '異常A：tooltip 是正數 N ＝ wrap_add 錯，回報 N（我改成 65536−N 重建）。\n'
-                '異常B：一打就死或完全打不動＝灌血順序問題，回報現象與截圖。')
+        labels = sorted({c.target.split(' ', 1)[1] for c in changes if c.kind == 'unit'})
+        return (f'目標 {"、".join(labels)} 已套雙0血＋灌血（01n N1 配方）。\n'
+                '怎麼測：開場確認各目標存活；滑鼠移到目標上看 tooltip；派兵打亡魂之堡 30 秒。\n'
+                '預期：亡魂之堡與界線牆 tooltip「生命 0」、當前血量巨大且挨打持續下降不回滿；\n'
+                '聚魂塔本輪是探針（未回繞），tooltip 會顯示正常數字 —— **把它的 max 回報給我**。\n'
+                '異常A：某目標 tooltip 是非 0 正數 N ＝ wrap_add 錯，回報目標名與 N。\n'
+                '異常B：開場又倒了＝回報哪個目標倒了與截圖。')
 
 
 STEP = BossHpStep()
