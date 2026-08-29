@@ -116,9 +116,8 @@ def test_setup_bodies_builds_init_triggers(f):
     assert len(renames) == 6 and renames[0]['message'] == '刀客'
     assert len(freezes) == 6
     assert len(gaias) == 12                       # 備身 P8→Gaia（防歸順）
-    # 無敵迴圈：looping 觸發灌血六本體
-    inv = [t for t in tm.triggers if t.name == '展示無敵']
-    assert len(inv) == 1 and inv[0].looping == 1
+    # 無敵迴圈：逐職業 looping 觸發灌血
+    inv = [t for t in tm.triggers if (t.name or '').startswith('展示無敵')]
+    assert len(inv) == 6 and all(t.looping == 1 for t in inv)
     heals = [kw for n, kw in inv[0].new_effect.calls if n == 'damage_object']
-    assert len(heals) == 1 and set(heals[0]['selected_object_ids']) == {0, 1, 2, 502, 7, 45117}
-    assert heals[0]['quantity'] < 0
+    assert heals[0]['quantity'] < 0 and len(heals[0]['selected_object_ids']) == 1

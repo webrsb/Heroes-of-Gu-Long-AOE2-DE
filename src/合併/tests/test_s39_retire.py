@@ -59,10 +59,6 @@ def test_kick_cleanup(f):
                   final={(1, 2): 74, (1, 1): 75}, horse={(1, 2, 1): 76},
                   select={(1, 2): 77, (1, 1): 78})
     ch = build_kick_cleanup(tm, chains, fences={2: 555})
-    cleanup = [t for t in tm.triggers if (t.name or '').startswith('踢除清理')][0]
-    assert cleanup.enabled == 0
-    deacts = {kw['trigger_id'] for n, kw in cleanup.new_effect.calls
+    deacts = {kw['trigger_id'] for n, kw in fence.new_effect.calls
               if n == 'deactivate_trigger'}
-    assert deacts == {71, 73, 74, 76, 77}              # 只清位2的鏈路
-    acts = [kw for n, kw in fence.new_effect.calls if n == 'activate_trigger']
-    assert acts[0]['trigger_id'] == cleanup.trigger_id
+    assert deacts == {71, 73, 74, 76, 77}              # 只清位2的鏈路，直接掛柵欄

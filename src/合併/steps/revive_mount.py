@@ -109,6 +109,10 @@ def split_effects(tm, splits, enable_lists, anti_lists=None, slots=(1, 2, 3, 4, 
         e.effect_type = 0
         changes.append(Change('s39', 'eff_neutralize', f'T{sp_["tid"]}E{ei}', 'effect_type',
                               str(sp_['expect_type']), '0', '拆分後本體抽除'))
+        for j in (sp_.get('neutralize_also') or []):
+            t.effects[j].effect_type = 0
+            changes.append(Change('s39', 'eff_neutralize', f'T{sp_["tid"]}E{j}',
+                                  'effect_type', '', '0', '拆分伴隨抽除（同組防呆）'))
     return changes
 
 

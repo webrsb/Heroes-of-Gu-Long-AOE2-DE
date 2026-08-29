@@ -81,22 +81,19 @@ def repoint_cross(tm, variant_map, dl_variant_map):
 
 
 def build_kick_cleanup(tm, chains, fences):
-    """踢人柵欄整備：per 位清理觸發（停用該位全部鏈路），柵欄觸發追加啟動之。
+    """踢人柵欄整備：停用效果**直接追加進柵欄觸發**（與 mass-remove 同 tick 原子生效，
+    防「監視先於清理跳」的同輪競態；柵欄是 looping 觸發，重複停用無害）。
     chains: dict(watch/timer/final/horse/select 各 {key: tid})。"""
     changes = []
     for slot, fence_tid in sorted(fences.items()):
         fence = tm.triggers_by_id.get(fence_tid)
         if fence is None:
             raise BuildError(f'缺裁決：kick_fences 位{slot} 指向不存在的 T{fence_tid}')
-        cl = tm.add_trigger(f'踢除清理位{slot}', enabled=False, looping=False)
         tids = []
-        for kind in ('watch', 'timer', 'horse'):
-            tids += [v for k, v in chains.get(kind, {}).items() if k[1] == slot]
-        for kind in ('final', 'select'):
+        for kind in ('watch', 'timer', 'horse', 'final', 'select'):
             tids += [v for k, v in chains.get(kind, {}).items() if k[1] == slot]
         for x in sorted(set(tids)):
-            cl.new_effect.deactivate_trigger(trigger_id=x)
-        fence.new_effect.activate_trigger(trigger_id=cl.trigger_id)
-        changes.append(Change('s39', 'trigger_add', f'踢除清理位{slot}', 'trigger', '',
-                              f'T{cl.trigger_id}', f'柵欄T{fence_tid}整備'))
+            fence.new_effect.deactivate_trigger(trigger_id=x)
+        changes.append(Change('s39', 'trigger_field', f'T{fence_tid}', 'effects',
+                              '', f'+{len(set(tids))}停用', f'踢人整備位{slot}（原子清理）'))
     return changes
