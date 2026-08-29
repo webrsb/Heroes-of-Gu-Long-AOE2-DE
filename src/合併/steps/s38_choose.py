@@ -4,7 +4,7 @@
 產出 ctx.notes['revive']＝{spec, life_refs, containers, class_names}；選角/復活鏈由 s39 接手。"""
 import re
 from core.change import Change
-from .base import Step, BuildError
+from .base import trig_by_id, Step, BuildError
 
 INVIS = 1291
 _NAME_RE = re.compile(r'<[^>]*>')
@@ -14,7 +14,7 @@ def extract_class_names(tm, rspec) -> dict:
     """自 X死 兩世代觸發萃取職業名：{cid: (第一世代名, 轉生世代名)}。
     T3821–3826＝第一世代（刀客…）、T1805–1810＝轉生世代（刀俠…）。"""
     def name_of(tid):
-        t = tm.triggers_by_id.get(tid)
+        t = trig_by_id(tm, tid)
         if t is None:
             raise BuildError(f'缺裁決：職業名萃取失敗——T{tid} 不存在')
         for e in t.effects:
@@ -28,12 +28,12 @@ def extract_class_names(tm, rspec) -> dict:
 
 
 def _move_owner(um, unit, new_player):
-    for p in range(9):
-        if unit in um.units[p]:
-            um.units[p].remove(unit)
-            break
-    um.units[new_player].append(unit)
-    unit.player = new_player
+    unit.player = new_player          # 真 parser：setter 自帶列表搬移；假件：純屬性
+    if unit not in um.units[new_player]:
+        for p in range(9):
+            if p != new_player and unit in um.units[p]:
+                um.units[p].remove(unit)
+        um.units[new_player].append(unit)
 
 
 def setup_bodies(um, tm, rspec, extract=extract_class_names):

@@ -10,7 +10,7 @@
 import re
 from types import SimpleNamespace as NS
 from core.change import Change
-from .base import BuildError
+from .base import trig_by_id, BuildError
 from .revive_chains import FLAG_CONST
 
 _STRIP_RE = re.compile(r'剝除E(\d+)空REMOVE')
@@ -63,7 +63,7 @@ def build_death_linked(tm, rulings, hero_refs, mount, slots=(1, 2, 3, 4, 5, 6)):
         if cat in ('d', 'flag_swap'):
             continue
         tid = r['tid']
-        t = tm.triggers_by_id.get(tid)
+        t = trig_by_id(tm, tid)
         if t is None or (t.name or '') != r.get('name', ''):
             raise BuildError(f'缺裁決：連動 T{tid} 名稱「{getattr(t, "name", None)}」'
                              f'≠ 裁決表「{r.get("name")}」，基底版本可能已變，請重跑盤點')
@@ -114,7 +114,7 @@ def convert_flag_swap_conditions(tm, rulings, variant_map, hero_refs, mount,
         if r['category'] != 'flag_swap':
             continue
         tid = r['tid']
-        base = tm.triggers_by_id.get(tid)
+        base = trig_by_id(tm, tid)
         if base is None or (base.name or '').replace('退役_', '') != r.get('name', ''):
             raise BuildError(f'缺裁決：flag_swap T{tid} 名稱不符裁決表，請重跑盤點')
         for s in slots:
@@ -122,7 +122,7 @@ def convert_flag_swap_conditions(tm, rulings, variant_map, hero_refs, mount,
             if vid is None:
                 raise BuildError(f'缺裁決：flag_swap T{tid} 缺位{s}矩陣變體——'
                                  f'該觸發必須併入矩陣集')
-            v = tm.triggers_by_id[vid]
+            v = trig_by_id(tm, vid)
             done = False
             for c in v.conditions:
                 if getattr(c, 'condition_type', None) == 6 \

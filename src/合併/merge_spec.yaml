@@ -135,12 +135,12 @@ params:
     - {tid: 3956, name: 4馬召, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤斷邊}
     - {tid: 3957, name: 5馬召, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤斷邊}
     - {tid: 3958, name: 6馬召, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤斷邊}
-    - {tid: 5095, name: 暗刁1死變體, category: flag_swap, reason: 騎馬替代路徑, extras: destroy條件換騎馬旗標讀取·保留原樣·僅換條件}
-    - {tid: 5097, name: 暗刁2死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
-    - {tid: 5099, name: 暗刁3死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
-    - {tid: 5101, name: 暗刁4死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
-    - {tid: 5103, name: 暗刁5死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
-    - {tid: 5105, name: 暗刁6死變體, category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5095, name: '', category: flag_swap, reason: 騎馬替代路徑, extras: destroy條件換騎馬旗標讀取·保留原樣·僅換條件}
+    - {tid: 5097, name: '', category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5099, name: '', category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5101, name: '', category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5103, name: '', category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
+    - {tid: 5105, name: '', category: flag_swap, reason: 同5095, extras: destroy條件換騎馬旗標讀取·同5095}
     - {tid: 5302, name: 魂移1, category: flag_swap, reason: 騎馬適配層, extras: destroy條件換騎馬旗標讀取·撤接管註記·邊照舊}
     - {tid: 5303, name: 魂移2, category: flag_swap, reason: 同5302, extras: destroy條件換騎馬旗標讀取·同5302}
     - {tid: 5304, name: 魂移3, category: flag_swap, reason: 同5302, extras: destroy條件換騎馬旗標讀取·同5302}
@@ -159,3 +159,29 @@ params:
     - {note: 換馬流程原樣保留（§七之三v3）·X馬3的REMOVE逐命複製鏈啟停·建旗移到REMOVE前}
     - {note: a/b變體建置停用·watch啟·timer停；c_flag變體讀命盡旗標；watch一律帶NOT騎馬旗標反相條件}
     - {note: 馬騎ref 26109/26186/26136/26139/26138/26110 各配 watch_馬(C,S)·馬死移除騎馬旗標}
+
+  # 【2026-08-30 復活與選職業】spec v6+ 全裁決落地；lives=3 測試版
+  revive:
+    lives: 3
+    respawn: [77.5, 103.5]
+    displays: {1: [78.5, 108.5], 2: [80.5, 108.5], 3: [82.5, 108.5],
+               4: [83.5, 109.5], 5: [83.5, 111.5], 6: [83.5, 113.5]}
+    hero_refs: {1: 0, 2: 1, 3: 2, 4: 502, 5: 7, 6: 45117}
+    retired: [1805, 1806, 1807, 1808, 1809, 1810, 3821, 3822, 3823, 3824, 3825, 3826]
+    retired_extra: [3827, 3828, 3829, 3830, 3831, 3832, 4210, 4211, 4212, 4213, 4214, 4215]
+    mount_refs: {1: 26109, 2: 26186, 3: 26136, 4: 26139, 5: 26138, 6: 26110}
+    mount_x3: {1: 3819, 2: 3835, 3: 3839, 4: 3843, 5: 3847, 6: 3851}
+    base_hp: {1: 190, 2: 400, 3: 60, 4: 140, 5: 75, 6: 65}
+    cells: {rebirth_x: 210, final_x: 209,
+            pool_xs: [202, 201, 200, 199, 198, 197, 196, 195, 194, 193, 192, 191, 190,
+                      189, 188, 187, 186, 184, 183, 182, 181, 180, 179, 178]}
+    kick_fences: {2: 5562, 3: 5563, 4: 5564, 5: 5565, 6: 5566}
+    effect_splits:
+      - {tid: 1946, effect_index: 72, class_id: 4, expect_sp: 4, expect_type: 12,
+         gate: follow, reason: 棍禁區跟職業走}
+      - {tid: 1946, effect_index: 73, class_id: 6, expect_sp: 6, expect_type: 12,
+         gate: follow, reason: 暗禁區跟職業走}
+      - {tid: 3672, effect_index: 14, class_id: 6, expect_sp: 1, expect_type: 15,
+         gate: anti, neutralize_also: [15, 16, 17, 18], reason: 極練場765防呆六位護欄}
+      - {tid: 3672, effect_index: 19, class_id: 6, expect_sp: 6, expect_type: 15,
+         gate: follow, reason: 極練場反召喚}

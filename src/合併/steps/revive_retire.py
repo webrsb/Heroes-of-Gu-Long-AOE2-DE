@@ -5,7 +5,7 @@
 ——無映射即 BuildError；deactivate 邊放行（對停用觸發無害空指）。"""
 from types import SimpleNamespace as NS
 from core.change import Change
-from .base import BuildError
+from .base import trig_by_id, BuildError
 from .revive_chains import FLAG_CONST
 
 
@@ -14,7 +14,7 @@ def retire_and_cut(tm, retired, repoint):
     retired = set(retired)
     changes = []
     for tid in sorted(retired):
-        t = tm.triggers_by_id.get(tid)
+        t = trig_by_id(tm, tid)
         if t is None:
             raise BuildError(f'缺裁決：退役目標 T{tid} 不存在，基底版本可能已變')
         t.enabled = 0
@@ -65,7 +65,7 @@ def repoint_cross(tm, variant_map, dl_variant_map):
         dl_by_tid.setdefault(tid, {})[slot] = vtid
     changes = []
     for (tid, slot), vtid in variant_map.items():
-        t = tm.triggers_by_id[vtid]
+        t = trig_by_id(tm, vtid)
         for i, e in enumerate(t.effects):
             if getattr(e, 'effect_type', None) in (8, 9):
                 tgt = getattr(e, 'trigger_id', -1)
@@ -86,7 +86,7 @@ def build_kick_cleanup(tm, chains, fences):
     chains: dict(watch/timer/final/horse/select 各 {key: tid})。"""
     changes = []
     for slot, fence_tid in sorted(fences.items()):
-        fence = tm.triggers_by_id.get(fence_tid)
+        fence = trig_by_id(tm, fence_tid)
         if fence is None:
             raise BuildError(f'缺裁決：kick_fences 位{slot} 指向不存在的 T{fence_tid}')
         tids = []

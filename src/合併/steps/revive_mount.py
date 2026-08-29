@@ -11,7 +11,14 @@
 import re
 from types import SimpleNamespace as NS
 from core.change import Change
-from .base import BuildError
+
+
+def neutralize_effect(e):
+    """效果安全中和：轉 type 0 並補齊序列化必要欄位（None quantity 會炸寫檔）。"""
+    e.effect_type = 0
+    if getattr(e, 'quantity', -1) is None:
+        e.quantity = 0
+from .base import trig_by_id, BuildError
 from .revive_chains import FLAG_CONST
 
 
@@ -19,7 +26,7 @@ def rebuild_mount(tm, x3_variants, life_refs, mount, watch, final, horse, retire
     """x3_variants={(cid,slot): tid}（矩陣後）；回傳 NS(copies, fanout, changes)。"""
     out = NS(copies={}, fanout={}, changes=[])
     for (cid, slot), vtid in sorted(x3_variants.items()):
-        base = tm.triggers_by_id[vtid]
+        base = trig_by_id(tm, vtid)
         m = mount[cid]
         for L in range(1, lives + 1):
             c = tm.copy_trigger(vtid, append_after_source=False, add_suffix=False)
@@ -38,7 +45,7 @@ def rebuild_mount(tm, x3_variants, life_refs, mount, watch, final, horse, retire
                 if et == 15 and life_refs[cid][0] in (getattr(e, 'selected_object_ids', None) or []):
                     e.selected_object_ids = [life_refs[cid][L - 1]]
                 if et in (8, 9) and getattr(e, 'trigger_id', -1) in retired:
-                    e.effect_type = 0
+                    neutralize_effect(e)
             spares = life_refs[cid][L:]
             if spares:
                 c.new_effect.replace_object(selected_object_ids=list(spares),
@@ -79,7 +86,7 @@ def split_effects(tm, splits, enable_lists, anti_lists=None, slots=(1, 2, 3, 4, 
     changes = []
     anti_lists = anti_lists if anti_lists is not None else {}
     for sp_ in splits:
-        t = tm.triggers_by_id.get(sp_['tid'])
+        t = trig_by_id(tm, sp_['tid'])
         ei = sp_['effect_index']
         e = t.effects[ei] if t and ei < len(t.effects) else None
         if e is None or getattr(e, 'source_player', -1) != sp_['expect_sp'] \
@@ -96,7 +103,7 @@ def split_effects(tm, splits, enable_lists, anti_lists=None, slots=(1, 2, 3, 4, 
             v.enabled = 1 if gate == 'anti' else 0
             for j, ve in enumerate(v.effects):
                 if j != ei:
-                    ve.effect_type = 0
+                    neutralize_effect(ve)
                 else:
                     ve.source_player = s
             if gate == 'anti':
@@ -106,11 +113,11 @@ def split_effects(tm, splits, enable_lists, anti_lists=None, slots=(1, 2, 3, 4, 
             changes.append(Change('s39', 'trigger_add', f'{t.name}拆{cid}位{s}', 'trigger',
                                   '', f'T{v.trigger_id}',
                                   f'{sp_.get("reason", "效果拆分")}({gate})'))
-        e.effect_type = 0
+        neutralize_effect(e)
         changes.append(Change('s39', 'eff_neutralize', f'T{sp_["tid"]}E{ei}', 'effect_type',
                               str(sp_['expect_type']), '0', '拆分後本體抽除'))
         for j in (sp_.get('neutralize_also') or []):
-            t.effects[j].effect_type = 0
+            neutralize_effect(t.effects[j])
             changes.append(Change('s39', 'eff_neutralize', f'T{sp_["tid"]}E{j}',
                                   'effect_type', '', '0', '拆分伴隨抽除（同組防呆）'))
     return changes
@@ -135,12 +142,33 @@ def inventory_pools(tm, mount_ref2cid):
 
 
 def build_pool_grants(tm, pools, life_refs, mount):
-    """補池哨兵（乙案 v2）：池任務觸發加完成旗效果；per (C,Q) 常駐哨兵
-    [騎馬旗∧任務旗] → 灌全部備身。pool_cells 不夠配 → BuildError。"""
+    """補池（乙案 v2）：
+    - 一次性池任務 → 完成旗＋常駐哨兵 [騎馬旗∧任務旗] 灌全部備身（用 pool_cells）
+    - looping 回血迴圈（九天類）→ 旗標閘控複製：迴圈副本＋騎馬旗條件＋sel=全備身
+      （上馬前惰性；不佔旗格）。pool_cells 不夠配 → BuildError。"""
     changes = []
     used = {}
     for p in pools:
         cid = p['cid']
+        src = trig_by_id(tm, p['tid'])
+        if src.looping:
+            m = mount[cid]
+            v = tm.copy_trigger(p['tid'], append_after_source=False, add_suffix=False)
+            v.name = f'{src.name}◇騎池{cid}'
+            for j, ve in enumerate(v.effects):
+                if j != p['ei']:
+                    neutralize_effect(ve)
+                else:
+                    ve.selected_object_ids = list(life_refs[cid][1:])
+                    ve.source_player = -1
+            v.new_condition.objects_in_area(
+                quantity=1, source_player=0, object_list=FLAG_CONST,
+                area_x1=m['flag_cell'][0], area_y1=m['flag_cell'][1],
+                area_x2=m['flag_cell'][0], area_y2=m['flag_cell'][1])
+            changes.append(Change('s39', 'trigger_add', f'{src.name}◇騎池{cid}', 'trigger',
+                                  '', f'T{v.trigger_id}',
+                                  f'looping 池 {p["qty"]}/輪 旗標閘控灌備身'))
+            continue
         m = mount[cid]
         idx = used.get(cid, 0)
         cells = m.get('pool_cells') or []
@@ -149,7 +177,7 @@ def build_pool_grants(tm, pools, life_refs, mount):
                              f'{len(cells)}，請在 merge_spec revive.cells 擴充')
         cell = cells[idx]
         used[cid] = idx + 1
-        qt = tm.triggers_by_id[p['tid']]
+        qt = src
         qt.new_effect.create_object(source_player=0, object_list_unit_id=FLAG_CONST,
                                     location_x=cell[0], location_y=cell[1])
         s = tm.add_trigger(f'補池{cid}Q{idx}', enabled=True, looping=False)

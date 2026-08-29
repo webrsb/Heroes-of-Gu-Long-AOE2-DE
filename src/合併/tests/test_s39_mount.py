@@ -132,3 +132,19 @@ def test_pool_cells_exhausted_raises(f):
     pools = inventory_pools(tm, mount_ref2cid={26109: 1})
     with pytest.raises(BuildError):
         build_pool_grants(tm, pools, life_refs=LIFE, mount=MOUNT)   # 只配了 2 格
+
+
+def test_pool_grants_looping_regen_flag_gated(f):
+    loop = f.trig(tid=400, name='九天', looping=True,
+                  effects=[f.eff_damage(sel=[26109], quantity=-150)])
+    tm = f.tm([loop])
+    pools = inventory_pools(tm, mount_ref2cid={26109: 1})
+    ch = build_pool_grants(tm, pools, life_refs=LIFE, mount=MOUNT)
+    dup = [t for t in tm.triggers if '騎池' in (t.name or '')][0]
+    live = [e for e in dup.effects if e.effect_type != 0]
+    assert live[0].selected_object_ids == [900, 901] and live[0].quantity == -150
+    areas = [kw for n, kw in dup.new_condition.calls if n == 'objects_in_area']
+    assert areas[0]['area_x1'] == 221                       # 騎馬旗閘
+    # looping 不佔旗格：原觸發無完成旗效果、無哨兵
+    assert [kw for n, kw in loop.new_effect.calls if n == 'create_object'] == []
+    assert [t for t in tm.triggers if (t.name or '').startswith('補池')] == []

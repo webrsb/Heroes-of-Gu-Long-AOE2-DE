@@ -4,6 +4,7 @@
 v4：永久騎馬旗；監視純 destroy 條件（上馬由 X馬3 顯式停用當前監視）；馬亡旗機制刪除。"""
 from types import SimpleNamespace as NS
 from core.change import Change
+from .base import trig_by_id
 
 FLAG_CONST = 720          # 角落旗標單位（地圖原生慣用法：NINE_BANDS）
 REVEALER = 837
@@ -161,7 +162,7 @@ def build_chains(tm, rv):
             out.select[(cid, s)] = sel.trigger_id
     for cid in classes:
         for s in slots:
-            sel = tm.triggers_by_id[out.select[(cid, s)]]
+            sel = trig_by_id(tm, out.select[(cid, s)])
             for cid2 in classes:
                 for s2 in slots:
                     if (cid2, s2) != (cid, s) and (cid2 == cid or s2 == s):

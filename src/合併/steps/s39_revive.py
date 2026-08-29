@@ -11,7 +11,7 @@
 """
 import copy
 from core.change import Change
-from .base import Step, BuildError
+from .base import trig_by_id, Step, BuildError
 from .revive_chains import build_chains, FLAG_CONST, REVEALER  # T9a 復活鏈
 
 APPEND_TYPES = {26, 24, 27, 28}          # 改名/傷害/改血/改攻
@@ -28,9 +28,11 @@ def _primary_ref2cid(life_refs):
     return {refs[0]: cid for cid, refs in life_refs.items()}
 
 
-def append_life_refs(tm, life_refs, skip_tids=frozenset(), skip_effects=frozenset()) -> list:
+def append_life_refs(tm, life_refs, skip_tids=frozenset(), skip_effects=frozenset(),
+                     skip_sel_refs=frozenset()) -> list:
     """可追加型效果：sel 含任一命 ref → 補齊該職業全部命 ref＋玩家欄 -1。
-    skip_effects={(tid, ei)}：池效果等逐效果排除（spec §七之三.5）。"""
+    skip_effects={(tid, ei)}：逐效果排除；skip_sel_refs：sel 含這些 ref（馬騎池效果）
+    即跳過——內容判定、複製免疫（spec §七之三.5）。"""
     ref2cid = _all_ref2cid(life_refs)
     changes = []
     for t in tm.triggers:
@@ -38,6 +40,9 @@ def append_life_refs(tm, life_refs, skip_tids=frozenset(), skip_effects=frozense
             continue
         for ei, e in enumerate(t.effects):
             if (t.trigger_id, ei) in skip_effects:
+                continue
+            if skip_sel_refs and skip_sel_refs.intersection(
+                    getattr(e, 'selected_object_ids', None) or []):
                 continue
             if getattr(e, 'effect_type', None) not in APPEND_TYPES:
                 continue
@@ -149,20 +154,20 @@ def build_matrix(tm, matrix_sets):
     variant_map, enable_lists, changes = {}, {}, []
     for cid, tids in sorted(matrix_sets.items()):
         ordered = sorted(tids)
-        orig_enabled = {tid: bool(tm.triggers_by_id[tid].enabled) for tid in ordered}
+        orig_enabled = {tid: bool(trig_by_id(tm, tid).enabled) for tid in ordered}
         for slot in PLAYERS:
             for tid in ordered:
                 if slot == cid:
                     variant_map[(tid, slot)] = tid
                     continue
                 v = tm.copy_trigger(tid, append_after_source=False, add_suffix=False)
-                v.name = f'{tm.triggers_by_id[tid].name}◇位{slot}'
+                v.name = f'{trig_by_id(tm, tid).name}◇位{slot}'
                 variant_map[(tid, slot)] = v.trigger_id
                 changes.append(Change('s39', 'trigger_add', f'T{tid}→位{slot}',
                                       'trigger', '', f'T{v.trigger_id}', '矩陣變體'))
         for slot in PLAYERS:
             for tid in ordered:
-                v = tm.triggers_by_id[variant_map[(tid, slot)]]
+                v = trig_by_id(tm, variant_map[(tid, slot)])
                 if slot != cid:
                     for c in v.conditions:
                         if getattr(c, 'source_player', -1) == cid:
@@ -217,8 +222,7 @@ def run_revive(ctx):
                           flag_cell=(221, row),
                           rebirth_cell=(int(cells['rebirth_x']), row),
                           final_cell=(int(cells['final_x']), row),
-                          pool_cells=[(int(cells['pool_x_base']) - i, row)
-                                      for i in range(int(cells['pool_slots']))])
+                          pool_cells=[(int(x), row) for x in cells['pool_xs']])
 
     retired_all = set(rspec.retired) | {int(x) for x in (params.get('retired_extra') or [])}
     rulings = ctx.spec.params.get('death_linked_rulings')
@@ -232,7 +236,7 @@ def run_revive(ctx):
     for r in rulings:
         if r['category'] != 'flag_swap':
             continue
-        t = tm.triggers_by_id.get(r['tid'])
+        t = trig_by_id(tm, r['tid'])
         cids = {ref2cid[c.unit_object] for c in t.conditions
                 if getattr(c, 'condition_type', None) == 6
                 and getattr(c, 'unit_object', -1) in ref2cid}
@@ -243,6 +247,11 @@ def run_revive(ctx):
     for cid, tid in x3.items():
         if tid not in matrix_sets[cid]:
             raise BuildError(f'缺裁決：X馬3 T{tid}（職業{cid}）不在矩陣集——定址分類異常，請查盤點')
+    # ---- 池處理（矩陣前：完成旗效果隨變體複製、盤點不通膨）----
+    mount_ref2cid = {v: k for k, v in mount_refs.items()}
+    pools = inventory_pools(tm, mount_ref2cid)
+    changes += build_pool_grants(tm, pools, life_refs, mount)
+
     vm, el, ch = build_matrix(tm, matrix_sets)
     changes += ch
     changes += convert_flag_swap_conditions(tm, rulings, vm, rspec.hero_refs, mount, slots)
@@ -254,11 +263,9 @@ def run_revive(ctx):
     anti_lists = {}
     changes += split_effects(tm, params.get('effect_splits') or [], el, anti_lists, slots)
 
-    # ---- 池盤點（追加排除）→ ref 追加 → OR 展開 → locref ----
-    mount_ref2cid = {v: k for k, v in mount_refs.items()}
-    pools = inventory_pools(tm, mount_ref2cid)
-    skip_eff = {(p['tid'], p['ei']) for p in pools}
-    changes += append_life_refs(tm, life_refs, skip_effects=skip_eff)
+    # ---- ref 追加（sel 含馬騎 ref 的池效果依內容跳過）→ OR 展開 → locref ----
+    changes += append_life_refs(tm, life_refs,
+                                skip_sel_refs=set(mount_refs.values()))
     x3_all = set(x3.values()) | {vm[(t, s)] for c, t in x3.items() for s in slots}
     excl = ({r['tid'] for r in rulings} | retired_all | x3_all
             | {v for k, v in dl.variant_map.items()})
@@ -299,7 +306,6 @@ def run_revive(ctx):
                        final=chains.final, horse=chains.horse,
                        retired=retired_all, lives=rspec.lives)
     changes += mo.changes
-    changes += build_pool_grants(tm, pools, life_refs, mount)
 
     # ---- 轉生旗＋退役斷邊＋踢人整備 ----
     fmap, fch = build_rebirth_flag_triggers(tm, mount)
