@@ -1,0 +1,66 @@
+### OPTION MANAGER ###
+  allow_players_choose_teams = True
+  collide_and_correct = False
+  instance_number_history = []
+  legacy_execution_order = True
+  lock_coop_alliances = False
+  lock_teams = False
+  random_start_points = False
+  secondary_game_modes = <SecondaryGameMode.NONE: 0>
+  victory_condition = <VictoryCondition.CUSTOM: 4>
+  victory_custom_conditions_required = False
+  victory_score = 14000
+  victory_years = 900.0
+  villager_force_drop = True
+
+### NO-TARGET EFFECT DETAIL ###
+  trigger[59] 5 61-80: CHANGE_OBJECT_ATTACK
+  trigger[261] 1道4: CHANGE_OBJECT_HP
+  trigger[757] 6 81-100: CHANGE_OBJECT_ATTACK
+  trigger[842] 3修2: TASK_OBJECT
+  trigger[934] 4太4: CHANGE_OBJECT_HP
+  trigger[1205] 2松2: DAMAGE_OBJECT
+  trigger[1839] 4女4: CHANGE_OBJECT_ATTACK
+  trigger[1925] 1木2: TASK_OBJECT
+  trigger[1929] 2木2: TASK_OBJECT
+  trigger[2055] 棍2: DAMAGE_OBJECT
+  trigger[3302] 2 6-10Lv: CHANGE_OBJECT_ATTACK
+  trigger[3835] 2馬3: DAMAGE_OBJECT
+  trigger[4003] 1鮮2: CHANGE_OBJECT_HP
+  trigger[4003] 1鮮2: CHANGE_OBJECT_HP
+  trigger[4003] 1鮮2: CHANGE_OBJECT_ATTACK
+  trigger[4003] 1鮮2: CHANGE_OBJECT_ATTACK
+  trigger[4138] 4棍: CHANGE_OWNERSHIP
+  trigger[4187] 1哥3: CHANGE_OBJECT_ATTACK
+  trigger[4188] 1哥4: CHANGE_OBJECT_ATTACK
+  trigger[4220] 2哥5: CHANGE_OBJECT_ATTACK
+  trigger[4365] 2+: CHANGE_OBJECT_ATTACK
+  trigger[4391] 2++: DAMAGE_OBJECT
+  trigger[4945] 修端慕草1: REMOVE_OBJECT
+  trigger[4946] 修端慕草2: REMOVE_OBJECT
+  trigger[4947] 修端慕草3: REMOVE_OBJECT
+  trigger[4948] 修端慕草4: REMOVE_OBJECT
+  trigger[4949] 修端慕草5: REMOVE_OBJECT
+  trigger[4950] 修端慕草6: REMOVE_OBJECT
+  trigger[4958] : DAMAGE_OBJECT
+  trigger[4959] : DAMAGE_OBJECT
+  trigger[4960] : DAMAGE_OBJECT
+  trigger[4961] : DAMAGE_OBJECT
+  trigger[4962] : DAMAGE_OBJECT
+  trigger[4963] : DAMAGE_OBJECT
+  trigger[4970] : CHANGE_OBJECT_ATTACK
+  trigger[4971] : CHANGE_OBJECT_ATTACK
+  trigger[4972] : CHANGE_OBJECT_ATTACK
+  trigger[4973] : CHANGE_OBJECT_ATTACK
+  trigger[4974] : CHANGE_OBJECT_ATTACK
+  trigger[4975] : CHANGE_OBJECT_ATTACK
+  trigger[4976] : CHANGE_OBJECT_ATTACK
+  trigger[4977] : CHANGE_OBJECT_ATTACK
+  trigger[4978] : CHANGE_OBJECT_ATTACK
+  trigger[4979] : CHANGE_OBJECT_ATTACK
+  trigger[5230] 修1: CHANGE_OBJECT_HP
+  trigger[5230] 修1: CHANGE_OBJECT_ATTACK
+  trigger[5230] 修1: DAMAGE_OBJECT
+  trigger[5230] 修1: CHANGE_OBJECT_HP
+  trigger[5230] 修1: CHANGE_OBJECT_ATTACK
+  trigger[5230] 修1: CHANGE_OBJECT_ATTACK
