@@ -37,3 +37,17 @@ def test_unmatched_collected():
     a = [_t(0, '獨有A', [9], q=1)]; b = [_t(0, '獨有B', [8], q=1)]
     pt = pair_triggers(a, b)
     assert pt.unmatched_a == [0] and pt.unmatched_b == [0]
+
+def test_dup_names_equal_count_paired_in_order():
+    # 同名同數量但內容不同 → 按出現順序配對，method=name-dup
+    a = [_t(0, '界線', [1], q=1), _t(1, '界線', [1], q=2)]
+    b = [_t(0, '界線', [1], q=10), _t(1, '界線', [1], q=20)]
+    pt = pair_triggers(a, b)
+    assert pt.a2b == {0: 0, 1: 1}
+    assert pt.method[0] == 'name-dup' and pt.method[1] == 'name-dup'
+
+def test_dup_names_unequal_count_stay_unmatched():
+    a = [_t(0, '界線', [1], q=1), _t(1, '界線', [2], q=2)]
+    b = [_t(0, '界線', [3], q=10)]
+    pt = pair_triggers(a, b)
+    assert 0 in pt.unmatched_a and 1 in pt.unmatched_a and 0 in pt.unmatched_b
