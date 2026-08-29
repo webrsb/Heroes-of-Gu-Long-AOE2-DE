@@ -67,10 +67,20 @@ def setup_bodies(um, tm, rspec, extract=extract_class_names):
                                   f'ref{spare.reference_id}駐ref{box.reference_id}', 'unit',
                                   '', f'const{hero.unit_const}', f'職業{cid}第{L}命備身+容器'))
 
+    # 領航員：每位一隻（開局視野與鏡頭錨點；選角時由 s39 移除）
+    navigators = {}
+    nav_const = getattr(rspec, 'navigator_const', 448)
+    for slot in range(1, 7):
+        nav = um.add_unit(player=slot, unit_const=nav_const,
+                          x=77.5 + slot, y=105.5)
+        navigators[slot] = nav.reference_id
+        changes.append(Change('s38', 'unit_add', f'ref{nav.reference_id}', 'unit',
+                              '', f'const{nav_const}', f'位{slot}領航員'))
+
     t = tm.add_trigger('選角初始化', enabled=True, looping=False)
     t.new_condition.timer(timer=0)
     for cid in range(1, 7):
-        t.new_effect.change_object_name(source_player=8,
+        t.new_effect.change_object_name(source_player=-1,
                                         selected_object_ids=[rspec.hero_refs[cid]],
                                         message=class_names[cid][0])
         t.new_effect.freeze_object(source_player=8,
@@ -78,8 +88,18 @@ def setup_bodies(um, tm, rspec, extract=extract_class_names):
         for ref in life_refs[cid][1:]:
             t.new_effect.change_ownership(source_player=8, target_player=0,
                                           selected_object_ids=[ref])
+    for slot in range(1, 7):
+        t.new_effect.change_object_name(source_player=-1,
+                                        selected_object_ids=[navigators[slot]],
+                                        message='領航員')
+        t.new_effect.change_view(source_player=slot,
+                                 location_x=int(rspec.respawn[0]),
+                                 location_y=int(rspec.respawn[1]))
+    t.new_effect.display_instructions(
+        message='<GREEN>請點選廣場上的職業英雄進行選角（六職業先選先贏、不可重複）',
+        display_time=600)
     changes.append(Change('s38', 'trigger_add', '選角初始化', 'trigger', '', '新增',
-                          '展示改名/凍結/備身轉Gaia'))
+                          '展示改名/凍結/備身轉Gaia/領航員/鏡頭/選角提示600秒'))
 
     invuln_tids = {}
     for cid in range(1, 7):
@@ -94,7 +114,7 @@ def setup_bodies(um, tm, rspec, extract=extract_class_names):
     rspec.hero_consts = hero_consts
     return dict(spec=rspec, life_refs=life_refs, containers=containers,
                 class_names=class_names, changes=changes, hero_consts=hero_consts,
-                init_tid=t.trigger_id, invuln_tids=invuln_tids)
+                init_tid=t.trigger_id, invuln_tids=invuln_tids, navigators=navigators)
 
 
 class ChooseStep(Step):

@@ -74,9 +74,10 @@ def test_setup_bodies_moves_heroes_and_creates_spares(f):
     h1 = next(u for u in heroes if u.reference_id == 0)
     assert (h1.x, h1.y) == (78.5, 108.5) and h1.player == 8
     # 備身 6×2 掛 P8、駐各自容器；容器 6×2＝const1291 Gaia @respawn
-    spares = [u for u in um.added if u.unit_const != 1291]
+    spares = [u for u in um.added if getattr(u, 'garrisoned_in_id', -1) != -1]
     boxes = [u for u in um.added if u.unit_const == 1291]
-    assert len(spares) == 12 and len(boxes) == 12
+    navs = [u for u in um.added if u.unit_const == 448]
+    assert len(spares) == 12 and len(boxes) == 12 and len(navs) == 6
     assert all(u.player == 8 for u in spares)
     assert all(u.player == 0 and (u.x, u.y) == (77.5, 103.5) for u in boxes)
     box_refs = {u.reference_id for u in boxes}
@@ -113,7 +114,10 @@ def test_setup_bodies_builds_init_triggers(f):
     renames = [kw for n, kw in calls if n == 'change_object_name']
     freezes = [kw for n, kw in calls if n == 'freeze_object']
     gaias = [kw for n, kw in calls if n == 'change_ownership' and kw.get('target_player') == 0]
-    assert len(renames) == 6 and renames[0]['message'] == '刀客'
+    views = [kw for n, kw in calls if n == 'change_view']
+    hints = [kw for n, kw in calls if n == 'display_instructions']
+    assert len(renames) == 12 and renames[0]['message'] == '刀客'   # 6英雄+6領航員
+    assert len(views) == 6 and hints[0]['display_time'] == 600
     assert len(freezes) == 6
     assert len(gaias) == 12                       # 備身 P8→Gaia（防歸順）
     # 無敵迴圈：逐職業 looping 觸發灌血

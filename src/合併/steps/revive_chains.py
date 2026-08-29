@@ -151,6 +151,9 @@ def build_chains(tm, rv):
                                             source_player=-1,
                                             selected_object_ids=[spec.hero_refs[cid]])
             sel.new_effect.deactivate_trigger(trigger_id=rv['invuln_tids'][cid])
+            nav = rv.get('navigators', {}).get(s)
+            if nav is not None:
+                sel.new_effect.remove_object(source_player=s, selected_object_ids=[nav])
             for x in rv.get('anti_lists', {}).get((cid, s), []):
                 sel.new_effect.deactivate_trigger(trigger_id=x)
             sel.new_effect.activate_trigger(

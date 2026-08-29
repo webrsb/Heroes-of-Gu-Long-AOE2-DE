@@ -298,6 +298,7 @@ def run_revive(ctx):
         class_names=rv0['class_names'], invuln_tids=rv0['invuln_tids'],
         base_hp={int(k): int(v) for k, v in params['base_hp'].items()},
         enable_lists=el, anti_lists=anti_lists, mount=mount,
+        navigators=rv0.get('navigators', {}),
         classes=tuple(range(1, 7)), slots=slots, dl_hooks=hooks))
     changes += chains.changes
     mo = rebuild_mount(tm, x3_variants={(cid, s): vm[(x3[cid], s)]
