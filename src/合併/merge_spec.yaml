@@ -49,6 +49,28 @@ params:
         expect_count: 1        # b 實查：僅 ref21356 (104.5,131.5)
         rotate_deg: 90         # 使用者 2026-08-29：換皮後朝向不對，轉 90 度
         reason: 436 在 DE 無外觀，使用者 2026-08-29 選定 2353（巨魚怪船隻遺骸）替代
+      # 【2026-08-29 未知const徹查裁決】1.21z 未改 dat、五 const 僅圖形佚失（spec §二）
+      - label: 拳換皮
+        find: {unit_const: 94}
+        to_const: 1811           # 戰鬥祭師（使用者選定）
+        expect_count: 3          # 本體 ref7＋角落鏡像 ref14168＋P7 敵拳 ref30319
+        reason: const94 DE 無圖；數值校正見 attr_fixes
+      - label: 37怪換皮
+        find: {unit_const: 37}
+        to_const: 329            # 駱駝騎士（使用者選定，AoC 外觀吻合）
+        expect_count: 12
+        reason: const37 DE 無圖；校正見 attr_fixes
+      - label: 573換皮
+        find: {unit_const: 573}
+        to_const: 74             # 民兵外觀（使用者選定；與P7民團同皮已裁決容忍）
+        expect_count: 1
+        reason: const573 DE 無圖、原版和平NPC；校正含攻歸0
+    gate_fix:                    # 95 城門構件×6 → DE 石門（spec §二）
+      remove_const: 95
+      expect_count: 6
+      gate_const: 88             # Gate(down)＝沿 y 軸，奇偶性與既有 c88 實例一致
+      player: 8
+    collision_waivers: []        # audit_const_collision 告警的豁免子字串清單
 # 【待辦・非本輪】無法無天新內容中發現多個未知 const 的大量灌血物件
 # （const 176/76/852/652/556/847/172/197/426 等），需 test14 式實機夾血測試
 # 判定是否建築行為；若夾血則要加入雙0血名單。
