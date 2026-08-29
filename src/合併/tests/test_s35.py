@@ -2,7 +2,7 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import pytest
 from types import SimpleNamespace as NS
-from steps.s60_misc import apply_replacement
+from steps.s35_misc import apply_replacement
 from steps.base import BuildError
 
 def _units(*consts):

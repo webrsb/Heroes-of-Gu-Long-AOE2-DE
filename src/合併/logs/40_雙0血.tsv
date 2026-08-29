@@ -1,29 +1,40 @@
 step	kind	target	field	old	new	reason
-s40	unit	ref38862 亡魂之堡	max_hp	A	ADD 64756 → 0(回繞)	§5.6/01n 雙0血
-s40	unit	ref38862 亡魂之堡	current_hp	0(縮放歸零)	+7000200(灌血)	01n N1 第二步
-s40	unit	ref31245 聚魂塔	max_hp	A	ADD 54736 → 0(回繞)	§5.6/01n 雙0血
-s40	unit	ref31245 聚魂塔	current_hp	0(縮放歸零)	+1895504(灌血@15s)	01n N1 第二步
-s40	unit	ref30806 界線牆91_2	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	effect	T4421「賓名」效果11	targets	區域過濾(含 11 個魔王目標)	指名非目標 [30310, 30311, 30312, 30313, 30314, 30356, 30357, 30358, 30359, 30360, 30361, 45515, 45527, 45528, 45529, 45530, 45531, 45532, 45533]	目標混雜：保留無辜者 buff、剔除魔王
+s40	effect	T4421「賓名」效果61	quantity	9400	0	收歸 max 控制權（防夾血復活）
+s40	effect	T4447「6500」效果0	effect_type	ChangeHP +32767	KillObject	AoC 回繞殺牆開門 → 依原意改摧毀
+s40	effect	T4448「弟子」效果0	effect_type	ChangeHP +32767	KillObject	AoC 回繞殺牆開門 → 依原意改摧毀
+s40	effect	T4449「大弟子」效果0	effect_type	ChangeHP +32767	KillObject	AoC 回繞殺牆開門 → 依原意改摧毀
+s40	effect	T4674「觸發事件 4829」效果5	quantity	1300	0	收歸 max 控制權（防夾血復活）
+s40	effect	T4678「觸發事件 4833」效果5	quantity	1500	0	收歸 max 控制權（防夾血復活）
+s40	effect	T4678「觸發事件 4833」效果6	quantity	12000	0	收歸 max 控制權（防夾血復活）
+s40	effect	T4754「觸發事件 4913」效果0	quantity	55537	0	收歸 max 控制權（防夾血復活）
+s40	effect	T4754「觸發事件 4913」效果4	quantity	9999	0	收歸 max 控制權（防夾血復活）
+s40	effect	T4925「客棧」效果9	quantity	-4500	0	收歸 max 控制權（防夾血復活）
+s40	effect	T5038「塔魂」效果0	quantity	-100	0	收歸 max 控制權（防夾血復活）
+s40	unit	ref38862 亡魂之堡	max_hp	4800	ADD 60736 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref38862 亡魂之堡	current_hp	0(縮放歸零)	+300(灌血)	01n N1 第二步
+s40	unit	ref31245 聚魂塔	max_hp	1500	ADD 64036 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref31245 聚魂塔	current_hp	0(縮放歸零)	+1895504(灌血)	01n N1 第二步
+s40	unit	ref30806 界線牆91_2	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30806 界線牆91_2	current_hp	0(縮放歸零)	+1312211(灌血)	01n N1 第二步
-s40	unit	ref30807 界線牆91_3	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30807 界線牆91_3	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30807 界線牆91_3	current_hp	0(縮放歸零)	+1312211(灌血)	01n N1 第二步
-s40	unit	ref30808 界線牆80_6	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30808 界線牆80_6	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30808 界線牆80_6	current_hp	0(縮放歸零)	+936125(灌血)	01n N1 第二步
-s40	unit	ref30370 界線牆73_0	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30370 界線牆73_0	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30370 界線牆73_0	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30371 界線牆73_1	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30371 界線牆73_1	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30371 界線牆73_1	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30809 界線牆73_2	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30809 界線牆73_2	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30809 界線牆73_2	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30810 界線牆73_3	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30810 界線牆73_3	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30810 界線牆73_3	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30811 界線牆73_4	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30811 界線牆73_4	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30811 界線牆73_4	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30812 界線牆73_5	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30812 界線牆73_5	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30812 界線牆73_5	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30388 界線牆73_6	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30388 界線牆73_6	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30388 界線牆73_6	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	unit	ref30387 界線牆73_7	max_hp	A	ADD 55536 → 0(回繞)	§5.6/01n 雙0血
+s40	unit	ref30387 界線牆73_7	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30387 界線牆73_7	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	trigger_add	T5599「ZZ_雙0血」	—	—	25 個效果	§5.7
-s40	trigger_add	T5600「ZZ_雙0血_灌血15s」	—	—	1 個目標	延遲灌血（等本體最後一次動 max）
+s40	trigger_add	T5599「ZZ_雙0血」	—	—	26 個效果	§5.7

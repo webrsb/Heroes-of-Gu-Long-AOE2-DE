@@ -20,6 +20,28 @@ def collect_object_refs(triggers):
                     refs.add(v)
     return refs
 
+def effect_target_refs(e, unit_idx):
+    """解析單一效果的完整目標集合（三模式：指名 / 區域+玩家+類型 / 無過濾）。
+    回傳 ref 集合。無任何過濾（全圖）回傳空集合並由呼叫方自行決定語意。"""
+    if e.selected_object_ids:
+        return {r for r in e.selected_object_ids if r in unit_idx}
+    has_area = e.area_x1 is not None and e.area_x1 >= 0
+    has_player = e.source_player not in (None, -1)
+    has_type = getattr(e, 'object_list_unit_id', None) not in (None, -1)
+    if not (has_area or has_player or has_type):
+        return set()
+    out = set()
+    for r, (p, c, x, y) in unit_idx.items():
+        if has_player and p != e.source_player:
+            continue
+        if has_type and c != e.object_list_unit_id:
+            continue
+        if has_area and not (e.area_x1 <= x <= e.area_x2 + 1 and e.area_y1 <= y <= e.area_y2 + 1):
+            continue
+        out.add(r)
+    return out
+
+
 def build_unit_index(scenario):
     idx = {}
     for p in range(9):

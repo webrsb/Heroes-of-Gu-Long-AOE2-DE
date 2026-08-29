@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""s60 雜項 const 替換（436→2353 這類「DE 無外觀」的物件換皮）。
+"""s35 雜項 const 替換（436→2353 這類「DE 無外觀」的物件換皮）。
 expect_count 防呆：合併版找到的數量與預期不符 → BuildError 要求重新裁決。"""
 from core.change import Change
 from .base import Step, BuildError
@@ -15,7 +15,7 @@ def apply_replacement(units, spec_entry) -> list:
     changes = []
     for u in hits:
         u.unit_const = spec_entry['to_const']
-        changes.append(Change('s60', 'unit_field',
+        changes.append(Change('s35', 'unit_field',
                               f'ref{u.reference_id} ({u.x},{u.y})', 'unit_const',
                               str(find_const), str(spec_entry['to_const']),
                               spec_entry.get('reason', '')))
@@ -23,7 +23,7 @@ def apply_replacement(units, spec_entry) -> list:
 
 
 class MiscStep(Step):
-    id = 's60'
+    id = 's35'
     title = '雜項替換'
     intro = '依 params.misc.const_replacements 執行物件 const 換皮。'
 
