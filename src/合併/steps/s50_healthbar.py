@@ -36,6 +36,7 @@ class HealthbarStep(Step):
         boss_refs = ctx.notes.get('boss_refs') or {}
         tm = ctx.base.trigger_manager
         rung_ids = []
+        bar_targets = []   # (display_name, ref)，啟動時掛 100% 初始字樣
         for tg in hb.get('targets') or []:
             label = tg['label']
             ref = boss_refs.get(label)
@@ -43,6 +44,7 @@ class HealthbarStep(Step):
                 raise BuildError(f'缺裁決：血條目標「{label}」不在 s40 boss_refs 中'
                                  f'（先在 params.boss_hp.targets 補上同 label）')
             name = tg.get('display_name', label)
+            bar_targets.append((name, ref))
             for pct, hp in thresholds(float(tg['start_hp'])):
                 # enabled=False：血池要到 t≈10 才灌滿，太早啟動會被低血量期
                 # 一路誤燒到 1%（階梯非循環、只發一次）。t=activate_at 統一啟動。
@@ -60,6 +62,9 @@ class HealthbarStep(Step):
         act_at = int(hb.get('activate_at', 20))
         ta = tm.add_trigger('ZZ_血條_啟動', enabled=True, looping=False)
         ta.new_condition.timer(timer=act_at)
+        for name, ref in bar_targets:   # 使用者要求：滿血也要顯示 → 啟動時掛 100%
+            ta.new_effect.change_object_caption(message=bar_text(name, 100),
+                                                selected_object_ids=[ref])
         for rid in rung_ids:
             ta.new_effect.activate_trigger(trigger_id=rid)
         changes.append(Change(self.id, 'trigger_add', f'T{ta.trigger_id}「ZZ_血條_啟動」',
