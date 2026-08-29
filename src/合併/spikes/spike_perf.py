@@ -3,7 +3,7 @@
 組成：24,000 支停用（等選角啟動的家族）＋3,000 支啟用循環（常駐系統）
 ＋3,000 支啟用非循環（等條件成立）。條件用不會成立的區域檢查（P8 無單位），
 效果掛聊天（永不執行）。心跳觸發 t=5/60 各報一次，證明觸發引擎在跑。
-用法: python spike_perf.py <template> <輸出>"""
+用法: python spike_perf.py <template> <輸出> [停用數 循環數 待命數]"""
 import sys, io, time
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 from AoE2ScenarioParser.scenarios.aoe2_de_scenario import AoE2DEScenario
@@ -29,11 +29,13 @@ def main(src, out):
                                         area_x1=x, area_y1=y, area_x2=x + 3, area_y2=y + 3)
         t.new_effect.send_chat(source_player=PlayerId.ONE, message=f'dummy{i}')
 
-    for i in range(24000):
+    import sys as _s
+    n_off, n_loop, n_wait = (int(_s.argv[3]), int(_s.argv[4]), int(_s.argv[5]))         if len(_s.argv) > 5 else (24000, 3000, 3000)
+    for i in range(n_off):
         dummy(f'家族停用{i}', False, False, i)
-    for i in range(3000):
+    for i in range(n_loop):
         dummy(f'常駐循環{i}', True, True, i)
-    for i in range(3000):
+    for i in range(n_wait):
         dummy(f'待命{i}', True, False, i)
 
     tm.legacy_execution_order = True

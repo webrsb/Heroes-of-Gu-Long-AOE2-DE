@@ -164,12 +164,13 @@ def build_inventory(tm, hero_refs, hero_consts, exclude=()) -> Inventory:
                         matrix.add(tid)
                         changed = True
                         break
+        matrix -= inv.death_linked.get(cid, set())   # 連動由 §七之二 狀態機獨佔處理
         inv.matrix[cid] = matrix
         inv.shared[cid] = fam - matrix - inv.death_linked.get(cid, set())
 
-    # ---- const_filtered（非家族）----
+    # ---- const_filtered（非家族；global_init 也要掃——船塢正是全包世界觸發）----
     for t in triggers:
-        if t.trigger_id in family_all or t.trigger_id in inv.global_init:
+        if t.trigger_id in family_all:
             continue
         seen = set()
         for c in t.conditions:

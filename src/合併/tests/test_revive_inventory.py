@@ -100,6 +100,23 @@ def test_const_filtered_skips_family_triggers(f):
     assert all(tid != t.trigger_id for tid, *_ in inv.const_filtered)
 
 
+def test_death_linked_not_in_matrix(f):
+    # 連動觸發帶玩家欄（哥8型）→ addressed，但不得進 matrix（狀態機獨佔）
+    td = f.trig(conds=[f.cond_destroy(0)], effects=[f.eff_ownership(sel=[29332], sp=8, tp=1)])
+    inv = inv_of(f, [td])
+    assert td.trigger_id in inv.death_linked[1]
+    assert td.trigger_id not in inv.matrix.get(1, set())
+
+
+def test_global_init_still_const_scanned(f):
+    # 船塢型：全包世界觸發帶本體 const 過濾 → 仍須進 const_filtered
+    t = f.trig(conds=[], effects=[f.eff_remove(olu=765, sp=p2, area=(57, 187, 73, 196))
+                                  for p2 in range(1, 7)])
+    inv = inv_of(f, [t])
+    assert t.trigger_id in inv.global_init
+    assert any(tid == t.trigger_id for tid, where, cid in inv.const_filtered)
+
+
 def test_cross_detection(f):
     t = f.trig(effects=[f.eff_rename(sel=[0]), f.eff_rename(sel=[1])])   # 碰 2 職業
     t_all = f.trig(effects=[f.eff_rename(sel=[HERO_REFS[c]]) for c in range(1, 7)])
