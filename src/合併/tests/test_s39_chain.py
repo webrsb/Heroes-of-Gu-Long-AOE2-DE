@@ -9,9 +9,9 @@ LIFE = {1: [0, 900, 901], 2: [1, 910, 911]}
 CONTAINERS = {1: [800, 801], 2: [810, 811]}
 NAMES = {1: ('刀客', '刀俠'), 2: ('劍客', '劍俠')}
 MOUNT = {1: dict(mount_ref=26109, flag_cell=(221, 239), rebirth_cell=(230, 239),
-                 horsedead_cell=(231, 239), final_cell=(232, 239)),
+                 final_cell=(232, 239)),
          2: dict(mount_ref=26186, flag_cell=(221, 238), rebirth_cell=(230, 238),
-                 horsedead_cell=(231, 238), final_cell=(232, 238))}
+                 final_cell=(232, 238))}
 
 
 def rv(f):
@@ -35,17 +35,14 @@ def _effs(t, name):
     return [kw for n, kw in t.new_effect.calls if n == name]
 
 
-def test_watch_chain_linkage_and_mount_gate(f):
+def test_watch_chain_linkage(f):
     tm, out = build(f)
     w1 = tm.triggers_by_id[out.watch[(1, 2, 1)]]
     assert w1.enabled == 0 and w1.looping == 0
-    # 條件：destroy(life1) ＋ 反相騎馬旗標區域
     destroys = [kw for n, kw in w1.new_condition.calls if n == 'destroy_object']
-    areas = [kw for n, kw in w1.new_condition.calls if n == 'objects_in_area']
     assert destroys[0]['unit_object'] == 0
-    assert areas and areas[0]['area_x1'] == 221 and areas[0]['area_y1'] == 239
-    assert areas[0].get('inverted') == 1                       # 反相=非騎馬
-    # watch 啟動 timer 與訊息三態
+    assert [kw for n, kw in w1.new_condition.calls if n == 'objects_in_area'] == []
+    # 監視純 destroy（v4：上馬由 X馬3 顯式停用當前監視）；啟動 timer 與訊息三態
     acts = {kw['trigger_id'] for kw in _effs(w1, 'activate_trigger')}
     assert out.timer[(1, 2, 1)] in acts
     assert set(out.msgs[(1, 2, 1)]) <= acts
@@ -62,8 +59,6 @@ def test_timer_revives_next_life(f):
     assert any(kw.get('selected_object_ids') == [800] for kw in removes)      # 容器1(第2命)
     acts = {kw['trigger_id'] for kw in _effs(t1, 'activate_trigger')}
     assert out.watch[(1, 2, 2)] in acts
-    # 清馬亡旗（區域移除）
-    assert any(kw.get('area_x1') == 231 for kw in removes)
 
 
 def test_msg_trio_flag_selection(f):
@@ -73,9 +68,12 @@ def test_msg_trio_flag_selection(f):
     assert txt(m_foot) == '<RED>刀客已受傷，10秒後重生(1)'
     assert txt(m_gen2) == '<RED>刀俠已受傷，10秒後重生(1)'
     assert txt(m_horse) == '<RED>馬騎刀俠已受傷，10秒後重生(1)'
-    # 旗標條件：馬亡旗(231,239)；轉生旗(230,239)
+    # 旗標條件：馬騎讀騎馬旗(221,239)；俠讀轉生旗(230,239)且無騎馬旗
     a_horse = [kw for n, kw in m_horse.new_condition.calls if n == 'objects_in_area']
-    assert a_horse[0]['area_x1'] == 231
+    assert a_horse[0]['area_x1'] == 221 and a_horse[0].get('inverted') != 1
+    a_gen2 = [kw for n, kw in m_gen2.new_condition.calls if n == 'objects_in_area']
+    assert a_gen2[0]['area_x1'] == 221 and a_gen2[0].get('inverted') == 1
+    assert a_gen2[1]['area_x1'] == 230 and a_gen2[1].get('inverted') != 1
 
 
 def test_final_creates_flag_and_revealer(f):
@@ -90,17 +88,20 @@ def test_final_creates_flag_and_revealer(f):
     assert any('已死亡' in _effs(t, 'display_instructions')[0]['message'] for t in txts)
 
 
-def test_horse_watch_cascade(f):
+def test_horse_watch_per_life(f):
     tm, out = build(f)
-    hw = tm.triggers_by_id[out.horse[(1, 2)]]
+    hw = tm.triggers_by_id[out.horse[(1, 2, 1)]]
+    assert hw.enabled == 0                                        # 由 X馬3◇命L 啟動
     destroys = [kw for n, kw in hw.new_condition.calls if n == 'destroy_object']
     assert destroys[0]['unit_object'] == 26109
-    creates = _effs(hw, 'create_object')
-    removes = _effs(hw, 'remove_object')
-    assert any(kw.get('location_x') == 231 for kw in creates)     # 建馬亡旗
-    assert any(kw.get('area_x1') == 221 for kw in removes)        # 移騎馬旗
-    assert _effs(hw, 'display_instructions') == []                # 無訊息（級聯交步行watch）
-    assert _effs(hw, 'activate_trigger') == []                    # 無計時
+    acts = {kw['trigger_id'] for kw in _effs(hw, 'activate_trigger')}
+    assert out.timer[(1, 2, 1)] in acts
+    assert set(out.msgs[(1, 2, 1)]) <= acts
+    # 終命版：訊息＋revealer＋命盡旗
+    hwf = tm.triggers_by_id[out.horse[(1, 2, LIVES)]]
+    creates = _effs(hwf, 'create_object')
+    assert any(kw.get('object_list_unit_id') == 837 for kw in creates)
+    assert any(kw.get('location_x') == 232 for kw in creates)
 
 
 def test_selection_trigger(f):
@@ -117,6 +118,7 @@ def test_selection_trigger(f):
     assert out.select[(1, 1)] in deacts and out.select[(2, 2)] in deacts      # 互斥
     acts = {kw['trigger_id'] for kw in _effs(sel, 'activate_trigger')}
     assert out.watch[(1, 2, 1)] in acts
+    assert out.horse[(1, 2, 1)] not in acts                       # 馬監視由 X馬3 啟動，非選角
 
 
 def test_all_new_triggers_declared(f):

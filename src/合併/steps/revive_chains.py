@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""T9a：復活鏈建造（spec §五/§七/§七之三）——選角觸發、watch/timer/final、
-訊息三態（步/俠/馬騎，旗標自選）、馬監視級聯、啟動器分塊。
-由 s39_revive 匯出使用；rv 結構見 build_chains docstring。"""
+"""T9a：復活鏈建造（spec §五/§七/§七之三 v4）——選角觸發、watch/timer/final、
+訊息三態（讀騎馬旗/轉生旗自選）、馬騎監視 per (C,S,L)、啟動器分塊。
+v4：永久騎馬旗；監視純 destroy 條件（上馬由 X馬3 顯式停用當前監視）；馬亡旗機制刪除。"""
 from types import SimpleNamespace as NS
 from core.change import Change
 
@@ -12,8 +12,9 @@ REVEALER = 837
 def build_chains(tm, rv):
     """rv 必備鍵：spec(lives/respawn/hero_refs/displays)、life_refs、containers、
     class_names{cid:(客名,俠名)}、invuln_tids、base_hp、enable_lists、
-    mount{cid:{mount_ref,flag_cell,rebirth_cell,horsedead_cell,final_cell}}、classes、slots。
-    可選 dl_hooks{(cid,slot):{'watch_activate':[tid],'timer_deactivate':[tid]}}。"""
+    mount{cid:{mount_ref,flag_cell,rebirth_cell,final_cell}}、classes、slots。
+    可選 dl_hooks{(cid,slot):{'watch_activate':[tid],'timer_deactivate':[tid],
+    'timer_activate':[tid]}}。"""
     spec = rv['spec']
     lives = spec.lives
     life = rv['life_refs']
@@ -40,11 +41,6 @@ def build_chains(tm, rv):
             c.inverted = 1
         return c
 
-    def remove_flag(t, cell):
-        t.new_effect.remove_object(source_player=0, object_list_unit_id=FLAG_CONST,
-                                   area_x1=cell[0], area_y1=cell[1],
-                                   area_x2=cell[0], area_y2=cell[1])
-
     def create_flag(t, cell):
         t.new_effect.create_object(source_player=0, object_list_unit_id=FLAG_CONST,
                                    location_x=cell[0], location_y=cell[1])
@@ -54,9 +50,9 @@ def build_chains(tm, rv):
         m = mount[cid]
         trio = []
         for label, txt, conds in (
-                ('步', fmt.format(名=g1), [('horsedead_cell', False), ('rebirth_cell', False)]),
-                ('俠', fmt.format(名=g2), [('horsedead_cell', False), ('rebirth_cell', True)]),
-                ('馬', fmt.format(名='馬騎' + g2), [('horsedead_cell', True)])):
+                ('步', fmt.format(名=g1), [('flag_cell', False), ('rebirth_cell', False)]),
+                ('俠', fmt.format(名=g2), [('flag_cell', False), ('rebirth_cell', True)]),
+                ('馬', fmt.format(名='馬騎' + g2), [('flag_cell', True)])):
             mt = new(f'訊{cid}位{s}{tag}{label}', '死亡訊息三態')
             for key, present in conds:
                 flag_cond(mt, m[key], present)
@@ -71,7 +67,6 @@ def build_chains(tm, rv):
             # ---- final（第 lives 次死亡）----
             fin = new(f'命盡{cid}位{s}')
             fin.new_condition.destroy_object(unit_object=life[cid][lives - 1])
-            flag_cond(fin, m['flag_cell'], present=False)
             trio = msg_trio(cid, s, '終', '<RED>{名}已死亡')
             for x in trio:
                 fin.new_effect.activate_trigger(trigger_id=x)
@@ -79,6 +74,8 @@ def build_chains(tm, rv):
                                          location_x=int(spec.respawn[0]),
                                          location_y=int(spec.respawn[1]))
             create_flag(fin, m['final_cell'])
+            for x in hk.get('watch_activate', []):
+                fin.new_effect.activate_trigger(trigger_id=x)
             out.final[(cid, s)] = fin.trigger_id
             out.final_msgs[(cid, s)] = trio
             # ---- watch/timer，L 由高到低串鏈 ----
@@ -90,15 +87,15 @@ def build_chains(tm, rv):
                                                 selected_object_ids=[life[cid][L]])
                 tmr.new_effect.remove_object(source_player=0,
                                              selected_object_ids=[boxes[cid][L - 1]])
-                remove_flag(tmr, m['horsedead_cell'])
                 for x in hk.get('timer_deactivate', []):
                     tmr.new_effect.deactivate_trigger(trigger_id=x)
+                for x in hk.get('timer_activate', []):
+                    tmr.new_effect.activate_trigger(trigger_id=x)
                 tmr.new_effect.activate_trigger(trigger_id=next_tid)
                 out.timer[(cid, s, L)] = tmr.trigger_id
 
                 w = new(f'監視{cid}位{s}命{L}')
                 w.new_condition.destroy_object(unit_object=life[cid][L - 1])
-                flag_cond(w, m['flag_cell'], present=False)
                 trio = msg_trio(cid, s, f'命{L}', '<RED>{名}已受傷，10秒後重生(%d)' % L)
                 for x in trio:
                     w.new_effect.activate_trigger(trigger_id=x)
@@ -108,12 +105,23 @@ def build_chains(tm, rv):
                 out.watch[(cid, s, L)] = w.trigger_id
                 out.msgs[(cid, s, L)] = trio
                 next_tid = w.trigger_id
-            # ---- 馬監視（級聯：建馬亡旗＋移騎馬旗；無訊息無計時）----
-            hw = new(f'馬監視{cid}位{s}')
-            hw.new_condition.destroy_object(unit_object=m['mount_ref'])
-            create_flag(hw, m['horsedead_cell'])
-            remove_flag(hw, m['flag_cell'])
-            out.horse[(cid, s)] = hw.trigger_id
+            # ---- 馬騎監視 per 命（由 X馬3◇命L 啟動；預置馬騎死→該命的重生計時）----
+            for L in range(1, lives):
+                hw = new(f'馬監視{cid}位{s}命{L}')
+                hw.new_condition.destroy_object(unit_object=m['mount_ref'])
+                for x in out.msgs[(cid, s, L)]:
+                    hw.new_effect.activate_trigger(trigger_id=x)
+                hw.new_effect.activate_trigger(trigger_id=out.timer[(cid, s, L)])
+                out.horse[(cid, s, L)] = hw.trigger_id
+            hwf = new(f'馬監視{cid}位{s}終')
+            hwf.new_condition.destroy_object(unit_object=m['mount_ref'])
+            for x in out.final_msgs[(cid, s)]:
+                hwf.new_effect.activate_trigger(trigger_id=x)
+            hwf.new_effect.create_object(source_player=s, object_list_unit_id=REVEALER,
+                                         location_x=int(spec.respawn[0]),
+                                         location_y=int(spec.respawn[1]))
+            create_flag(hwf, m['final_cell'])
+            out.horse[(cid, s, lives)] = hwf.trigger_id
             # ---- 啟動器（enable_lists 分塊 ≤200）----
             acts = []
             lst = rv['enable_lists'].get((cid, s), [])
@@ -140,7 +148,6 @@ def build_chains(tm, rv):
             sel.new_effect.deactivate_trigger(trigger_id=rv['invuln_tids'][cid])
             sel.new_effect.activate_trigger(
                 trigger_id=out.watch[(cid, s, 1)] if lives > 1 else out.final[(cid, s)])
-            sel.new_effect.activate_trigger(trigger_id=out.horse[(cid, s)])
             for a in out.activators[(cid, s)]:
                 sel.new_effect.activate_trigger(trigger_id=a)
             sel.new_effect.display_instructions(
