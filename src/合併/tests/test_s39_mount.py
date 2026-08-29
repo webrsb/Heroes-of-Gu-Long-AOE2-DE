@@ -85,8 +85,9 @@ def test_split_effects_guaikai(f):
     assert len(enable_lists[(4, 2)]) == 1
     v = tm.triggers_by_id[enable_lists[(4, 2)][0]]
     assert v.enabled == 0 and v.looping == 1
-    tasks = [kw for n, kw in v.new_effect.calls if n == 'task_object']
-    assert tasks[0]['source_player'] == 2 and tasks[0]['location_x'] == 194
+    live = [e for e in v.effects if e.effect_type != 0]
+    assert len(live) == 1
+    assert live[0].source_player == 2 and live[0].location_x == 194
 
 
 def test_split_guard_raises(f):

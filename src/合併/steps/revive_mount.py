@@ -71,30 +71,43 @@ def rebuild_mount(tm, x3_variants, life_refs, mount, watch, final, horse, retire
     return out
 
 
-def split_effects(tm, splits, enable_lists, slots=(1, 2, 3, 4, 5, 6)):
-    """怪改型效果拆分：本體效果原地轉 None，per slot 建 looping 變體入 enable_lists。
+def split_effects(tm, splits, enable_lists, anti_lists=None, slots=(1, 2, 3, 4, 5, 6)):
+    """效果拆分（spec §六.6，雙模式）：整支複製＋除靶外全中和（泛型、任何效果型別）。
+    gate=follow（預設）：變體停用、入 enable_lists（配對時啟動）。
+    gate=anti：變體常駐、入 anti_lists（配對時由選角停用該位那支）。
     三重防呆：sp 與效果型別不符 → BuildError。"""
     changes = []
+    anti_lists = anti_lists if anti_lists is not None else {}
     for sp_ in splits:
         t = tm.triggers_by_id.get(sp_['tid'])
-        e = t.effects[sp_['effect_index']] if t and sp_['effect_index'] < len(t.effects) else None
+        ei = sp_['effect_index']
+        e = t.effects[ei] if t and ei < len(t.effects) else None
         if e is None or getattr(e, 'source_player', -1) != sp_['expect_sp'] \
                 or getattr(e, 'effect_type', None) != sp_['expect_type']:
-            raise BuildError(f'缺裁決：effect_split T{sp_["tid"]}E{sp_["effect_index"]} '
+            raise BuildError(f'缺裁決：effect_split T{sp_["tid"]}E{ei} '
                              f'欄位與裁決不符（sp={getattr(e, "source_player", None)} '
                              f'type={getattr(e, "effect_type", None)}），請重查')
         cid = sp_['class_id']
+        gate = sp_.get('gate', 'follow')
         for s in slots:
-            v = tm.add_trigger(f'{t.name}◇拆{cid}位{s}', enabled=False, looping=True)
-            kw = {k: getattr(e, k, None) for k in
-                  ('location_x', 'location_y', 'area_x1', 'area_y1', 'area_x2', 'area_y2')}
-            v.new_effect.task_object(source_player=s, selected_object_ids=[], **kw)
-            enable_lists.setdefault((cid, s), []).append(v.trigger_id)
+            v = tm.copy_trigger(sp_['tid'], append_after_source=False, add_suffix=False)
+            v.name = f'{t.name}◇拆{cid}位{s}'
+            v.looping = t.looping
+            v.enabled = 1 if gate == 'anti' else 0
+            for j, ve in enumerate(v.effects):
+                if j != ei:
+                    ve.effect_type = 0
+                else:
+                    ve.source_player = s
+            if gate == 'anti':
+                anti_lists.setdefault((cid, s), []).append(v.trigger_id)
+            else:
+                enable_lists.setdefault((cid, s), []).append(v.trigger_id)
             changes.append(Change('s39', 'trigger_add', f'{t.name}拆{cid}位{s}', 'trigger',
-                                  '', f'T{v.trigger_id}', sp_.get('reason', '效果拆分')))
+                                  '', f'T{v.trigger_id}',
+                                  f'{sp_.get("reason", "效果拆分")}({gate})'))
         e.effect_type = 0
-        changes.append(Change('s39', 'eff_neutralize',
-                              f'T{sp_["tid"]}E{sp_["effect_index"]}', 'effect_type',
+        changes.append(Change('s39', 'eff_neutralize', f'T{sp_["tid"]}E{ei}', 'effect_type',
                               str(sp_['expect_type']), '0', '拆分後本體抽除'))
     return changes
 

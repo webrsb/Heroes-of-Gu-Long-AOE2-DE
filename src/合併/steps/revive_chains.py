@@ -146,6 +146,8 @@ def build_chains(tm, rv):
                                             source_player=-1,
                                             selected_object_ids=[spec.hero_refs[cid]])
             sel.new_effect.deactivate_trigger(trigger_id=rv['invuln_tids'][cid])
+            for x in rv.get('anti_lists', {}).get((cid, s), []):
+                sel.new_effect.deactivate_trigger(trigger_id=x)
             sel.new_effect.activate_trigger(
                 trigger_id=out.watch[(cid, s, 1)] if lives > 1 else out.final[(cid, s)])
             for a in out.activators[(cid, s)]:
