@@ -12,6 +12,24 @@ _COND_BASE = dict(unit_object=-1, next_object=-1, source_player=-1, object_list=
                   area_x1=-1, area_y1=-1, area_x2=-1, area_y2=-1)
 
 
+class Recorder:
+    def __init__(self):
+        self.calls = []
+
+    def __getattr__(self, name):
+        def _rec(**kw):
+            class _Obj(dict):          # 記錄與回傳同體：事後屬性寫入可被斷言
+                def __getattr__(self, k):
+                    return self.get(k)
+
+                def __setattr__(self, k, v):
+                    self[k] = v
+            obj = _Obj(kw)
+            self.calls.append((name, obj))
+            return obj
+        return _rec
+
+
 class Factory:
     def __init__(self):
         self._next = 0
@@ -25,7 +43,8 @@ class Factory:
             self._next += 1
         t = NS(trigger_id=tid, name=name, enabled=1 if enabled else 0,
                looping=1 if looping else 0,
-               conditions=list(conds), effects=list(effects))
+               conditions=list(conds), effects=list(effects),
+               new_effect=Recorder(), new_condition=Recorder())
         return t
 
     def tm(self, trigs):
@@ -37,7 +56,11 @@ class Factory:
         def copy_trigger(tid, append_after_source=True, add_suffix=True):
             assert append_after_source is False and add_suffix is False,                 'copy_trigger 必須用 append_after_source=False, add_suffix=False（鐵律）'
             src = tm.triggers_by_id[tid]
+            saved = (src.new_effect, src.new_condition)
+            src.new_effect = src.new_condition = None      # 記錄器不參與深拷貝
             v = copy.deepcopy(src)
+            src.new_effect, src.new_condition = saved
+            v.new_effect, v.new_condition = Recorder(), Recorder()
             v.trigger_id = max(tm.triggers_by_id) + 1
             tm.triggers.append(v)
             tm.triggers_by_id[v.trigger_id] = v
@@ -45,28 +68,11 @@ class Factory:
 
         tm.copy_trigger = copy_trigger
 
-        class _Recorder:
-            def __init__(self):
-                self.calls = []
-
-            def __getattr__(self, name):
-                def _rec(**kw):
-                    class _Obj(dict):          # 記錄與回傳同體：事後屬性寫入可被斷言
-                        def __getattr__(self, k):
-                            return self.get(k)
-
-                        def __setattr__(self, k, v):
-                            self[k] = v
-                    obj = _Obj(kw)
-                    self.calls.append((name, obj))
-                    return obj
-                return _rec
-
         def add_trigger(name, enabled=True, looping=False):
             t = NS(trigger_id=max(tm.triggers_by_id, default=-1) + 1, name=name,
                    enabled=1 if enabled else 0, looping=1 if looping else 0,
                    conditions=[], effects=[],
-                   new_effect=_Recorder(), new_condition=_Recorder())
+                   new_effect=Recorder(), new_condition=Recorder())
             tm.triggers.append(t)
             tm.triggers_by_id[t.trigger_id] = t
             return t
