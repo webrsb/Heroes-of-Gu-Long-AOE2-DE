@@ -15,8 +15,10 @@ params:
       - {label: 亡魂之堡, unit_const: 82, tile: [4, 5], wrap_add: 64756, heal: 7000200}
         # 實測推得：t0 有效 max=5280，「客棧」觸發 t=4 再 −4500；
         # wrap 64756 → t0 為 4500（存活）→ t4 正好歸 0。「馬」觸發 t=10 灌 +6,000,000。
-      # 聚魂塔（ref31245 const208）：使用者 2026-08-29 裁決移除——基底開場即不在
-      # 地圖上（T4754 的 +55537 回繞寫法疑似把它 t0 摧毀），非本輪回歸，列待辦。
+      - {label: 聚魂塔, unit_const: 208, tile: [0, 4], wrap_add: 54736, heal: 1895504, heal_at: 15}
+        # 破案（舊版截圖 1895504/2704）：const208 在 DE 為未知 ID 無外觀，s60 換成守衛塔 234。
+        # 估：守衛塔基血 1500 ＋賓名 9400 ＋(55537,+9999 回繞)＝t0 有效 10900；
+        # wrap 54736 → 100，塔魂 t=14 再 −100 → 0；灌血延至 t=15（早灌會被夾）。
       # 11 面界線牆：A = 250 ＋ 賓名 +9750 = 10000（舊版實機觀察值）
       - {label: 界線牆91_2, unit_const: 72, tile: [91, 2], wrap_add: 55536, heal: 1312211}
       - {label: 界線牆91_3, unit_const: 72, tile: [91, 3], wrap_add: 55536, heal: 1312211}
@@ -34,6 +36,11 @@ params:
     targets: []
   misc:
     const_replacements:
+      - label: 聚魂塔換皮
+        find: {unit_const: 208}
+        to_const: 234            # 守衛塔（使用者 2026-08-29 選定）
+        expect_count: 1          # ref31245 (0.5,4.5)
+        reason: const208 在 DE 為未知 ID 無外觀（舊版為小石塔，1895504/2704）
       - label: 擱淺沉船
         find: {unit_const: 436}
         to_const: 2353

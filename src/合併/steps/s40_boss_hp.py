@@ -35,27 +35,44 @@ class BossHpStep(Step):
             return changes
         idx = build_unit_index(ctx.base)
         ctx.notes['boss_refs'] = {}
-        t = ctx.base.trigger_manager.add_trigger('ZZ_雙0血', enabled=True, looping=False)
+        tm = ctx.base.trigger_manager
+        t = tm.add_trigger('ZZ_雙0血', enabled=True, looping=False)
+        delayed = {}   # heal_at 秒數 -> [(ref, heal, label)]
         for tg in targets:
             ref = locate_target(idx, tg['unit_const'], tg['tile'], tg['label'])
             ctx.notes['boss_refs'][tg['label']] = ref
-            # 01n N1 配方：回繞後**同觸發內立刻**灌血。max→0 會把當前血量等比
-            # 縮放成 0，沒有緊接的灌血就是 01n N2 的開場即死（2026-08-29 實測重演）。
+            # 01n N1 配方：回繞後灌血。max→0 會把當前血量等比縮放成 0，
+            # 沒有補灌血就是 01n N2 的開場即死（2026-08-29 實測重演）。
+            # heal_at > 0：本體在 t=heal_at 前還會動 max（夾血未解除），
+            # 灌血延到那之後才不會被夾掉。
             t.new_effect.change_object_hp(
                 quantity=int(tg['wrap_add']),
                 operation=int(Operation.ADD),
                 selected_object_ids=[ref])
-            t.new_effect.damage_object(
-                quantity=-int(tg['heal']),
-                selected_object_ids=[ref])
+            heal_at = int(tg.get('heal_at', 0))
+            if heal_at == 0:
+                t.new_effect.damage_object(
+                    quantity=-int(tg['heal']),
+                    selected_object_ids=[ref])
+            else:
+                delayed.setdefault(heal_at, []).append((ref, int(tg['heal']), tg['label']))
             changes.append(Change(self.id, 'unit', f'ref{ref} {tg["label"]}',
                                   'max_hp', 'A', f'ADD {tg["wrap_add"]} → 0(回繞)',
                                   '§5.6/01n 雙0血'))
             changes.append(Change(self.id, 'unit', f'ref{ref} {tg["label"]}',
-                                  'current_hp', '0(縮放歸零)', f'+{tg["heal"]}(灌血)',
+                                  'current_hp', '0(縮放歸零)',
+                                  f'+{tg["heal"]}(灌血' + (f'@{heal_at}s' if heal_at else '') + ')',
                                   '01n N1 第二步'))
         changes.append(Change(self.id, 'trigger_add', f'T{t.trigger_id}「ZZ_雙0血」',
-                              '—', '—', f'{len(targets)} 個效果', '§5.7'))
+                              '—', '—', f'{len(t.effects)} 個效果', '§5.7'))
+        for sec, items in sorted(delayed.items()):
+            td = tm.add_trigger(f'ZZ_雙0血_灌血{sec}s', enabled=True, looping=False)
+            td.new_condition.timer(timer=sec)
+            for ref, heal, label in items:
+                td.new_effect.damage_object(quantity=-heal, selected_object_ids=[ref])
+            changes.append(Change(self.id, 'trigger_add',
+                                  f'T{td.trigger_id}「ZZ_雙0血_灌血{sec}s」', '—', '—',
+                                  f'{len(items)} 個目標', '延遲灌血（等本體最後一次動 max）'))
         return changes
 
     def test_guide(self, changes):
