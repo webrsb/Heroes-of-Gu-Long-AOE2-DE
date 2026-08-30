@@ -26,3 +26,5 @@
   → 一效果一隻；`max_units_affected` 對傳送無效。
 - v3（`spike_ferry3.py`）：同落點連傳只到 1 隻 → **落點被壓住＝傳送失敗、無事發生**。
   設計採「落點格迴圈 `TASK_OBJECT` 叫人走開、傳送迴圈重試」（見 `docs/superpowers/specs/2026-08-30-船夫搭船-design.md`）。
+- v4（`spike_ferry4.py`，`SPIKE卸貨v4.aoe2scenario`，待回報）：`船卸` 實戰形狀——一次性、區域選船、TIMER 8、派船時武裝。
+  看三件事：① t20 派船時船上的人不被卸回（t25 不得出「✗」）；② 到東岸「★② 已下令」後乘客站上東岸；③ 回程再登船、t50 後回西岸。
