@@ -142,3 +142,11 @@ def test_neutral_relay_to_two_classes_stays_cross(f):
     inv = inv_of(f, [a, b, relay])
     assert relay.trigger_id not in inv.families.get(1, set()) and relay.trigger_id not in inv.families.get(2, set())
     assert relay.trigger_id in inv.relay_cross
+
+
+def test_neutral_relay_with_self_deactivate_adopted(f):
+    """X木3 型：計時器→啟動 X木1、停用自己。自我邊不該擋住併入。"""
+    t_addr = f.trig(conds=[f.cond_area(sp=1, qty=1)], effects=[f.eff_chat(sp=1)])
+    relay = f.trig(tid=77, conds=[f.cond_timer(20)], effects=[f.eff_activate(t_addr.trigger_id), f.eff_deactivate(77)])
+    inv = inv_of(f, [t_addr, relay])
+    assert 77 in inv.families[1] and 77 in inv.matrix[1]

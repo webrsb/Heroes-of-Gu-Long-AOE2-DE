@@ -130,7 +130,8 @@ def build_inventory(tm, hero_refs, hero_consts, exclude=()) -> Inventory:
             if t.trigger_id in fam_of:
                 continue
             targets = [getattr(e, 'trigger_id', -1) for e in t.effects
-                       if getattr(e, 'effect_type', None) in ACTIVATION]
+                       if getattr(e, 'effect_type', None) in ACTIVATION
+                       and getattr(e, 'trigger_id', -1) != t.trigger_id]     # 自停用邊不算目標（X木3 型）
             if not targets:
                 continue
             cids = {fam_of[x] for x in targets if x in fam_of}
