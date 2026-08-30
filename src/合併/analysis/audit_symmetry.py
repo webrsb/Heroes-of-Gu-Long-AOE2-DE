@@ -90,12 +90,21 @@ def audit(triggers, hero=None):
         h = hero.get(r)
         return 'HERO' if h == seat else (f'HERO{h}!' if h else 'REF')
 
+    names = {t.name for t in triggers if t.name}
+
     def edge(tid, seat):
         t2 = by_id.get(tid)
         if t2 is None:
             return f'T{tid}?', f'T{tid}?'
         s2, pat2 = seat_of[tid]
-        rel = (t2.name or f'T{tid}') if s2 is None else (pat2 if s2 == seat else f'{pat2}@P{s2}!')
+        if s2 is None:
+            nm = t2.name or f'T{tid}'
+            # 原作慣例：座位 1 的觸發常不帶編號（「女」「草草」），2–6 才是「女2」「草草2」——
+            # 自座位 1 指向無編號目標且存在「名2」時，視為同一尾數樣式，避免 edge_missing 誤報
+            if seat == 1 and t2.name and f'{t2.name}2' in names:
+                return f'${nm}N', f'T{tid}'
+            return nm, f'T{tid}'
+        rel = pat2 if s2 == seat else f'{pat2}@P{s2}!'
         return rel, f'T{tid}'
 
     def g(o, k, d=-1):
@@ -299,7 +308,20 @@ def main(argv):
             return str(v)
     path = argv[1]
     sc = load(path)                       # 需留住參考：parser 以 uuid 回查 scenario，被回收會炸
-    findings, stats = audit(sc.trigger_manager.triggers)
+    trigs = sc.trigger_manager.triggers
+    # 套用 merge_spec.params.renames（s371 產物名稱），讓「觸發事件 N」也能依座位首碼成組
+    import os, yaml
+    spec_path = argv[3] if len(argv) > 3 else 'merge_spec.yaml'
+    if os.path.exists(spec_path):
+        rows = (yaml.safe_load(open(spec_path, encoding='utf-8')).get('params') or {}).get('renames') or []
+        by = {int(r['tid']): r for r in rows}
+        n = 0
+        for t in trigs:
+            r = by.get(t.trigger_id)
+            if r and (t.name or '') == r['old']:
+                t.name = r['new']; n += 1
+        print(f'套用 renames {n}/{len(rows)}')
+    findings, stats = audit(trigs)
     md = render_md(path, findings, stats, tn)
     if len(argv) > 2:
         open(argv[2], 'w', encoding='utf-8').write(md)

@@ -106,3 +106,9 @@ s37	effect_field	T2971「5幽」E#4	source_player	4	5	聊天訊息錯發4P
 s37	effect_field	T542「5教頭」E#0	source_player	3	5	聊天訊息錯發3P
 s37	effect_field	T2674「3生2」E#0	source_player	2	3	聊天訊息錯發2P
 s37	effect_field	T1197「4當2」E#1	source_player	2	4	聊天訊息錯發2P
+s37	effect_field	T5365「觸發事件 頭暈4'」E#3	trigger_id	5365	5364	4P 船暈啟動器 E3 啟動自己而非 T5364「頭暈4」（180 秒恢復速度），其餘五座位皆啟動本體；4P 上船變慢後永不恢復
+s37	effect_field	T5378「觸發事件 2」E#0	message		<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０	客棧5 零技能點罰 50 精力的提示只有 1P（T5375）有字，2–6P 空白
+s37	effect_field	T5381「觸發事件 3」E#0	message		<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０	同上
+s37	effect_field	T5384「觸發事件 4」E#0	message		<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０	同上
+s37	effect_field	T5387「觸發事件 5」E#0	message		<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０	同上
+s37	effect_field	T5390「觸發事件 6」E#0	message		<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０	同上

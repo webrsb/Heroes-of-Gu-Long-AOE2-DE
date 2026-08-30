@@ -105,3 +105,13 @@ def test_enabled_minority_flagged(f):
     trigs = six(f, make) + [f.trig(tid=100 + s, name=f'當僧{s}') for s in range(1, 7)]
     findings, _ = audit(trigs, HERO)
     assert [(r.seat, r.field) for r in findings if r.sev == 'HIGH'] == [(4, 'enabled/looping')]
+
+
+def test_seat1_unnumbered_target_matches_numbered_pattern(f):
+    # 原作慣例：座位 1 的「女」對應 2–6 的「女2」…「女6」；1P 指向「女」不得誤報 edge_missing
+    targets = {s: f.trig(tid=200 + s, name='女' if s == 1 else f'女{s}') for s in range(1, 7)}
+
+    def make(s, f):
+        return f.trig(tid=s, name=f'{s}當僧', effects=[f.eff_chat(sp=s, message='x'), f.eff_activate(200 + s)])
+    findings, _ = audit(six(f, make) + list(targets.values()), HERO)
+    assert not [r for r in findings if r.field == 'edge_missing']

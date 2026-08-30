@@ -4,11 +4,11 @@ s40	effect	T4421「賓名」效果61	effect_type/quantity	ChangeHP Δmax 9400（
 s40	effect	T4447「6500」效果0	effect_type	ChangeHP +32767	KillObject	AoC 回繞殺牆開門 → 依原意改摧毀
 s40	effect	T4448「弟子」效果0	effect_type	ChangeHP +32767	KillObject	AoC 回繞殺牆開門 → 依原意改摧毀
 s40	effect	T4449「大弟子」效果0	effect_type	ChangeHP +32767	KillObject	AoC 回繞殺牆開門 → 依原意改摧毀
-s40	effect	T4674「觸發事件 4829」效果5	effect_type/quantity	ChangeHP Δmax 1300（語意 +1300）	Damage -1300（當前血量 +1300）	等價遷移：max 操作 → 當前血量操作
-s40	effect	T4678「觸發事件 4833」效果5	effect_type/quantity	ChangeHP Δmax 1500（語意 +1500）	Damage -1500（當前血量 +1500）	等價遷移：max 操作 → 當前血量操作
-s40	effect	T4678「觸發事件 4833」效果6	effect_type/quantity	ChangeHP Δmax 12000（語意 +12000）	Damage -12000（當前血量 +12000）	等價遷移：max 操作 → 當前血量操作
-s40	effect	T4754「觸發事件 4913」效果0	effect_type/quantity	ChangeHP Δmax 55537（語意 -9999）	Damage +9999（當前血量 -9999）	等價遷移：max 操作 → 當前血量操作
-s40	effect	T4754「觸發事件 4913」效果4	effect_type/quantity	ChangeHP Δmax 9999（語意 +9999）	Damage -9999（當前血量 +9999）	等價遷移：max 操作 → 當前血量操作
+s40	effect	T4674「亡魂連鎖4829」效果5	effect_type/quantity	ChangeHP Δmax 1300（語意 +1300）	Damage -1300（當前血量 +1300）	等價遷移：max 操作 → 當前血量操作
+s40	effect	T4678「亡魂連鎖4833」效果5	effect_type/quantity	ChangeHP Δmax 1500（語意 +1500）	Damage -1500（當前血量 +1500）	等價遷移：max 操作 → 當前血量操作
+s40	effect	T4678「亡魂連鎖4833」效果6	effect_type/quantity	ChangeHP Δmax 12000（語意 +12000）	Damage -12000（當前血量 +12000）	等價遷移：max 操作 → 當前血量操作
+s40	effect	T4754「初始化4913」效果0	effect_type/quantity	ChangeHP Δmax 55537（語意 -9999）	Damage +9999（當前血量 -9999）	等價遷移：max 操作 → 當前血量操作
+s40	effect	T4754「初始化4913」效果4	effect_type/quantity	ChangeHP Δmax 9999（語意 +9999）	Damage -9999（當前血量 +9999）	等價遷移：max 操作 → 當前血量操作
 s40	effect	T4925「客棧」效果9	effect_type/quantity	ChangeHP Δmax -4500（語意 -4500）	Damage +4500（當前血量 -4500）	等價遷移：max 操作 → 當前血量操作
 s40	effect	T5038「塔魂」效果0	effect_type/quantity	ChangeHP Δmax -100（語意 -100）	Damage +100（當前血量 -100）	等價遷移：max 操作 → 當前血量操作
 s40	unit	ref38862 亡魂之堡	max_hp	5280	ADD 60256 → 0(回繞)	§5.6/01n 雙0血
