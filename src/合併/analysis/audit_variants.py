@@ -106,6 +106,8 @@ def audit(triggers, var_map):
             continue                                   # 原版的逐命副本（座位＝職業）
         mv = re.match(r'^(.*?)◇位(\d)', nm)
         src_cls = (seat_of_name(mv.group(1)) or 1) if mv else None
+        if mv and src_cls == int(mv.group(2)):
+            continue                                   # 連動變體在自己職業座位：用原版合法
         for i, e in enumerate(t.effects):
             if _g(e, 'effect_type') in (ACT, DEACT) and _g(e, 'trigger_id') in matrixed:
                 tgt = _g(e, 'trigger_id')

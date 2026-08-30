@@ -77,6 +77,21 @@ def repoint_cross(tm, variant_map, dl_variant_map):
                     changes.append(Change('s39', 'edge_repoint', f'T{vtid}E{i}',
                                           'cross', f'T{tgt}',
                                           f'T{dl_by_tid[tgt][slot]}', '跨集重指'))
+    # 反向：連動變體的啟停邊若指向矩陣原觸發，改指同位的矩陣變體
+    # （2026-08-30 修端木c◇位s→c木 漏重指：英雄護送途中死亡，非本職業座位關不掉護送迴圈）。
+    # slot==class 時矩陣無變體（原觸發即該座位版本），保留原邊。
+    for (tid, slot), vtid in dl_variant_map.items():
+        t = trig_by_id(tm, vtid)
+        if t is None:
+            continue
+        for i, e in enumerate(t.effects):
+            if getattr(e, 'effect_type', None) in (8, 9):
+                tgt = getattr(e, 'trigger_id', -1)
+                if (tgt, slot) in variant_map and variant_map[(tgt, slot)] != tgt:
+                    e.trigger_id = variant_map[(tgt, slot)]
+                    changes.append(Change('s39', 'edge_repoint', f'T{vtid}E{i}',
+                                          'cross', f'T{tgt}',
+                                          f'T{variant_map[(tgt, slot)]}', '跨集重指（連動→矩陣）'))
     return changes
 
 

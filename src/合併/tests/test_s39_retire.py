@@ -62,3 +62,19 @@ def test_kick_cleanup(f):
     deacts = {kw['trigger_id'] for n, kw in fence.new_effect.calls
               if n == 'deactivate_trigger'}
     assert deacts == {71, 73, 74, 76, 77}              # 只清位2的鏈路，直接掛柵欄
+
+
+def test_repoint_cross_reverse_dl_to_matrix(f):
+    """修端木 型：連動變體（位2）停用 1木 原觸發 → 改指 1木 的位2 矩陣變體；位1（=職業座位）保留原邊。"""
+    wood = f.trig(tid=1924, name='1木')
+    dl_orig = f.trig(tid=4896, name='修端木1', effects=[f.eff_deactivate(1924)])
+    tm = f.tm([wood, dl_orig])
+    v1 = tm.copy_trigger(4896, append_after_source=False, add_suffix=False)   # 位1
+    v2 = tm.copy_trigger(4896, append_after_source=False, add_suffix=False)   # 位2
+    w2 = tm.copy_trigger(1924, append_after_source=False, add_suffix=False)    # 1木 位2 矩陣變體
+    variant_map = {(1924, 2): w2.trigger_id}
+    dl_vm = {(4896, 1): v1.trigger_id, (4896, 2): v2.trigger_id}
+    ch = repoint_cross(tm, variant_map, dl_vm)
+    assert v2.effects[0].trigger_id == w2.trigger_id
+    assert v1.effects[0].trigger_id == 1924
+    assert any('連動→矩陣' in c.reason for c in ch)

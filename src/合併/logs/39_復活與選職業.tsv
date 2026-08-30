@@ -25248,6 +25248,41 @@ s39	edge_repoint	T28717E12	cross	T4209	T30643	跨集重指
 s39	edge_repoint	T29559E12	cross	T4209	T30644	跨集重指
 s39	edge_repoint	T30401E12	cross	T4209	T30645	跨集重指
 s39	edge_repoint	T4248E12	cross	T4209	T30646	跨集重指
+s39	edge_repoint	T30648E2	cross	T1924	T6214	跨集重指（連動→矩陣）
+s39	edge_repoint	T30649E2	cross	T1924	T7030	跨集重指（連動→矩陣）
+s39	edge_repoint	T30650E2	cross	T1924	T7846	跨集重指（連動→矩陣）
+s39	edge_repoint	T30651E2	cross	T1924	T8662	跨集重指（連動→矩陣）
+s39	edge_repoint	T30652E2	cross	T1924	T9478	跨集重指（連動→矩陣）
+s39	edge_repoint	T30653E3	cross	T1928	T10293	跨集重指（連動→矩陣）
+s39	edge_repoint	T30655E3	cross	T1928	T11120	跨集重指（連動→矩陣）
+s39	edge_repoint	T30656E3	cross	T1928	T11947	跨集重指（連動→矩陣）
+s39	edge_repoint	T30657E3	cross	T1928	T12774	跨集重指（連動→矩陣）
+s39	edge_repoint	T30658E3	cross	T1928	T13601	跨集重指（連動→矩陣）
+s39	edge_repoint	T30659E3	cross	T1932	T14428	跨集重指（連動→矩陣）
+s39	edge_repoint	T30660E3	cross	T1932	T15239	跨集重指（連動→矩陣）
+s39	edge_repoint	T30662E3	cross	T1932	T16050	跨集重指（連動→矩陣）
+s39	edge_repoint	T30663E3	cross	T1932	T16861	跨集重指（連動→矩陣）
+s39	edge_repoint	T30664E3	cross	T1932	T17672	跨集重指（連動→矩陣）
+s39	edge_repoint	T30665E2	cross	T1936	T18483	跨集重指（連動→矩陣）
+s39	edge_repoint	T30666E2	cross	T1936	T19305	跨集重指（連動→矩陣）
+s39	edge_repoint	T30667E2	cross	T1936	T20127	跨集重指（連動→矩陣）
+s39	edge_repoint	T30669E2	cross	T1936	T20949	跨集重指（連動→矩陣）
+s39	edge_repoint	T30670E2	cross	T1936	T21771	跨集重指（連動→矩陣）
+s39	edge_repoint	T30671E3	cross	T1940	T22593	跨集重指（連動→矩陣）
+s39	edge_repoint	T30672E3	cross	T1940	T23409	跨集重指（連動→矩陣）
+s39	edge_repoint	T30673E3	cross	T1940	T24225	跨集重指（連動→矩陣）
+s39	edge_repoint	T30674E3	cross	T1940	T25041	跨集重指（連動→矩陣）
+s39	edge_repoint	T30676E3	cross	T1940	T25857	跨集重指（連動→矩陣）
+s39	edge_repoint	T30677E3	cross	T1944	T26673	跨集重指（連動→矩陣）
+s39	edge_repoint	T30677E4	cross	T1945	T18484	跨集重指（連動→矩陣）
+s39	edge_repoint	T30678E3	cross	T1944	T27515	跨集重指（連動→矩陣）
+s39	edge_repoint	T30678E4	cross	T1945	T19306	跨集重指（連動→矩陣）
+s39	edge_repoint	T30679E3	cross	T1944	T28357	跨集重指（連動→矩陣）
+s39	edge_repoint	T30679E4	cross	T1945	T20128	跨集重指（連動→矩陣）
+s39	edge_repoint	T30680E3	cross	T1944	T29199	跨集重指（連動→矩陣）
+s39	edge_repoint	T30681E3	cross	T1944	T30041	跨集重指（連動→矩陣）
+s39	edge_repoint	T30681E4	cross	T1945	T20950	跨集重指（連動→矩陣）
+s39	edge_repoint	T30682E4	cross	T1945	T21772	跨集重指（連動→矩陣）
 s39	trigger_add	怪改拆4位1	trigger		T30683	棍禁區跟職業走(follow)
 s39	trigger_add	怪改拆4位2	trigger		T30684	棍禁區跟職業走(follow)
 s39	trigger_add	怪改拆4位3	trigger		T30685	棍禁區跟職業走(follow)
