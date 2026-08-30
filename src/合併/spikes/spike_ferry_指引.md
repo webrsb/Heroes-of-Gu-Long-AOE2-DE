@@ -22,3 +22,7 @@
 - ②a **PASS**／②b **FAIL**：駐軍中單位計入區域條件，但座標**凍結在登船那格**、不隨船移動。
   → 「海上偵測」不可行；替代：偵測「玩家物件出現在碼頭停船水域」＝已登船。
 - ③ **只到 1 隻**：`TELEPORT_OBJECT` 區域選取一次只搬一隻 → 開 `spike_ferry2.py` 驗多隻寫法。
+- v2（`spike_ferry2.py`）：A 單一效果 1 隻／B 同區域三效果三落點 3 隻／C `max_units_affected=10` 1 隻
+  → 一效果一隻；`max_units_affected` 對傳送無效。
+- v3（`spike_ferry3.py`）：同落點連傳只到 1 隻 → **落點被壓住＝傳送失敗、無事發生**。
+  設計採「落點格迴圈 `TASK_OBJECT` 叫人走開、傳送迴圈重試」（見 `docs/superpowers/specs/2026-08-30-船夫搭船-design.md`）。
