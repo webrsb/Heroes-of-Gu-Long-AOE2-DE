@@ -157,6 +157,13 @@ params:
     - {trigger_id: 1945, name: 6木2, kind: effect, index: 0, field: source_player, old: 4, new: -1, reason: 殼的 sp 也清掉，否則 s39 仍視為職業 4 家族而複製＋停用原版，偏將拉繩只剩選棍客時才跑}
     - {trigger_id: 4632, name: 成成4p, kind: effect, index: 15, field: effect_type, old: 15, new: 0, reason: 棍客大成時移除全圖 P4 物件，其餘五座位無此效果}
     - {trigger_id: 4632, name: 成成4p, kind: effect, index: 16, field: effect_type, old: 15, new: 0, reason: 同上（區域版）}
+    # 2026-08-30 針對 P4 的寫法掃描撈到的錯家（尾數編號觸發，對稱稽核原本不認）
+    - {trigger_id: 4793, name: '', kind: effect, index: 0, field: source_player, old: 5, new: 4, reason: 銀兩護欄（≥50萬上繳）查 P4 卻扣 P5；T4790–4792 皆扣自己（劍譜5 即如此；5/6 座位無此護欄）}
+    - {trigger_id: 5399, name: 觸發事件 3, kind: effect, index: 2, field: source_player, old: 4, new: 3, reason: 3P 客棧「能力不足失精力20」傷害打到 P4；觸發事件 1/2/4/5/6 皆打自己}
+    - {trigger_id: 5491, name: 漢娜斯1, kind: effect, index: 0, field: trigger_id, old: 5489, new: 5490, reason: 1P 漢娜斯門口應啟動自己的對話 T5490「漢娜斯」（2–6P 皆指緊鄰的無名漢娜斯），抄成 6P 的「觸發事件 箭提2」}
+    - {trigger_id: 5306, name: 魂移5, kind: trigger, field: enabled, old: 1, new: 0, reason: 魂移1–6 皆停用循環、由 馬N 啟動；5P 開局即啟用且不循環，拳客一死就關掉六座位石區觸發}
+    - {trigger_id: 5306, name: 魂移5, kind: trigger, field: looping, old: 0, new: 1, reason: 同上}
+    - {trigger_id: 4965, name: 完全教戰守策3, kind: trigger, field: enabled, old: 0, new: 1, reason: 「不得蓋建築」常駐清除規則（object_group 3/30），其餘五座位開局啟用，3P 整支關閉＝只有 3P 能蓋}
     # 船塢 E19 不改：effect_splits 已把 E19 拆成「選箭客的座位才啟用」的跟隨閘（極練場反召喚）、E14–E18 拆成反向閘護欄，
     # 座位≠職業的語意已在 s39 處理；改 olu=765 反而縮成只刪英雄型（2026-08-30 撤回）
     - {trigger_id: 1831, name: 2女4, kind: effect, index: 1, field: source_player, old: 3, new: 2, reason: 聊天訊息錯發3P}

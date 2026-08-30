@@ -58,6 +58,12 @@ s37	effect_field	T1945「6木2」E#0	effect_type	15	0	開局每 3 秒移除 P4 �
 s37	effect_field	T1945「6木2」E#0	source_player	4	-1	殼的 sp 也清掉，否則 s39 仍視為職業 4 家族而複製＋停用原版，偏將拉繩只剩選棍客時才跑
 s37	effect_field	T4632「成成4p」E#15	effect_type	15	0	棍客大成時移除全圖 P4 物件，其餘五座位無此效果
 s37	effect_field	T4632「成成4p」E#16	effect_type	15	0	同上（區域版）
+s37	effect_field	T4793「」E#0	source_player	5	4	銀兩護欄（≥50萬上繳）查 P4 卻扣 P5；T4790–4792 皆扣自己（劍譜5 即如此；5/6 座位無此護欄）
+s37	effect_field	T5399「觸發事件 3」E#2	source_player	4	3	3P 客棧「能力不足失精力20」傷害打到 P4；觸發事件 1/2/4/5/6 皆打自己
+s37	effect_field	T5491「漢娜斯1」E#0	trigger_id	5489	5490	1P 漢娜斯門口應啟動自己的對話 T5490「漢娜斯」（2–6P 皆指緊鄰的無名漢娜斯），抄成 6P 的「觸發事件 箭提2」
+s37	trigger_flag	T5306「魂移5」	enabled	1	0	魂移1–6 皆停用循環、由 馬N 啟動；5P 開局即啟用且不循環，拳客一死就關掉六座位石區觸發
+s37	trigger_flag	T5306「魂移5」	looping	0	1	同上
+s37	trigger_flag	T4965「完全教戰守策3」	enabled	0	1	「不得蓋建築」常駐清除規則（object_group 3/30），其餘五座位開局啟用，3P 整支關閉＝只有 3P 能蓋
 s37	effect_field	T1831「2女4」E#1	source_player	3	2	聊天訊息錯發3P
 s37	effect_field	T4157「1幫」E#0	source_player	3	1	聊天訊息錯發3P
 s37	effect_field	T2971「5幽」E#4	source_player	4	5	聊天訊息錯發4P

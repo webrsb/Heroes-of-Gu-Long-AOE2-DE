@@ -42,6 +42,9 @@ def seat_pattern(name):
     if len(seats) == 1:
         seat = seats.pop()
         return seat, '~' + _cls(name, seat)
+    m = re.match(r'^(.*[^\d])([1-6])$', name)          # 尾數編號：「觸發事件 3」「草草5」「魂移6」
+    if m:
+        return int(m.group(2)), '$' + m.group(1) + 'N'
     return None, None
 
 
