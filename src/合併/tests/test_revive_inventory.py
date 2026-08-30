@@ -123,3 +123,22 @@ def test_cross_detection(f):
     inv = inv_of(f, [t, t_all])
     assert t.trigger_id in inv.cross
     assert t_all.trigger_id not in inv.cross    # 六家全包=世界觸發，不算 cross
+
+
+def test_neutral_relay_adopted_into_family_and_matrix(f):
+    """5教頭2 第二階型：只有計時器＋啟停邊、零玩家欄位的中繼，啟停目標全在單一職業家族 → 併入家族並進矩陣。"""
+    t_addr = f.trig(conds=[f.cond_timer(14), f.cond_area(sp=5, qty=1)], effects=[f.eff_chat(sp=5)])
+    relay = f.trig(conds=[f.cond_timer(14)], effects=[f.eff_activate(t_addr.trigger_id)])
+    relay2 = f.trig(conds=[f.cond_timer(3)], effects=[f.eff_deactivate(relay.trigger_id)])   # 中繼串中繼
+    inv = inv_of(f, [t_addr, relay, relay2])
+    assert relay.trigger_id in inv.families[5] and relay.trigger_id in inv.matrix[5]
+    assert relay2.trigger_id in inv.matrix[5]
+
+
+def test_neutral_relay_to_two_classes_stays_cross(f):
+    a = f.trig(effects=[f.eff_chat(sp=1)])
+    b = f.trig(effects=[f.eff_chat(sp=2)])
+    relay = f.trig(conds=[f.cond_timer(1)], effects=[f.eff_activate(a.trigger_id), f.eff_activate(b.trigger_id)])
+    inv = inv_of(f, [a, b, relay])
+    assert relay.trigger_id not in inv.families.get(1, set()) and relay.trigger_id not in inv.families.get(2, set())
+    assert relay.trigger_id in inv.relay_cross

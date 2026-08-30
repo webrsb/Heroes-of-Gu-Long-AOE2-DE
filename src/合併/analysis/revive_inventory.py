@@ -36,6 +36,8 @@ class Inventory:
     global_init: list = field(default_factory=list)
     const_filtered: list = field(default_factory=list)
     cross: list = field(default_factory=list)
+    relay: list = field(default_factory=list)        # (tid, cid) 中性中繼併入的家族
+    relay_cross: list = field(default_factory=list)  # 中性中繼指向 ≥2 職業（留裁決）
 
 
 def _touched_classes(t, ref2cid):
@@ -111,6 +113,35 @@ def build_inventory(tm, hero_refs, hero_consts, exclude=()) -> Inventory:
         elif len(cids) >= 2 and cids != {1, 2, 3, 4, 5, 6}:
             inv.cross.append(t.trigger_id)
 
+    family_all = {tid for s in inv.families.values() for tid in s}
+
+    # ---- 中性中繼併入家族（2026-08-30：5教頭2 第二階型）----
+    # 零玩家欄位、零本體 ref 的觸發（如「計時器→啟動 X教頭2」）碰不到任何職業，進不了家族；
+    # 但它的啟停邊若全部指進單一職業家族，語意上就是該職業的中繼，須併入才會被矩陣複製、邊才會重指。
+    # 迭代到不動點（中繼可串中繼）；指向 ≥2 職業者記 relay_cross 留裁決。
+    fam_of = {tid: cid for cid, s in inv.families.items() for tid in s}
+    neutral = [t for t in triggers if t.trigger_id not in family_all
+               and t.trigger_id not in inv.global_init and t.trigger_id not in inv.cross
+               and not _touched_classes(t, ref2cid)]
+    changed = True
+    while changed:
+        changed = False
+        for t in neutral:
+            if t.trigger_id in fam_of:
+                continue
+            targets = [getattr(e, 'trigger_id', -1) for e in t.effects
+                       if getattr(e, 'effect_type', None) in ACTIVATION]
+            if not targets:
+                continue
+            cids = {fam_of[x] for x in targets if x in fam_of}
+            if len(cids) == 1 and all(x in fam_of for x in targets):
+                cid = cids.pop()
+                inv.families[cid].add(t.trigger_id)
+                fam_of[t.trigger_id] = cid
+                inv.relay.append((t.trigger_id, cid))
+                changed = True
+            elif len(cids) >= 2 and t.trigger_id not in inv.relay_cross:
+                inv.relay_cross.append(t.trigger_id)
     family_all = {tid for s in inv.families.values() for tid in s}
 
     # ---- death_linked（先判，供 cond_ref 排除）----
