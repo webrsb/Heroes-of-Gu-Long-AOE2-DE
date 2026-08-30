@@ -8,7 +8,7 @@ sys.path.insert(0, __file__.rsplit('tools', 1)[0])
 from core.scenario_io import load
 
 SEATS, PIERS = range(1, 7), ('東', '西')
-KINDS = ('船入', '船暈', '船窗止', '船出', '船清入', '船清出')
+KINDS = ('船入', '船暈', '船窗止', '船出', '船清入', '船清出', '船免')
 
 
 def main(path):
@@ -46,7 +46,7 @@ def main(path):
         check(not any(int(e.effect_type) == 11 for e in t.effects), f'T{tid}「{t.name}」無 CREATE（票已清）')
         check(not any(int(e.effect_type) == 8 and e.trigger_id in (5358, 5361, 5363, 5365, 5367, 5369) for e in t.effects),
               f'T{tid}「{t.name}」不直接啟動 X頭暈起')
-        check(sum(1 for e in t.effects if int(e.effect_type) == 8) == 3, f'T{tid}「{t.name}」啟動 3 支（入/窗止/暈）')
+        check(sum(1 for e in t.effects if int(e.effect_type) == 8) == 4, f'T{tid}「{t.name}」啟動 4 支（入/窗止/暈/免）')
         check(any(int(e.effect_type) == 3 and '三分鐘' in (e.message or '') for e in t.effects), f'T{tid}「{t.name}」有買票提示')
     for tid in (3748, 3753, 3758, 3763, 3768, 3773, 3779, 3785, 3791, 3797, 3803, 3809):
         t = tm.triggers[tid]

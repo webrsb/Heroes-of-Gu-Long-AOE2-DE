@@ -459,15 +459,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 1, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
     - kind: trigger_add
+      name: 1船免東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位1：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3746}
+      - {type: deactivate_trigger, trigger_id: 3747}
+      - {type: deactivate_trigger, trigger_id: 3750}
+    - kind: trigger_add
       name: 1船窗止東
       enabled: 0
       looping: 0
-      reason: 渡船東座位1：售票窗 3 分鐘關閉
+      reason: 渡船東座位1：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 1船入東}
       - {type: deactivate_trigger, trigger_name: 1船暈東}
+      - {type: deactivate_trigger, trigger_name: 1船免東}
     - kind: trigger_add
       name: 1船出東
       enabled: 1
@@ -515,15 +526,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 2, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
     - kind: trigger_add
+      name: 2船免東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位2：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3751}
+      - {type: deactivate_trigger, trigger_id: 3752}
+      - {type: deactivate_trigger, trigger_id: 3755}
+    - kind: trigger_add
       name: 2船窗止東
       enabled: 0
       looping: 0
-      reason: 渡船東座位2：售票窗 3 分鐘關閉
+      reason: 渡船東座位2：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 2船入東}
       - {type: deactivate_trigger, trigger_name: 2船暈東}
+      - {type: deactivate_trigger, trigger_name: 2船免東}
     - kind: trigger_add
       name: 2船出東
       enabled: 1
@@ -571,15 +593,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 3, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
     - kind: trigger_add
+      name: 3船免東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位3：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3756}
+      - {type: deactivate_trigger, trigger_id: 3757}
+      - {type: deactivate_trigger, trigger_id: 3760}
+    - kind: trigger_add
       name: 3船窗止東
       enabled: 0
       looping: 0
-      reason: 渡船東座位3：售票窗 3 分鐘關閉
+      reason: 渡船東座位3：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 3船入東}
       - {type: deactivate_trigger, trigger_name: 3船暈東}
+      - {type: deactivate_trigger, trigger_name: 3船免東}
     - kind: trigger_add
       name: 3船出東
       enabled: 1
@@ -627,15 +660,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 4, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
     - kind: trigger_add
+      name: 4船免東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位4：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3761}
+      - {type: deactivate_trigger, trigger_id: 3762}
+      - {type: deactivate_trigger, trigger_id: 3765}
+    - kind: trigger_add
       name: 4船窗止東
       enabled: 0
       looping: 0
-      reason: 渡船東座位4：售票窗 3 分鐘關閉
+      reason: 渡船東座位4：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 4船入東}
       - {type: deactivate_trigger, trigger_name: 4船暈東}
+      - {type: deactivate_trigger, trigger_name: 4船免東}
     - kind: trigger_add
       name: 4船出東
       enabled: 1
@@ -683,15 +727,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 5, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
     - kind: trigger_add
+      name: 5船免東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位5：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3766}
+      - {type: deactivate_trigger, trigger_id: 3767}
+      - {type: deactivate_trigger, trigger_id: 3770}
+    - kind: trigger_add
       name: 5船窗止東
       enabled: 0
       looping: 0
-      reason: 渡船東座位5：售票窗 3 分鐘關閉
+      reason: 渡船東座位5：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 5船入東}
       - {type: deactivate_trigger, trigger_name: 5船暈東}
+      - {type: deactivate_trigger, trigger_name: 5船免東}
     - kind: trigger_add
       name: 5船出東
       enabled: 1
@@ -739,15 +794,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 6, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
     - kind: trigger_add
+      name: 6船免東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位6：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3771}
+      - {type: deactivate_trigger, trigger_id: 3772}
+      - {type: deactivate_trigger, trigger_id: 3775}
+    - kind: trigger_add
       name: 6船窗止東
       enabled: 0
       looping: 0
-      reason: 渡船東座位6：售票窗 3 分鐘關閉
+      reason: 渡船東座位6：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 6船入東}
       - {type: deactivate_trigger, trigger_name: 6船暈東}
+      - {type: deactivate_trigger, trigger_name: 6船免東}
     - kind: trigger_add
       name: 6船出東
       enabled: 1
@@ -795,15 +861,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
     - kind: trigger_add
+      name: 1船免西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位1：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3776}
+      - {type: deactivate_trigger, trigger_id: 3778}
+      - {type: deactivate_trigger, trigger_id: 3781}
+    - kind: trigger_add
       name: 1船窗止西
       enabled: 0
       looping: 0
-      reason: 渡船西座位1：售票窗 3 分鐘關閉
+      reason: 渡船西座位1：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 1船入西}
       - {type: deactivate_trigger, trigger_name: 1船暈西}
+      - {type: deactivate_trigger, trigger_name: 1船免西}
     - kind: trigger_add
       name: 1船出西
       enabled: 1
@@ -851,15 +928,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
     - kind: trigger_add
+      name: 2船免西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位2：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3782}
+      - {type: deactivate_trigger, trigger_id: 3784}
+      - {type: deactivate_trigger, trigger_id: 3787}
+    - kind: trigger_add
       name: 2船窗止西
       enabled: 0
       looping: 0
-      reason: 渡船西座位2：售票窗 3 分鐘關閉
+      reason: 渡船西座位2：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 2船入西}
       - {type: deactivate_trigger, trigger_name: 2船暈西}
+      - {type: deactivate_trigger, trigger_name: 2船免西}
     - kind: trigger_add
       name: 2船出西
       enabled: 1
@@ -907,15 +995,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 3, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
     - kind: trigger_add
+      name: 3船免西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位3：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3788}
+      - {type: deactivate_trigger, trigger_id: 3790}
+      - {type: deactivate_trigger, trigger_id: 3793}
+    - kind: trigger_add
       name: 3船窗止西
       enabled: 0
       looping: 0
-      reason: 渡船西座位3：售票窗 3 分鐘關閉
+      reason: 渡船西座位3：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 3船入西}
       - {type: deactivate_trigger, trigger_name: 3船暈西}
+      - {type: deactivate_trigger, trigger_name: 3船免西}
     - kind: trigger_add
       name: 3船出西
       enabled: 1
@@ -963,15 +1062,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 4, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
     - kind: trigger_add
+      name: 4船免西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位4：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3794}
+      - {type: deactivate_trigger, trigger_id: 3796}
+      - {type: deactivate_trigger, trigger_id: 3799}
+    - kind: trigger_add
       name: 4船窗止西
       enabled: 0
       looping: 0
-      reason: 渡船西座位4：售票窗 3 分鐘關閉
+      reason: 渡船西座位4：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 4船入西}
       - {type: deactivate_trigger, trigger_name: 4船暈西}
+      - {type: deactivate_trigger, trigger_name: 4船免西}
     - kind: trigger_add
       name: 4船出西
       enabled: 1
@@ -1019,15 +1129,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 5, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
     - kind: trigger_add
+      name: 5船免西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位5：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3800}
+      - {type: deactivate_trigger, trigger_id: 3802}
+      - {type: deactivate_trigger, trigger_id: 3805}
+    - kind: trigger_add
       name: 5船窗止西
       enabled: 0
       looping: 0
-      reason: 渡船西座位5：售票窗 3 分鐘關閉
+      reason: 渡船西座位5：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 5船入西}
       - {type: deactivate_trigger, trigger_name: 5船暈西}
+      - {type: deactivate_trigger, trigger_name: 5船免西}
     - kind: trigger_add
       name: 5船出西
       enabled: 1
@@ -1075,15 +1196,26 @@ params:
       effects:
       - {type: teleport_object, source_player: 6, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
     - kind: trigger_add
+      name: 6船免西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位6：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+      conditions: []
+      effects:
+      - {type: deactivate_trigger, trigger_id: 3806}
+      - {type: deactivate_trigger, trigger_id: 3808}
+      - {type: deactivate_trigger, trigger_id: 3811}
+    - kind: trigger_add
       name: 6船窗止西
       enabled: 0
       looping: 0
-      reason: 渡船西座位6：售票窗 3 分鐘關閉
+      reason: 渡船西座位6：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
       conditions:
       - {type: timer, timer: 180}
       effects:
       - {type: deactivate_trigger, trigger_name: 6船入西}
       - {type: deactivate_trigger, trigger_name: 6船暈西}
+      - {type: deactivate_trigger, trigger_name: 6船免西}
     - kind: trigger_add
       name: 6船出西
       enabled: 1
@@ -1163,6 +1295,11 @@ params:
     - trigger_id: 3750
       name: 1船6
       kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 1船免東}
+      reason: 買票開售票窗
+    - trigger_id: 3750
+      name: 1船6
+      kind: effect_add
       effect: {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3755, name: 2船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
@@ -1181,6 +1318,11 @@ params:
       name: 2船6
       kind: effect_add
       effect: {type: activate_trigger, trigger_name: 2船暈東}
+      reason: 買票開售票窗
+    - trigger_id: 3755
+      name: 2船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 2船免東}
       reason: 買票開售票窗
     - trigger_id: 3755
       name: 2船6
@@ -1207,6 +1349,11 @@ params:
     - trigger_id: 3760
       name: 3船6
       kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 3船免東}
+      reason: 買票開售票窗
+    - trigger_id: 3760
+      name: 3船6
+      kind: effect_add
       effect: {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3765, name: 4船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
@@ -1225,6 +1372,11 @@ params:
       name: 4船6
       kind: effect_add
       effect: {type: activate_trigger, trigger_name: 4船暈東}
+      reason: 買票開售票窗
+    - trigger_id: 3765
+      name: 4船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 4船免東}
       reason: 買票開售票窗
     - trigger_id: 3765
       name: 4船6
@@ -1251,6 +1403,11 @@ params:
     - trigger_id: 3770
       name: 5船6
       kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 5船免東}
+      reason: 買票開售票窗
+    - trigger_id: 3770
+      name: 5船6
+      kind: effect_add
       effect: {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3775, name: 6船6, kind: effect, index: 1, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
@@ -1269,6 +1426,11 @@ params:
       name: 6船6
       kind: effect_add
       effect: {type: activate_trigger, trigger_name: 6船暈東}
+      reason: 買票開售票窗
+    - trigger_id: 3775
+      name: 6船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 6船免東}
       reason: 買票開售票窗
     - trigger_id: 3775
       name: 6船6
@@ -1294,6 +1456,11 @@ params:
     - trigger_id: 3781
       name: 1船6
       kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 1船免西}
+      reason: 買票開售票窗
+    - trigger_id: 3781
+      name: 1船6
+      kind: effect_add
       effect: {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3787, name: 2船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
@@ -1311,6 +1478,11 @@ params:
       name: 2船6
       kind: effect_add
       effect: {type: activate_trigger, trigger_name: 2船暈西}
+      reason: 買票開售票窗
+    - trigger_id: 3787
+      name: 2船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 2船免西}
       reason: 買票開售票窗
     - trigger_id: 3787
       name: 2船6
@@ -1336,6 +1508,11 @@ params:
     - trigger_id: 3793
       name: 3船6
       kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 3船免西}
+      reason: 買票開售票窗
+    - trigger_id: 3793
+      name: 3船6
+      kind: effect_add
       effect: {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3799, name: 4船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
@@ -1353,6 +1530,11 @@ params:
       name: 4船6
       kind: effect_add
       effect: {type: activate_trigger, trigger_name: 4船暈西}
+      reason: 買票開售票窗
+    - trigger_id: 3799
+      name: 4船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 4船免西}
       reason: 買票開售票窗
     - trigger_id: 3799
       name: 4船6
@@ -1378,6 +1560,11 @@ params:
     - trigger_id: 3805
       name: 5船6
       kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 5船免西}
+      reason: 買票開售票窗
+    - trigger_id: 3805
+      name: 5船6
+      kind: effect_add
       effect: {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3811, name: 6船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
@@ -1395,6 +1582,11 @@ params:
       name: 6船6
       kind: effect_add
       effect: {type: activate_trigger, trigger_name: 6船暈西}
+      reason: 買票開售票窗
+    - trigger_id: 3811
+      name: 6船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 6船免西}
       reason: 買票開售票窗
     - trigger_id: 3811
       name: 6船6

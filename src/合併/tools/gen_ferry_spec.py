@@ -29,6 +29,11 @@ PIER = {
 GATE_PUSH = {3673: '1草', 3675: '2草', 3677: '3草', 3679: '4草', 3681: '5草', 3683: '6草', 3685: '1船'}
 GATE_CLEAR = {3674: '1草2', 3676: '2草2', 3678: '3草2', 3680: '4草2', 3682: '5草2', 3684: '6草2'}
 SHUTTLE = {3732: '船', 3733: '船2'}                 # 班次觸發（派船時武裝一次性卸貨）
+# 報價鏈（X船→X船3→X船6）基底 id：售票窗開著時由 X船免 每輪壓停用＝窗內重複進場免費（2026-08-31 使用者裁決）
+BUY_CHAIN = {'東': {1: (3746, 3747, 3750), 2: (3751, 3752, 3755), 3: (3756, 3757, 3760),
+                    4: (3761, 3762, 3765), 5: (3766, 3767, 3770), 6: (3771, 3772, 3775)},
+             '西': {1: (3776, 3778, 3781), 2: (3782, 3784, 3787), 3: (3788, 3790, 3793),
+                    4: (3794, 3796, 3799), 5: (3800, 3802, 3805), 6: (3806, 3808, 3811)}}
 LEVEL_XP, XP_ATTR = 1160, 2                          # 與 X草2 同門檻（石頭＝閱歷）
 HINT = '<ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸'
 
@@ -62,11 +67,19 @@ def seat_triggers(s, p):
              [dict(type='teleport_object', source_player=s, **_tile(c['out_flag']),
                    location_x=c['in_land'][0], location_y=c['in_land'][1])],
              f'{tag}：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出'),
+        _add(f'{s}船免{p}', 0, 1,
+             [],
+             [dict(type='deactivate_trigger', trigger_id=BUY_CHAIN[p][s][0]),
+              dict(type='deactivate_trigger', trigger_id=BUY_CHAIN[p][s][1]),
+              dict(type='deactivate_trigger', trigger_id=BUY_CHAIN[p][s][2])],
+             f'{tag}：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；'
+             f'X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去'),
         _add(f'{s}船窗止{p}', 0, 0,
              [dict(type='timer', timer=180)],
              [dict(type='deactivate_trigger', trigger_name=f'{s}船入{p}'),
-              dict(type='deactivate_trigger', trigger_name=f'{s}船暈{p}')],
-             f'{tag}：售票窗 3 分鐘關閉'),
+              dict(type='deactivate_trigger', trigger_name=f'{s}船暈{p}'),
+              dict(type='deactivate_trigger', trigger_name=f'{s}船免{p}')],
+             f'{tag}：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）'),
         _add(f'{s}船出{p}', 1, 1,
              [dict(type='objects_in_area', quantity=1, source_player=s, **_tile(c['in_flag']))],
              [dict(type='teleport_object', source_player=s, **_tile(c['in_flag']),
@@ -115,7 +128,7 @@ def edits():
             if p == '東':
                 out.append(dict(trigger_id=tid, name=nm, kind='effect', index=4, field='effect_type',
                                 old=8, new=0, reason='頭暈改由英雄踩牆外旗觸發（X船暈）'))
-            for k in ('船入', '船窗止', '船暈'):
+            for k in ('船入', '船窗止', '船暈', '船免'):
                 out.append(dict(trigger_id=tid, name=nm, kind='effect_add',
                                 effect=dict(type='activate_trigger', trigger_name=f'{s}{k}{p}'),
                                 reason='買票開售票窗'))

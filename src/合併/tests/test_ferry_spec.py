@@ -7,7 +7,7 @@ from tools import gen_ferry_spec as g
 
 SEATS = range(1, 7)
 PIERS = ('東', '西')
-KINDS = ('船入', '船暈', '船窗止', '船出', '船清入', '船清出')
+KINDS = ('船入', '船暈', '船窗止', '船出', '船清入', '船清出', '船免')
 X6 = {'東': {1: 3750, 2: 3755, 3: 3760, 4: 3765, 5: 3770, 6: 3775},
       '西': {1: 3781, 2: 3787, 3: 3793, 4: 3799, 5: 3805, 6: 3811}}
 X4 = {'東': ({1: 3748, 2: 3753, 3: 3758, 4: 3763, 5: 3768, 6: 3773}, 1),
@@ -23,7 +23,7 @@ def _adds(entries):
 def _check_block(entries):
     adds = _adds(entries)
     names = [a['name'] for a in adds]
-    assert len(names) == len(set(names)) == 75
+    assert len(names) == len(set(names)) == 87
     for s in SEATS:
         for p in PIERS:
             for k in KINDS:
@@ -51,7 +51,7 @@ def _check_block(entries):
                 assert any(e.get('kind') == 'effect' and e.get('index') == 4 and e.get('old') == 8 and e.get('new') == 0 for e in mine)
             adds_ = [e for e in mine if e.get('kind') == 'effect_add']
             acts = sorted(e['effect']['trigger_name'] for e in adds_ if e['effect']['type'] == 'activate_trigger')
-            assert acts == sorted([f'{s}船入{p}', f'{s}船窗止{p}', f'{s}船暈{p}'])
+            assert acts == sorted([f'{s}船入{p}', f'{s}船窗止{p}', f'{s}船暈{p}', f'{s}船免{p}'])
             chats = [e for e in adds_ if e['effect']['type'] == 'send_chat']
             assert len(chats) == 1 and chats[0]['effect']['source_player'] == s \
                 and chats[0]['effect']['message'].startswith('<ORANGE>')
@@ -76,6 +76,10 @@ def _check_block(entries):
             assert [c['type'] for c in a['conditions']] == ['timer', 'objects_in_area'] and a['conditions'][0]['timer'] == 8
         if '船入' in a['name']:
             assert [c['type'] for c in a['conditions']] == ['objects_in_area', 'accumulate_attribute']
+        if '船免' in a['name']:
+            assert a['enabled'] == 0 and a['looping'] == 1 and a['conditions'] == []
+            assert [e['type'] for e in a['effects']] == ['deactivate_trigger'] * 3
+            assert all('trigger_id' in e for e in a['effects'])          # 壓的是基底報價鏈，數字 id
     for tid, nm in {3732: '船', 3733: '船2'}.items():
         acts = sorted(e['effect']['trigger_name'] for e in entries
                       if e.get('trigger_id') == tid and e.get('kind') == 'effect_add')
