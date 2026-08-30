@@ -150,3 +150,31 @@ def test_neutral_relay_with_self_deactivate_adopted(f):
     relay = f.trig(tid=77, conds=[f.cond_timer(20)], effects=[f.eff_activate(t_addr.trigger_id), f.eff_deactivate(77)])
     inv = inv_of(f, [t_addr, relay])
     assert 77 in inv.families[1] and 77 in inv.matrix[1]
+
+
+def test_ferry_shapes_matrix_relay_shared(f):
+    """渡船 spec（2026-08-30）對 s39 的假設：座位欄觸發進矩陣、計時中繼併入後被閉包拉入、
+    綁英雄 ref 的頭暈觸發為職業鍵 shared、P8 卸貨不進家族。"""
+    FLAG = (112, 227, 112, 227)
+    buy = f.trig(name='1船6', conds=[f.cond_area(sp=1, area=(112, 226, 114, 228))],
+                 effects=[f.eff_chat(sp=1)])
+    enter = f.trig(name='1船入東', conds=[f.cond_area(sp=1, area=FLAG)],
+                   effects=[f.eff_teleport(sp=1, area=FLAG, x=110, y=226)], enabled=False, looping=True)
+    dizzy_chain = f.trig(name='1頭暈起', effects=[f.eff_attack(sel=[0], sp=1)])
+    dizzy = f.trig(name='1船暈東', conds=[f.cond_bring_area(0, area=FLAG)],
+                   effects=[f.eff_activate(dizzy_chain.trigger_id)], enabled=False)
+    stop = f.trig(name='1船窗止東', conds=[f.cond_timer(180)],
+                  effects=[f.eff_deactivate(enter.trigger_id), f.eff_deactivate(dizzy.trigger_id)], enabled=False)
+    buy.effects += [f.eff_activate(enter.trigger_id), f.eff_activate(stop.trigger_id),
+                    f.eff_activate(dizzy.trigger_id)]
+    leave = f.trig(name='1船出東', conds=[f.cond_area(sp=1, area=(110, 228, 110, 228))],
+                   effects=[f.eff_teleport(sp=1, area=(110, 228, 110, 228), x=115, y=231)], looping=True)
+    unload = f.trig(name='船卸東', conds=[f.cond_timer(8), f.cond_area(sp=8, object_list=545, area=(107, 225, 109, 229))],
+                    effects=[f.eff_unload(sp=8, olu=545, area=(107, 225, 109, 229), x=110, y=226)], enabled=False)
+    inv = inv_of(f, [buy, enter, dizzy_chain, dizzy, stop, leave, unload])
+    assert {buy.trigger_id, enter.trigger_id, leave.trigger_id} <= inv.matrix[1]
+    assert stop.trigger_id in inv.matrix[1]                       # 中繼併入 → 閉包拉入
+    assert (stop.trigger_id, 1) in inv.relay
+    assert {dizzy.trigger_id, dizzy_chain.trigger_id} <= inv.shared[1]
+    all_fam = {tid for s in inv.families.values() for tid in s}
+    assert unload.trigger_id not in all_fam and unload.trigger_id not in inv.cross

@@ -137,6 +137,14 @@ class Factory:
             kw.update(area_x1=area[0], area_y1=area[1], area_x2=area[2], area_y2=area[3])
         return self._eff(14, **kw)
 
+    def eff_teleport(self, sp=-1, area=(-1, -1, -1, -1), x=-1, y=-1):
+        return self._eff(35, source_player=sp, location_x=x, location_y=y,
+                         area_x1=area[0], area_y1=area[1], area_x2=area[2], area_y2=area[3])
+
+    def eff_unload(self, sp=-1, olu=-1, area=(-1, -1, -1, -1), x=-1, y=-1):
+        return self._eff(17, source_player=sp, object_list_unit_id=olu, location_x=x, location_y=y,
+                         area_x1=area[0], area_y1=area[1], area_x2=area[2], area_y2=area[3])
+
     def eff_activate(self, tid):
         return self._eff(8, trigger_id=tid)
 
