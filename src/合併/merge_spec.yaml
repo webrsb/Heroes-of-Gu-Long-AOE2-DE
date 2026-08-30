@@ -160,6 +160,40 @@ params:
     - {note: a/b變體建置停用·watch啟·timer停；c_flag變體讀命盡旗標；watch一律帶NOT騎馬旗標反相條件}
     - {note: 馬騎ref 26109/26186/26136/26139/26138/26110 各配 watch_馬(C,S)·馬死移除騎馬旗標}
 
+  # 【2026-08-30 野怪獎勵補回】reports/野怪獎勵盤點.md。無法無天三處把一般野怪區改成計時道具任務
+  # 並拿掉一般獎勵（狼窟→碧海藍圖、石→毀滅之魂），另把 獅頭人2/魔2 關掉忘了開。
+  # 裁決：任務原封不動、一般獎勵依來源數值補回（狼 16/15、石 207/100）；獅頭人2/魔2 設回啟用。
+  # 新獎勵觸發帶 KR 條件，s375 會一併變數化；出口＝停用該區任務獎勵者（排除 X青3 六秒節流）。
+  mob_rewards:
+    enable_triggers:
+      - {trigger_id: 76, name: 1獅頭人2}
+      - {trigger_id: 78, name: 2獅頭人2}
+      - {trigger_id: 80, name: 3獅頭人2}
+      - {trigger_id: 82, name: 4獅頭人2}
+      - {trigger_id: 84, name: 5獅頭人2}
+      - {trigger_id: 86, name: 6獅頭人2}
+      - {trigger_id: 2922, name: 1魔2}
+      - {trigger_id: 2924, name: 2魔2}
+      - {trigger_id: 2926, name: 3魔2}
+      - {trigger_id: 2928, name: 4魔2}
+      - {trigger_id: 2930, name: 5魔2}
+      - {trigger_id: 2932, name: 6魔2}
+    upgrade: {1: 7, 2: 8, 3: 9, 4: 12, 5: 15, 6: 18}     # X升級（領獎基準遞增）
+    zones:
+      - key: 狼
+        xp: 16
+        silver: 15
+        areas: [[77, 45, 103, 61]]                        # 來源 X青2 區
+        quest_reward: {1: 456, 2: 458, 3: 460, 4: 462, 5: 464, 6: 466}   # 基底 X青（碧海藍圖）
+        quest_name_suffix: 青
+        exclude_exit_suffix: 青3                          # 六秒節流不當出口
+      - key: 石
+        xp: 207
+        silver: 100
+        areas: [[188, 225, 210, 239], [227, 212, 239, 225]]   # 來源 X石2 / X石3 區
+        quest_reward: {1: 2939, 2: 2942, 3: 2945, 4: 2948, 5: 2951, 6: 2954}   # 基底 X石（毀滅之魂）
+        quest_name_suffix: 石
+
   # 【2026-08-30 擊殺獎勵變數化】Kill Ratio(屬性44)=擊殺−損失，英雄死亡算損失→復活後獎勵停擺；
   # DE 中屬性44唯讀(Modify Resource 無效, spike_killratio)。改以屬性20(純擊殺)＋DE變數重建：
   # 條件 KR≥1 → CompareVariables(V_K[p] > V_BASE[p])；X升級 建立/殺/移除 Joan → V_BASE[p]+=1；

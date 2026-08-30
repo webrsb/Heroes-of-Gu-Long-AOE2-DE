@@ -294,6 +294,18 @@ s375	cond_convert	T5327C1	type	KR≥1	V5>V15	擊殺變數化
 s375	cond_convert	T5328C1	type	KR≥1	V6>V16	擊殺變數化
 s375	cond_convert	T5342C1	type	KR≥1	V2>V12	擊殺變數化
 s375	cond_convert	T5343C1	type	KR≥1	V2>V12	擊殺變數化
+s375	cond_convert	T5600C0	type	KR≥1	V1>V11	擊殺變數化
+s375	cond_convert	T5602C0	type	KR≥1	V2>V12	擊殺變數化
+s375	cond_convert	T5604C0	type	KR≥1	V3>V13	擊殺變數化
+s375	cond_convert	T5606C0	type	KR≥1	V4>V14	擊殺變數化
+s375	cond_convert	T5608C0	type	KR≥1	V5>V15	擊殺變數化
+s375	cond_convert	T5610C0	type	KR≥1	V6>V16	擊殺變數化
+s375	cond_convert	T5612C0	type	KR≥1	V1>V11	擊殺變數化
+s375	cond_convert	T5615C0	type	KR≥1	V2>V12	擊殺變數化
+s375	cond_convert	T5618C0	type	KR≥1	V3>V13	擊殺變數化
+s375	cond_convert	T5621C0	type	KR≥1	V4>V14	擊殺變數化
+s375	cond_convert	T5624C0	type	KR≥1	V5>V15	擊殺變數化
+s375	cond_convert	T5627C0	type	KR≥1	V6>V16	擊殺變數化
 s375	eff_neutralize	T7E0	effect_type	11	0	Joan 重置法抽除
 s375	eff_neutralize	T7E1	effect_type	14	0	Joan 重置法抽除
 s375	eff_neutralize	T7E2	effect_type	15	0	Joan 重置法抽除
@@ -318,4 +330,4 @@ s375	eff_neutralize	T18E0	effect_type	11	0	Joan 重置法抽除
 s375	eff_neutralize	T18E1	effect_type	14	0	Joan 重置法抽除
 s375	eff_neutralize	T18E2	effect_type	15	0	Joan 重置法抽除
 s375	eff_add	T18	change_variable		V16+=1	領獎基準遞增（等價 KR−1）
-s375	trigger_add	擊殺計數迴圈	trigger		T5600	295 條件變數化的計數來源
+s375	trigger_add	擊殺計數迴圈	trigger		T5630	307 條件變數化的計數來源

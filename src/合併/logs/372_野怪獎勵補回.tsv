@@ -1,0 +1,82 @@
+step	kind	target	field	old	new	reason
+s372	trigger_field	T76「1獅頭人2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T78「2獅頭人2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T80「3獅頭人2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T82「4獅頭人2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T84「5獅頭人2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T86「6獅頭人2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T2922「1魔2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T2924「2魔2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T2926「3魔2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T2928「4魔2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T2930「5魔2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_field	T2932「6魔2」	enabled	0	1	區域啟動觸發設回啟用（來源即啟用）
+s372	trigger_add	1狼獎	trigger		T5600	一般獎勵 16/15（來源數值）
+s372	trigger_add	1狼獎2	trigger		T5601	區 (77,45)-(103,61) 常開啟動
+s372	eff_add	T468	deactivate		→T5600	狼 區出口追加停用一般獎勵
+s372	eff_add	T469	deactivate		→T5600	狼 區出口追加停用一般獎勵
+s372	eff_add	T470	deactivate		→T5600	狼 區出口追加停用一般獎勵
+s372	eff_add	T2777	deactivate		→T5600	狼 區出口追加停用一般獎勵
+s372	eff_add	T2789	deactivate		→T5600	狼 區出口追加停用一般獎勵
+s372	trigger_add	2狼獎	trigger		T5602	一般獎勵 16/15（來源數值）
+s372	trigger_add	2狼獎2	trigger		T5603	區 (77,45)-(103,61) 常開啟動
+s372	eff_add	T471	deactivate		→T5602	狼 區出口追加停用一般獎勵
+s372	eff_add	T472	deactivate		→T5602	狼 區出口追加停用一般獎勵
+s372	eff_add	T473	deactivate		→T5602	狼 區出口追加停用一般獎勵
+s372	eff_add	T2778	deactivate		→T5602	狼 區出口追加停用一般獎勵
+s372	eff_add	T2790	deactivate		→T5602	狼 區出口追加停用一般獎勵
+s372	trigger_add	3狼獎	trigger		T5604	一般獎勵 16/15（來源數值）
+s372	trigger_add	3狼獎2	trigger		T5605	區 (77,45)-(103,61) 常開啟動
+s372	eff_add	T474	deactivate		→T5604	狼 區出口追加停用一般獎勵
+s372	eff_add	T475	deactivate		→T5604	狼 區出口追加停用一般獎勵
+s372	eff_add	T476	deactivate		→T5604	狼 區出口追加停用一般獎勵
+s372	eff_add	T2779	deactivate		→T5604	狼 區出口追加停用一般獎勵
+s372	eff_add	T2791	deactivate		→T5604	狼 區出口追加停用一般獎勵
+s372	trigger_add	4狼獎	trigger		T5606	一般獎勵 16/15（來源數值）
+s372	trigger_add	4狼獎2	trigger		T5607	區 (77,45)-(103,61) 常開啟動
+s372	eff_add	T477	deactivate		→T5606	狼 區出口追加停用一般獎勵
+s372	eff_add	T478	deactivate		→T5606	狼 區出口追加停用一般獎勵
+s372	eff_add	T479	deactivate		→T5606	狼 區出口追加停用一般獎勵
+s372	eff_add	T2780	deactivate		→T5606	狼 區出口追加停用一般獎勵
+s372	eff_add	T2792	deactivate		→T5606	狼 區出口追加停用一般獎勵
+s372	trigger_add	5狼獎	trigger		T5608	一般獎勵 16/15（來源數值）
+s372	trigger_add	5狼獎2	trigger		T5609	區 (77,45)-(103,61) 常開啟動
+s372	eff_add	T480	deactivate		→T5608	狼 區出口追加停用一般獎勵
+s372	eff_add	T481	deactivate		→T5608	狼 區出口追加停用一般獎勵
+s372	eff_add	T482	deactivate		→T5608	狼 區出口追加停用一般獎勵
+s372	eff_add	T2781	deactivate		→T5608	狼 區出口追加停用一般獎勵
+s372	eff_add	T2793	deactivate		→T5608	狼 區出口追加停用一般獎勵
+s372	trigger_add	6狼獎	trigger		T5610	一般獎勵 16/15（來源數值）
+s372	trigger_add	6狼獎2	trigger		T5611	區 (77,45)-(103,61) 常開啟動
+s372	eff_add	T483	deactivate		→T5610	狼 區出口追加停用一般獎勵
+s372	eff_add	T484	deactivate		→T5610	狼 區出口追加停用一般獎勵
+s372	eff_add	T485	deactivate		→T5610	狼 區出口追加停用一般獎勵
+s372	eff_add	T2782	deactivate		→T5610	狼 區出口追加停用一般獎勵
+s372	eff_add	T2794	deactivate		→T5610	狼 區出口追加停用一般獎勵
+s372	eff_add	T3028	deactivate		→T5610	狼 區出口追加停用一般獎勵
+s372	eff_add	T3029	deactivate		→T5610	狼 區出口追加停用一般獎勵
+s372	eff_add	T3030	deactivate		→T5610	狼 區出口追加停用一般獎勵
+s372	trigger_add	1石獎	trigger		T5612	一般獎勵 207/100（來源數值）
+s372	trigger_add	1石獎2	trigger		T5613	區 (188,225)-(210,239) 常開啟動
+s372	trigger_add	1石獎3	trigger		T5614	區 (227,212)-(239,225) 常開啟動
+s372	eff_add	T2957	deactivate		→T5612	石 區出口追加停用一般獎勵
+s372	trigger_add	2石獎	trigger		T5615	一般獎勵 207/100（來源數值）
+s372	trigger_add	2石獎2	trigger		T5616	區 (188,225)-(210,239) 常開啟動
+s372	trigger_add	2石獎3	trigger		T5617	區 (227,212)-(239,225) 常開啟動
+s372	eff_add	T2958	deactivate		→T5615	石 區出口追加停用一般獎勵
+s372	trigger_add	3石獎	trigger		T5618	一般獎勵 207/100（來源數值）
+s372	trigger_add	3石獎2	trigger		T5619	區 (188,225)-(210,239) 常開啟動
+s372	trigger_add	3石獎3	trigger		T5620	區 (227,212)-(239,225) 常開啟動
+s372	eff_add	T2959	deactivate		→T5618	石 區出口追加停用一般獎勵
+s372	trigger_add	4石獎	trigger		T5621	一般獎勵 207/100（來源數值）
+s372	trigger_add	4石獎2	trigger		T5622	區 (188,225)-(210,239) 常開啟動
+s372	trigger_add	4石獎3	trigger		T5623	區 (227,212)-(239,225) 常開啟動
+s372	eff_add	T2960	deactivate		→T5621	石 區出口追加停用一般獎勵
+s372	trigger_add	5石獎	trigger		T5624	一般獎勵 207/100（來源數值）
+s372	trigger_add	5石獎2	trigger		T5625	區 (188,225)-(210,239) 常開啟動
+s372	trigger_add	5石獎3	trigger		T5626	區 (227,212)-(239,225) 常開啟動
+s372	eff_add	T2961	deactivate		→T5624	石 區出口追加停用一般獎勵
+s372	trigger_add	6石獎	trigger		T5627	一般獎勵 207/100（來源數值）
+s372	trigger_add	6石獎2	trigger		T5628	區 (188,225)-(210,239) 常開啟動
+s372	trigger_add	6石獎3	trigger		T5629	區 (227,212)-(239,225) 常開啟動
+s372	eff_add	T2962	deactivate		→T5627	石 區出口追加停用一般獎勵
