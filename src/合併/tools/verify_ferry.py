@@ -51,9 +51,13 @@ def main(path):
     for tid in (3748, 3753, 3758, 3763, 3768, 3773, 3779, 3785, 3791, 3797, 3803, 3809):
         t = tm.triggers[tid]
         check(not any(int(e.effect_type) == 15 for e in t.effects), f'T{tid}「{t.name}」REMOVE 已清')
-    # X草：原支與 ◇位 變體都不得被任何觸發啟動（s39 本就把矩陣原支停用，查 enabled 是假陽性）
-    grass_ids = {t.trigger_id for t in tm.triggers
-                 if (t.name or '').split('◇')[0] in {f'{s}草' for s in SEATS}}
+    # X草：原支與 ◇位 變體都不得被任何觸發啟動（s39 本就把矩陣原支停用，查 enabled 是假陽性）。
+    # 名稱 `X草` 與等級門檻迴圈 T3673… 同名，以條件區域（牆內西 81,232–83,236）區分。
+    def _is_wall_grass(t):
+        c = t.conditions[0] if t.conditions else None
+        return (t.name or '').split('◇')[0] in {f'{s}草' for s in SEATS} and c is not None \
+            and (c.area_x1, c.area_y1, c.area_x2, c.area_y2) == (81, 232, 83, 236)
+    grass_ids = {t.trigger_id for t in tm.triggers if _is_wall_grass(t)}
     hits = [(t.trigger_id, e.trigger_id) for t in tm.triggers for e in t.effects
             if int(e.effect_type) == 8 and e.trigger_id in grass_ids]
     check(len(grass_ids) >= 6 and not hits, f'X草 無任何啟動邊指向（{len(grass_ids)} 支）→ 得 {hits[:5]}')

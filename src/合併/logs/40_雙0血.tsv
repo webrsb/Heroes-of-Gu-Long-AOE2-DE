@@ -37,4 +37,4 @@ s40	unit	ref30388 界線牆73_6	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙
 s40	unit	ref30388 界線牆73_6	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
 s40	unit	ref30387 界線牆73_7	max_hp	250	ADD 65286 → 0(回繞)	§5.6/01n 雙0血
 s40	unit	ref30387 界線牆73_7	current_hp	0(縮放歸零)	+576125(灌血)	01n N1 第二步
-s40	trigger_add	T31840「ZZ_雙0血」	—	—	26 個效果	§5.7
+s40	trigger_add	T32215「ZZ_雙0血」	—	—	26 個效果	§5.7
