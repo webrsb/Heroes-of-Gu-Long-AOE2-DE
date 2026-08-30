@@ -171,6 +171,17 @@ def test_matrix_disables_all_and_enable_lists_originally_enabled(f):
         assert el[(1, s)] == [vm[(a.trigger_id, s)]]
 
 
+def test_matrix_rewrites_kill_variables(f):
+    t = f.trig(conds=[f._cond(78, source_player=3, variable=3, variable2=13, comparison=2)],
+               effects=[f._eff(56, variable=13, quantity=1, operation=2), f.eff_chat(sp=3)])
+    tm = f.tm([t])
+    vm, el, ch = build_matrix(tm, {3: {t.trigger_id}}, var_offsets=(0, 10))
+    v = tm.triggers_by_id[vm[(t.trigger_id, 6)]]
+    assert (v.conditions[0].variable, v.conditions[0].variable2) == (6, 16)
+    assert v.effects[0].variable == 16
+    assert (t.conditions[0].variable, t.effects[0].variable) == (3, 13)   # 原觸發不動
+
+
 def test_matrix_declares_trigger_add_changes(f):
     a = f.trig(effects=[f.eff_chat(sp=1)])
     tm = f.tm([a])

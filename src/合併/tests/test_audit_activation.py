@@ -38,6 +38,16 @@ def test_respawn_area_condition_flagged(f):
     assert len(bad) == 1 and '◇命2' in bad[0]
 
 
+def test_killvar_slot_consistency(f):
+    ok = f.trig(name='5打民團◇位2', conds=[f._cond(78, source_player=2, variable=2, variable2=12)],
+                effects=[f.eff_tribute(sp=2, tp=0, quantity=-2)])
+    bad = f.trig(name='5打民團◇位3', conds=[f._cond(78, source_player=3, variable=5, variable2=15)],
+                 effects=[f.eff_tribute(sp=3, tp=0, quantity=-2)])         # 變數欄漏改
+    vio, _ = audit(f.tm([ok, bad]), var_offsets=(0, 10))
+    hits = [s for k, s in vio if k == '變數槽位']
+    assert len(hits) == 1 and '位3' in hits[0]
+
+
 def test_life_copy_requires_flag_condition(f):
     bare = f.trig(name='神弓之洛5~1◇命2')
     gated = f.trig(name='神弓之洛5~1◇命3',

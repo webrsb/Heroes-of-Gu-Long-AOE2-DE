@@ -160,6 +160,16 @@ params:
     - {note: a/b變體建置停用·watch啟·timer停；c_flag變體讀命盡旗標；watch一律帶NOT騎馬旗標反相條件}
     - {note: 馬騎ref 26109/26186/26136/26139/26138/26110 各配 watch_馬(C,S)·馬死移除騎馬旗標}
 
+  # 【2026-08-30 擊殺獎勵變數化】Kill Ratio(屬性44)=擊殺−損失，英雄死亡算損失→復活後獎勵停擺；
+  # DE 中屬性44唯讀(Modify Resource 無效, spike_killratio)。改以屬性20(純擊殺)＋DE變數重建：
+  # 條件 KR≥1 → CompareVariables(V_K[p] > V_BASE[p])；X升級 建立/殺/移除 Joan → V_BASE[p]+=1；
+  # 共用迴圈每tick V_K[s]←屬性20。spike_killvar 實證兩法皆過，取比較變數法。
+  killvar:
+    reset_tids: [7, 8, 9, 12, 15, 18]      # X升級（建立430 Joan+Kill+Remove+自停）
+    kills_attr: 20                         # UNITS_KILLED
+    v_kills_offset: 0                      # V_K[s] = 0 + s   (變數 1..6)
+    v_base_offset: 10                      # V_BASE[s] = 10 + s (變數 11..16)
+
   # 【2026-08-30 復活與選職業】spec v6+ 全裁決落地；lives=3 測試版
   revive:
     lives: 3

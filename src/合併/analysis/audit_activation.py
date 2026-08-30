@@ -24,7 +24,39 @@ FLAG_CONST = 720
 ACTIVATE, DEACTIVATE = 8, 9
 
 
-def audit(tm, life_xs=None, life_refs=None, respawn=None):
+def audit_killvar(tm, offsets):
+    """擊殺變數槽位一致：condition 78 / effect 56 的變數隱含玩家位（v−off）必須等於
+    同觸發所有 sp∈1..6 欄位（矩陣改寫漏變數欄即抓到）。回傳 violations。"""
+    vio = []
+    for t in tm.triggers:
+        tn = t.name or '(無名)'
+        if tn.startswith('退役_'):
+            continue
+        implied = set()
+        for c in t.conditions:
+            if getattr(c, 'condition_type', None) == 78:
+                for fld in ('variable', 'variable2'):
+                    v = getattr(c, fld, -1)
+                    for off in offsets:
+                        if off + 1 <= v <= off + 6:
+                            implied.add(v - off)
+        for e in t.effects:
+            if getattr(e, 'effect_type', None) == 56:
+                v = getattr(e, 'variable', -1)
+                for off in offsets:
+                    if off + 1 <= v <= off + 6:
+                        implied.add(v - off)
+        if not implied:
+            continue
+        sps = {getattr(x, 'source_player', -1) for x in list(t.conditions) + list(t.effects)}
+        sps = {s for s in sps if s in range(1, 7)}
+        if len(implied) != 1 or (sps and sps != implied):
+            vio.append(('變數槽位', f'T{t.trigger_id}「{tn}」變數隱含位 {sorted(implied)} '
+                                 f'vs 玩家欄 {sorted(sps)}'))
+    return vio
+
+
+def audit(tm, life_xs=None, life_refs=None, respawn=None, var_offsets=None):
     """回傳 (violations, review_lines)。violations=[(類別, 說明)]。"""
     n = len(tm.triggers)
     by_id = {t.trigger_id: t for t in tm.triggers}
@@ -105,6 +137,8 @@ def audit(tm, life_xs=None, life_refs=None, respawn=None):
                                 f'T{t.trigger_id}「{tn}」C{i} 綁單位且區域'
                                 f'({x1},{y1})-({x2},{y2}) 涵蓋重生點——'
                                 f'備身駐軍時條件提前成立'))
+    if var_offsets:
+        vio += audit_killvar(tm, var_offsets)
     return vio, review
 
 
@@ -118,8 +152,11 @@ def main(src, out_md=None):
     life_xs = set(int(x) for x in (rv.get('cells') or {}).get('life_xs') or []) or None
 
     respawn = rv.get('respawn')
+    kv = (spec.get('params') or spec).get('killvar') or {}
+    var_offsets = (int(kv['v_kills_offset']), int(kv['v_base_offset'])) if kv else None
     scn = AoE2DEScenario.from_file(src)
-    vio, review = audit(scn.trigger_manager, life_xs=life_xs, respawn=respawn)
+    vio, review = audit(scn.trigger_manager, life_xs=life_xs, respawn=respawn,
+                        var_offsets=var_offsets)
 
     lines = [f'# 啟動稽核 — {os.path.basename(src)}', '']
     lines.append(f'觸發總數: {len(scn.trigger_manager.triggers)}')

@@ -191,11 +191,13 @@ def fanout_family_edges(tm, families):
     return changes
 
 
-def build_matrix(tm, matrix_sets):
+def build_matrix(tm, matrix_sets, var_offsets=()):
     """玩家定址觸發 ×6 玩家位矩陣。回傳 (variant_map, enable_lists, changes)。
     - 玩家欄改寫：條件/效果中 值==class → slot（含 target_player）
+    - 變數欄改寫：variable/variable2 == off+class → off+slot（s375 擊殺變數，off∈var_offsets）
     - 內部啟停重指：effect.trigger_id ∈ 同家族 matrix → 同 slot 變體
     - 全部（含原觸發）建置停用；enable_lists[(c,s)]＝原本 enabled 者的該 slot 變體"""
+    from .s375_killvar import var_slot_rewrite
     variant_map, enable_lists, changes = {}, {}, []
     for cid, tids in sorted(matrix_sets.items()):
         ordered = sorted(tids)
@@ -217,11 +219,15 @@ def build_matrix(tm, matrix_sets):
                     for c in v.conditions:
                         if getattr(c, 'source_player', -1) == cid:
                             c.source_player = slot
+                        if var_offsets:
+                            var_slot_rewrite(c, cid, slot, var_offsets)
                     for e in v.effects:
                         if getattr(e, 'source_player', -1) == cid:
                             e.source_player = slot
                         if getattr(e, 'target_player', -1) == cid:
                             e.target_player = slot
+                        if var_offsets:
+                            var_slot_rewrite(e, cid, slot, var_offsets)
                         if getattr(e, 'effect_type', None) in (8, 9) \
                                 and getattr(e, 'trigger_id', -1) in tids:
                             e.trigger_id = variant_map[(e.trigger_id, slot)]
@@ -301,7 +307,15 @@ def run_revive(ctx):
     pools = inventory_pools(tm, mount_ref2cid)
     changes += build_pool_grants(tm, pools, life_refs, mount)
 
-    vm, el, ch = build_matrix(tm, matrix_sets)
+    kv = ctx.spec.params.get('killvar') or {}
+    var_offsets = (int(kv['v_kills_offset']), int(kv['v_base_offset'])) if kv else ()
+    if var_offsets:
+        # 連動/換裝變體走 dl_variants 的玩家欄改寫，不含變數欄——含擊殺變數條件即需裁決
+        for r in rulings:
+            t = trig_by_id(tm, r['tid'])
+            if t and any(getattr(c, 'condition_type', None) == 78 for c in t.conditions):
+                raise BuildError(f'缺裁決：連動裁決 T{r["tid"]} 含擊殺變數條件，dl 變體不改寫變數欄')
+    vm, el, ch = build_matrix(tm, matrix_sets, var_offsets=var_offsets)
     changes += ch
     changes += convert_flag_swap_conditions(tm, rulings, vm, rspec.hero_refs, mount, slots)
 
