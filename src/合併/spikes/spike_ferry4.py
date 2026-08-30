@@ -8,7 +8,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.path.insert(0, __file__.rsplit('spikes', 1)[0])
 from core.scenario_io import load, write_out, deploy
 
-WATER = 1
+WATER, BEACH, SHALLOWS = 1, 2, 4
 TRANSPORT, KNIGHT, MILITIA = 545, 38, 74
 P1, P8 = 1, 8
 
@@ -18,9 +18,16 @@ def main(src, out):
     um, tm, mm = scn.unit_manager, scn.trigger_manager, scn.map_manager
     cx = mm.map_width // 2
     cy = cx - 10
+    # 地形照使用者 2026-08-30 編輯器存檔：純水道會讓運輸船靠岸走歪；水道外圈一格海灘、兩端岸邊三格淺灘才會直直停靠
+    for x in range(cx - 11, cx + 12):
+        for y in range(cy - 4, cy + 5):
+            mm.get_tile(x, y).terrain_id = BEACH
     for x in range(cx - 10, cx + 11):
         for y in range(cy - 3, cy + 4):
             mm.get_tile(x, y).terrain_id = WATER
+    for y in range(cy - 1, cy + 2):
+        for x in list(range(cx - 11, cx - 8)) + list(range(cx + 9, cx + 12)):
+            mm.get_tile(x, y).terrain_id = SHALLOWS
     W_LAND = (cx - 14, cy - 3, cx - 11, cy + 3)
     E_LAND = (cx + 11, cy - 3, cx + 14, cy + 3)
     W_DOCK = (cx - 10, cy - 3, cx - 8, cy + 3)     # 西岸停船水域（船起點在內）
