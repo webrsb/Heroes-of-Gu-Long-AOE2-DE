@@ -432,6 +432,11 @@ params:
     - {trigger_id: 5384, name: 觸發事件 4, kind: effect, index: 0, field: message, old: '', new: '<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０', reason: 同上}
     - {trigger_id: 5387, name: 觸發事件 5, kind: effect, index: 0, field: message, old: '', new: '<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０', reason: 同上}
     - {trigger_id: 5390, name: 觸發事件 6, kind: effect, index: 0, field: message, old: '', new: '<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０', reason: 同上}
+    # 【2026-08-30 訊息夾 DEL(\x7f) 控制字元】標籤不在第 0 位 → DE 不解析、原樣印出「<ORANGE>」（使用者截圖：商人南宮缺）。全檔僅 4 處
+    - {trigger_id: 3983, name: 2缺2, kind: effect, index: 0, field: message, old: "\x7f<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖", new: "<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖", reason: 去開頭 DEL}
+    - {trigger_id: 3986, name: 3缺2, kind: effect, index: 0, field: message, old: "\x7f<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖", new: "<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖", reason: 去開頭 DEL}
+    - {trigger_id: 3991, name: 5缺, kind: effect, index: 0, field: message, old: "\x7f<ORANGE>商人南宮缺：我的武林秘笈給強盜搶了，你可替我取回嗎？", new: "<ORANGE>商人南宮缺：我的武林秘笈給強盜搶了，你可替我取回嗎？", reason: 去開頭 DEL}
+    - {trigger_id: 794, name: 2武, kind: effect, index: 4, field: message, old: "<GREEN>得到了　\x7f技能點數　2", new: "<GREEN>得到了　技能點數　2", reason: 去中間 DEL（顯示為空框）}
 
   # 【2026-08-29 Fable裁決代理定案】死亡連動42支：a×6/a+flag×6/b×6/d×24（c=0）
   # 詳細逐支語意與斷邊清單見 docs spec §七之二 與裁決報告；extras 為施工指令。

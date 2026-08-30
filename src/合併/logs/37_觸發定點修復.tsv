@@ -112,3 +112,7 @@ s37	effect_field	T5381「觸發事件 3」E#0	message		<ORANGE>沒有技能點�
 s37	effect_field	T5384「觸發事件 4」E#0	message		<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０	同上
 s37	effect_field	T5387「觸發事件 5」E#0	message		<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０	同上
 s37	effect_field	T5390「觸發事件 6」E#0	message		<ORANGE>沒有技能點數恕本客棧將強制拿取你精力５０	同上
+s37	effect_field	T3983「2缺2」E#0	message	<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖	<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖	去開頭 DEL
+s37	effect_field	T3986「3缺2」E#0	message	<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖	<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖	去開頭 DEL
+s37	effect_field	T3991「5缺」E#0	message	<ORANGE>商人南宮缺：我的武林秘笈給強盜搶了，你可替我取回嗎？	<ORANGE>商人南宮缺：我的武林秘笈給強盜搶了，你可替我取回嗎？	去開頭 DEL
+s37	effect_field	T794「2武」E#4	message	<GREEN>得到了　技能點數　2	<GREEN>得到了　技能點數　2	去中間 DEL（顯示為空框）
