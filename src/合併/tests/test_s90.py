@@ -29,3 +29,12 @@ def test_check_object_refs_against_baseline():
     bad = _scn([_eff(selected_object_ids=[777])], units=(1, 2))
     assert check_object_refs(bad, baseline=set()) != []
     assert check_object_refs(bad, baseline={777}) == []   # origin 本來就 dangling 者豁免
+
+
+def test_check_no_empty_effects():
+    from steps.s90_audit import check_no_empty_effects
+    ok = _scn([_eff(effect_type=3)])
+    bad = _scn([_eff(effect_type=0), _eff(effect_type=3), _eff(effect_type=0)])
+    assert check_no_empty_effects(ok) == []
+    v = check_no_empty_effects(bad)
+    assert len(v) == 1 and 'T0' in v[0] and '2' in v[0]

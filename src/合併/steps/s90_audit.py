@@ -60,6 +60,16 @@ def check_reconciliation(scn, notes):
     return []
 
 
+def check_no_empty_effects(scn):
+    """管線中和殼（type 0）不得落檔（s80 應已清空；殘留代表 s80 之後又有步驟中和）。"""
+    out = []
+    for t in scn.trigger_manager.triggers:
+        idx = [i for i, e in enumerate(t.effects) if int(e.effect_type) == 0]
+        if idx:
+            out.append(f'T{t.trigger_id}「{t.name}」殘留 {len(idx)} 個空效果殼 E{idx}')
+    return out
+
+
 def check_boss_refs(spec, notes):
     targets = (spec.params.get('boss_hp') or {}).get('targets') or []
     refs = notes.get('boss_refs') or {}
@@ -70,7 +80,7 @@ def check_boss_refs(spec, notes):
 class AuditStep(Step):
     id = 's90'
     title = '終檢'
-    intro = '五項不變量稽核（spec §8），任一失敗即中止建置。'
+    intro = '六項不變量稽核（spec §8 五項＋空效果殼零殘留），任一失敗即中止建置。'
 
     def apply(self, ctx):
         violations = []
@@ -79,9 +89,10 @@ class AuditStep(Step):
         violations += check_object_refs(ctx.base, ctx.notes.get('baseline_dangling', set()))
         violations += check_reconciliation(ctx.base, ctx.notes)
         violations += check_boss_refs(ctx.spec, ctx.notes)
+        violations += check_no_empty_effects(ctx.base)
         if violations:
             raise BuildError('終檢未過：\n  ' + '\n  '.join(violations))
-        return [Change(self.id, 'audit', '全檔', '—', '', '5/5 通過', 'spec §8')]
+        return [Change(self.id, 'audit', '全檔', '—', '', '6/6 通過', 'spec §8＋空殼')]
 
 
 STEP = AuditStep()
