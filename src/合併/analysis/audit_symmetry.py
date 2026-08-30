@@ -135,6 +135,8 @@ def audit(triggers, hero=None):
                     if '!' in str(d.get(f, '')):
                         out.append(f'{tag}#{i}.{f}={d[f]}')
                 out += [f'{tag}#{i}.sel={r}' for r in d.get('sel', ()) if '!' in r]
+                if d.get('edge') and '!' in d['edge'][0]:          # 啟停指到別座位的觸發
+                    out.append(f'{tag}#{i}.edge={d["edge"][0]}')
         return out
 
     def struct(n):
@@ -161,6 +163,15 @@ def audit(triggers, hero=None):
             normed = {s: norm(t, s) for s, t in row.items()}
             if not any(seat_bound(n_) for n_ in normed.values()):
                 continue
+            # A0. enabled / looping 少數派
+            flags = {s: (int(getattr(row[s], 'enabled', 0) or 0), int(getattr(row[s], 'looping', 0) or 0))
+                     for s in row}
+            top, n = majority(flags)
+            if n * 2 > len(flags):
+                for s, v in flags.items():
+                    if repr(v) != top:
+                        F(Finding('HIGH', pat, k, s, row[s].trigger_id, row[s].name, '整支', 'enabled/looping',
+                                  f'en={v[0]} loop={v[1]}', top))
             # A. 外座位引用計數
             fr = {s: foreign(n_) for s, n_ in normed.items()}
             cnts = {s: len(v) for s, v in fr.items()}
@@ -199,8 +210,20 @@ def audit(triggers, hero=None):
                 stats['struct_skipped'] += 1
                 continue
             twins = {s for s, v in structs.items() if repr(v) == top}
+            top_struct = structs[next(iter(twins))]
             for s in structs:
                 if s not in twins:
+                    # 長度相同且只差一格 → 單一效果/條件型別抄錯，HIGH 指名位置
+                    diffs = [(part, i) for part, tag in ((0, 'C'), (1, 'E'))
+                             if len(structs[s][part]) == len(top_struct[part])
+                             for i in range(len(top_struct[part])) if structs[s][part][i] != top_struct[part][i]]
+                    same_len = all(len(structs[s][p]) == len(top_struct[p]) for p in (0, 1))
+                    if same_len and len(diffs) == 1:
+                        part, i = diffs[0]
+                        F(Finding('HIGH', pat, k, s, row[s].trigger_id, row[s].name,
+                                  f'{"C" if part == 0 else "E"}#{i}', 'type',
+                                  structs[s][part][i], top_struct[part][i]))
+                        continue
                     F(Finding('MED', pat, k, s, row[s].trigger_id, row[s].name, '整支', 'struct',
                               f'{len(structs[s][0])}條件/{len(structs[s][1])}效果 型別序列異於他座', ''))
             stats['twin_groups'] += 1

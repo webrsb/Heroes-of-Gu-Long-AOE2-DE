@@ -107,6 +107,32 @@ params:
     - {trigger_id: 4533, name: 棍333, kind: effect, index: 0, field: source_player, old: 3, new: 4, reason: 馬騎棍俠技能訊息錯發3P}
     - {trigger_id: 4467, name: 1毒, kind: effect, index: 0, field: source_player, old: 7, new: 1, reason: 「中毒狀態」錯發7P（其餘座位皆發自己）}
     - {trigger_id: 4732, name: 5失血, kind: effect, index: 1, field: source_player, old: 0, new: 5, reason: 5P 英雄失血效果 sp 為 Gaia（其餘座位皆自己）}
+    # 2026-08-30 六座位對稱稽核第二輪——啟停極性抄反（其餘座位一致 5/6）
+    - {trigger_id: 3300, name: 1 9, kind: effect, index: 0, field: effect_type, old: 9, new: 8, reason: 1P 升到 9 級應啟動 6-10Lv 加成（其餘座位 ACT），抄成 DEACT 少一級加成}
+    - {trigger_id: 1188, name: 6林4, kind: effect, index: 1, field: effect_type, old: 8, new: 9, reason: 6P 進區應停用 6林（其餘座位 DEACT），抄成 ACT 使 6林 不停}
+    - {trigger_id: 2289, name: 5拳92, kind: effect, index: 5, field: effect_type, old: 8, new: 9, reason: 一次性觸發末尾應停用自己（其餘座位 DEACT），抄成 ACT 自己→每 5 秒重跑疊加攻擊}
+    - {trigger_id: 3164, name: 6狂死2, kind: effect, index: 0, field: effect_type, old: 8, new: 9, reason: 狂 出口區應停用擊殺獎勵 6狂（狂死～狂死7 全部 DEACT），抄成 ACT 會白拿 542 閱歷}
+    - {trigger_id: 3190, name: 2狂死7, kind: effect, index: 0, field: effect_type, old: 8, new: 9, reason: 同上（2P）}
+    # 第二輪——效果型別抄錯／首觸發指到別座位／訊息抄錯
+    - {trigger_id: 277, name: 3道4, kind: effect, index: 9, field: effect_type, old: 27, new: 28, reason: 3P 馬騎 幸運符加成應為改攻（其餘座位 E9 改攻），抄成改血}
+    # ↑ 改攻效果的 quantity 由 parser 拆成 armour_attack_class/quantity 兩欄（改血原效果為 None），需補齊：class 0、量 10（同兄弟座位）
+    - {trigger_id: 277, name: 3道4, kind: effect, index: 9, field: armour_attack_class, old: null, new: 0, reason: 型別改為改攻後補 aa 欄位}
+    - {trigger_id: 277, name: 3道4, kind: effect, index: 9, field: armour_attack_quantity, old: null, new: 10, reason: 型別改為改攻後補 aa 欄位（兄弟座位 E9 皆 +10）}
+    - {trigger_id: 287, name: 5道4, kind: effect, index: 12, field: trigger_id, old: 5543, new: 5542, reason: 5P 應停用「首  拳3」，抄成 6P 的「首  箭3」}
+    - {trigger_id: 292, name: 6道4, kind: effect, index: 11, field: trigger_id, old: 5535, new: 5537, reason: 6P 應啟動「首  箭2」，抄成 4P 的「首  棍2」}
+    - {trigger_id: 292, name: 6道4, kind: effect, index: 12, field: trigger_id, old: 5541, new: 5543, reason: 6P 應停用「首  箭3」，抄成 4P 的「首  棍3」}
+    - {trigger_id: 292, name: 6道4, kind: effect, index: 0, field: message, old: '<ORANGE>道學者：你已學會治療中毒。', new: '<ORANGE>道學者：你已學會了幸運符。', reason: 6P 學幸運符的訊息抄成治療中毒（其餘座位皆幸運符）}
+    # 第二輪——空選取漏填 ref（空選取＝該玩家全圖單位，加成/傷害打到全部單位）；填回兄弟座位同位置的英雄或馬騎 ref
+    - {trigger_id: 3302, name: 2 6-10Lv, kind: effect, index: 1, field: selected_object_ids, old: [], new: [1], reason: 2P 英雄改攻漏填 ref}
+    - {trigger_id: 59, name: 5 61-80, kind: effect, index: 1, field: selected_object_ids, old: [], new: [7], reason: 5P 英雄改攻漏填 ref}
+    - {trigger_id: 4187, name: 1哥3, kind: effect, index: 7, field: selected_object_ids, old: [], new: [0], reason: 1P 英雄改攻漏填 ref}
+    - {trigger_id: 4188, name: 1哥4, kind: effect, index: 5, field: selected_object_ids, old: [], new: [0], reason: 1P 英雄改攻漏填 ref}
+    - {trigger_id: 4220, name: 2哥5, kind: effect, index: 2, field: selected_object_ids, old: [], new: [1], reason: 2P 英雄改攻（−100）漏填 ref，全 2P 單位被扣}
+    - {trigger_id: 1838, name: 4女3, kind: effect, index: 0, field: selected_object_ids, old: [], new: [502], reason: 4P 英雄改攻漏填 ref}
+    - {trigger_id: 261, name: 1道4, kind: effect, index: 6, field: selected_object_ids, old: [], new: [0], reason: 1P 英雄改血漏填 ref}
+    - {trigger_id: 1205, name: 2松2, kind: effect, index: 4, field: selected_object_ids, old: [], new: [26186], reason: 2P 馬騎回血漏填 ref}
+    - {trigger_id: 1532, name: 6軍, kind: effect, index: 0, field: selected_object_ids, old: [], new: [12702], reason: 6P 哥薩克軍令派兵 task 漏填寵物 ref（其餘座位 12697–12701）}
+    - {trigger_id: 2086, name: 1道3, kind: effect, index: 1, field: selected_object_ids, old: [], new: [26109], reason: 1P 馬騎回血漏填 ref}
     - {trigger_id: 1831, name: 2女4, kind: effect, index: 1, field: source_player, old: 3, new: 2, reason: 聊天訊息錯發3P}
     - {trigger_id: 4157, name: 1幫, kind: effect, index: 0, field: source_player, old: 3, new: 1, reason: 聊天訊息錯發3P}
     - {trigger_id: 2971, name: 5幽, kind: effect, index: 4, field: source_player, old: 4, new: 5, reason: 聊天訊息錯發4P}

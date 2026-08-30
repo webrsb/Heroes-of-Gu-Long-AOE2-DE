@@ -20,9 +20,14 @@ def apply_fix(tm, entry) -> Change:
     tag = f'T{tid}「{t.name}」{"C" if kind == "condition" else "E"}#{entry["index"]}'
     if field == 'selected_object_ids':
         cur = list(obj.selected_object_ids or [])
-        if old not in cur:
-            raise BuildError(f'缺裁決：{tag} selected_object_ids={cur} 不含預期舊值 {old}，請重查')
-        obj.selected_object_ids = [new if r == old else r for r in cur]
+        if isinstance(old, list):                      # 整列比對後整列替換（空選取漏填 ref 用）
+            if cur != list(old):
+                raise BuildError(f'缺裁決：{tag} selected_object_ids={cur} ≠ spec 預期舊列 {old}，請重查')
+            obj.selected_object_ids = list(new)
+        else:
+            if old not in cur:
+                raise BuildError(f'缺裁決：{tag} selected_object_ids={cur} 不含預期舊值 {old}，請重查')
+            obj.selected_object_ids = [new if r == old else r for r in cur]
     else:
         cur = getattr(obj, field)
         if cur != old:

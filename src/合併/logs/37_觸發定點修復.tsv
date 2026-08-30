@@ -16,6 +16,28 @@ s37	effect_field	T203「3教頭4」E#3	effect_type	9	8	學會御槍後應啟動�
 s37	effect_field	T4533「棍333」E#0	source_player	3	4	馬騎棍俠技能訊息錯發3P
 s37	effect_field	T4467「1毒」E#0	source_player	7	1	「中毒狀態」錯發7P（其餘座位皆發自己）
 s37	effect_field	T4732「5失血」E#1	source_player	0	5	5P 英雄失血效果 sp 為 Gaia（其餘座位皆自己）
+s37	effect_field	T3300「1 9」E#0	effect_type	9	8	1P 升到 9 級應啟動 6-10Lv 加成（其餘座位 ACT），抄成 DEACT 少一級加成
+s37	effect_field	T1188「6林4」E#1	effect_type	8	9	6P 進區應停用 6林（其餘座位 DEACT），抄成 ACT 使 6林 不停
+s37	effect_field	T2289「5拳92」E#5	effect_type	8	9	一次性觸發末尾應停用自己（其餘座位 DEACT），抄成 ACT 自己→每 5 秒重跑疊加攻擊
+s37	effect_field	T3164「6狂死2」E#0	effect_type	8	9	狂 出口區應停用擊殺獎勵 6狂（狂死～狂死7 全部 DEACT），抄成 ACT 會白拿 542 閱歷
+s37	effect_field	T3190「2狂死7」E#0	effect_type	8	9	同上（2P）
+s37	effect_field	T277「3道4」E#9	effect_type	27	28	3P 馬騎 幸運符加成應為改攻（其餘座位 E9 改攻），抄成改血
+s37	effect_field	T277「3道4」E#9	armour_attack_class	None	0	型別改為改攻後補 aa 欄位
+s37	effect_field	T277「3道4」E#9	armour_attack_quantity	None	10	型別改為改攻後補 aa 欄位（兄弟座位 E9 皆 +10）
+s37	effect_field	T287「5道4」E#12	trigger_id	5543	5542	5P 應停用「首  拳3」，抄成 6P 的「首  箭3」
+s37	effect_field	T292「6道4」E#11	trigger_id	5535	5537	6P 應啟動「首  箭2」，抄成 4P 的「首  棍2」
+s37	effect_field	T292「6道4」E#12	trigger_id	5541	5543	6P 應停用「首  箭3」，抄成 4P 的「首  棍3」
+s37	effect_field	T292「6道4」E#0	message	<ORANGE>道學者：你已學會治療中毒。	<ORANGE>道學者：你已學會了幸運符。	6P 學幸運符的訊息抄成治療中毒（其餘座位皆幸運符）
+s37	effect_field	T3302「2 6-10Lv」E#1	selected_object_ids	[]	[1]	2P 英雄改攻漏填 ref
+s37	effect_field	T59「5 61-80」E#1	selected_object_ids	[]	[7]	5P 英雄改攻漏填 ref
+s37	effect_field	T4187「1哥3」E#7	selected_object_ids	[]	[0]	1P 英雄改攻漏填 ref
+s37	effect_field	T4188「1哥4」E#5	selected_object_ids	[]	[0]	1P 英雄改攻漏填 ref
+s37	effect_field	T4220「2哥5」E#2	selected_object_ids	[]	[1]	2P 英雄改攻（−100）漏填 ref，全 2P 單位被扣
+s37	effect_field	T1838「4女3」E#0	selected_object_ids	[]	[502]	4P 英雄改攻漏填 ref
+s37	effect_field	T261「1道4」E#6	selected_object_ids	[]	[0]	1P 英雄改血漏填 ref
+s37	effect_field	T1205「2松2」E#4	selected_object_ids	[]	[26186]	2P 馬騎回血漏填 ref
+s37	effect_field	T1532「6軍」E#0	selected_object_ids	[]	[12702]	6P 哥薩克軍令派兵 task 漏填寵物 ref（其餘座位 12697–12701）
+s37	effect_field	T2086「1道3」E#1	selected_object_ids	[]	[26109]	1P 馬騎回血漏填 ref
 s37	effect_field	T1831「2女4」E#1	source_player	3	2	聊天訊息錯發3P
 s37	effect_field	T4157「1幫」E#0	source_player	3	1	聊天訊息錯發3P
 s37	effect_field	T2971「5幽」E#4	source_player	4	5	聊天訊息錯發4P

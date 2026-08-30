@@ -58,3 +58,16 @@ def test_list_old_value_missing_raises():
     with pytest.raises(BuildError):
         apply_fix(_tm(), {'trigger_id': 1, 'name': '', 'kind': 'effect', 'index': 0,
                           'field': 'selected_object_ids', 'old': 777, 'new': 45117, 'reason': 'r'})
+
+
+def test_list_old_replaces_whole_selection():
+    tm = _tm()
+    apply_fix(tm, {'trigger_id': 2, 'name': '4啞', 'kind': 'effect', 'index': 0,
+                   'field': 'selected_object_ids', 'old': [], 'new': [502], 'reason': '空選取漏填ref'})
+    assert tm.triggers[2].effects[0].selected_object_ids == [502]
+
+
+def test_list_old_mismatch_raises():
+    with pytest.raises(BuildError):
+        apply_fix(_tm(), {'trigger_id': 1, 'name': '', 'kind': 'effect', 'index': 0,
+                          'field': 'selected_object_ids', 'old': [], 'new': [502], 'reason': 'r'})

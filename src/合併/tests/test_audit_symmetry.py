@@ -73,3 +73,35 @@ def test_symmetric_group_clean_and_non_seat_groups_ignored(f):
     trigs += [f.trig(tid=200 + z, name=f'{z}石2', effects=[f.eff_chat(sp=-1)]) for z in range(1, 7)]  # 石區編號非座位
     findings, stats = audit(trigs, HERO)
     assert findings == [] and stats['groups'] >= 1
+
+
+def test_foreign_edge_flagged(f):
+    # 5道4 型：啟停指到別座位的首觸發
+    firsts = {s: f.trig(tid=500 + s, name=f'首  {"刀劍槍棍拳箭"[s-1]}3') for s in range(1, 7)}
+
+    def make(s, f):
+        target = 506 if s == 5 else 500 + s          # 5P 指到 6P 的首 箭3
+        return f.trig(tid=s, name=f'{s}道4', effects=[f.eff_chat(sp=s), f.eff_deactivate(target)])
+    findings, _ = audit(six(f, make) + list(firsts.values()), HERO)
+    hi = [(r.seat, r.field) for r in findings if r.sev == 'HIGH']
+    assert (5, 'foreign') in hi and {r.seat for r in findings if r.sev == 'HIGH'} == {5}
+
+
+def test_single_type_mismatch_reported_as_high_with_position(f):
+    heroes = {1: 0, 2: 1, 3: 2, 4: 502, 5: 7, 6: 45117}
+
+    def make(s, f):
+        second = f.eff_hp(sel=[heroes[s]], sp=s, quantity=10) if s == 3 else f.eff_attack(sel=[heroes[s]], sp=s)
+        return f.trig(tid=s, name=f'{s}道4', effects=[f.eff_chat(sp=s), second])
+    findings, _ = audit(six(f, make), HERO)
+    hi = [(r.seat, r.where, r.field, r.value, r.majority) for r in findings if r.sev == 'HIGH']
+    assert hi == [(3, 'E#1', 'type', 27, 28)]
+
+
+def test_enabled_minority_flagged(f):
+    def make(s, f):
+        return f.trig(tid=s, name=f'{s}南僧', enabled=(s == 4), conds=[f.cond_area(sp=s, qty=1)],
+                      effects=[f.eff_activate(100 + s)])
+    trigs = six(f, make) + [f.trig(tid=100 + s, name=f'當僧{s}') for s in range(1, 7)]
+    findings, _ = audit(trigs, HERO)
+    assert [(r.seat, r.field) for r in findings if r.sev == 'HIGH'] == [(4, 'enabled/looping')]
