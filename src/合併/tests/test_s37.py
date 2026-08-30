@@ -133,6 +133,33 @@ def test_trigger_add_effect_resolves_trigger_name(f):
     assert t.new_effect.calls == [('deactivate_trigger', {'trigger_id': target.trigger_id})]
 
 
+def test_effect_add_activate_by_trigger_name(f):
+    target = f.trig(name='1船入東')
+    buyer = f.trig(name='1船6')
+    tm = f.tm([target, buyer])
+    c = apply_fix(tm, {'trigger_id': buyer.trigger_id, 'name': '1船6', 'kind': 'effect_add',
+                       'effect': {'type': 'activate_trigger', 'trigger_name': '1船入東'}, 'reason': 'r'})
+    assert buyer.new_effect.calls == [('activate_trigger', {'trigger_id': target.trigger_id})]
+    assert '1船入東' in c.new
+
+
+def test_effect_add_send_chat(f):
+    buyer = f.trig(name='1船6')
+    tm = f.tm([buyer])
+    c = apply_fix(tm, {'trigger_id': buyer.trigger_id, 'name': '1船6', 'kind': 'effect_add',
+                       'effect': {'type': 'send_chat', 'source_player': 1, 'message': '<ORANGE>買票後三分鐘內踩旗'},
+                       'reason': 'r'})
+    assert buyer.new_effect.calls == [('send_chat', {'source_player': 1, 'message': '<ORANGE>買票後三分鐘內踩旗'})]
+    assert c.kind == 'effect_add' and c.field == 'send_chat'
+
+
+def test_effect_add_rejects_other_types(f):
+    buyer = f.trig(name='1船6')
+    with pytest.raises(BuildError):
+        apply_fix(f.tm([buyer]), {'trigger_id': buyer.trigger_id, 'name': '1船6', 'kind': 'effect_add',
+                                  'effect': {'type': 'teleport_object', 'source_player': 1}, 'reason': 'r'})
+
+
 def test_trigger_add_effect_trigger_name_must_hit_exactly_one(f):
     a = f.trig(name='重名'); b = f.trig(name='重名')
     with pytest.raises(BuildError):

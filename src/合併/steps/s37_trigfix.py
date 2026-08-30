@@ -17,17 +17,25 @@ def apply_fix(tm, entry) -> Change:
         raise BuildError(f'缺裁決：T{tid} 名稱「{t.name}」≠ spec 預期「{entry.get("name", "")}」，'
                          f'基底觸發編號可能位移，請重查')
     kind = entry['kind']
-    if kind == 'effect_add':                      # 尾端新增啟停效果（複製貼上把效果放錯支時補回）
+    if kind == 'effect_add':                      # 尾端新增效果：啟停（id+名防呆，或以名指）或座位私訊
         spec = entry['effect']
+        tag = f'T{tid}「{t.name}」effect_add'
+        if spec['type'] == 'send_chat':
+            t.new_effect.send_chat(source_player=spec['source_player'], message=spec['message'])
+            return Change('s37', 'effect_add', tag, 'send_chat', '',
+                          f'sp{spec["source_player"]}「{spec["message"][:20]}」', entry.get('reason', ''))
         if spec['type'] not in ('activate_trigger', 'deactivate_trigger'):
-            raise BuildError(f'缺裁決：T{tid} effect_add 只支援 activate/deactivate_trigger，得到 {spec["type"]}')
-        target = tm.triggers[spec['trigger_id']] if 0 <= spec['trigger_id'] < len(tm.triggers) else None
-        if target is None or (target.name or '') != spec.get('target_name', ''):
-            raise BuildError(f'缺裁決：T{tid} effect_add 目標 T{spec["trigger_id"]} 名稱'
-                             f'「{getattr(target, "name", None)}」≠ spec 預期「{spec.get("target_name", "")}」，請重查')
-        getattr(t.new_effect, spec['type'])(trigger_id=spec['trigger_id'])
-        return Change('s37', 'effect_add', f'T{tid}「{t.name}」', spec['type'], '',
-                      f'→T{spec["trigger_id"]}「{target.name}」', entry.get('reason', ''))
+            raise BuildError(f'缺裁決：{tag} 只支援 activate/deactivate_trigger/send_chat，得到 {spec["type"]}')
+        if 'trigger_name' in spec:
+            target = _resolve_by_name(tm, spec['trigger_name'], tag)
+        else:
+            target = tm.triggers[spec['trigger_id']] if 0 <= spec['trigger_id'] < len(tm.triggers) else None
+            if target is None or (target.name or '') != spec.get('target_name', ''):
+                raise BuildError(f'缺裁決：{tag} 目標 T{spec["trigger_id"]} 名稱'
+                                 f'「{getattr(target, "name", None)}」≠ spec 預期「{spec.get("target_name", "")}」，請重查')
+        getattr(t.new_effect, spec['type'])(trigger_id=target.trigger_id)
+        return Change('s37', 'effect_add', tag, spec['type'], '',
+                      f'→T{target.trigger_id}「{target.name}」', entry.get('reason', ''))
     field, old, new = entry['field'], entry['old'], entry['new']
     if kind == 'trigger':                         # 觸發層旗標（enabled / looping）
         if field not in ('enabled', 'looping'):
