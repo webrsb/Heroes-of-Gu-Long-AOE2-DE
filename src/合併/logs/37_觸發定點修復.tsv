@@ -72,6 +72,34 @@ s37	effect_field	T5292「少林寺」E#0	message	<ROANGE>少林武僧：你並�
 s37	effect_field	T5293「少林寺」E#0	message	<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	顏色標籤拼字
 s37	effect_field	T5294「少林寺」E#0	message	<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	顏色標籤拼字
 s37	effect_field	T5295「少林寺」E#0	message	<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	顏色標籤拼字
+s37	effect_field	T1995「hp」E#0	source_player	1	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#1	source_player	1	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#2	source_player	1	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#3	source_player	2	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#4	source_player	2	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#5	source_player	2	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#6	source_player	3	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#7	source_player	3	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#8	source_player	3	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#9	source_player	4	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#10	source_player	4	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#11	source_player	4	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#12	source_player	5	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#13	source_player	5	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T1995「hp」E#14	source_player	5	-1	開局設鏡像血量：鏡像現為 P8
+s37	effect_field	T5314「」E#0	source_player	1	-1	鏡像血量微調：鏡像現為 P8
+s37	effect_field	T5314「」E#1	source_player	2	-1	鏡像血量微調：鏡像現為 P8
+s37	effect_field	T5315「」E#0	source_player	1	-1	鏡像血量：鏡像現為 P8
+s37	effect_field	T5315「」E#1	source_player	1	-1	鏡像血量：鏡像現為 P8
+s37	effect_field	T5315「」E#2	source_player	1	-1	鏡像血量：鏡像現為 P8
+s37	effect_field	T5315「」E#3	source_player	1	-1	鏡像血量：鏡像現為 P8
+s37	effect_field	T5315「」E#4	source_player	2	-1	鏡像血量：鏡像現為 P8
+s37	effect_field	T5315「」E#5	source_player	2	-1	鏡像血量：鏡像現為 P8
+s37	effect_field	T5315「」E#6	source_player	2	-1	鏡像血量：鏡像現為 P8
+s37	effect_field	T5315「」E#7	source_player	2	-1	鏡像血量：鏡像現為 P8
+s37	effect_field	T4421「賓名」E#63	source_player	5	-1	賓名 對拳客英雄 ref7 攻擊 −124：英雄開局在 P8 展示位
+s37	effect_field	T4072「東死」E#11	source_player	1	6	東死 E11 對 6P 英雄 ref45117 改血 sp=1 錯家（E12 為 6）
+s37	effect_field	T5441「金槍」E#1	source_player	6	7	金槍 E1 治療 P7 冰槍堂護法 ref30317 卻 sp=6，改 7
 s37	effect_field	T1831「2女4」E#1	source_player	3	2	聊天訊息錯發3P
 s37	effect_field	T4157「1幫」E#0	source_player	3	1	聊天訊息錯發3P
 s37	effect_field	T2971「5幽」E#4	source_player	4	5	聊天訊息錯發4P

@@ -215,6 +215,36 @@ params:
     - {trigger_id: 5293, name: 少林寺, kind: effect, index: 0, field: message, old: '<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', new: '<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', reason: 顏色標籤拼字}
     - {trigger_id: 5294, name: "\x7f少林寺", kind: effect, index: 0, field: message, old: '<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', new: '<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', reason: 顏色標籤拼字}
     - {trigger_id: 5295, name: 少林寺, kind: effect, index: 0, field: message, old: '<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', new: '<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', reason: 顏色標籤拼字}
+    # 2026-08-30 cross 觸發：sel 指定英雄/鏡像/堂主 ref 的效果帶座位 sp——鏡像與展示英雄開局在 P8、堂主是 P7，
+    #   sp 是否過濾未實測，一律改為安全的 -1（s39「中性化」同形式）；東死 E11 對齊 E12 為 6 使其歸職業 6 家族
+    - {trigger_id: 1995, name: hp, kind: effect, index: 0, field: source_player, old: 1, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 1, field: source_player, old: 1, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 2, field: source_player, old: 1, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 3, field: source_player, old: 2, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 4, field: source_player, old: 2, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 5, field: source_player, old: 2, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 6, field: source_player, old: 3, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 7, field: source_player, old: 3, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 8, field: source_player, old: 3, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 9, field: source_player, old: 4, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 10, field: source_player, old: 4, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 11, field: source_player, old: 4, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 12, field: source_player, old: 5, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 13, field: source_player, old: 5, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 1995, name: hp, kind: effect, index: 14, field: source_player, old: 5, new: -1, reason: 開局設鏡像血量：鏡像現為 P8}
+    - {trigger_id: 5314, name: '', kind: effect, index: 0, field: source_player, old: 1, new: -1, reason: 鏡像血量微調：鏡像現為 P8}
+    - {trigger_id: 5314, name: '', kind: effect, index: 1, field: source_player, old: 2, new: -1, reason: 鏡像血量微調：鏡像現為 P8}
+    - {trigger_id: 5315, name: '', kind: effect, index: 0, field: source_player, old: 1, new: -1, reason: 鏡像血量：鏡像現為 P8}
+    - {trigger_id: 5315, name: '', kind: effect, index: 1, field: source_player, old: 1, new: -1, reason: 鏡像血量：鏡像現為 P8}
+    - {trigger_id: 5315, name: '', kind: effect, index: 2, field: source_player, old: 1, new: -1, reason: 鏡像血量：鏡像現為 P8}
+    - {trigger_id: 5315, name: '', kind: effect, index: 3, field: source_player, old: 1, new: -1, reason: 鏡像血量：鏡像現為 P8}
+    - {trigger_id: 5315, name: '', kind: effect, index: 4, field: source_player, old: 2, new: -1, reason: 鏡像血量：鏡像現為 P8}
+    - {trigger_id: 5315, name: '', kind: effect, index: 5, field: source_player, old: 2, new: -1, reason: 鏡像血量：鏡像現為 P8}
+    - {trigger_id: 5315, name: '', kind: effect, index: 6, field: source_player, old: 2, new: -1, reason: 鏡像血量：鏡像現為 P8}
+    - {trigger_id: 5315, name: '', kind: effect, index: 7, field: source_player, old: 2, new: -1, reason: 鏡像血量：鏡像現為 P8}
+    - {trigger_id: 4421, name: 賓名, kind: effect, index: 63, field: source_player, old: 5, new: -1, reason: 賓名 對拳客英雄 ref7 攻擊 −124：英雄開局在 P8 展示位}
+    - {trigger_id: 4072, name: 東死, kind: effect, index: 11, field: source_player, old: 1, new: 6, reason: 東死 E11 對 6P 英雄 ref45117 改血 sp=1 錯家（E12 為 6）}
+    - {trigger_id: 5441, name: 金槍, kind: effect, index: 1, field: source_player, old: 6, new: 7, reason: 金槍 E1 治療 P7 冰槍堂護法 ref30317 卻 sp=6，改 7}
     # 船塢 E19 不改：effect_splits 已把 E19 拆成「選箭客的座位才啟用」的跟隨閘（極練場反召喚）、E14–E18 拆成反向閘護欄，
     # 座位≠職業的語意已在 s39 處理；改 olu=765 反而縮成只刪英雄型（2026-08-30 撤回）
     - {trigger_id: 1831, name: 2女4, kind: effect, index: 1, field: source_player, old: 3, new: 2, reason: 聊天訊息錯發3P}
