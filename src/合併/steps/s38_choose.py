@@ -85,7 +85,8 @@ def setup_bodies(um, tm, rspec, extract=extract_class_names, mirrors=None, survi
                                   f'ref{spare.reference_id}駐ref{box.reference_id}', 'unit',
                                   '', f'const{hero.unit_const}', f'職業{cid}第{L}命備身+容器'))
 
-    # 廣場視野：每位兩顆地圖顯示器（使用者 2026-08-30 存檔示範：const837 @廣場）
+    # 廣場視野：每位數顆地圖顯示器（使用者 2026-08-30 存檔示範：const837 @廣場）。
+    # 837 視野半徑約 4 格，六英雄展示帶 (78.5–83.5, 108.5–113.5) 需三顆才蓋滿（上角槍/棍客 2026-08-30 實測在黑幕）
     navigators = {}
     nav_cells = getattr(rspec, 'navigator_cells', [(80.5, 110.5), (81.5, 112.5)])
     for slot in range(1, 7):
@@ -95,7 +96,7 @@ def setup_bodies(um, tm, rspec, extract=extract_class_names, mirrors=None, survi
             refs.append(nav.reference_id)
         navigators[slot] = refs
         changes.append(Change('s38', 'unit_add', f'refs{refs}', 'unit',
-                              '', 'const837×2', f'位{slot}廣場視野顯示器'))
+                              '', f'const837×{len(nav_cells)}', f'位{slot}廣場視野顯示器'))
 
     t = tm.add_trigger('選角初始化', enabled=True, looping=False)
     t.new_condition.timer(timer=0)
