@@ -54,6 +54,10 @@ s37	effect_field	T4247「6哥4」E#4	quantity	1000	-500	換鐵甲英雄改血其
 s37	effect_field	T4247「6哥4」E#6	quantity	1000	-500	換鐵甲馬騎改血同上
 s37	effect_field	T4248「6哥5」E#1	quantity	-1000	-500	交出鐵甲英雄改血其餘座位 −500，6P 抄成 −1000
 s37	effect_field	T4248「6哥5」E#2	armour_attack_quantity	50	100	交出鐵甲英雄改攻其餘座位 −100，6P 抄成 −50（s30 後為 class0/SUB 表示，改量值）
+s37	effect_field	T1945「6木2」E#0	effect_type	15	0	開局每 3 秒移除 P4 在東北森林的全部物件（座位 4 進北區即被刪）；保留 E1–E4 偏將拉繩
+s37	effect_field	T1945「6木2」E#0	source_player	4	-1	殼的 sp 也清掉，否則 s39 仍視為職業 4 家族而複製＋停用原版，偏將拉繩只剩選棍客時才跑
+s37	effect_field	T4632「成成4p」E#15	effect_type	15	0	棍客大成時移除全圖 P4 物件，其餘五座位無此效果
+s37	effect_field	T4632「成成4p」E#16	effect_type	15	0	同上（區域版）
 s37	effect_field	T1831「2女4」E#1	source_player	3	2	聊天訊息錯發3P
 s37	effect_field	T4157「1幫」E#0	source_player	3	1	聊天訊息錯發3P
 s37	effect_field	T2971「5幽」E#4	source_player	4	5	聊天訊息錯發4P

@@ -152,6 +152,13 @@ params:
     - {trigger_id: 4247, name: 6哥4, kind: effect, index: 6, field: quantity, old: 1000, new: -500, reason: 換鐵甲馬騎改血同上}
     - {trigger_id: 4248, name: 6哥5, kind: effect, index: 1, field: quantity, old: -1000, new: -500, reason: 交出鐵甲英雄改血其餘座位 −500，6P 抄成 −1000}
     - {trigger_id: 4248, name: 6哥5, kind: effect, index: 2, field: armour_attack_quantity, old: 50, new: 100, reason: 交出鐵甲英雄改攻其餘座位 −100，6P 抄成 −50（s30 後為 class0/SUB 表示，改量值）}
+    # 2026-08-30 無法無天新增、只點名單一座位的移除（劍譜5 皆無；遷移記錄「6木2 場景分析」）。中和＝type 0，s80 清殼
+    - {trigger_id: 1945, name: 6木2, kind: effect, index: 0, field: effect_type, old: 15, new: 0, reason: 開局每 3 秒移除 P4 在東北森林的全部物件（座位 4 進北區即被刪）；保留 E1–E4 偏將拉繩}
+    - {trigger_id: 1945, name: 6木2, kind: effect, index: 0, field: source_player, old: 4, new: -1, reason: 殼的 sp 也清掉，否則 s39 仍視為職業 4 家族而複製＋停用原版，偏將拉繩只剩選棍客時才跑}
+    - {trigger_id: 4632, name: 成成4p, kind: effect, index: 15, field: effect_type, old: 15, new: 0, reason: 棍客大成時移除全圖 P4 物件，其餘五座位無此效果}
+    - {trigger_id: 4632, name: 成成4p, kind: effect, index: 16, field: effect_type, old: 15, new: 0, reason: 同上（區域版）}
+    # 船塢 E19 不改：effect_splits 已把 E19 拆成「選箭客的座位才啟用」的跟隨閘（極練場反召喚）、E14–E18 拆成反向閘護欄，
+    # 座位≠職業的語意已在 s39 處理；改 olu=765 反而縮成只刪英雄型（2026-08-30 撤回）
     - {trigger_id: 1831, name: 2女4, kind: effect, index: 1, field: source_player, old: 3, new: 2, reason: 聊天訊息錯發3P}
     - {trigger_id: 4157, name: 1幫, kind: effect, index: 0, field: source_player, old: 3, new: 1, reason: 聊天訊息錯發3P}
     - {trigger_id: 2971, name: 5幽, kind: effect, index: 4, field: source_player, old: 4, new: 5, reason: 聊天訊息錯發4P}
