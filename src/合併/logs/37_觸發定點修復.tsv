@@ -11,6 +11,11 @@ s37	condition_field	T3551「1林4」C#0	source_player	2	1	1P觸發錯看2P區域
 s37	effect_field	T3782「2船」E#0	source_player	1	2	停止單位錯停1P
 s37	effect_field	T3800「5船」E#0	source_player	8	5	停止單位錯停8P（同名第2支寫法正確sp=5可證）
 s37	effect_field	T1674「4啞」E#0	source_player	5	4	聊天訊息錯發5P
+s37	effect_field	T199「2教頭4」E#3	effect_type	9	8	學會御劍後應啟動「好好練習」迴圈（1/4/5/6P 為 ACT，2/3P 抄成 DEACT）
+s37	effect_field	T203「3教頭4」E#3	effect_type	9	8	學會御槍後應啟動「好好練習」迴圈（同上）
+s37	effect_field	T4533「棍333」E#0	source_player	3	4	馬騎棍俠技能訊息錯發3P
+s37	effect_field	T4467「1毒」E#0	source_player	7	1	「中毒狀態」錯發7P（其餘座位皆發自己）
+s37	effect_field	T4732「5失血」E#1	source_player	0	5	5P 英雄失血效果 sp 為 Gaia（其餘座位皆自己）
 s37	effect_field	T1831「2女4」E#1	source_player	3	2	聊天訊息錯發3P
 s37	effect_field	T4157「1幫」E#0	source_player	3	1	聊天訊息錯發3P
 s37	effect_field	T2971「5幽」E#4	source_player	4	5	聊天訊息錯發4P

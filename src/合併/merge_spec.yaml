@@ -101,6 +101,12 @@ params:
     - {trigger_id: 3782, name: 2船, kind: effect, index: 0, field: source_player, old: 1, new: 2, reason: 停止單位錯停1P}
     - {trigger_id: 3800, name: 5船, kind: effect, index: 0, field: source_player, old: 8, new: 5, reason: 停止單位錯停8P（同名第2支寫法正確sp=5可證）}
     - {trigger_id: 1674, name: 4啞, kind: effect, index: 0, field: source_player, old: 5, new: 4, reason: 聊天訊息錯發5P}
+    # 2026-08-30 六座位對稱稽核第一輪（reports/六座位對稱稽核.md；劍譜5 原檔即如此）
+    - {trigger_id: 199, name: 2教頭4, kind: effect, index: 3, field: effect_type, old: 9, new: 8, reason: 學會御劍後應啟動「好好練習」迴圈（1/4/5/6P 為 ACT，2/3P 抄成 DEACT）}
+    - {trigger_id: 203, name: 3教頭4, kind: effect, index: 3, field: effect_type, old: 9, new: 8, reason: 學會御槍後應啟動「好好練習」迴圈（同上）}
+    - {trigger_id: 4533, name: 棍333, kind: effect, index: 0, field: source_player, old: 3, new: 4, reason: 馬騎棍俠技能訊息錯發3P}
+    - {trigger_id: 4467, name: 1毒, kind: effect, index: 0, field: source_player, old: 7, new: 1, reason: 「中毒狀態」錯發7P（其餘座位皆發自己）}
+    - {trigger_id: 4732, name: 5失血, kind: effect, index: 1, field: source_player, old: 0, new: 5, reason: 5P 英雄失血效果 sp 為 Gaia（其餘座位皆自己）}
     - {trigger_id: 1831, name: 2女4, kind: effect, index: 1, field: source_player, old: 3, new: 2, reason: 聊天訊息錯發3P}
     - {trigger_id: 4157, name: 1幫, kind: effect, index: 0, field: source_player, old: 3, new: 1, reason: 聊天訊息錯發3P}
     - {trigger_id: 2971, name: 5幽, kind: effect, index: 4, field: source_player, old: 4, new: 5, reason: 聊天訊息錯發4P}
