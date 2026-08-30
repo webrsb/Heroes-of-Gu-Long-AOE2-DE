@@ -9,6 +9,8 @@ from .base import Step, BuildError
 
 
 def apply_fix(tm, entry) -> Change:
+    if entry['kind'] == 'trigger_add':            # 原作漏建的座位副本（如 5/6 座位銀兩護欄）
+        return _add_trigger(tm, entry)
     tid = entry['trigger_id']
     t = tm.triggers[tid]
     if (t.name or '') != entry.get('name', ''):
@@ -54,6 +56,22 @@ def apply_fix(tm, entry) -> Change:
             raise BuildError(f'缺裁決：{tag} {field}={cur} ≠ spec 預期舊值 {old}，請重查')
         setattr(obj, field, new)
     return Change('s37', f'{kind}_field', tag, field, str(old), str(new),
+                  entry.get('reason', ''))
+
+
+def _add_trigger(tm, entry) -> Change:
+    """新增觸發：name/enabled/looping ＋ conditions/effects 列，每項 {type: <parser 方法名>, ...欄位}。
+    kind 記為 trigger_add，供 s90 觸發數對帳。"""
+    t = tm.add_trigger(entry.get('name', ''), enabled=bool(entry.get('enabled', 1)),
+                       looping=bool(entry.get('looping', 0)))
+    for c in entry.get('conditions') or []:
+        kw = {k: v for k, v in c.items() if k != 'type'}
+        getattr(t.new_condition, c['type'])(**kw)
+    for e in entry.get('effects') or []:
+        kw = {k: v for k, v in e.items() if k != 'type'}
+        getattr(t.new_effect, e['type'])(**kw)
+    summary = f'{len(entry.get("conditions") or [])}條件/{len(entry.get("effects") or [])}效果'
+    return Change('s37', 'trigger_add', entry.get('name', ''), 'trigger', '', f'T{t.trigger_id} {summary}',
                   entry.get('reason', ''))
 
 

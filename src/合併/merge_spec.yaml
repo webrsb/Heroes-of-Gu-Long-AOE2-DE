@@ -164,6 +164,13 @@ params:
     - {trigger_id: 5306, name: 魂移5, kind: trigger, field: enabled, old: 1, new: 0, reason: 魂移1–6 皆停用循環、由 馬N 啟動；5P 開局即啟用且不循環，拳客一死就關掉六座位石區觸發}
     - {trigger_id: 5306, name: 魂移5, kind: trigger, field: looping, old: 0, new: 1, reason: 同上}
     - {trigger_id: 4965, name: 完全教戰守策3, kind: trigger, field: enabled, old: 0, new: 1, reason: 「不得蓋建築」常駐清除規則（object_group 3/30），其餘五座位開局啟用，3P 整支關閉＝只有 3P 能蓋}
+    # 2026-08-30 使用者裁決「補」：5/6 座位缺銀兩護欄（T4790–4793 只有 1–4），照 T4790 原樣新增（進貢 3=黃金/銀兩）
+    - {kind: trigger_add, name: 銀兩護欄5, enabled: 1, looping: 1, reason: 原作漏建 5P 銀兩 ≥50 萬上繳護欄（照 T4790）,
+       conditions: [{type: accumulate_attribute, source_player: 5, quantity: 500000, attribute: 3}],
+       effects: [{type: tribute, source_player: 5, target_player: 0, quantity: 10000000, tribute_list: 3}]}
+    - {kind: trigger_add, name: 銀兩護欄6, enabled: 1, looping: 1, reason: 原作漏建 6P 銀兩 ≥50 萬上繳護欄（照 T4790）,
+       conditions: [{type: accumulate_attribute, source_player: 6, quantity: 500000, attribute: 3}],
+       effects: [{type: tribute, source_player: 6, target_player: 0, quantity: 10000000, tribute_list: 3}]}
     # 船塢 E19 不改：effect_splits 已把 E19 拆成「選箭客的座位才啟用」的跟隨閘（極練場反召喚）、E14–E18 拆成反向閘護欄，
     # 座位≠職業的語意已在 s39 處理；改 olu=765 反而縮成只刪英雄型（2026-08-30 撤回）
     - {trigger_id: 1831, name: 2女4, kind: effect, index: 1, field: source_player, old: 3, new: 2, reason: 聊天訊息錯發3P}

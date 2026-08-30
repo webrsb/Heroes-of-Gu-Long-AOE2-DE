@@ -107,3 +107,16 @@ def test_trigger_flag_old_mismatch_raises():
     with pytest.raises(BuildError):
         apply_fix(tm, {'trigger_id': 2, 'name': '4啞', 'kind': 'trigger', 'field': 'looping',
                        'old': 0, 'new': 1, 'reason': 'r'})
+
+
+def test_trigger_add_builds_conditions_and_effects(f):
+    tm = f.tm([])
+    c = apply_fix(tm, {'kind': 'trigger_add', 'name': '銀兩護欄5', 'enabled': 1, 'looping': 1,
+                       'conditions': [{'type': 'accumulate_attribute', 'source_player': 5, 'quantity': 500000, 'attribute': 3}],
+                       'effects': [{'type': 'tribute', 'source_player': 5, 'target_player': 0, 'quantity': 10000000, 'tribute_list': 3}],
+                       'reason': '原作漏建'})
+    t = tm.triggers[-1]
+    assert t.name == '銀兩護欄5' and t.enabled == 1 and t.looping == 1
+    assert t.new_condition.calls == [('accumulate_attribute', {'source_player': 5, 'quantity': 500000, 'attribute': 3})]
+    assert t.new_effect.calls == [('tribute', {'source_player': 5, 'target_player': 0, 'quantity': 10000000, 'tribute_list': 3})]
+    assert c.kind == 'trigger_add' and c.new.startswith(f'T{t.trigger_id}')
