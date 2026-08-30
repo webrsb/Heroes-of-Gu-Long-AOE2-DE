@@ -42,3 +42,10 @@ def test_hero_refs_must_cover_six():
     bad = dict(BASE, hero_refs={1: 0})
     with pytest.raises(BuildError):
         load_revive(bad)
+
+
+def test_navigator_cells_parsed_with_default():
+    r = load_revive(BASE)
+    assert r.navigator_cells == [(80.5, 110.5), (81.5, 112.5)]          # 預設＝原位
+    r2 = load_revive(dict(BASE, navigator_cells=[[78.5, 110.5], [81.5, 113.5]]))
+    assert r2.navigator_cells == [(78.5, 110.5), (81.5, 113.5)]         # 白雲X1 條件區外

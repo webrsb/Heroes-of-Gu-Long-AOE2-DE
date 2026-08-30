@@ -38,4 +38,7 @@ def load_revive(params: dict) -> ReviveSpec:
                    hero_refs=hero_refs,
                    retired=list(params['retired']))
     r.navigator_const = int(params.get('navigator_const', 128))
+    # 廣場顯示器格：須避開任何以玩家為條件的區域觸發（白雲X1 (79,109)-(82,112) 曾被掃到→每 16 秒洗頻，2026-08-30）
+    r.navigator_cells = [tuple(float(v) for v in c)
+                         for c in params.get('navigator_cells', [[80.5, 110.5], [81.5, 112.5]])]
     return r
