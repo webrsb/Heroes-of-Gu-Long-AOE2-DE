@@ -36,13 +36,31 @@ def _move_owner(um, unit, new_player):
         um.units[new_player].append(unit)
 
 
-def setup_bodies(um, tm, rspec, extract=extract_class_names):
+def setup_bodies(um, tm, rspec, extract=extract_class_names, mirrors=None, survival=None):
     """本體→P8＋展示位；備身×(lives−1)/職業（P8 建檔、駐各自 1291 容器疊重生點）；
-    初始化觸發＋展示無敵迴圈。回傳 notes dict。"""
+    鏡像預設 P8＋每位玩家保命隱形物件（阿提拉手法）；初始化觸發。回傳 notes dict。"""
     changes = []
     by_ref = {u.reference_id: u for p in range(9) for u in um.units[p]}
     if by_ref[rspec.hero_refs[5]].unit_const == 94:
         raise BuildError('缺裁決：P5 本體仍是 const94——s35 換皮未先執行（步驟順序異常）')
+
+    # 角落鏡像開場預設 P8（選角時才轉讓給入座玩家；2026-08-30 裁決）
+    for cid, ref in sorted({int(k): int(v) for k, v in (mirrors or {}).items()}.items()):
+        u = by_ref.get(ref)
+        if u is None:
+            raise BuildError(f'缺裁決：鏡像 ref{ref}（職業{cid}）不存在')
+        old_p = u.player
+        _move_owner(um, u, 8)
+        changes.append(Change('s38', 'unit_field', f'ref{ref}', 'owner',
+                              f'P{old_p}', 'P8', f'職業{cid}鏡像預設P8'))
+    # 保命隱形物件：玩家無單位時擋征服判負（C1_Attila_1 官方手法，837 不保命）
+    if survival:
+        sx, sy = survival['cell']
+        sc = int(survival['const'])
+        for slot in range(1, 7):
+            u = um.add_unit(player=slot, unit_const=sc, x=float(sx), y=float(sy))
+            changes.append(Change('s38', 'unit_add', f'ref{u.reference_id}', 'unit',
+                                  '', f'const{sc}', f'位{slot}保命隱形物件'))
 
     class_names = extract(tm, rspec)
     life_refs, containers = {}, {}
@@ -112,7 +130,8 @@ class ChooseStep(Step):
             return []
         from core.revive_model import load_revive
         rspec = load_revive(params)
-        out = setup_bodies(ctx.base.unit_manager, ctx.base.trigger_manager, rspec)
+        out = setup_bodies(ctx.base.unit_manager, ctx.base.trigger_manager, rspec,
+                           mirrors=params.get('mirrors'), survival=params.get('survival'))
         ctx.notes['revive'] = out
         return out['changes']
 

@@ -104,6 +104,27 @@ def test_setup_bodies_p5_not_swapped_raises(f):
         setup_bodies(um, f.tm([]), rspec(), extract=lambda *_: {c: ('x', 'y') for c in range(1, 7)})
 
 
+def test_setup_bodies_mirrors_to_p8_and_survival_objects(f):
+    um = make_um()
+    mirrors = {}
+    for cid in range(1, 7):
+        m = NS(reference_id=14000 + cid, unit_const=99, x=236.5, y=240.0 - cid, player=cid)
+        um.units[cid].append(m)
+        mirrors[cid] = m.reference_id
+    setup_bodies(um, f.tm([]), rspec(),
+                 extract=lambda *_: {c: ('x', 'y') for c in range(1, 7)},
+                 mirrors=mirrors, survival={'const': 1291, 'cell': [80.5, 111.5]})
+    # 鏡像全轉 P8
+    for cid in range(1, 7):
+        m = next(u for u in um.units[8] if u.reference_id == 14000 + cid)
+        assert m.player == 8
+    # 保命隱形物件：P1..P6 各一顆 1291（非駐軍、非容器）
+    surv = [u for u in um.added if u.unit_const == 1291
+            and getattr(u, 'garrisoned_in_id', -1) == -1 and u.player != 0]
+    assert sorted(u.player for u in surv) == [1, 2, 3, 4, 5, 6]
+    assert all((u.x, u.y) == (80.5, 111.5) for u in surv)
+
+
 def test_setup_bodies_builds_init_triggers(f):
     um = make_um()
     tm = f.tm([])

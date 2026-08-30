@@ -157,8 +157,8 @@ def build_chains(tm, rv):
                                             selected_object_ids=[spec.hero_refs[cid]])
             mir = rv.get('mirrors', {}).get(cid)
             if mir is not None:
-                sel.new_effect.change_ownership(source_player=cid, target_player=s,
-                                                selected_object_ids=[mir])
+                sel.new_effect.change_ownership(source_player=8, target_player=s,
+                                                selected_object_ids=[mir])   # 鏡像預設P8
             sel.new_effect.change_object_caption(
                 selected_object_ids=[spec.hero_refs[cid]], message=' ')   # 清除職業名字幕
             if mount[cid].get('life_cells'):

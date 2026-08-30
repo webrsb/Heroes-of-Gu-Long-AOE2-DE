@@ -1,26 +1,38 @@
 step	kind	target	field	old	new	reason
+s38	unit_field	ref14162	owner	P1	P8	職業1鏡像預設P8
+s38	unit_field	ref14163	owner	P2	P8	職業2鏡像預設P8
+s38	unit_field	ref14165	owner	P3	P8	職業3鏡像預設P8
+s38	unit_field	ref14164	owner	P4	P8	職業4鏡像預設P8
+s38	unit_field	ref14168	owner	P5	P8	職業5鏡像預設P8
+s38	unit_field	ref45318	owner	P6	P8	職業6鏡像預設P8
+s38	unit_add	ref50438	unit		const1291	位1保命隱形物件
+s38	unit_add	ref50439	unit		const1291	位2保命隱形物件
+s38	unit_add	ref50440	unit		const1291	位3保命隱形物件
+s38	unit_add	ref50441	unit		const1291	位4保命隱形物件
+s38	unit_add	ref50442	unit		const1291	位5保命隱形物件
+s38	unit_add	ref50443	unit		const1291	位6保命隱形物件
 s38	unit_field	ref0	owner/pos	(76.5, 104.5, <PlayerId.ONE: 1>)	P8@(78.5,108.5)	職業1展示英雄
-s38	unit_add	ref50439駐ref50438	unit		const845	職業1第2命備身+容器
-s38	unit_add	ref50441駐ref50440	unit		const845	職業1第3命備身+容器
+s38	unit_add	ref50445駐ref50444	unit		const845	職業1第2命備身+容器
+s38	unit_add	ref50447駐ref50446	unit		const845	職業1第3命備身+容器
 s38	unit_field	ref1	owner/pos	(75.5, 115.5, <PlayerId.TWO: 2>)	P8@(80.5,108.5)	職業2展示英雄
-s38	unit_add	ref50443駐ref50442	unit		const432	職業2第2命備身+容器
-s38	unit_add	ref50445駐ref50444	unit		const432	職業2第3命備身+容器
+s38	unit_add	ref50449駐ref50448	unit		const432	職業2第2命備身+容器
+s38	unit_add	ref50451駐ref50450	unit		const432	職業2第3命備身+容器
 s38	unit_field	ref2	owner/pos	(88.5, 107.5, <PlayerId.THREE: 3>)	P8@(82.5,108.5)	職業3展示英雄
-s38	unit_add	ref50447駐ref50446	unit		const752	職業3第2命備身+容器
-s38	unit_add	ref50449駐ref50448	unit		const752	職業3第3命備身+容器
+s38	unit_add	ref50453駐ref50452	unit		const752	職業3第2命備身+容器
+s38	unit_add	ref50455駐ref50454	unit		const752	職業3第3命備身+容器
 s38	unit_field	ref502	owner/pos	(86.5, 113.5, <PlayerId.FOUR: 4>)	P8@(83.5,109.5)	職業4展示英雄
-s38	unit_add	ref50451駐ref50450	unit		const428	職業4第2命備身+容器
-s38	unit_add	ref50453駐ref50452	unit		const428	職業4第3命備身+容器
+s38	unit_add	ref50457駐ref50456	unit		const428	職業4第2命備身+容器
+s38	unit_add	ref50459駐ref50458	unit		const428	職業4第3命備身+容器
 s38	unit_field	ref7	owner/pos	(75.5, 111.5, <PlayerId.FIVE: 5>)	P8@(83.5,111.5)	職業5展示英雄
-s38	unit_add	ref50455駐ref50454	unit		const1811	職業5第2命備身+容器
-s38	unit_add	ref50457駐ref50456	unit		const1811	職業5第3命備身+容器
+s38	unit_add	ref50461駐ref50460	unit		const1811	職業5第2命備身+容器
+s38	unit_add	ref50463駐ref50462	unit		const1811	職業5第3命備身+容器
 s38	unit_field	ref45117	owner/pos	(85.5, 103.5, <PlayerId.SIX: 6>)	P8@(83.5,113.5)	職業6展示英雄
-s38	unit_add	ref50459駐ref50458	unit		const765	職業6第2命備身+容器
-s38	unit_add	ref50461駐ref50460	unit		const765	職業6第3命備身+容器
-s38	unit_add	refs[50462, 50463]	unit		const837×2	位1廣場視野顯示器
-s38	unit_add	refs[50464, 50465]	unit		const837×2	位2廣場視野顯示器
-s38	unit_add	refs[50466, 50467]	unit		const837×2	位3廣場視野顯示器
-s38	unit_add	refs[50468, 50469]	unit		const837×2	位4廣場視野顯示器
-s38	unit_add	refs[50470, 50471]	unit		const837×2	位5廣場視野顯示器
-s38	unit_add	refs[50472, 50473]	unit		const837×2	位6廣場視野顯示器
+s38	unit_add	ref50465駐ref50464	unit		const765	職業6第2命備身+容器
+s38	unit_add	ref50467駐ref50466	unit		const765	職業6第3命備身+容器
+s38	unit_add	refs[50468, 50469]	unit		const837×2	位1廣場視野顯示器
+s38	unit_add	refs[50470, 50471]	unit		const837×2	位2廣場視野顯示器
+s38	unit_add	refs[50472, 50473]	unit		const837×2	位3廣場視野顯示器
+s38	unit_add	refs[50474, 50475]	unit		const837×2	位4廣場視野顯示器
+s38	unit_add	refs[50476, 50477]	unit		const837×2	位5廣場視野顯示器
+s38	unit_add	refs[50478, 50479]	unit		const837×2	位6廣場視野顯示器
 s38	trigger_add	選角初始化	trigger		新增	caption職業名/凍結/備身轉Gaia/領航員/選角提示600秒

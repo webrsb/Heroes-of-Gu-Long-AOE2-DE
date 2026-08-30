@@ -125,7 +125,8 @@ def test_selection_trigger(f):
     owns = _effs(sel, 'change_ownership')
     assert any(kw['selected_object_ids'] == [0] and kw['target_player'] == 2 for kw in owns)
     assert any(kw['selected_object_ids'] == [14162] and kw['target_player'] == 2
-               for kw in owns)                                     # 角落鏡像隨選角轉讓
+               and kw['source_player'] == 8
+               for kw in owns)                                     # 鏡像預設P8隨選角轉讓
     caps = _effs(sel, 'change_object_caption')
     assert any(kw['selected_object_ids'] == [0] for kw in caps)               # 清職業名字幕
     # 第1命旗(50,239)：locref 家族選路起點
