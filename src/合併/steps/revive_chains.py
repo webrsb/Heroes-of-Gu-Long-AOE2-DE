@@ -151,9 +151,8 @@ def build_chains(tm, rv):
             if mir is not None:
                 sel.new_effect.change_ownership(source_player=cid, target_player=s,
                                                 selected_object_ids=[mir])
-            nav = rv.get('navigators', {}).get(s)
-            if nav is not None:
-                sel.new_effect.remove_object(source_player=s, selected_object_ids=[nav])
+            sel.new_effect.change_object_caption(
+                selected_object_ids=[spec.hero_refs[cid]], message=' ')   # 清除職業名字幕
             for x in rv.get('anti_lists', {}).get((cid, s), []):
                 sel.new_effect.deactivate_trigger(trigger_id=x)
             sel.new_effect.activate_trigger(

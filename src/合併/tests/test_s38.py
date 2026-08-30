@@ -76,8 +76,8 @@ def test_setup_bodies_moves_heroes_and_creates_spares(f):
     # 備身 6×2 掛 P8、駐各自容器；容器 6×2＝const1291 Gaia @respawn
     spares = [u for u in um.added if getattr(u, 'garrisoned_in_id', -1) != -1]
     boxes = [u for u in um.added if u.unit_const == 1291]
-    navs = [u for u in um.added if u.unit_const == 128]
-    assert len(spares) == 12 and len(boxes) == 12 and len(navs) == 6
+    navs = [u for u in um.added if u.unit_const == 837]
+    assert len(spares) == 12 and len(boxes) == 12 and len(navs) == 12   # 每位2顆顯示器
     assert all(u.player == 8 for u in spares)
     assert all(u.player == 0 and (u.x, u.y) == (77.5, 103.5) for u in boxes)
     box_refs = {u.reference_id for u in boxes}
@@ -115,7 +115,7 @@ def test_setup_bodies_builds_init_triggers(f):
     freezes = [kw for n, kw in calls if n == 'freeze_object']
     gaias = [kw for n, kw in calls if n == 'change_ownership' and kw.get('target_player') == 0]
     hints = [kw for n, kw in calls if n == 'display_instructions']
-    assert len(captions) == 12 and captions[0]['message'] == '刀客'   # 6英雄+6領航員（血條手法）
+    assert len(captions) == 6 and captions[0]['message'] == '刀客'    # 血條手法浮動字幕
     assert [kw for n, kw in calls if n == 'change_view'] == []        # 不拉鏡頭
     assert [kw for n, kw in calls if n == 'change_object_name'] == [] # 不改名（保留原作等級格式）
     assert hints[0]['display_time'] == 600

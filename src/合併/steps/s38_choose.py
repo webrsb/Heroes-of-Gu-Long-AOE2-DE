@@ -67,15 +67,17 @@ def setup_bodies(um, tm, rspec, extract=extract_class_names):
                                   f'ref{spare.reference_id}駐ref{box.reference_id}', 'unit',
                                   '', f'const{hero.unit_const}', f'職業{cid}第{L}命備身+容器'))
 
-    # 領航員：每位一隻（開局視野與鏡頭錨點；選角時由 s39 移除）
+    # 廣場視野：每位兩顆地圖顯示器（使用者 2026-08-30 存檔示範：const837 @廣場）
     navigators = {}
-    nav_const = getattr(rspec, 'navigator_const', 128)
+    nav_cells = getattr(rspec, 'navigator_cells', [(80.5, 110.5), (81.5, 112.5)])
     for slot in range(1, 7):
-        nav = um.add_unit(player=slot, unit_const=nav_const,
-                          x=77.5 + slot, y=105.5)
-        navigators[slot] = nav.reference_id
-        changes.append(Change('s38', 'unit_add', f'ref{nav.reference_id}', 'unit',
-                              '', f'const{nav_const}', f'位{slot}領航員'))
+        refs = []
+        for (nx, ny) in nav_cells:
+            nav = um.add_unit(player=slot, unit_const=837, x=nx, y=ny)
+            refs.append(nav.reference_id)
+        navigators[slot] = refs
+        changes.append(Change('s38', 'unit_add', f'refs{refs}', 'unit',
+                              '', 'const837×2', f'位{slot}廣場視野顯示器'))
 
     t = tm.add_trigger('選角初始化', enabled=True, looping=False)
     t.new_condition.timer(timer=0)
@@ -87,9 +89,6 @@ def setup_bodies(um, tm, rspec, extract=extract_class_names):
         for ref in life_refs[cid][1:]:
             t.new_effect.change_ownership(source_player=8, target_player=0,
                                           selected_object_ids=[ref])
-    for slot in range(1, 7):
-        t.new_effect.change_object_caption(selected_object_ids=[navigators[slot]],
-                                           message='領航員')
     t.new_effect.display_instructions(
         message='<GREEN>請點選廣場上的職業英雄進行選角', display_time=600)
     changes.append(Change('s38', 'trigger_add', '選角初始化', 'trigger', '', '新增',

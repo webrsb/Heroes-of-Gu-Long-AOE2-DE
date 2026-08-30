@@ -20,7 +20,7 @@ def rv(f):
                 hero_refs={1: 0, 2: 1},
                 displays={1: (78.5, 108.5), 2: (80.5, 108.5)}),
         life_refs=LIFE, containers=CONTAINERS, class_names=NAMES,
-        mirrors={1: 14162, 2: 14163}, navigators={1: 901, 2: 902},
+        mirrors={1: 14162, 2: 14163},
         enable_lists={(c, s): [] for c in (1, 2) for s in (1, 2)},
         mount=MOUNT, classes=(1, 2), slots=(1, 2))
 
@@ -113,8 +113,8 @@ def test_selection_trigger(f):
     assert any(kw['selected_object_ids'] == [0] and kw['target_player'] == 2 for kw in owns)
     assert any(kw['selected_object_ids'] == [14162] and kw['target_player'] == 2
                for kw in owns)                                     # 角落鏡像隨選角轉讓
-    removes = _effs(sel, 'remove_object')
-    assert any(kw['selected_object_ids'] == [902] for kw in removes)          # 移除領航員
+    caps = _effs(sel, 'change_object_caption')
+    assert any(kw['selected_object_ids'] == [0] for kw in caps)               # 清職業名字幕
     deacts = {kw['trigger_id'] for kw in _effs(sel, 'deactivate_trigger')}
     assert out.select[(1, 1)] in deacts and out.select[(2, 2)] in deacts      # 互斥
     acts = {kw['trigger_id'] for kw in _effs(sel, 'activate_trigger')}

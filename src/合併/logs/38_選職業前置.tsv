@@ -17,10 +17,10 @@ s38	unit_add	ref50457駐ref50456	unit		const1811	職業5第3命備身+容器
 s38	unit_field	ref45117	owner/pos	(85.5, 103.5, <PlayerId.SIX: 6>)	P8@(83.5,113.5)	職業6展示英雄
 s38	unit_add	ref50459駐ref50458	unit		const765	職業6第2命備身+容器
 s38	unit_add	ref50461駐ref50460	unit		const765	職業6第3命備身+容器
-s38	unit_add	ref50462	unit		const128	位1領航員
-s38	unit_add	ref50463	unit		const128	位2領航員
-s38	unit_add	ref50464	unit		const128	位3領航員
-s38	unit_add	ref50465	unit		const128	位4領航員
-s38	unit_add	ref50466	unit		const128	位5領航員
-s38	unit_add	ref50467	unit		const128	位6領航員
+s38	unit_add	refs[50462, 50463]	unit		const837×2	位1廣場視野顯示器
+s38	unit_add	refs[50464, 50465]	unit		const837×2	位2廣場視野顯示器
+s38	unit_add	refs[50466, 50467]	unit		const837×2	位3廣場視野顯示器
+s38	unit_add	refs[50468, 50469]	unit		const837×2	位4廣場視野顯示器
+s38	unit_add	refs[50470, 50471]	unit		const837×2	位5廣場視野顯示器
+s38	unit_add	refs[50472, 50473]	unit		const837×2	位6廣場視野顯示器
 s38	trigger_add	選角初始化	trigger		新增	caption職業名/凍結/備身轉Gaia/領航員/選角提示600秒
