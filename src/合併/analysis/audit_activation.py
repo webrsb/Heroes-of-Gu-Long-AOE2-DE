@@ -9,7 +9,9 @@
    （白名單＝復活鏈家族：監視|重生|命盡|馬監視|訊|啟動|選角、dl ◇位 變體）
 4. ◇命 副本旗防——每支 ◇命 觸發必須帶命旗條件(Gaia 720 單格)或命 ref 條件，
    否則它一被打開就無條件生效（銀龍事故根因）
-5. 啟動來源清單——選角/啟動器對非鏈觸發的啟動明細（人工複核用，不判錯）
+5. 死亡路徑停用越權——同 3 但查停用(9)邊
+6. 重生區條件——◇命副本綁單位的區域條件涵蓋重生點（備身駐軍即提前成立）
+7. 啟動來源清單——選角/啟動器對非鏈觸發的啟動明細（人工複核用，不判錯）
 
 用法: python -m analysis.audit_activation <scenario> [out_md]
 結束碼: 0=無違規, 1=有違規。
@@ -22,7 +24,7 @@ FLAG_CONST = 720
 ACTIVATE, DEACTIVATE = 8, 9
 
 
-def audit(tm, life_xs=None, life_refs=None):
+def audit(tm, life_xs=None, life_refs=None, respawn=None):
     """回傳 (violations, review_lines)。violations=[(類別, 說明)]。"""
     n = len(tm.triggers)
     by_id = {t.trigger_id: t for t in tm.triggers}
@@ -45,12 +47,15 @@ def audit(tm, life_xs=None, life_refs=None):
             if et == ACTIVATE and gn.startswith('退役_') and not tn.startswith('退役_'):
                 # 退役來源→退役目標放行（來源不可達，裁決 2026-08-29）
                 vio.append(('退役邊', f'T{t.trigger_id}「{tn}」E{i} 啟動退役觸發「{gn}」'))
-            if et == ACTIVATE and DEATH_RE.match(tn):
+            if DEATH_RE.match(tn):
                 ok = CHAIN_RE.match(gn) or '◇位' in gn
-                if not ok:
+                if et == ACTIVATE and not ok:
                     vio.append(('死亡路徑越權',
                                 f'T{t.trigger_id}「{tn}」啟動 T{tid}「{gn}」'
                                 f'(enabled={tgt.enabled})——非復活鏈白名單'))
+                if et == DEACTIVATE and not ok:
+                    vio.append(('死亡路徑停用越權',
+                                f'T{t.trigger_id}「{tn}」停用 T{tid}「{gn}」——非復活鏈白名單'))
             if et == ACTIVATE and (tn.startswith('選角') or tn.startswith('啟動')) \
                     and not CHAIN_RE.match(gn):
                 review.append(f'T{t.trigger_id}「{tn}」→T{tid}「{gn}」'
@@ -79,6 +84,27 @@ def audit(tm, life_xs=None, life_refs=None):
         if not (has_flag or has_life_ref):
             vio.append(('◇命無旗防',
                         f'T{t.trigger_id}「{tn}」無命旗/命ref條件——被打開即無條件生效'))
+
+    # ◇命副本的區域條件涵蓋重生點：備身駐容器疊於重生點且駐軍計入區域條件，
+    # 家族一啟用該副本條件即提前成立（BRING/區域類）
+    if respawn is not None:
+        rx, ry = int(respawn[0]), int(respawn[1])
+        for t in tm.triggers:
+            tn = name(t)
+            if '◇命' not in tn or tn.startswith('退役_'):
+                continue
+            for i, c in enumerate(t.conditions):
+                if getattr(c, 'unit_object', -1) in (-1, None):
+                    continue
+                x1, y1 = getattr(c, 'area_x1', -1), getattr(c, 'area_y1', -1)
+                x2, y2 = getattr(c, 'area_x2', -1), getattr(c, 'area_y2', -1)
+                if x1 in (-1, None) or x2 in (-1, None):
+                    continue
+                if x1 <= rx <= x2 and y1 <= ry <= y2:
+                    vio.append(('重生區條件',
+                                f'T{t.trigger_id}「{tn}」C{i} 綁單位且區域'
+                                f'({x1},{y1})-({x2},{y2}) 涵蓋重生點——'
+                                f'備身駐軍時條件提前成立'))
     return vio, review
 
 
@@ -91,8 +117,9 @@ def main(src, out_md=None):
     rv = (spec.get('params') or spec).get('revive') or {}
     life_xs = set(int(x) for x in (rv.get('cells') or {}).get('life_xs') or []) or None
 
+    respawn = rv.get('respawn')
     scn = AoE2DEScenario.from_file(src)
-    vio, review = audit(scn.trigger_manager, life_xs=life_xs)
+    vio, review = audit(scn.trigger_manager, life_xs=life_xs, respawn=respawn)
 
     lines = [f'# 啟動稽核 — {os.path.basename(src)}', '']
     lines.append(f'觸發總數: {len(scn.trigger_manager.triggers)}')

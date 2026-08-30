@@ -23,6 +23,21 @@ def test_death_path_only_whitelisted_targets(f):
     assert all('訊1位2命1步' not in s for _, s in vio)          # 訊息白名單
 
 
+def test_death_path_deactivate_also_checked(f):
+    quest = f.trig(name='某任務')
+    w = f.trig(name='重生1位2命1', effects=[f.eff_deactivate(quest.trigger_id)])
+    vio, _ = audit(f.tm([quest, w]))
+    assert [k for k, _ in vio if k == '死亡路徑停用越權']
+
+
+def test_respawn_area_condition_flagged(f):
+    hit = f.trig(name='1木◇命2', conds=[f.cond_bring_area(900, area=(70, 100, 80, 110))])
+    miss = f.trig(name='1木◇命3', conds=[f.cond_bring_area(901, area=(0, 0, 10, 10))])
+    vio, _ = audit(f.tm([hit, miss]), life_refs={1: [0, 900, 901]}, respawn=(77.5, 103.5))
+    bad = [s for k, s in vio if k == '重生區條件']
+    assert len(bad) == 1 and '◇命2' in bad[0]
+
+
 def test_life_copy_requires_flag_condition(f):
     bare = f.trig(name='神弓之洛5~1◇命2')
     gated = f.trig(name='神弓之洛5~1◇命3',
