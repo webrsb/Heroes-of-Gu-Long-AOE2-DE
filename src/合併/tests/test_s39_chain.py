@@ -20,7 +20,7 @@ def rv(f):
                 hero_refs={1: 0, 2: 1},
                 displays={1: (78.5, 108.5), 2: (80.5, 108.5)}),
         life_refs=LIFE, containers=CONTAINERS, class_names=NAMES,
-        invuln_tids={1: 501, 2: 502}, base_hp={1: 190, 2: 400},
+        mirrors={1: 14162, 2: 14163}, navigators={1: 901, 2: 902},
         enable_lists={(c, s): [] for c in (1, 2) for s in (1, 2)},
         mount=MOUNT, classes=(1, 2), slots=(1, 2))
 
@@ -111,10 +111,11 @@ def test_selection_trigger(f):
     assert conds[0]['unit_object'] == 0 and conds[0]['source_player'] == 2
     owns = _effs(sel, 'change_ownership')
     assert any(kw['selected_object_ids'] == [0] and kw['target_player'] == 2 for kw in owns)
-    hps = _effs(sel, 'change_object_hp')
-    assert any(kw['quantity'] == 190 and kw['selected_object_ids'] == [0] for kw in hps)
+    assert any(kw['selected_object_ids'] == [14162] and kw['target_player'] == 2
+               for kw in owns)                                     # 角落鏡像隨選角轉讓
+    removes = _effs(sel, 'remove_object')
+    assert any(kw['selected_object_ids'] == [902] for kw in removes)          # 移除領航員
     deacts = {kw['trigger_id'] for kw in _effs(sel, 'deactivate_trigger')}
-    assert 501 in deacts                                           # 停該職業無敵迴圈
     assert out.select[(1, 1)] in deacts and out.select[(2, 2)] in deacts      # 互斥
     acts = {kw['trigger_id'] for kw in _effs(sel, 'activate_trigger')}
     assert out.watch[(1, 2, 1)] in acts

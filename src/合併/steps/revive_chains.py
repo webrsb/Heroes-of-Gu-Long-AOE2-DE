@@ -147,10 +147,10 @@ def build_chains(tm, rv):
                 unit_object=spec.hero_refs[cid], source_player=s)
             sel.new_effect.change_ownership(source_player=8, target_player=s,
                                             selected_object_ids=[spec.hero_refs[cid]])
-            sel.new_effect.change_object_hp(quantity=rv['base_hp'][cid], operation=1,
-                                            source_player=-1,
-                                            selected_object_ids=[spec.hero_refs[cid]])
-            sel.new_effect.deactivate_trigger(trigger_id=rv['invuln_tids'][cid])
+            mir = rv.get('mirrors', {}).get(cid)
+            if mir is not None:
+                sel.new_effect.change_ownership(source_player=cid, target_player=s,
+                                                selected_object_ids=[mir])
             nav = rv.get('navigators', {}).get(s)
             if nav is not None:
                 sel.new_effect.remove_object(source_player=s, selected_object_ids=[nav])

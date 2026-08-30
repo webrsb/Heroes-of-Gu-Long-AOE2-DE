@@ -17,16 +17,10 @@ s38	unit_add	ref50457駐ref50456	unit		const1811	職業5第3命備身+容器
 s38	unit_field	ref45117	owner/pos	(85.5, 103.5, <PlayerId.SIX: 6>)	P8@(83.5,113.5)	職業6展示英雄
 s38	unit_add	ref50459駐ref50458	unit		const765	職業6第2命備身+容器
 s38	unit_add	ref50461駐ref50460	unit		const765	職業6第3命備身+容器
-s38	unit_add	ref50462	unit		const448	位1領航員
-s38	unit_add	ref50463	unit		const448	位2領航員
-s38	unit_add	ref50464	unit		const448	位3領航員
-s38	unit_add	ref50465	unit		const448	位4領航員
-s38	unit_add	ref50466	unit		const448	位5領航員
-s38	unit_add	ref50467	unit		const448	位6領航員
-s38	trigger_add	選角初始化	trigger		新增	展示改名/凍結/備身轉Gaia/領航員/鏡頭/選角提示600秒
-s38	trigger_add	展示無敵1	trigger		新增	循環灌血；選角時停用並重設血量（s39）
-s38	trigger_add	展示無敵2	trigger		新增	循環灌血；選角時停用並重設血量（s39）
-s38	trigger_add	展示無敵3	trigger		新增	循環灌血；選角時停用並重設血量（s39）
-s38	trigger_add	展示無敵4	trigger		新增	循環灌血；選角時停用並重設血量（s39）
-s38	trigger_add	展示無敵5	trigger		新增	循環灌血；選角時停用並重設血量（s39）
-s38	trigger_add	展示無敵6	trigger		新增	循環灌血；選角時停用並重設血量（s39）
+s38	unit_add	ref50462	unit		const128	位1領航員
+s38	unit_add	ref50463	unit		const128	位2領航員
+s38	unit_add	ref50464	unit		const128	位3領航員
+s38	unit_add	ref50465	unit		const128	位4領航員
+s38	unit_add	ref50466	unit		const128	位5領航員
+s38	unit_add	ref50467	unit		const128	位6領航員
+s38	trigger_add	選角初始化	trigger		新增	caption職業名/凍結/備身轉Gaia/領航員/選角提示600秒

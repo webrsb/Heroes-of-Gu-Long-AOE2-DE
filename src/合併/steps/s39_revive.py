@@ -295,10 +295,10 @@ def run_revive(ctx):
     # ---- 復活鏈 → 上馬改造 → 補池 ----
     chains = build_chains(tm, dict(
         spec=rspec, life_refs=life_refs, containers=rv0['containers'],
-        class_names=rv0['class_names'], invuln_tids=rv0['invuln_tids'],
-        base_hp={int(k): int(v) for k, v in params['base_hp'].items()},
+        class_names=rv0['class_names'],
         enable_lists=el, anti_lists=anti_lists, mount=mount,
         navigators=rv0.get('navigators', {}),
+        mirrors={int(k): int(v) for k, v in (params.get('mirrors') or {}).items()},
         classes=tuple(range(1, 7)), slots=slots, dl_hooks=hooks))
     changes += chains.changes
     mo = rebuild_mount(tm, x3_variants={(cid, s): vm[(x3[cid], s)]

@@ -32,8 +32,10 @@ def load_revive(params: dict) -> ReviveSpec:
         lack = [c for c in CLASSES if c not in d]
         if lack:
             raise BuildError(f'缺裁決：revive.{name} 缺職業 {lack}')
-    return ReviveSpec(lives=lives,
-                      respawn=tuple(params['respawn']),
-                      displays=displays,
-                      hero_refs=hero_refs,
-                      retired=list(params['retired']))
+    r = ReviveSpec(lives=lives,
+                   respawn=tuple(params['respawn']),
+                   displays=displays,
+                   hero_refs=hero_refs,
+                   retired=list(params['retired']))
+    r.navigator_const = int(params.get('navigator_const', 128))
+    return r

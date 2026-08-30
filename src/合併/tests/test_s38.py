@@ -76,7 +76,7 @@ def test_setup_bodies_moves_heroes_and_creates_spares(f):
     # 備身 6×2 掛 P8、駐各自容器；容器 6×2＝const1291 Gaia @respawn
     spares = [u for u in um.added if getattr(u, 'garrisoned_in_id', -1) != -1]
     boxes = [u for u in um.added if u.unit_const == 1291]
-    navs = [u for u in um.added if u.unit_const == 448]
+    navs = [u for u in um.added if u.unit_const == 128]
     assert len(spares) == 12 and len(boxes) == 12 and len(navs) == 6
     assert all(u.player == 8 for u in spares)
     assert all(u.player == 0 and (u.x, u.y) == (77.5, 103.5) for u in boxes)
@@ -111,17 +111,14 @@ def test_setup_bodies_builds_init_triggers(f):
                                                       for c in range(1, 7)})
     init = tm.triggers_by_id[[t.trigger_id for t in tm.triggers if t.name == '選角初始化'][0]]
     calls = init.new_effect.calls
-    renames = [kw for n, kw in calls if n == 'change_object_name']
+    captions = [kw for n, kw in calls if n == 'change_object_caption']
     freezes = [kw for n, kw in calls if n == 'freeze_object']
     gaias = [kw for n, kw in calls if n == 'change_ownership' and kw.get('target_player') == 0]
-    views = [kw for n, kw in calls if n == 'change_view']
     hints = [kw for n, kw in calls if n == 'display_instructions']
-    assert len(renames) == 12 and renames[0]['message'] == '刀客'   # 6英雄+6領航員
-    assert len(views) == 6 and hints[0]['display_time'] == 600
+    assert len(captions) == 12 and captions[0]['message'] == '刀客'   # 6英雄+6領航員（血條手法）
+    assert [kw for n, kw in calls if n == 'change_view'] == []        # 不拉鏡頭
+    assert [kw for n, kw in calls if n == 'change_object_name'] == [] # 不改名（保留原作等級格式）
+    assert hints[0]['display_time'] == 600
     assert len(freezes) == 6
     assert len(gaias) == 12                       # 備身 P8→Gaia（防歸順）
-    # 無敵迴圈：逐職業 looping 觸發灌血
-    inv = [t for t in tm.triggers if (t.name or '').startswith('展示無敵')]
-    assert len(inv) == 6 and all(t.looping == 1 for t in inv)
-    heals = [kw for n, kw in inv[0].new_effect.calls if n == 'damage_object']
-    assert heals[0]['quantity'] < 0 and len(heals[0]['selected_object_ids']) == 1
+    assert [t for t in tm.triggers if (t.name or '').startswith('展示無敵')] == []
