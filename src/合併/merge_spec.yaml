@@ -194,6 +194,68 @@ params:
         quest_reward: {1: 2939, 2: 2942, 3: 2945, 4: 2948, 5: 2951, 6: 2954}   # 基底 X石（毀滅之魂）
         quest_name_suffix: 石
 
+  # 【2026-08-30 野怪生成改名】spec docs/superpowers/specs/2026-08-30-野怪改名-design.md。
+  # 名稱取生成觸發名、等級取任務面板「入侵者強弱排名」；D 類推定名（鐵豬王/豬頭/賓周幫幫眾/非魂/赤武）
+  # 為使用者裁決。B 類區間等級 7 支（飛鵬幫先鋒/刀組、渦怪/渦怪手下、紅衣/9天/劍勇）待補，見 reports/野怪改名待補.md。
+  # 鍵＝(tid, const)；同觸發多種單位一行一個 const（鐵鎚）。
+  mob_names:
+    - {tid: 2711, name: 母夜叉, const: 430, display: 母夜叉, lv: 52}
+    - {tid: 2712, name: 青武, const: 763, display: 青武, lv: 55}
+    - {tid: 2713, name: 渦鬼(珠光), const: 428, display: 渦鬼, lv: 250}
+    - {tid: 2714, name: 渦鬼(殺人), const: 428, display: 渦鬼, lv: 250}
+    - {tid: 2715, name: 孽僧, const: 726, display: 孽僧, lv: 59}
+    - {tid: 2716, name: 獅頭魔, const: 752, display: 獅頭魔, lv: 60}
+    - {tid: 2717, name: 石獅, const: 168, display: 石獅, lv: 61}
+    - {tid: 2718, name: 斬狂, const: 556, display: 斬狂, lv: 61}
+    - {tid: 2719, name: 幽靈武士, const: 291, display: 幽靈武士, lv: 65}
+    - {tid: 2720, name: 赤武, const: 771, display: 赤武, lv: 66}
+    - {tid: 2721, name: 狂屍, const: 25, display: 狂屍, lv: 87}      # 排名表「狂獅」判定錯字
+    - {tid: 2722, name: 血鋼爪, const: 860, display: 血鋼爪, lv: 65}
+    - {tid: 2724, name: 飛鵬幫戰將, const: 198, display: 飛鵬幫戰將, lv: 90}
+    - {tid: 2726, name: 狂夜叉(下), const: 783, display: 狂夜叉, lv: 101}
+    - {tid: 2727, name: 狂夜叉(上), const: 783, display: 狂夜叉, lv: 101}
+    - {tid: 2728, name: 炎武(左), const: 569, display: 炎武, lv: 110}
+    - {tid: 2729, name: 炎武(右), const: 569, display: 炎武, lv: 110}
+    - {tid: 2730, name: 靈鳳劍仙, const: 629, display: 靈鳳劍仙, lv: 120}
+    - {tid: 2732, name: 偏將, const: 73, display: 偏將, lv: 48}
+    - {tid: 2733, name: 鏢師, const: 232, display: 鏢師, lv: 45}
+    - {tid: 2734, name: 青衣樓殺手, const: 77, display: 青衣樓殺手, lv: 43}
+    - {tid: 2735, name: 仙童, const: 41, display: 仙童, lv: 38}
+    - {tid: 2736, name: 峨嵋弟子(男), const: 555, display: 峨嵋弟子(男), lv: 35}
+    - {tid: 2737, name: 峨嵋弟子(女), const: 629, display: 峨嵋弟子(女), lv: 35}
+    - {tid: 2738, name: 武僧, const: 281, display: 武僧, lv: 28}
+    - {tid: 2739, name: 紅鞋子幫眾, const: 5, display: 紅鞋子幫眾, lv: 26}
+    - {tid: 2740, name: 六扇門門生, const: 686, display: 六扇門門生, lv: 24}
+    - {tid: 2741, name: 官兵, const: 692, display: 官兵, lv: 21}
+    - {tid: 2742, name: 獅頭族人, const: 751, display: 獅頭族人, lv: 18}
+    - {tid: 2743, name: 青銅獅, const: 700, display: 青銅獅, lv: 14}
+    - {tid: 2744, name: 獵人, const: 93, display: 獵人, lv: 9}
+    - {tid: 2745, name: 山賊, const: 448, display: 山賊, lv: 4}
+    - {tid: 2746, name: 民團, const: 74, display: 民團, lv: 1}
+    - {tid: 3959, name: 首領, const: 172, display: 首領, lv: 10}
+    - {tid: 3997, name: 靈象, const: 558, display: 靈象, lv: 100}
+    # ---- D 類推定名（無等級）----
+    - {tid: 3998, name: 豬王, const: 424, display: 鐵豬王, lv: null}
+    - {tid: 5112, name: 豬頭, const: 561, display: 豬頭, lv: null}
+    - {tid: 4661, name: 成吉1, const: 172, display: 賓周幫幫眾, lv: null}
+    - {tid: 4663, name: 書台部1, const: 698, display: 賓周幫幫眾, lv: null}
+    - {tid: 4665, name: 武士1, const: 706, display: 賓周幫幫眾, lv: null}
+    - {tid: 4667, name: 火砲1, const: 556, display: 賓周幫幫眾, lv: null}
+    - {tid: 4669, name: 武士3, const: 165, display: 賓周幫幫眾, lv: null}
+    - {tid: 4671, name: 武士4, const: 426, display: 賓周幫幫眾, lv: null}
+    - {tid: 4672, name: 成吉3, const: 731, display: 賓周幫幫眾, lv: null}
+    - {tid: 4673, name: 火砲2, const: 644, display: 賓周幫幫眾, lv: null}
+    - {tid: 4680, name: 鐵鎚, const: 424, display: 賓周幫幫眾, lv: null}
+    - {tid: 4680, name: 鐵鎚, const: 698, display: 賓周幫幫眾, lv: null}
+    - {tid: 5335, name: 火炮3, const: 650, display: 賓周幫幫眾, lv: null}
+    - {tid: 5336, name: 爆炸3, const: 428, display: 賓周幫幫眾, lv: null}
+    - {tid: 5337, name: 馬弓4, const: 474, display: 賓周幫幫眾, lv: null}
+    - {tid: 5338, name: 日本4, const: 844, display: 賓周幫幫眾, lv: null}
+    - {tid: 5339, name: 武士5, const: 845, display: 賓周幫幫眾, lv: null}
+    - {tid: 5340, name: 小哈5, const: 165, display: 賓周幫幫眾, lv: null}
+    - {tid: 5372, name: 非魂, const: 424, display: 非魂, lv: null}
+    - {tid: 4788, name: 遊俠, const: 773, display: 赤武, lv: 66}   # 使用者裁決：生成征服者＝赤武
+
   # 【2026-08-30 擊殺獎勵變數化】Kill Ratio(屬性44)=擊殺−損失，英雄死亡算損失→復活後獎勵停擺；
   # DE 中屬性44唯讀(Modify Resource 無效, spike_killratio)。改以屬性20(純擊殺)＋DE變數重建：
   # 條件 KR≥1 → CompareVariables(V_K[p] > V_BASE[p])；X升級 建立/殺/移除 Joan → V_BASE[p]+=1；

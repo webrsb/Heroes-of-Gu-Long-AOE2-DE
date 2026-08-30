@@ -1,0 +1,190 @@
+step	kind	target	field	old	new	reason
+s373	eff_add	T2711「母夜叉」	change_object_name		(198,155)→「Lv52 母夜叉」	野怪生成改名
+s373	eff_add	T2711「母夜叉」	change_object_name		(197,152)→「Lv52 母夜叉」	野怪生成改名
+s373	eff_add	T2711「母夜叉」	change_object_name		(192,158)→「Lv52 母夜叉」	野怪生成改名
+s373	eff_add	T2712「青武」	change_object_name		(237,133)→「Lv55 青武」	野怪生成改名
+s373	eff_add	T2712「青武」	change_object_name		(230,117)→「Lv55 青武」	野怪生成改名
+s373	eff_add	T2712「青武」	change_object_name		(225,132)→「Lv55 青武」	野怪生成改名
+s373	eff_add	T2712「青武」	change_object_name		(231,124)→「Lv55 青武」	野怪生成改名
+s373	eff_add	T2712「青武」	change_object_name		(237,116)→「Lv55 青武」	野怪生成改名
+s373	eff_add	T2713「渦鬼(珠光)」	change_object_name		(143,195)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2713「渦鬼(珠光)」	change_object_name		(134,187)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2713「渦鬼(珠光)」	change_object_name		(149,187)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2713「渦鬼(珠光)」	change_object_name		(132,196)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2713「渦鬼(珠光)」	change_object_name		(126,193)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2713「渦鬼(珠光)」	change_object_name		(127,186)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2713「渦鬼(珠光)」	change_object_name		(118,188)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2713「渦鬼(珠光)」	change_object_name		(115,194)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2713「渦鬼(珠光)」	change_object_name		(112,190)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2714「渦鬼(殺人)」	change_object_name		(151,216)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2714「渦鬼(殺人)」	change_object_name		(158,217)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2714「渦鬼(殺人)」	change_object_name		(166,216)→「Lv250 渦鬼」	野怪生成改名
+s373	eff_add	T2715「孽僧」	change_object_name		(140,181)→「Lv59 孽僧」	野怪生成改名
+s373	eff_add	T2715「孽僧」	change_object_name		(130,178)→「Lv59 孽僧」	野怪生成改名
+s373	eff_add	T2715「孽僧」	change_object_name		(144,173)→「Lv59 孽僧」	野怪生成改名
+s373	eff_add	T2715「孽僧」	change_object_name		(134,173)→「Lv59 孽僧」	野怪生成改名
+s373	eff_add	T2715「孽僧」	change_object_name		(124,170)→「Lv59 孽僧」	野怪生成改名
+s373	eff_add	T2715「孽僧」	change_object_name		(119,164)→「Lv59 孽僧」	野怪生成改名
+s373	eff_add	T2715「孽僧」	change_object_name		(123,157)→「Lv59 孽僧」	野怪生成改名
+s373	eff_add	T2715「孽僧」	change_object_name		(131,157)→「Lv59 孽僧」	野怪生成改名
+s373	eff_add	T2715「孽僧」	change_object_name		(138,163)→「Lv59 孽僧」	野怪生成改名
+s373	eff_add	T2716「獅頭魔」	change_object_name		(132,217)→「Lv60 獅頭魔」	野怪生成改名
+s373	eff_add	T2716「獅頭魔」	change_object_name		(142,215)→「Lv60 獅頭魔」	野怪生成改名
+s373	eff_add	T2716「獅頭魔」	change_object_name		(137,218)→「Lv60 獅頭魔」	野怪生成改名
+s373	eff_add	T2716「獅頭魔」	change_object_name		(137,212)→「Lv60 獅頭魔」	野怪生成改名
+s373	eff_add	T2717「石獅」	change_object_name		(237,218)→「Lv61 石獅」	野怪生成改名
+s373	eff_add	T2717「石獅」	change_object_name		(231,216)→「Lv61 石獅」	野怪生成改名
+s373	eff_add	T2717「石獅」	change_object_name		(229,223)→「Lv61 石獅」	野怪生成改名
+s373	eff_add	T2718「斬狂」	change_object_name		(205,229)→「Lv61 斬狂」	野怪生成改名
+s373	eff_add	T2718「斬狂」	change_object_name		(206,235)→「Lv61 斬狂」	野怪生成改名
+s373	eff_add	T2718「斬狂」	change_object_name		(199,239)→「Lv61 斬狂」	野怪生成改名
+s373	eff_add	T2718「斬狂」	change_object_name		(198,233)→「Lv61 斬狂」	野怪生成改名
+s373	eff_add	T2719「幽靈武士」	change_object_name		(162,224)→「Lv65 幽靈武士」	野怪生成改名
+s373	eff_add	T2719「幽靈武士」	change_object_name		(162,231)→「Lv65 幽靈武士」	野怪生成改名
+s373	eff_add	T2719「幽靈武士」	change_object_name		(152,225)→「Lv65 幽靈武士」	野怪生成改名
+s373	eff_add	T2719「幽靈武士」	change_object_name		(155,232)→「Lv65 幽靈武士」	野怪生成改名
+s373	eff_add	T2720「赤武」	change_object_name		(231,100)→「Lv66 赤武」	野怪生成改名
+s373	eff_add	T2720「赤武」	change_object_name		(237,94)→「Lv66 赤武」	野怪生成改名
+s373	eff_add	T2720「赤武」	change_object_name		(233,91)→「Lv66 赤武」	野怪生成改名
+s373	eff_add	T2720「赤武」	change_object_name		(235,88)→「Lv66 赤武」	野怪生成改名
+s373	eff_add	T2720「赤武」	change_object_name		(239,85)→「Lv66 赤武」	野怪生成改名
+s373	eff_add	T2721「狂屍」	change_object_name		(171,141)→「Lv87 狂屍」	野怪生成改名
+s373	eff_add	T2721「狂屍」	change_object_name		(171,147)→「Lv87 狂屍」	野怪生成改名
+s373	eff_add	T2721「狂屍」	change_object_name		(163,149)→「Lv87 狂屍」	野怪生成改名
+s373	eff_add	T2721「狂屍」	change_object_name		(159,145)→「Lv87 狂屍」	野怪生成改名
+s373	eff_add	T2721「狂屍」	change_object_name		(155,155)→「Lv87 狂屍」	野怪生成改名
+s373	eff_add	T2721「狂屍」	change_object_name		(160,160)→「Lv87 狂屍」	野怪生成改名
+s373	eff_add	T2721「狂屍」	change_object_name		(165,156)→「Lv87 狂屍」	野怪生成改名
+s373	eff_add	T2722「血鋼爪」	change_object_name		(81,219)→「Lv65 血鋼爪」	野怪生成改名
+s373	eff_add	T2722「血鋼爪」	change_object_name		(83,210)→「Lv65 血鋼爪」	野怪生成改名
+s373	eff_add	T2722「血鋼爪」	change_object_name		(89,207)→「Lv65 血鋼爪」	野怪生成改名
+s373	eff_add	T2722「血鋼爪」	change_object_name		(69,207)→「Lv65 血鋼爪」	野怪生成改名
+s373	eff_add	T2722「血鋼爪」	change_object_name		(66,214)→「Lv65 血鋼爪」	野怪生成改名
+s373	eff_add	T2722「血鋼爪」	change_object_name		(64,209)→「Lv65 血鋼爪」	野怪生成改名
+s373	eff_add	T2724「飛鵬幫戰將」	change_object_name		(66,191)→「Lv90 飛鵬幫戰將」	野怪生成改名
+s373	eff_add	T2724「飛鵬幫戰將」	change_object_name		(69,191)→「Lv90 飛鵬幫戰將」	野怪生成改名
+s373	eff_add	T2726「狂夜叉(下)」	change_object_name		(39,194)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2726「狂夜叉(下)」	change_object_name		(35,197)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2726「狂夜叉(下)」	change_object_name		(36,191)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2726「狂夜叉(下)」	change_object_name		(30,190)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2726「狂夜叉(下)」	change_object_name		(24,189)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2726「狂夜叉(下)」	change_object_name		(22,198)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2726「狂夜叉(下)」	change_object_name		(17,203)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2727「狂夜叉(上)」	change_object_name		(75,169)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2727「狂夜叉(上)」	change_object_name		(74,164)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2727「狂夜叉(上)」	change_object_name		(69,169)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2727「狂夜叉(上)」	change_object_name		(75,162)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2727「狂夜叉(上)」	change_object_name		(77,169)→「Lv101 狂夜叉」	野怪生成改名
+s373	eff_add	T2728「炎武(左)」	change_object_name		(92,157)→「Lv110 炎武」	野怪生成改名
+s373	eff_add	T2728「炎武(左)」	change_object_name		(91,162)→「Lv110 炎武」	野怪生成改名
+s373	eff_add	T2728「炎武(左)」	change_object_name		(87,161)→「Lv110 炎武」	野怪生成改名
+s373	eff_add	T2729「炎武(右)」	change_object_name		(43,132)→「Lv110 炎武」	野怪生成改名
+s373	eff_add	T2729「炎武(右)」	change_object_name		(38,135)→「Lv110 炎武」	野怪生成改名
+s373	eff_add	T2729「炎武(右)」	change_object_name		(44,136)→「Lv110 炎武」	野怪生成改名
+s373	eff_add	T2729「炎武(右)」	change_object_name		(41,138)→「Lv110 炎武」	野怪生成改名
+s373	eff_add	T2730「靈鳳劍仙」	change_object_name		(15,182)→「Lv120 靈鳳劍仙」	野怪生成改名
+s373	eff_add	T2730「靈鳳劍仙」	change_object_name		(16,177)→「Lv120 靈鳳劍仙」	野怪生成改名
+s373	eff_add	T2730「靈鳳劍仙」	change_object_name		(10,175)→「Lv120 靈鳳劍仙」	野怪生成改名
+s373	eff_add	T2730「靈鳳劍仙」	change_object_name		(6,184)→「Lv120 靈鳳劍仙」	野怪生成改名
+s373	eff_add	T2732「偏將」	change_object_name		(207,91)→「Lv48 偏將」	野怪生成改名
+s373	eff_add	T2732「偏將」	change_object_name		(208,85)→「Lv48 偏將」	野怪生成改名
+s373	eff_add	T2732「偏將」	change_object_name		(212,81)→「Lv48 偏將」	野怪生成改名
+s373	eff_add	T2733「鏢師」	change_object_name		(209,51)→「Lv45 鏢師」	野怪生成改名
+s373	eff_add	T2733「鏢師」	change_object_name		(211,56)→「Lv45 鏢師」	野怪生成改名
+s373	eff_add	T2733「鏢師」	change_object_name		(212,60)→「Lv45 鏢師」	野怪生成改名
+s373	eff_add	T2733「鏢師」	change_object_name		(206,51)→「Lv45 鏢師」	野怪生成改名
+s373	eff_add	T2734「青衣樓殺手」	change_object_name		(172,75)→「Lv43 青衣樓殺手」	野怪生成改名
+s373	eff_add	T2734「青衣樓殺手」	change_object_name		(171,80)→「Lv43 青衣樓殺手」	野怪生成改名
+s373	eff_add	T2734「青衣樓殺手」	change_object_name		(167,79)→「Lv43 青衣樓殺手」	野怪生成改名
+s373	eff_add	T2735「仙童」	change_object_name		(174,91)→「Lv38 仙童」	野怪生成改名
+s373	eff_add	T2735「仙童」	change_object_name		(177,95)→「Lv38 仙童」	野怪生成改名
+s373	eff_add	T2735「仙童」	change_object_name		(178,100)→「Lv38 仙童」	野怪生成改名
+s373	eff_add	T2735「仙童」	change_object_name		(183,102)→「Lv38 仙童」	野怪生成改名
+s373	eff_add	T2735「仙童」	change_object_name		(190,102)→「Lv38 仙童」	野怪生成改名
+s373	eff_add	T2736「峨嵋弟子(男)」	change_object_name		(175,56)→「Lv35 峨嵋弟子(男)」	野怪生成改名
+s373	eff_add	T2736「峨嵋弟子(男)」	change_object_name		(169,61)→「Lv35 峨嵋弟子(男)」	野怪生成改名
+s373	eff_add	T2736「峨嵋弟子(男)」	change_object_name		(175,64)→「Lv35 峨嵋弟子(男)」	野怪生成改名
+s373	eff_add	T2737「峨嵋弟子(女)」	change_object_name		(169,65)→「Lv35 峨嵋弟子(女)」	野怪生成改名
+s373	eff_add	T2737「峨嵋弟子(女)」	change_object_name		(172,54)→「Lv35 峨嵋弟子(女)」	野怪生成改名
+s373	eff_add	T2738「武僧」	change_object_name		(141,40)→「Lv28 武僧」	野怪生成改名
+s373	eff_add	T2738「武僧」	change_object_name		(140,55)→「Lv28 武僧」	野怪生成改名
+s373	eff_add	T2738「武僧」	change_object_name		(140,61)→「Lv28 武僧」	野怪生成改名
+s373	eff_add	T2738「武僧」	change_object_name		(137,47)→「Lv28 武僧」	野怪生成改名
+s373	eff_add	T2739「紅鞋子幫眾」	change_object_name		(174,30)→「Lv26 紅鞋子幫眾」	野怪生成改名
+s373	eff_add	T2739「紅鞋子幫眾」	change_object_name		(168,37)→「Lv26 紅鞋子幫眾」	野怪生成改名
+s373	eff_add	T2739「紅鞋子幫眾」	change_object_name		(165,31)→「Lv26 紅鞋子幫眾」	野怪生成改名
+s373	eff_add	T2739「紅鞋子幫眾」	change_object_name		(163,40)→「Lv26 紅鞋子幫眾」	野怪生成改名
+s373	eff_add	T2740「六扇門門生」	change_object_name		(156,7)→「Lv24 六扇門門生」	野怪生成改名
+s373	eff_add	T2740「六扇門門生」	change_object_name		(162,15)→「Lv24 六扇門門生」	野怪生成改名
+s373	eff_add	T2740「六扇門門生」	change_object_name		(163,9)→「Lv24 六扇門門生」	野怪生成改名
+s373	eff_add	T2741「官兵」	change_object_name		(34,67)→「Lv21 官兵」	野怪生成改名
+s373	eff_add	T2741「官兵」	change_object_name		(36,72)→「Lv21 官兵」	野怪生成改名
+s373	eff_add	T2741「官兵」	change_object_name		(26,66)→「Lv21 官兵」	野怪生成改名
+s373	eff_add	T2741「官兵」	change_object_name		(24,73)→「Lv21 官兵」	野怪生成改名
+s373	eff_add	T2742「獅頭族人」	change_object_name		(110,31)→「Lv18 獅頭族人」	野怪生成改名
+s373	eff_add	T2742「獅頭族人」	change_object_name		(103,30)→「Lv18 獅頭族人」	野怪生成改名
+s373	eff_add	T2742「獅頭族人」	change_object_name		(106,35)→「Lv18 獅頭族人」	野怪生成改名
+s373	eff_add	T2743「青銅獅」	change_object_name		(93,56)→「Lv14 青銅獅」	野怪生成改名
+s373	eff_add	T2743「青銅獅」	change_object_name		(86,54)→「Lv14 青銅獅」	野怪生成改名
+s373	eff_add	T2743「青銅獅」	change_object_name		(94,50)→「Lv14 青銅獅」	野怪生成改名
+s373	eff_add	T2743「青銅獅」	change_object_name		(89,46)→「Lv14 青銅獅」	野怪生成改名
+s373	eff_add	T2744「獵人」	change_object_name		(125,73)→「Lv9 獵人」	野怪生成改名
+s373	eff_add	T2744「獵人」	change_object_name		(118,72)→「Lv9 獵人」	野怪生成改名
+s373	eff_add	T2744「獵人」	change_object_name		(121,78)→「Lv9 獵人」	野怪生成改名
+s373	eff_add	T2744「獵人」	change_object_name		(114,77)→「Lv9 獵人」	野怪生成改名
+s373	eff_add	T2744「獵人」	change_object_name		(107,74)→「Lv9 獵人」	野怪生成改名
+s373	eff_add	T2744「獵人」	change_object_name		(103,81)→「Lv9 獵人」	野怪生成改名
+s373	eff_add	T2745「山賊」	change_object_name		(66,73)→「Lv4 山賊」	野怪生成改名
+s373	eff_add	T2745「山賊」	change_object_name		(66,67)→「Lv4 山賊」	野怪生成改名
+s373	eff_add	T2745「山賊」	change_object_name		(60,71)→「Lv4 山賊」	野怪生成改名
+s373	eff_add	T2745「山賊」	change_object_name		(56,76)→「Lv4 山賊」	野怪生成改名
+s373	eff_add	T2746「民團」	change_object_name		(80,84)→「Lv1 民團」	野怪生成改名
+s373	eff_add	T2746「民團」	change_object_name		(77,80)→「Lv1 民團」	野怪生成改名
+s373	eff_add	T2746「民團」	change_object_name		(80,74)→「Lv1 民團」	野怪生成改名
+s373	eff_add	T2746「民團」	change_object_name		(77,70)→「Lv1 民團」	野怪生成改名
+s373	eff_add	T3959「首領」	change_object_name		(118,56)→「Lv10 首領」	野怪生成改名
+s373	eff_add	T3997「靈象」	change_object_name		(236,146)→「Lv100 靈象」	野怪生成改名
+s373	eff_add	T3998「豬王」	change_object_name		(238,65)→「鐵豬王」	野怪生成改名
+s373	eff_add	T4661「成吉1」	change_object_name		(71,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4661「成吉1」	change_object_name		(65,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4661「成吉1」	change_object_name		(65,3)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4661「成吉1」	change_object_name		(66,14)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4661「成吉1」	change_object_name		(70,13)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4663「書台部1」	change_object_name		(62,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4663「書台部1」	change_object_name		(57,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4663「書台部1」	change_object_name		(56,9)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4663「書台部1」	change_object_name		(56,13)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4663「書台部1」	change_object_name		(60,14)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4665「武士1」	change_object_name		(52,7)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4665「武士1」	change_object_name		(48,8)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4667「火砲1」	change_object_name		(52,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4667「火砲1」	change_object_name		(52,8)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4669「武士3」	change_object_name		(39,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4669「武士3」	change_object_name		(37,12)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4671「武士4」	change_object_name		(28,5)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4671「武士4」	change_object_name		(32,14)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4672「成吉3」	change_object_name		(20,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4672「成吉3」	change_object_name		(20,9)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4673「火砲2」	change_object_name		(8,20)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4673「火砲2」	change_object_name		(0,20)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4680「鐵鎚」	change_object_name		(8,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4680「鐵鎚」	change_object_name		(0,11)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4680「鐵鎚」	change_object_name		(14,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4680「鐵鎚」	change_object_name		(17,14)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T4788「遊俠」	change_object_name		(90,157)→「Lv66 赤武」	野怪生成改名
+s373	eff_add	T4788「遊俠」	change_object_name		(92,161)→「Lv66 赤武」	野怪生成改名
+s373	eff_add	T5112「豬頭」	change_object_name		(239,67)→「豬頭」	野怪生成改名
+s373	eff_add	T5335「火炮3」	change_object_name		(48,1)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5335「火炮3」	change_object_name		(48,4)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5336「爆炸3」	change_object_name		(52,14)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5336「爆炸3」	change_object_name		(48,14)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5337「馬弓4」	change_object_name		(40,14)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5337「馬弓4」	change_object_name		(43,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5338「日本4」	change_object_name		(45,4)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5338「日本4」	change_object_name		(45,16)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5339「武士5」	change_object_name		(32,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5339「武士5」	change_object_name		(35,13)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5340「小哈5」	change_object_name		(25,0)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5340「小哈5」	change_object_name		(24,14)→「賓周幫幫眾」	野怪生成改名
+s373	eff_add	T5372「非魂」	change_object_name		(65,193)→「非魂」	野怪生成改名
+s373	eff_add	T5372「非魂」	change_object_name		(61,193)→「非魂」	野怪生成改名
