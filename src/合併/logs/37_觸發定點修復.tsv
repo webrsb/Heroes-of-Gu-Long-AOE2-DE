@@ -66,6 +66,12 @@ s37	trigger_flag	T5306「魂移5」	looping	0	1	同上
 s37	trigger_flag	T4965「完全教戰守策3」	enabled	0	1	「不得蓋建築」常駐清除規則（object_group 3/30），其餘五座位開局啟用，3P 整支關閉＝只有 3P 能蓋
 s37	trigger_add	銀兩護欄5	trigger		T5600 1條件/1效果	原作漏建 5P 銀兩 ≥50 萬上繳護欄（照 T4790）
 s37	trigger_add	銀兩護欄6	trigger		T5601 1條件/1效果	原作漏建 6P 銀兩 ≥50 萬上繳護欄（照 T4790）
+s37	effect_field	T5290「少林寺」E#1	message	<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	顏色標籤拼字
+s37	effect_field	T5291「少林寺」E#0	message	<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	顏色標籤拼字
+s37	effect_field	T5292「少林寺」E#0	message	<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	顏色標籤拼字
+s37	effect_field	T5293「少林寺」E#0	message	<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	顏色標籤拼字
+s37	effect_field	T5294「少林寺」E#0	message	<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	顏色標籤拼字
+s37	effect_field	T5295「少林寺」E#0	message	<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！	顏色標籤拼字
 s37	effect_field	T1831「2女4」E#1	source_player	3	2	聊天訊息錯發3P
 s37	effect_field	T4157「1幫」E#0	source_player	3	1	聊天訊息錯發3P
 s37	effect_field	T2971「5幽」E#4	source_player	4	5	聊天訊息錯發4P

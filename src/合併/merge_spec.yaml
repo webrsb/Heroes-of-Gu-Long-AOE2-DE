@@ -83,6 +83,43 @@ params:
 # 【待辦・非本輪】無法無天新內容中發現多個未知 const 的大量灌血物件
 # （const 176/76/852/652/556/847/172/197/426 等），需 test14 式實機夾血測試
 # 判定是否建築行為；若夾血則要加入雙0血名單。
+  # 【2026-08-30 任務欄文字校正（s34）】另一 session 逐條解析 5,799 觸發後比對五段面板文字，只修「面板已寫出但與
+  # 觸發實碼不符」處，不新增未揭露機制；舊字串取自基底原文（CRLF），出現次數防呆。
+  messages:
+    replacements:
+      - {field: hints, expect_count: 1, reason: 觸發實作為道具槽集滿 3 件→科技＋技能點、5 件→再得獎賞；面板的 50 點/10 個過時,
+         old: "(做3~5個任務後找【^迪加^】可得50技能點數;10個得豐富獎品)",
+         new: "(做3個任務後找【^迪加^】可得技能點數;做5個再得豐富獎賞)"}
+      - {field: hints, expect_count: 1, reason: 六職第 9 層本職武學觸發皆收 80 技能點（佛道醫第 9 層 10 點）,
+         old: "技8-11　10技能點數", new: "技8-11　10技能點數(本職武學第九招為80技能點數)"}
+      - {field: hints, expect_count: 1, reason: 觸發有第 10 層自動解鎖；保持神祕只改口徑,
+         old: "技能上限為第九招", new: "技能第九招以上另有機緣"}
+      - {field: hints, expect_count: 1, reason: 各層有等級門檻（等級里程碑標記），面板未說明,
+         old: "技9　100Lv\r\n", new: "技9　100Lv\r\n(未達該等級老師不會傳授)\r\n"}
+      - {field: instructions, expect_count: 1, reason: 箭客神兵同樣需 100 級並帶 1000 鳳仙肉到天降神兵處（6 100→6神兵→6神兵2）,
+         old: "箭客(暗殺者,武器駱駝)！箭俠免跑神兵位置食物滿1000直接值型神兵功能每6秒扣血4000",
+         new: "箭客(暗殺者,武器駱駝)"}
+      - {field: instructions, expect_count: 1, reason: 神兵說明五段統一,
+         old: "更改    馬騎箭俠擁有食物直接啟動神兵6秒一次扣血",
+         new: "更改    箭俠神兵：同樣需100級，帶滿1000鳳仙肉(食物)到天降神兵處啟動，每6秒扣血4000"}
+      - {field: hints, expect_count: 1, reason: 神兵說明五段統一,
+         old: "更改    馬騎箭俠擁有食物直接啟動神兵每6秒扣血一次",
+         new: "更改    箭俠神兵：同樣需100級，帶滿1000鳳仙肉(食物)到天降神兵處啟動，每6秒扣血4000"}
+      - {field: loss, expect_count: 1, reason: 神兵說明五段統一,
+         old: "更改    馬騎箭俠擁有食物直接啟動神兵6秒一次扣血4000",
+         new: "更改    箭俠神兵：同樣需100級，帶滿1000鳳仙肉(食物)到天降神兵處啟動，每6秒扣血4000"}
+      - {field: scouts, expect_count: 1, reason: 神兵說明五段統一,
+         old: "更改    馬騎箭俠想解神兵擁有食物直接啟動6秒一次扣血",
+         new: "更改    箭俠神兵：同樣需100級，帶滿1000鳳仙肉(食物)到天降神兵處啟動，每6秒扣血4000"}
+      - {field: instructions, expect_count: 2, occurrence: 2, reason: instructions 內同段貼了兩次，去重留第一份,
+         old: "新增回血術 劍, 槍, 棍, 拳   這些人物直接找自己主要武器任務人物就可以回血加成\r\n箭客直接找暗殺者會在他附近一棵樹得到 回血術\r\n",
+         new: ""}
+      - {field: instructions, expect_count: 2, occurrence: 2, reason: instructions 內刀馬俠對照表貼了兩次，去重留第一份,
+         old: "       刀馬俠           劍馬俠           槍馬俠           棍馬俠           拳馬俠           箭馬俠\r\n            \r\n       傅紅雪           燕十三         王大小姐         孫小藍           陸小鳳            李尋歡\r\n",
+         new: ""}
+    moves:
+      - {from_field: victory, to_field: history, reason: victory 頁全是 911/921/假名改 改檔紀錄，移到空的歷史頁；victory 只留鳴謝段,
+         keep: "本人　９２１特別鳴謝作者修改者911努力努力製作，本人後續修改不提供任豪網站下載，本人非劇情網會員，\r\n純粹性去修改之，如有問題可能是任務顛倒或者有人擅自更改，本人修改全部都在提示與\r\n次侯裡面。\r\n           \r\n            呼籲別再使用同個檔名不同修改內容好嗎。本人限制必定按照原本遊戲議題。肯定修改後必定改進作弊行為的。\r\n\r\n"}
   # 【2026-08-29 裁決：全修】原作者複製貼上錯誤 18 處（s37）。
   # 前 6 條＝編輯器紅字根因：無法無天把 6P 本體從 ref8（劍譜5：const493）換成
   # ref45117（const765 @85.5,103.5），25 處引用重指了、漏了這 6 處（鏡像觸發
@@ -171,6 +208,13 @@ params:
     - {kind: trigger_add, name: 銀兩護欄6, enabled: 1, looping: 1, reason: 原作漏建 6P 銀兩 ≥50 萬上繳護欄（照 T4790）,
        conditions: [{type: accumulate_attribute, source_player: 6, quantity: 500000, attribute: 3}],
        effects: [{type: tribute, source_player: 6, target_player: 0, quantity: 10000000, tribute_list: 3}]}
+    # 2026-08-30 純文字瑕疵：少林寺六支訊息顏色標籤 <ROANGE> 打錯，遊戲內顯示白字並印出標籤
+    - {trigger_id: 5290, name: 少林寺, kind: effect, index: 1, field: message, old: '<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', new: '<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', reason: 顏色標籤拼字}
+    - {trigger_id: 5291, name: 少林寺, kind: effect, index: 0, field: message, old: '<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', new: '<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', reason: 顏色標籤拼字}
+    - {trigger_id: 5292, name: 少林寺, kind: effect, index: 0, field: message, old: '<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', new: '<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', reason: 顏色標籤拼字}
+    - {trigger_id: 5293, name: 少林寺, kind: effect, index: 0, field: message, old: '<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', new: '<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', reason: 顏色標籤拼字}
+    - {trigger_id: 5294, name: "\x7f少林寺", kind: effect, index: 0, field: message, old: '<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', new: '<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', reason: 顏色標籤拼字}
+    - {trigger_id: 5295, name: 少林寺, kind: effect, index: 0, field: message, old: '<ROANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', new: '<ORANGE>少林武僧：你並沒有找到破壞之魂,請速離開這裡！', reason: 顏色標籤拼字}
     # 船塢 E19 不改：effect_splits 已把 E19 拆成「選箭客的座位才啟用」的跟隨閘（極練場反召喚）、E14–E18 拆成反向閘護欄，
     # 座位≠職業的語意已在 s39 處理；改 olu=765 反而縮成只刪英雄型（2026-08-30 撤回）
     - {trigger_id: 1831, name: 2女4, kind: effect, index: 1, field: source_player, old: 3, new: 2, reason: 聊天訊息錯發3P}

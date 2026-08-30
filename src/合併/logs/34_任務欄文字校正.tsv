@@ -1,0 +1,13 @@
+step	kind	target	field	old	new	reason
+s34	msg_replace	messages.hints	text	(做3~5個任務後找【^迪加^】可得50技能點數;10個得豐富獎品)	(做3個任務後找【^迪加^】可得技能點數;做5個再得豐富獎賞)	觸發實作為道具槽集滿 3 件→科技＋技能點、5 件→再得獎賞；面板的 50 點/10 個過時
+s34	msg_replace	messages.hints	text	技8-11　10技能點數	技8-11　10技能點數(本職武學第九招為80技能點數)	六職第 9 層本職武學觸發皆收 80 技能點（佛道醫第 9 層 10 點）
+s34	msg_replace	messages.hints	text	技能上限為第九招	技能第九招以上另有機緣	觸發有第 10 層自動解鎖；保持神祕只改口徑
+s34	msg_replace	messages.hints	text	技9　100Lv␊	技9　100Lv␊(未達該等級老師不會傳授)␊	各層有等級門檻（等級里程碑標記），面板未說明
+s34	msg_replace	messages.instructions	text	箭客(暗殺者,武器駱駝)！箭俠免跑神兵位置食物滿1000直接值型神兵功能每6秒扣	箭客(暗殺者,武器駱駝)	箭客神兵同樣需 100 級並帶 1000 鳳仙肉到天降神兵處（6 100→6神兵→6神兵2）
+s34	msg_replace	messages.instructions	text	更改    馬騎箭俠擁有食物直接啟動神兵6秒一次扣血	更改    箭俠神兵：同樣需100級，帶滿1000鳳仙肉(食物)到天降神兵處啟動	神兵說明五段統一
+s34	msg_replace	messages.hints	text	更改    馬騎箭俠擁有食物直接啟動神兵每6秒扣血一次	更改    箭俠神兵：同樣需100級，帶滿1000鳳仙肉(食物)到天降神兵處啟動	神兵說明五段統一
+s34	msg_replace	messages.loss	text	更改    馬騎箭俠擁有食物直接啟動神兵6秒一次扣血4000	更改    箭俠神兵：同樣需100級，帶滿1000鳳仙肉(食物)到天降神兵處啟動	神兵說明五段統一
+s34	msg_replace	messages.scouts	text	更改    馬騎箭俠想解神兵擁有食物直接啟動6秒一次扣血	更改    箭俠神兵：同樣需100級，帶滿1000鳳仙肉(食物)到天降神兵處啟動	神兵說明五段統一
+s34	msg_replace	messages.instructions	text	新增回血術 劍, 槍, 棍, 拳   這些人物直接找自己主要武器任務人物就可以回	(刪除)	instructions 內同段貼了兩次，去重留第一份
+s34	msg_replace	messages.instructions	text	       刀馬俠           劍馬俠           槍馬俠  	(刪除)	instructions 內刀馬俠對照表貼了兩次，去重留第一份
+s34	msg_move	messages.victory→history	text	1168 字	victory 留 178 字	victory 頁全是 911/921/假名改 改檔紀錄，移到空的歷史頁；victory 只留鳴謝段
