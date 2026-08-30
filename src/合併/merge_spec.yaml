@@ -830,7 +830,7 @@ params:
       conditions:
       - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
       effects:
-      - {type: task_object, source_player: 1, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+      - {type: task_object, source_player: 1, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
     - kind: trigger_add
       name: 2船暈西
       enabled: 0
@@ -886,7 +886,7 @@ params:
       conditions:
       - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
       effects:
-      - {type: task_object, source_player: 2, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+      - {type: task_object, source_player: 2, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
     - kind: trigger_add
       name: 3船暈西
       enabled: 0
@@ -942,7 +942,7 @@ params:
       conditions:
       - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
       effects:
-      - {type: task_object, source_player: 3, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+      - {type: task_object, source_player: 3, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
     - kind: trigger_add
       name: 4船暈西
       enabled: 0
@@ -998,7 +998,7 @@ params:
       conditions:
       - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
       effects:
-      - {type: task_object, source_player: 4, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+      - {type: task_object, source_player: 4, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
     - kind: trigger_add
       name: 5船暈西
       enabled: 0
@@ -1054,7 +1054,7 @@ params:
       conditions:
       - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
       effects:
-      - {type: task_object, source_player: 5, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+      - {type: task_object, source_player: 5, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
     - kind: trigger_add
       name: 6船暈西
       enabled: 0
@@ -1110,7 +1110,7 @@ params:
       conditions:
       - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
       effects:
-      - {type: task_object, source_player: 6, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+      - {type: task_object, source_player: 6, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
     - kind: trigger_add
       name: 船卸東
       enabled: 0
@@ -1434,6 +1434,19 @@ params:
     - {trigger_id: 3797, name: 4船4, kind: effect, index: 2, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
     - {trigger_id: 3803, name: 5船4, kind: effect, index: 2, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
     - {trigger_id: 3809, name: 6船4, kind: effect, index: 2, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3673, name: 1草, kind: condition, index: 1, field: inverted, old: -1, new: 1, reason: 等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢}
+    - {trigger_id: 3675, name: 2草, kind: condition, index: 1, field: inverted, old: -1, new: 1, reason: 等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢}
+    - {trigger_id: 3677, name: 3草, kind: condition, index: 1, field: inverted, old: -1, new: 1, reason: 等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢}
+    - {trigger_id: 3679, name: 4草, kind: condition, index: 1, field: inverted, old: -1, new: 1, reason: 等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢}
+    - {trigger_id: 3681, name: 5草, kind: condition, index: 1, field: inverted, old: -1, new: 1, reason: 等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢}
+    - {trigger_id: 3683, name: 6草, kind: condition, index: 1, field: inverted, old: -1, new: 1, reason: 等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢}
+    - {trigger_id: 3685, name: 1船, kind: condition, index: 1, field: inverted, old: -1, new: 1, reason: 等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢}
+    - {trigger_id: 3674, name: 1草2, kind: trigger, field: enabled, old: 1, new: 0, reason: 推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能}
+    - {trigger_id: 3676, name: 2草2, kind: trigger, field: enabled, old: 1, new: 0, reason: 推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能}
+    - {trigger_id: 3678, name: 3草2, kind: trigger, field: enabled, old: 1, new: 0, reason: 推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能}
+    - {trigger_id: 3680, name: 4草2, kind: trigger, field: enabled, old: 1, new: 0, reason: 推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能}
+    - {trigger_id: 3682, name: 5草2, kind: trigger, field: enabled, old: 1, new: 0, reason: 推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能}
+    - {trigger_id: 3684, name: 6草2, kind: trigger, field: enabled, old: 1, new: 0, reason: 推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能}
     - {trigger_id: 3734, name: 1草, kind: trigger, field: enabled, old: 1, new: 0, reason: 基底 ID 位移：指到箭影高人迴圈，牆內有人即誤啟}
     - {trigger_id: 3735, name: 1草2., kind: effect, index: 0, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
     - {trigger_id: 3735, name: 1草2., kind: effect, index: 1, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}

@@ -67,6 +67,17 @@ def main(path):
         check(any(int(e.effect_type) == 9 for e in t.effects), f'T{tid}「{t.name}」保留關等級提示迴圈的 DEACTIVATE')
     t = tm.triggers[3760]
     check(any('100000' in (e.message or '') for e in t.effects if int(e.effect_type) == 3), 'T3760 3船6 訊息已改精力')
+    for tid in (3673, 3675, 3677, 3679, 3681, 3683, 3685):
+        t = tm.triggers[tid]
+        check(int(t.conditions[1].inverted or 0) == 1, f'T{tid}「{t.name}」等級門檻已反相（<1159 才推）')
+    # 東解除器（qty=1160 的 X草2 系）：本體與變體皆不得有任何啟動邊指入（s37 停用→不進 enable_lists）
+    def _is_gate_clear(t):
+        return (t.name or '').split('◇')[0].endswith('草2') \
+            and any(getattr(c, 'quantity', -1) == 1160 for c in t.conditions)
+    clear_ids = {t.trigger_id for t in tm.triggers if _is_gate_clear(t)}
+    hits = [(t.trigger_id, e.trigger_id) for t in tm.triggers for e in t.effects
+            if int(e.effect_type) == 8 and e.trigger_id in clear_ids]
+    check(len(clear_ids) >= 6 and not hits, f'東解除器無啟動邊（{len(clear_ids)} 支）→ 得 {hits[:5]}')
     print(f'\n{"全部通過" if not fails else f"{len(fails)} 項 FAIL"}')
     return 1 if fails else 0
 

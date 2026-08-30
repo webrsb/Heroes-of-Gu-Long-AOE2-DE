@@ -12,8 +12,8 @@ X6 = {'東': {1: 3750, 2: 3755, 3: 3760, 4: 3765, 5: 3770, 6: 3775},
       '西': {1: 3781, 2: 3787, 3: 3793, 4: 3799, 5: 3805, 6: 3811}}
 X4 = {'東': ({1: 3748, 2: 3753, 3: 3758, 4: 3763, 5: 3768, 6: 3773}, 1),
       '西': ({1: 3779, 2: 3785, 3: 3791, 4: 3797, 5: 3803, 6: 3809}, 2)}
-FERRY_IDS = set(range(3734, 3746)) | {3732, 3733} | {t for d in X6.values() for t in d.values()} \
-    | {t for d, _ in X4.values() for t in d.values()}
+FERRY_IDS = set(range(3734, 3746)) | {3732, 3733} | set(range(3673, 3686)) \
+    | {t for d in X6.values() for t in d.values()} | {t for d, _ in X4.values() for t in d.values()}
 
 
 def _adds(entries):
@@ -80,6 +80,17 @@ def _check_block(entries):
         acts = sorted(e['effect']['trigger_name'] for e in entries
                       if e.get('trigger_id') == tid and e.get('kind') == 'effect_add')
         assert acts == ['船卸東', '船卸西'], (tid, acts)
+    # 等級門檻反相（<1159 才推）＋東解除器停用；西清場點＝使用者指定 (79,235)
+    for tid in (3673, 3675, 3677, 3679, 3681, 3683, 3685):
+        assert any(e.get('trigger_id') == tid and e.get('kind') == 'condition' and e.get('index') == 1
+                   and e.get('field') == 'inverted' and e.get('old') == -1 and e.get('new') == 1 for e in entries), tid
+    for tid in (3674, 3676, 3678, 3680, 3682, 3684):
+        assert any(e.get('trigger_id') == tid and e.get('kind') == 'trigger' and e.get('field') == 'enabled'
+                   and e.get('old') == 1 and e.get('new') == 0 for e in entries), tid
+    for a in adds:
+        if '船清出西' in a['name']:
+            eff = a['effects'][0]
+            assert (eff['location_x'], eff['location_y']) == (79, 235), a['name']
     # 暈在入之前（同 tick 競態）
     for s in SEATS:
         for p in PIERS:

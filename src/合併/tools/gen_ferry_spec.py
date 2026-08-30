@@ -20,8 +20,14 @@ PIER = {
     '東': dict(out_flag=(112, 227), in_land=(110, 226), in_clear=(110, 225), in_flag=(110, 228),
               out_land=(116, 232), out_clear=(116, 234), dock=(107, 225, 109, 229)),
     '西': dict(out_flag=(79, 233), in_land=(81, 233), in_clear=(81, 232), in_flag=(81, 235),
-              out_land=(75, 234), out_clear=(73, 234), dock=(82, 233, 84, 235)),
+              out_land=(75, 234), out_clear=(79, 235), dock=(82, 233, 84, 235)),
+              # out_clear (79,235)＝使用者 2026-08-31 指定（外旗南 2 格），舊值 (73,234) 堵住走進碼頭的動線
 }
+# 等級門檻推人觸發（基底條件方向寫反：閱歷 ≥1159 → 罵不夠 16 級＋推走，石頭越多越被騷擾）。
+# 修法：C1 加 inverted=1 → <1159 才推；東解除器（≥1160 關推人，兼每 5 秒洗「你以符合等級條件」）失去存在意義，停用。
+# 西解除器 T3686 出廠 enabled=0 且武裝它的中繼被無法無天 ID 位移毀掉，不動。
+GATE_PUSH = {3673: '1草', 3675: '2草', 3677: '3草', 3679: '4草', 3681: '5草', 3683: '6草', 3685: '1船'}
+GATE_CLEAR = {3674: '1草2', 3676: '2草2', 3678: '3草2', 3680: '4草2', 3682: '5草2', 3684: '6草2'}
 SHUTTLE = {3732: '船', 3733: '船2'}                 # 班次觸發（派船時武裝一次性卸貨）
 LEVEL_XP, XP_ATTR = 1160, 2                          # 與 X草2 同門檻（石頭＝閱歷）
 HINT = '<ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸'
@@ -128,6 +134,12 @@ def edits():
         for s, tid in ids.items():
             out.append(dict(trigger_id=tid, name=f'{s}船4', kind='effect', index=idx, field='effect_type',
                             old=15, new=0, reason='票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄'))
+    for tid, nm in GATE_PUSH.items():
+        out.append(dict(trigger_id=tid, name=nm, kind='condition', index=1, field='inverted',
+                        old=-1, new=1, reason='等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢'))
+    for tid, nm in GATE_CLEAR.items():
+        out.append(dict(trigger_id=tid, name=nm, kind='trigger', field='enabled', old=1, new=0,
+                        reason='推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能'))
     for tid, nm in GRASS:
         if nm.endswith('草'):                       # X草：整支停用（只有兩條指箭影高人的啟動邊）
             out.append(dict(trigger_id=tid, name=nm, kind='trigger', field='enabled', old=1, new=0,

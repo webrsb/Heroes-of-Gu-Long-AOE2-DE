@@ -274,6 +274,19 @@ s37	effect_field	T3791「3船4」E#2	effect_type	15	0	票已不存在；此移�
 s37	effect_field	T3797「4船4」E#2	effect_type	15	0	票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄
 s37	effect_field	T3803「5船4」E#2	effect_type	15	0	票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄
 s37	effect_field	T3809「6船4」E#2	effect_type	15	0	票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄
+s37	condition_field	T3673「1草」C#1	inverted	-1	1	等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢
+s37	condition_field	T3675「2草」C#1	inverted	-1	1	等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢
+s37	condition_field	T3677「3草」C#1	inverted	-1	1	等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢
+s37	condition_field	T3679「4草」C#1	inverted	-1	1	等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢
+s37	condition_field	T3681「5草」C#1	inverted	-1	1	等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢
+s37	condition_field	T3683「6草」C#1	inverted	-1	1	等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢
+s37	condition_field	T3685「1船」C#1	inverted	-1	1	等級門檻方向寫反（≥1159 推走）；反相成 <1159 才推，不夠級到不了船夫不會被扣錢
+s37	trigger_flag	T3674「1草2」	enabled	1	0	推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能
+s37	trigger_flag	T3676「2草2」	enabled	1	0	推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能
+s37	trigger_flag	T3678「3草2」	enabled	1	0	推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能
+s37	trigger_flag	T3680「4草2」	enabled	1	0	推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能
+s37	trigger_flag	T3682「5草2」	enabled	1	0	推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能
+s37	trigger_flag	T3684「6草2」	enabled	1	0	推人方向修正後只剩每 5 秒洗「你以符合等級條件」的功能
 s37	trigger_flag	T3734「1草」	enabled	1	0	基底 ID 位移：指到箭影高人迴圈，牆內有人即誤啟
 s37	effect_field	T3735「1草2.」E#0	effect_type	8	0	基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留
 s37	effect_field	T3735「1草2.」E#1	effect_type	8	0	基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留
