@@ -15,8 +15,28 @@ def apply_fix(tm, entry) -> Change:
         raise BuildError(f'缺裁決：T{tid} 名稱「{t.name}」≠ spec 預期「{entry.get("name", "")}」，'
                          f'基底觸發編號可能位移，請重查')
     kind = entry['kind']
-    obj = (t.conditions if kind == 'condition' else t.effects)[entry['index']]
+    if kind == 'effect_add':                      # 尾端新增啟停效果（複製貼上把效果放錯支時補回）
+        spec = entry['effect']
+        if spec['type'] not in ('activate_trigger', 'deactivate_trigger'):
+            raise BuildError(f'缺裁決：T{tid} effect_add 只支援 activate/deactivate_trigger，得到 {spec["type"]}')
+        target = tm.triggers[spec['trigger_id']] if 0 <= spec['trigger_id'] < len(tm.triggers) else None
+        if target is None or (target.name or '') != spec.get('target_name', ''):
+            raise BuildError(f'缺裁決：T{tid} effect_add 目標 T{spec["trigger_id"]} 名稱'
+                             f'「{getattr(target, "name", None)}」≠ spec 預期「{spec.get("target_name", "")}」，請重查')
+        getattr(t.new_effect, spec['type'])(trigger_id=spec['trigger_id'])
+        return Change('s37', 'effect_add', f'T{tid}「{t.name}」', spec['type'], '',
+                      f'→T{spec["trigger_id"]}「{target.name}」', entry.get('reason', ''))
     field, old, new = entry['field'], entry['old'], entry['new']
+    if kind == 'trigger':                         # 觸發層旗標（enabled / looping）
+        if field not in ('enabled', 'looping'):
+            raise BuildError(f'缺裁決：T{tid} trigger 層只支援 enabled/looping，得到 {field}')
+        cur = int(getattr(t, field) or 0)
+        if cur != old:
+            raise BuildError(f'缺裁決：T{tid}「{t.name}」{field}={cur} ≠ spec 預期舊值 {old}，請重查')
+        setattr(t, field, new)
+        return Change('s37', 'trigger_flag', f'T{tid}「{t.name}」', field, str(old), str(new),
+                      entry.get('reason', ''))
+    obj = (t.conditions if kind == 'condition' else t.effects)[entry['index']]
     tag = f'T{tid}「{t.name}」{"C" if kind == "condition" else "E"}#{entry["index"]}'
     if field == 'selected_object_ids':
         cur = list(obj.selected_object_ids or [])

@@ -71,3 +71,39 @@ def test_list_old_mismatch_raises():
     with pytest.raises(BuildError):
         apply_fix(_tm(), {'trigger_id': 1, 'name': '', 'kind': 'effect', 'index': 0,
                           'field': 'selected_object_ids', 'old': [], 'new': [502], 'reason': 'r'})
+
+
+def test_effect_add_appends_deactivate_with_target_name_check():
+    from tests.conftest import Recorder
+    tm = _tm()
+    tm.triggers[2].new_effect = Recorder()
+    c = apply_fix(tm, {'trigger_id': 2, 'name': '4啞', 'kind': 'effect_add',
+                       'effect': {'type': 'deactivate_trigger', 'trigger_id': 0, 'target_name': '6馬召'},
+                       'reason': '放錯支補回'})
+    assert tm.triggers[2].new_effect.calls == [('deactivate_trigger', {'trigger_id': 0})]
+    assert c.kind == 'effect_add' and '6馬召' in c.new
+
+
+def test_effect_add_target_name_mismatch_raises():
+    from tests.conftest import Recorder
+    tm = _tm()
+    tm.triggers[2].new_effect = Recorder()
+    with pytest.raises(BuildError):
+        apply_fix(tm, {'trigger_id': 2, 'name': '4啞', 'kind': 'effect_add',
+                       'effect': {'type': 'deactivate_trigger', 'trigger_id': 0, 'target_name': '別支'}, 'reason': 'r'})
+
+
+def test_trigger_flag_looping():
+    tm = _tm()
+    tm.triggers[2].enabled, tm.triggers[2].looping = 1, 0
+    c = apply_fix(tm, {'trigger_id': 2, 'name': '4啞', 'kind': 'trigger', 'field': 'looping',
+                       'old': 0, 'new': 1, 'reason': '兄弟座位皆循環'})
+    assert tm.triggers[2].looping == 1 and c.kind == 'trigger_flag'
+
+
+def test_trigger_flag_old_mismatch_raises():
+    tm = _tm()
+    tm.triggers[2].enabled, tm.triggers[2].looping = 1, 1
+    with pytest.raises(BuildError):
+        apply_fix(tm, {'trigger_id': 2, 'name': '4啞', 'kind': 'trigger', 'field': 'looping',
+                       'old': 0, 'new': 1, 'reason': 'r'})

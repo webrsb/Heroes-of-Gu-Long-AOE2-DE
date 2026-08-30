@@ -38,6 +38,22 @@ s37	effect_field	T261「1道4」E#6	selected_object_ids	[]	[0]	1P 英雄改血�
 s37	effect_field	T1205「2松2」E#4	selected_object_ids	[]	[26186]	2P 馬騎回血漏填 ref
 s37	effect_field	T1532「6軍」E#0	selected_object_ids	[]	[12702]	6P 哥薩克軍令派兵 task 漏填寵物 ref（其餘座位 12697–12701）
 s37	effect_field	T2086「1道3」E#1	selected_object_ids	[]	[26109]	1P 馬騎回血漏填 ref
+s37	trigger_flag	T197「2教頭2」	looping	0	1	「技能點不足」提示其餘座位每 14 秒循環，2P 只提示一次
+s37	trigger_flag	T23「3民團死」	looping	0	1	民團出口區其餘座位循環，3P 只生效一次
+s37	trigger_flag	T1440「4漢」	enabled	0	1	羅漢對話其餘座位開局啟用循環，4P 整支關閉
+s37	trigger_flag	T1440「4漢」	looping	0	1	同上
+s37	trigger_flag	T3611「4珠4」	enabled	0	1	珠區啟停觸發其餘座位開局啟用循環，4P 整支關閉
+s37	trigger_flag	T3611「4珠4」	looping	0	1	同上
+s37	trigger_flag	T1632「2針5」	enabled	1	0	明醫「待…」提示其餘座位由前置啟動且循環，2P 開局即啟用且不循環
+s37	trigger_flag	T1632「2針5」	looping	0	1	同上
+s37	trigger_flag	T5474「觸發事件 拳僧」	enabled	0	1	大師開場對話其餘座位開局啟用循環，5P 整支關閉
+s37	trigger_flag	T5474「觸發事件 拳僧」	looping	0	1	同上
+s37	effect_field	T2907「5渦死5」E#3	trigger_id	4272	4269	5P 出口不該關 6P 的 6珠；改指 5珠（與 E2 重複、無害）
+s37	effect_add	T2908「6渦死5」	deactivate_trigger		→T4272「6珠」	6P 出口補回停用 6珠（其餘座位皆有）
+s37	effect_field	T4247「6哥4」E#4	quantity	1000	-500	換鐵甲英雄改血其餘座位 −500，6P 抄成 +1000
+s37	effect_field	T4247「6哥4」E#6	quantity	1000	-500	換鐵甲馬騎改血同上
+s37	effect_field	T4248「6哥5」E#1	quantity	-1000	-500	交出鐵甲英雄改血其餘座位 −500，6P 抄成 −1000
+s37	effect_field	T4248「6哥5」E#2	armour_attack_quantity	50	100	交出鐵甲英雄改攻其餘座位 −100，6P 抄成 −50（s30 後為 class0/SUB 表示，改量值）
 s37	effect_field	T1831「2女4」E#1	source_player	3	2	聊天訊息錯發3P
 s37	effect_field	T4157「1幫」E#0	source_player	3	1	聊天訊息錯發3P
 s37	effect_field	T2971「5幽」E#4	source_player	4	5	聊天訊息錯發4P
