@@ -46,6 +46,11 @@ def build_chains(tm, rv):
         t.new_effect.create_object(source_player=0, object_list_unit_id=FLAG_CONST,
                                    location_x=cell[0], location_y=cell[1])
 
+    def remove_flag(t, cell):
+        t.new_effect.remove_object(source_player=0, object_list_unit_id=FLAG_CONST,
+                                   area_x1=cell[0], area_y1=cell[1],
+                                   area_x2=cell[0], area_y2=cell[1])
+
     def msg_trio(cid, s, tag, fmt):
         g1, g2 = names[cid]
         m = mount[cid]
@@ -75,6 +80,8 @@ def build_chains(tm, rv):
                                          location_x=int(spec.respawn[0]),
                                          location_y=int(spec.respawn[1]))
             create_flag(fin, m['final_cell'])
+            if m.get('life_cells'):
+                remove_flag(fin, m['life_cells'][lives - 1])   # 末命旗除→locref 家族熄火
             for x in hk.get('watch_activate', []):
                 fin.new_effect.activate_trigger(trigger_id=x)
             out.final[(cid, s)] = fin.trigger_id
@@ -92,10 +99,9 @@ def build_chains(tm, rv):
                     tmr.new_effect.deactivate_trigger(trigger_id=x)
                 for x in hk.get('timer_activate', []):
                     tmr.new_effect.activate_trigger(trigger_id=x)
-                for x in hk.get('timer_deactivate_L', {}).get(L, []):
-                    tmr.new_effect.deactivate_trigger(trigger_id=x)
-                for x in hk.get('timer_activate_L', {}).get(L, []):
-                    tmr.new_effect.activate_trigger(trigger_id=x)
+                if m.get('life_cells'):
+                    remove_flag(tmr, m['life_cells'][L - 1])   # 命旗遞移：L→L+1
+                    create_flag(tmr, m['life_cells'][L])       # （locref 家族選路）
                 tmr.new_effect.activate_trigger(trigger_id=next_tid)
                 out.timer[(cid, s, L)] = tmr.trigger_id
 
@@ -126,6 +132,8 @@ def build_chains(tm, rv):
                                          location_x=int(spec.respawn[0]),
                                          location_y=int(spec.respawn[1]))
             create_flag(hwf, m['final_cell'])
+            if m.get('life_cells'):
+                remove_flag(hwf, m['life_cells'][lives - 1])
             out.horse[(cid, s, lives)] = hwf.trigger_id
             # ---- 啟動器（enable_lists 分塊 ≤200）----
             acts = []
@@ -153,6 +161,8 @@ def build_chains(tm, rv):
                                                 selected_object_ids=[mir])
             sel.new_effect.change_object_caption(
                 selected_object_ids=[spec.hero_refs[cid]], message=' ')   # 清除職業名字幕
+            if mount[cid].get('life_cells'):
+                create_flag(sel, mount[cid]['life_cells'][0])   # 第1命旗（locref 選路）
             for x in rv.get('anti_lists', {}).get((cid, s), []):
                 sel.new_effect.deactivate_trigger(trigger_id=x)
             sel.new_effect.activate_trigger(

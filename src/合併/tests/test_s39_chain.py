@@ -9,9 +9,11 @@ LIFE = {1: [0, 900, 901], 2: [1, 910, 911]}
 CONTAINERS = {1: [800, 801], 2: [810, 811]}
 NAMES = {1: ('刀客', '刀俠'), 2: ('劍客', '劍俠')}
 MOUNT = {1: dict(mount_ref=26109, flag_cell=(221, 239), rebirth_cell=(230, 239),
-                 final_cell=(232, 239)),
+                 final_cell=(232, 239),
+                 life_cells=[(50, 239), (51, 239), (52, 239)]),
          2: dict(mount_ref=26186, flag_cell=(221, 238), rebirth_cell=(230, 238),
-                 final_cell=(232, 238))}
+                 final_cell=(232, 238),
+                 life_cells=[(50, 238), (51, 238), (52, 238)])}
 
 
 def rv(f):
@@ -57,6 +59,12 @@ def test_timer_revives_next_life(f):
     assert any(kw['selected_object_ids'] == [900] and kw['target_player'] == 2 for kw in owns)
     removes = _effs(t1, 'remove_object')
     assert any(kw.get('selected_object_ids') == [800] for kw in removes)      # 容器1(第2命)
+    # 命旗遞移：除命1旗(50,239)、立命2旗(51,239)
+    assert any(kw.get('object_list_unit_id') == 720 and kw.get('area_x1') == 50
+               for kw in removes)
+    creates = _effs(t1, 'create_object')
+    assert any(kw.get('object_list_unit_id') == 720 and kw.get('location_x') == 51
+               for kw in creates)
     acts = {kw['trigger_id'] for kw in _effs(t1, 'activate_trigger')}
     assert out.watch[(1, 2, 2)] in acts
 
@@ -84,6 +92,9 @@ def test_final_creates_flag_and_revealer(f):
     creates = _effs(fin, 'create_object')
     assert any(kw['object_list_unit_id'] == 837 and kw['source_player'] == 2 for kw in creates)
     assert any(kw.get('location_x') == 232 for kw in creates)                  # 命盡旗@final_cell
+    # 末命旗(52,239)拔除 → locref 家族熄火
+    assert any(kw.get('object_list_unit_id') == 720 and kw.get('area_x1') == 52
+               for kw in _effs(fin, 'remove_object'))
     txts = [tm.triggers_by_id[x] for x in out.final_msgs[(1, 2)]]
     assert any('已死亡' in _effs(t, 'display_instructions')[0]['message'] for t in txts)
 
@@ -102,6 +113,8 @@ def test_horse_watch_per_life(f):
     creates = _effs(hwf, 'create_object')
     assert any(kw.get('object_list_unit_id') == 837 for kw in creates)
     assert any(kw.get('location_x') == 232 for kw in creates)
+    assert any(kw.get('object_list_unit_id') == 720 and kw.get('area_x1') == 52
+               for kw in _effs(hwf, 'remove_object'))
 
 
 def test_selection_trigger(f):
@@ -115,6 +128,9 @@ def test_selection_trigger(f):
                for kw in owns)                                     # 角落鏡像隨選角轉讓
     caps = _effs(sel, 'change_object_caption')
     assert any(kw['selected_object_ids'] == [0] for kw in caps)               # 清職業名字幕
+    # 第1命旗(50,239)：locref 家族選路起點
+    assert any(kw.get('object_list_unit_id') == 720 and kw.get('location_x') == 50
+               for kw in _effs(sel, 'create_object'))
     deacts = {kw['trigger_id'] for kw in _effs(sel, 'deactivate_trigger')}
     assert out.select[(1, 1)] in deacts and out.select[(2, 2)] in deacts      # 互斥
     acts = {kw['trigger_id'] for kw in _effs(sel, 'activate_trigger')}

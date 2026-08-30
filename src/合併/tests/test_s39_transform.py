@@ -2,9 +2,15 @@
 """T7: s39 接線改造引擎——矩陣複製/玩家欄改寫/內部重指/啟動表、
 ref 追加（僅可追加型）、OR 展開（單條件；多條件退每命複製）、locref 逐命複製。
 執行順序契約：build_matrix 先跑，append/expand/dup 全表掃描（含變體）。"""
-from steps.s39_revive import (append_life_refs, expand_conditions, dup_locref, build_matrix)
+import pytest
+from steps.base import BuildError
+from steps.s39_revive import (append_life_refs, expand_conditions, dup_locref,
+                              fanout_family_edges, build_matrix)
 
 LIFE = {1: [0, 900, 901], 2: [1, 910, 911], 6: [45117, 960, 961]}
+CELLS = {1: [(50, 239), (51, 239), (52, 239)],
+         2: [(50, 238), (51, 238), (52, 238)],
+         6: [(50, 234), (51, 234), (52, 234)]}
 
 
 # ---------- append_life_refs ----------
@@ -73,19 +79,49 @@ def test_death_linked_not_expanded(f):
     assert len(t.conditions) == 1 and dups == {}
 
 
-# ---------- dup_locref ----------
+# ---------- dup_locref（家族狀態一致＋命旗選路）----------
 
-def test_dup_locref_per_life_gated(f):
-    t = f.trig(effects=[f.eff_task(sel=[555], sp=1, locref=0)], enabled=True)
+def test_dup_locref_flag_routing_and_enabled_inherit(f):
+    t = f.trig(effects=[f.eff_task(sel=[555], sp=1, locref=0)], enabled=False)
     tm = f.tm([t])
-    changes, gates = dup_locref(tm, LIFE)
-    # 原觸發＝L1 拷貝（保持 enabled），L2/L3 副本 disabled 等鏈啟用
-    assert gates[(1, 1)] == [t.trigger_id]
+    changes, fams = dup_locref(tm, LIFE, CELLS)
+    fam = fams[t.trigger_id]
+    assert fam[1] == t.trigger_id
     for L in (2, 3):
-        vid = gates[(1, L)][0]
-        v = tm.triggers_by_id[vid]
+        v = tm.triggers_by_id[fam[L]]
         assert v.effects[0].location_object_reference == LIFE[1][L - 1]
-        assert v.enabled == 0
+        assert v.enabled == t.enabled          # 繼承（休眠者不得被強行打開）
+        conds = [kw for n, kw in v.new_condition.calls if n == 'objects_in_area']
+        assert conds[0]['object_list'] == 720 and conds[0]['source_player'] == 0
+        assert (conds[0]['area_x1'], conds[0]['area_y1']) == CELLS[1][L - 1]
+    # 原觸發（＝第1命）也掛第1命旗條件
+    c0 = [kw for n, kw in t.new_condition.calls if n == 'objects_in_area']
+    assert (c0[0]['area_x1'], c0[0]['area_y1']) == CELLS[1][0]
+
+
+def test_dup_locref_or_condition_raises(f):
+    or_node = f.cond_timer(0)
+    or_node.condition_type = 29
+    t = f.trig(conds=[f.cond_timer(1), or_node, f.cond_timer(2)],
+               effects=[f.eff_task(sel=[555], sp=1, locref=0)])
+    with pytest.raises(BuildError):
+        dup_locref(f.tm([t]), LIFE, CELLS)
+
+
+def test_fanout_family_edges_external_and_self(f):
+    a = f.trig(effects=[f.eff_deactivate(None)], enabled=False)   # 佔位改自指
+    a.effects[0].trigger_id = a.trigger_id                        # 自我停用型
+    ext = f.trig(effects=[f.eff_activate(a.trigger_id)])
+    tm = f.tm([a, ext])
+    v2 = tm.copy_trigger(a.trigger_id, append_after_source=False, add_suffix=False)
+    fanout_family_edges(tm, {a.trigger_id: {1: a.trigger_id, 2: v2.trigger_id}})
+    # 外部啟動邊扇出到副本
+    acts = [kw['trigger_id'] for n, kw in ext.new_effect.calls if n == 'activate_trigger']
+    assert acts == [v2.trigger_id]
+    # 原觸發自我停用 → 追加停用副本；副本（效果仍指原觸發）→ 追加停用自己
+    da = [kw['trigger_id'] for n, kw in a.new_effect.calls if n == 'deactivate_trigger']
+    dv = [kw['trigger_id'] for n, kw in v2.new_effect.calls if n == 'deactivate_trigger']
+    assert da == [v2.trigger_id] and dv == [v2.trigger_id]
 
 
 # ---------- build_matrix ----------

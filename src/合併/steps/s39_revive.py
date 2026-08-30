@@ -118,11 +118,15 @@ def expand_conditions(tm, life_refs, death_linked, use_or=True):
     return changes, dups
 
 
-def dup_locref(tm, life_refs):
-    """locref 效果逐命複製：原觸發=第1命拷貝（enabled 照舊），
-    第 L 命副本 disabled 等復活鏈啟用。回傳 (changes, gates={(cid,L): [tid]})。"""
+def dup_locref(tm, life_refs, life_cells):
+    """locref 效果逐命複製（家族狀態一致模型，2026-08-30 修正銀龍/神弓越權啟動）：
+    副本繼承原觸發 enabled；每份（含原觸發＝第1命）加「當前命旗」條件
+    objects_in_area(Gaia 720 @ life_cells[cid][L-1])，由旗標選路——啟停狀態
+    交由 fanout_family_edges 使家族與原觸發永遠一致，復活鏈不再直接啟停副本
+    （舊設計會把休眠中的擂台/任務觸發強行打開）。
+    life_cells={cid: [(x,y)×lives]}。回傳 (changes, families={orig_tid: {L: tid}})。"""
     prim = _primary_ref2cid(life_refs)
-    changes, gates = [], {}
+    changes, families = [], {}
     for t in list(tm.triggers):
         locs = [(ei, prim[getattr(e, 'location_object_reference', -1)])
                 for ei, e in enumerate(t.effects)
@@ -133,17 +137,58 @@ def dup_locref(tm, life_refs):
         if len(cids) > 1:
             raise BuildError(f'缺裁決：T{t.trigger_id} locref 綁多職業 {sorted(cids)}')
         cid = cids.pop()
-        gates.setdefault((cid, 1), []).append(t.trigger_id)
+        if any(getattr(c, 'condition_type', None) == 29 for c in t.conditions):
+            raise BuildError(f'缺裁決：locref T{t.trigger_id} 條件含 OR 節點，'
+                             f'尾插命旗條件的分組語意未實證——需人工裁決')
+        fam = {1: t.trigger_id}
         for L in range(2, len(life_refs[cid]) + 1):
             v = tm.copy_trigger(t.trigger_id, append_after_source=False, add_suffix=False)
             v.name = f'{t.name}◇命{L}'
-            v.enabled = 0
             for ei, _ in locs:
                 v.effects[ei].location_object_reference = life_refs[cid][L - 1]
-            gates.setdefault((cid, L), []).append(v.trigger_id)
+            fam[L] = v.trigger_id
             changes.append(Change('s39', 'trigger_add', f'T{t.trigger_id}→命{L}',
                                   'trigger', '', f'T{v.trigger_id}', 'locref 每命複製'))
-    return changes, gates
+        for L, tid in fam.items():
+            cell = life_cells[cid][L - 1]
+            trig_by_id(tm, tid).new_condition.objects_in_area(
+                quantity=1, source_player=0, object_list=FLAG_CONST,
+                area_x1=cell[0], area_y1=cell[1], area_x2=cell[0], area_y2=cell[1])
+            changes.append(Change('s39', 'cond_add', f'T{tid}', 'life_flag',
+                                  '', f'{cell}', f'職業{cid}命{L}旗選路'))
+        families[t.trigger_id] = fam
+    return changes, families
+
+
+def fanout_family_edges(tm, families):
+    """家族啟停狀態一致化：全表掃描 8/9 效果，凡指向家族任一成員者，
+    追加同型效果指向家族其餘成員——任何啟動/停用一律及於全家族，
+    「哪一份實際生效」交給各副本的命旗（或命 ref）條件。
+    families={orig_tid: {L: tid}}。回傳 changes。"""
+    member2fam = {}
+    for fam in families.values():
+        members = tuple(sorted(fam.values()))
+        for tid in members:
+            member2fam[tid] = members
+    changes = []
+    for t in list(tm.triggers):
+        adds = []
+        for e in list(t.effects):
+            et = getattr(e, 'effect_type', None)
+            if et in (8, 9) and getattr(e, 'trigger_id', -1) in member2fam:
+                others = [x for x in member2fam[e.trigger_id] if x != e.trigger_id]
+                if others:
+                    adds.append((et, others))
+        for et, others in adds:
+            for x in others:
+                if et == 8:
+                    t.new_effect.activate_trigger(trigger_id=x)
+                else:
+                    t.new_effect.deactivate_trigger(trigger_id=x)
+        if adds:
+            changes.append(Change('s39', 'eff_append', f'T{t.trigger_id}', '啟停扇出',
+                                  '', f'+{sum(len(o) for _, o in adds)}', '家族狀態一致化'))
+    return changes
 
 
 def build_matrix(tm, matrix_sets):
@@ -218,10 +263,14 @@ def run_revive(ctx):
         mu = by_ref.get(mount_refs[cid])
         if mu is None:
             raise BuildError(f'缺裁決：職業{cid} 預置馬騎 ref{mount_refs[cid]} 不存在')
+        life_xs = cells.get('life_xs')
+        if not life_xs or len(life_xs) < rspec.lives:
+            raise BuildError(f'缺裁決：cells.life_xs 不足 lives={rspec.lives} 欄')
         mount[cid] = dict(mount_ref=mount_refs[cid], mount_const=mu.unit_const,
                           flag_cell=(221, row),
                           rebirth_cell=(int(cells['rebirth_x']), row),
                           final_cell=(int(cells['final_x']), row),
+                          life_cells=[(int(x), row) for x in life_xs[:rspec.lives]],
                           pool_cells=[(int(x), row) for x in cells['pool_xs']])
 
     retired_all = set(rspec.retired) | {int(x) for x in (params.get('retired_extra') or [])}
@@ -275,22 +324,16 @@ def run_revive(ctx):
     for orig, m in dups.items():
         if orig in el_index:
             el[el_index[orig]] += list(m.values())
-    lch, gates = dup_locref(tm, life_refs)
+    lch, loc_fams = dup_locref(tm, life_refs,
+                               {cid: mount[cid]['life_cells'] for cid in range(1, 7)})
     changes += lch
+    # 家族狀態一致化（locref 命旗選路 + 多ref條件每命副本）：
+    # 副本啟停永遠跟隨原觸發，復活鏈不再直接啟停副本（防休眠越權啟動）。
+    dup_fams = {orig: {**{1: orig}, **m} for orig, m in dups.items()}
+    changes += fanout_family_edges(tm, {**loc_fams, **dup_fams})
 
-    # ---- 掛勾（連動 + locref 逐命閘）----
-    hooks = {}
-    for key, hk in dl.hooks.items():
-        hooks[key] = dict(hk)
-    for cid in range(1, 7):
-        for s in slots:
-            hk = hooks.setdefault((cid, s), {})
-            act_L, deact_L = {}, {}
-            for L in range(1, rspec.lives):
-                act_L[L] = list(gates.get((cid, L + 1), []))
-                deact_L[L] = list(gates.get((cid, L), []))
-            hk['timer_activate_L'] = act_L
-            hk['timer_deactivate_L'] = deact_L
+    # ---- 掛勾（死亡連動）----
+    hooks = {key: dict(hk) for key, hk in dl.hooks.items()}
 
     # ---- 復活鏈 → 上馬改造 → 補池 ----
     chains = build_chains(tm, dict(
@@ -307,6 +350,22 @@ def run_revive(ctx):
                        final=chains.final, horse=chains.horse,
                        retired=retired_all, lives=rspec.lives)
     changes += mo.changes
+
+    # ---- 防衛：復活鏈死亡路徑不得啟停 locref 家族（休眠越權即 BuildError）----
+    loc_members = {tid for fam in loc_fams.values() for tid in fam.values()}
+    for kind, table in (('watch', chains.watch), ('timer', chains.timer),
+                        ('final', chains.final), ('horse', chains.horse)):
+        for key, tid in table.items():
+            t = trig_by_id(tm, tid)
+            hits = [getattr(e, 'trigger_id', -1) for e in t.effects
+                    if getattr(e, 'effect_type', None) in (8, 9)
+                    and getattr(e, 'trigger_id', -1) in loc_members]
+            hits += [kw.get('trigger_id') for n, kw in t.new_effect.calls
+                     if n in ('activate_trigger', 'deactivate_trigger')
+                     and kw.get('trigger_id') in loc_members] \
+                if hasattr(t.new_effect, 'calls') else []
+            if hits:
+                raise BuildError(f'越權啟動：復活鏈 {kind}{key} T{tid} 觸碰 locref 家族 {hits}')
 
     # ---- 轉生旗＋退役斷邊＋踢人整備 ----
     fmap, fch = build_rebirth_flag_triggers(tm, mount)

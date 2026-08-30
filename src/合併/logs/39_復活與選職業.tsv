@@ -33922,112 +33922,693 @@ s39	cond_or	T30004C0	unit_object	45117	OR×3	跨命展開
 s39	cond_or	T30010C0	unit_object	45117	OR×3	跨命展開
 s39	trigger_add	T1527→命2	trigger		T30256	locref 每命複製
 s39	trigger_add	T1527→命3	trigger		T30257	locref 每命複製
+s39	cond_add	T1527	life_flag		(232, 239)	職業1命1旗選路
+s39	cond_add	T30256	life_flag		(231, 239)	職業1命2旗選路
+s39	cond_add	T30257	life_flag		(230, 239)	職業1命3旗選路
 s39	trigger_add	T1528→命2	trigger		T30258	locref 每命複製
 s39	trigger_add	T1528→命3	trigger		T30259	locref 每命複製
+s39	cond_add	T1528	life_flag		(232, 238)	職業2命1旗選路
+s39	cond_add	T30258	life_flag		(231, 238)	職業2命2旗選路
+s39	cond_add	T30259	life_flag		(230, 238)	職業2命3旗選路
 s39	trigger_add	T1529→命2	trigger		T30260	locref 每命複製
 s39	trigger_add	T1529→命3	trigger		T30261	locref 每命複製
+s39	cond_add	T1529	life_flag		(232, 237)	職業3命1旗選路
+s39	cond_add	T30260	life_flag		(231, 237)	職業3命2旗選路
+s39	cond_add	T30261	life_flag		(230, 237)	職業3命3旗選路
 s39	trigger_add	T1530→命2	trigger		T30262	locref 每命複製
 s39	trigger_add	T1530→命3	trigger		T30263	locref 每命複製
+s39	cond_add	T1530	life_flag		(232, 236)	職業4命1旗選路
+s39	cond_add	T30262	life_flag		(231, 236)	職業4命2旗選路
+s39	cond_add	T30263	life_flag		(230, 236)	職業4命3旗選路
 s39	trigger_add	T1531→命2	trigger		T30264	locref 每命複製
 s39	trigger_add	T1531→命3	trigger		T30265	locref 每命複製
+s39	cond_add	T1531	life_flag		(232, 235)	職業5命1旗選路
+s39	cond_add	T30264	life_flag		(231, 235)	職業5命2旗選路
+s39	cond_add	T30265	life_flag		(230, 235)	職業5命3旗選路
 s39	trigger_add	T1532→命2	trigger		T30266	locref 每命複製
 s39	trigger_add	T1532→命3	trigger		T30267	locref 每命複製
+s39	cond_add	T1532	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30266	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30267	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T4075→命2	trigger		T30268	locref 每命複製
 s39	trigger_add	T4075→命3	trigger		T30269	locref 每命複製
+s39	cond_add	T4075	life_flag		(232, 238)	職業2命1旗選路
+s39	cond_add	T30268	life_flag		(231, 238)	職業2命2旗選路
+s39	cond_add	T30269	life_flag		(230, 238)	職業2命3旗選路
 s39	trigger_add	T4078→命2	trigger		T30270	locref 每命複製
 s39	trigger_add	T4078→命3	trigger		T30271	locref 每命複製
+s39	cond_add	T4078	life_flag		(232, 235)	職業5命1旗選路
+s39	cond_add	T30270	life_flag		(231, 235)	職業5命2旗選路
+s39	cond_add	T30271	life_flag		(230, 235)	職業5命3旗選路
 s39	trigger_add	T5040→命2	trigger		T30272	locref 每命複製
 s39	trigger_add	T5040→命3	trigger		T30273	locref 每命複製
+s39	cond_add	T5040	life_flag		(232, 239)	職業1命1旗選路
+s39	cond_add	T30272	life_flag		(231, 239)	職業1命2旗選路
+s39	cond_add	T30273	life_flag		(230, 239)	職業1命3旗選路
 s39	trigger_add	T5042→命2	trigger		T30274	locref 每命複製
 s39	trigger_add	T5042→命3	trigger		T30275	locref 每命複製
+s39	cond_add	T5042	life_flag		(232, 238)	職業2命1旗選路
+s39	cond_add	T30274	life_flag		(231, 238)	職業2命2旗選路
+s39	cond_add	T30275	life_flag		(230, 238)	職業2命3旗選路
 s39	trigger_add	T5044→命2	trigger		T30276	locref 每命複製
 s39	trigger_add	T5044→命3	trigger		T30277	locref 每命複製
+s39	cond_add	T5044	life_flag		(232, 237)	職業3命1旗選路
+s39	cond_add	T30276	life_flag		(231, 237)	職業3命2旗選路
+s39	cond_add	T30277	life_flag		(230, 237)	職業3命3旗選路
 s39	trigger_add	T5046→命2	trigger		T30278	locref 每命複製
 s39	trigger_add	T5046→命3	trigger		T30279	locref 每命複製
+s39	cond_add	T5046	life_flag		(232, 236)	職業4命1旗選路
+s39	cond_add	T30278	life_flag		(231, 236)	職業4命2旗選路
+s39	cond_add	T30279	life_flag		(230, 236)	職業4命3旗選路
 s39	trigger_add	T5048→命2	trigger		T30280	locref 每命複製
 s39	trigger_add	T5048→命3	trigger		T30281	locref 每命複製
+s39	cond_add	T5048	life_flag		(232, 235)	職業5命1旗選路
+s39	cond_add	T30280	life_flag		(231, 235)	職業5命2旗選路
+s39	cond_add	T30281	life_flag		(230, 235)	職業5命3旗選路
 s39	trigger_add	T5274→命2	trigger		T30282	locref 每命複製
 s39	trigger_add	T5274→命3	trigger		T30283	locref 每命複製
+s39	cond_add	T5274	life_flag		(232, 239)	職業1命1旗選路
+s39	cond_add	T30282	life_flag		(231, 239)	職業1命2旗選路
+s39	cond_add	T30283	life_flag		(230, 239)	職業1命3旗選路
 s39	trigger_add	T5277→命2	trigger		T30284	locref 每命複製
 s39	trigger_add	T5277→命3	trigger		T30285	locref 每命複製
+s39	cond_add	T5277	life_flag		(232, 238)	職業2命1旗選路
+s39	cond_add	T30284	life_flag		(231, 238)	職業2命2旗選路
+s39	cond_add	T30285	life_flag		(230, 238)	職業2命3旗選路
 s39	trigger_add	T5280→命2	trigger		T30286	locref 每命複製
 s39	trigger_add	T5280→命3	trigger		T30287	locref 每命複製
+s39	cond_add	T5280	life_flag		(232, 237)	職業3命1旗選路
+s39	cond_add	T30286	life_flag		(231, 237)	職業3命2旗選路
+s39	cond_add	T30287	life_flag		(230, 237)	職業3命3旗選路
 s39	trigger_add	T5283→命2	trigger		T30288	locref 每命複製
 s39	trigger_add	T5283→命3	trigger		T30289	locref 每命複製
+s39	cond_add	T5283	life_flag		(232, 236)	職業4命1旗選路
+s39	cond_add	T30288	life_flag		(231, 236)	職業4命2旗選路
+s39	cond_add	T30289	life_flag		(230, 236)	職業4命3旗選路
 s39	trigger_add	T5286→命2	trigger		T30290	locref 每命複製
 s39	trigger_add	T5286→命3	trigger		T30291	locref 每命複製
+s39	cond_add	T5286	life_flag		(232, 235)	職業5命1旗選路
+s39	cond_add	T30290	life_flag		(231, 235)	職業5命2旗選路
+s39	cond_add	T30291	life_flag		(230, 235)	職業5命3旗選路
 s39	trigger_add	T5289→命2	trigger		T30292	locref 每命複製
 s39	trigger_add	T5289→命3	trigger		T30293	locref 每命複製
+s39	cond_add	T5289	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30292	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30293	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T6633→命2	trigger		T30294	locref 每命複製
 s39	trigger_add	T6633→命3	trigger		T30295	locref 每命複製
+s39	cond_add	T6633	life_flag		(232, 239)	職業1命1旗選路
+s39	cond_add	T30294	life_flag		(231, 239)	職業1命2旗選路
+s39	cond_add	T30295	life_flag		(230, 239)	職業1命3旗選路
 s39	trigger_add	T7434→命2	trigger		T30296	locref 每命複製
 s39	trigger_add	T7434→命3	trigger		T30297	locref 每命複製
+s39	cond_add	T7434	life_flag		(232, 239)	職業1命1旗選路
+s39	cond_add	T30296	life_flag		(231, 239)	職業1命2旗選路
+s39	cond_add	T30297	life_flag		(230, 239)	職業1命3旗選路
 s39	trigger_add	T8235→命2	trigger		T30298	locref 每命複製
 s39	trigger_add	T8235→命3	trigger		T30299	locref 每命複製
+s39	cond_add	T8235	life_flag		(232, 239)	職業1命1旗選路
+s39	cond_add	T30298	life_flag		(231, 239)	職業1命2旗選路
+s39	cond_add	T30299	life_flag		(230, 239)	職業1命3旗選路
 s39	trigger_add	T9036→命2	trigger		T30300	locref 每命複製
 s39	trigger_add	T9036→命3	trigger		T30301	locref 每命複製
+s39	cond_add	T9036	life_flag		(232, 239)	職業1命1旗選路
+s39	cond_add	T30300	life_flag		(231, 239)	職業1命2旗選路
+s39	cond_add	T30301	life_flag		(230, 239)	職業1命3旗選路
 s39	trigger_add	T9837→命2	trigger		T30302	locref 每命複製
 s39	trigger_add	T9837→命3	trigger		T30303	locref 每命複製
+s39	cond_add	T9837	life_flag		(232, 239)	職業1命1旗選路
+s39	cond_add	T30302	life_flag		(231, 239)	職業1命2旗選路
+s39	cond_add	T30303	life_flag		(230, 239)	職業1命3旗選路
 s39	trigger_add	T10643→命2	trigger		T30304	locref 每命複製
 s39	trigger_add	T10643→命3	trigger		T30305	locref 每命複製
+s39	cond_add	T10643	life_flag		(232, 238)	職業2命1旗選路
+s39	cond_add	T30304	life_flag		(231, 238)	職業2命2旗選路
+s39	cond_add	T30305	life_flag		(230, 238)	職業2命3旗選路
 s39	trigger_add	T11452→命2	trigger		T30306	locref 每命複製
 s39	trigger_add	T11452→命3	trigger		T30307	locref 每命複製
+s39	cond_add	T11452	life_flag		(232, 238)	職業2命1旗選路
+s39	cond_add	T30306	life_flag		(231, 238)	職業2命2旗選路
+s39	cond_add	T30307	life_flag		(230, 238)	職業2命3旗選路
 s39	trigger_add	T12261→命2	trigger		T30308	locref 每命複製
 s39	trigger_add	T12261→命3	trigger		T30309	locref 每命複製
+s39	cond_add	T12261	life_flag		(232, 238)	職業2命1旗選路
+s39	cond_add	T30308	life_flag		(231, 238)	職業2命2旗選路
+s39	cond_add	T30309	life_flag		(230, 238)	職業2命3旗選路
 s39	trigger_add	T13070→命2	trigger		T30310	locref 每命複製
 s39	trigger_add	T13070→命3	trigger		T30311	locref 每命複製
+s39	cond_add	T13070	life_flag		(232, 238)	職業2命1旗選路
+s39	cond_add	T30310	life_flag		(231, 238)	職業2命2旗選路
+s39	cond_add	T30311	life_flag		(230, 238)	職業2命3旗選路
 s39	trigger_add	T13879→命2	trigger		T30312	locref 每命複製
 s39	trigger_add	T13879→命3	trigger		T30313	locref 每命複製
+s39	cond_add	T13879	life_flag		(232, 238)	職業2命1旗選路
+s39	cond_add	T30312	life_flag		(231, 238)	職業2命2旗選路
+s39	cond_add	T30313	life_flag		(230, 238)	職業2命3旗選路
 s39	trigger_add	T14677→命2	trigger		T30314	locref 每命複製
 s39	trigger_add	T14677→命3	trigger		T30315	locref 每命複製
+s39	cond_add	T14677	life_flag		(232, 237)	職業3命1旗選路
+s39	cond_add	T30314	life_flag		(231, 237)	職業3命2旗選路
+s39	cond_add	T30315	life_flag		(230, 237)	職業3命3旗選路
 s39	trigger_add	T15471→命2	trigger		T30316	locref 每命複製
 s39	trigger_add	T15471→命3	trigger		T30317	locref 每命複製
+s39	cond_add	T15471	life_flag		(232, 237)	職業3命1旗選路
+s39	cond_add	T30316	life_flag		(231, 237)	職業3命2旗選路
+s39	cond_add	T30317	life_flag		(230, 237)	職業3命3旗選路
 s39	trigger_add	T16265→命2	trigger		T30318	locref 每命複製
 s39	trigger_add	T16265→命3	trigger		T30319	locref 每命複製
+s39	cond_add	T16265	life_flag		(232, 237)	職業3命1旗選路
+s39	cond_add	T30318	life_flag		(231, 237)	職業3命2旗選路
+s39	cond_add	T30319	life_flag		(230, 237)	職業3命3旗選路
 s39	trigger_add	T17059→命2	trigger		T30320	locref 每命複製
 s39	trigger_add	T17059→命3	trigger		T30321	locref 每命複製
+s39	cond_add	T17059	life_flag		(232, 237)	職業3命1旗選路
+s39	cond_add	T30320	life_flag		(231, 237)	職業3命2旗選路
+s39	cond_add	T30321	life_flag		(230, 237)	職業3命3旗選路
 s39	trigger_add	T17853→命2	trigger		T30322	locref 每命複製
 s39	trigger_add	T17853→命3	trigger		T30323	locref 每命複製
+s39	cond_add	T17853	life_flag		(232, 237)	職業3命1旗選路
+s39	cond_add	T30322	life_flag		(231, 237)	職業3命2旗選路
+s39	cond_add	T30323	life_flag		(230, 237)	職業3命3旗選路
 s39	trigger_add	T18654→命2	trigger		T30324	locref 每命複製
 s39	trigger_add	T18654→命3	trigger		T30325	locref 每命複製
+s39	cond_add	T18654	life_flag		(232, 236)	職業4命1旗選路
+s39	cond_add	T30324	life_flag		(231, 236)	職業4命2旗選路
+s39	cond_add	T30325	life_flag		(230, 236)	職業4命3旗選路
 s39	trigger_add	T19457→命2	trigger		T30326	locref 每命複製
 s39	trigger_add	T19457→命3	trigger		T30327	locref 每命複製
+s39	cond_add	T19457	life_flag		(232, 236)	職業4命1旗選路
+s39	cond_add	T30326	life_flag		(231, 236)	職業4命2旗選路
+s39	cond_add	T30327	life_flag		(230, 236)	職業4命3旗選路
 s39	trigger_add	T20260→命2	trigger		T30328	locref 每命複製
 s39	trigger_add	T20260→命3	trigger		T30329	locref 每命複製
+s39	cond_add	T20260	life_flag		(232, 236)	職業4命1旗選路
+s39	cond_add	T30328	life_flag		(231, 236)	職業4命2旗選路
+s39	cond_add	T30329	life_flag		(230, 236)	職業4命3旗選路
 s39	trigger_add	T21063→命2	trigger		T30330	locref 每命複製
 s39	trigger_add	T21063→命3	trigger		T30331	locref 每命複製
+s39	cond_add	T21063	life_flag		(232, 236)	職業4命1旗選路
+s39	cond_add	T30330	life_flag		(231, 236)	職業4命2旗選路
+s39	cond_add	T30331	life_flag		(230, 236)	職業4命3旗選路
 s39	trigger_add	T21866→命2	trigger		T30332	locref 每命複製
 s39	trigger_add	T21866→命3	trigger		T30333	locref 每命複製
+s39	cond_add	T21866	life_flag		(232, 236)	職業4命1旗選路
+s39	cond_add	T30332	life_flag		(231, 236)	職業4命2旗選路
+s39	cond_add	T30333	life_flag		(230, 236)	職業4命3旗選路
 s39	trigger_add	T22664→命2	trigger		T30334	locref 每命複製
 s39	trigger_add	T22664→命3	trigger		T30335	locref 每命複製
+s39	cond_add	T22664	life_flag		(232, 235)	職業5命1旗選路
+s39	cond_add	T30334	life_flag		(231, 235)	職業5命2旗選路
+s39	cond_add	T30335	life_flag		(230, 235)	職業5命3旗選路
 s39	trigger_add	T23462→命2	trigger		T30336	locref 每命複製
 s39	trigger_add	T23462→命3	trigger		T30337	locref 每命複製
+s39	cond_add	T23462	life_flag		(232, 235)	職業5命1旗選路
+s39	cond_add	T30336	life_flag		(231, 235)	職業5命2旗選路
+s39	cond_add	T30337	life_flag		(230, 235)	職業5命3旗選路
 s39	trigger_add	T24260→命2	trigger		T30338	locref 每命複製
 s39	trigger_add	T24260→命3	trigger		T30339	locref 每命複製
+s39	cond_add	T24260	life_flag		(232, 235)	職業5命1旗選路
+s39	cond_add	T30338	life_flag		(231, 235)	職業5命2旗選路
+s39	cond_add	T30339	life_flag		(230, 235)	職業5命3旗選路
 s39	trigger_add	T25058→命2	trigger		T30340	locref 每命複製
 s39	trigger_add	T25058→命3	trigger		T30341	locref 每命複製
+s39	cond_add	T25058	life_flag		(232, 235)	職業5命1旗選路
+s39	cond_add	T30340	life_flag		(231, 235)	職業5命2旗選路
+s39	cond_add	T30341	life_flag		(230, 235)	職業5命3旗選路
 s39	trigger_add	T25856→命2	trigger		T30342	locref 每命複製
 s39	trigger_add	T25856→命3	trigger		T30343	locref 每命複製
+s39	cond_add	T25856	life_flag		(232, 235)	職業5命1旗選路
+s39	cond_add	T30342	life_flag		(231, 235)	職業5命2旗選路
+s39	cond_add	T30343	life_flag		(230, 235)	職業5命3旗選路
 s39	trigger_add	T26133→命2	trigger		T30344	locref 每命複製
 s39	trigger_add	T26133→命3	trigger		T30345	locref 每命複製
+s39	cond_add	T26133	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30344	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30345	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T26680→命2	trigger		T30346	locref 每命複製
 s39	trigger_add	T26680→命3	trigger		T30347	locref 每命複製
+s39	cond_add	T26680	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30346	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30347	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T26958→命2	trigger		T30348	locref 每命複製
 s39	trigger_add	T26958→命3	trigger		T30349	locref 每命複製
+s39	cond_add	T26958	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30348	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30349	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T27505→命2	trigger		T30350	locref 每命複製
 s39	trigger_add	T27505→命3	trigger		T30351	locref 每命複製
+s39	cond_add	T27505	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30350	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30351	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T27783→命2	trigger		T30352	locref 每命複製
 s39	trigger_add	T27783→命3	trigger		T30353	locref 每命複製
+s39	cond_add	T27783	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30352	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30353	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T28330→命2	trigger		T30354	locref 每命複製
 s39	trigger_add	T28330→命3	trigger		T30355	locref 每命複製
+s39	cond_add	T28330	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30354	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30355	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T28608→命2	trigger		T30356	locref 每命複製
 s39	trigger_add	T28608→命3	trigger		T30357	locref 每命複製
+s39	cond_add	T28608	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30356	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30357	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T29155→命2	trigger		T30358	locref 每命複製
 s39	trigger_add	T29155→命3	trigger		T30359	locref 每命複製
+s39	cond_add	T29155	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30358	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30359	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T29433→命2	trigger		T30360	locref 每命複製
 s39	trigger_add	T29433→命3	trigger		T30361	locref 每命複製
+s39	cond_add	T29433	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30360	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30361	life_flag		(230, 234)	職業6命3旗選路
 s39	trigger_add	T29980→命2	trigger		T30362	locref 每命複製
 s39	trigger_add	T29980→命3	trigger		T30363	locref 每命複製
+s39	cond_add	T29980	life_flag		(232, 234)	職業6命1旗選路
+s39	cond_add	T30362	life_flag		(231, 234)	職業6命2旗選路
+s39	cond_add	T30363	life_flag		(230, 234)	職業6命3旗選路
+s39	eff_append	T1548	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T1553	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T1558	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T1563	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T1568	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T1573	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T1943	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4074	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4076	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4077	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4079	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4896	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4898	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4900	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4902	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4904	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T4906	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5000	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5004	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5008	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5012	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5016	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5024	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5026	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5028	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5030	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5032	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5051	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5052	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5053	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5054	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5055	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5273	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5274	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T5276	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5277	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T5279	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5280	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T5282	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5283	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T5285	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5286	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T5288	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5289	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T5302	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5303	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5304	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5305	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5306	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5307	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5308	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5309	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5310	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5311	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5312	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T5313	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T6114	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T6602	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T6604	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T6632	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T6633	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T6636	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T6637	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T6915	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T7403	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T7405	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T7433	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T7434	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T7437	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T7438	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T7716	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T8204	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T8206	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T8234	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T8235	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T8238	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T8239	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T8517	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9005	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9007	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9035	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9036	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T9039	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9040	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9318	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9806	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9808	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9836	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9837	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T9840	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T9841	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T10118	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T10488	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T10489	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T10610	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T10612	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T10642	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T10643	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T10646	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T10647	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T10927	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T11297	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T11298	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T11419	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T11421	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T11451	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T11452	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T11455	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T11456	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T11736	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12106	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12107	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12228	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12230	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12260	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12261	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T12264	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12265	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12545	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12915	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T12916	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13037	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13039	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13069	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13070	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T13073	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13074	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13354	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13724	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13725	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13846	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13848	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13878	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13879	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T13882	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T13883	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T14163	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T14644	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T14646	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T14676	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T14677	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T14680	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T14681	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T14957	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T15438	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T15440	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T15470	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T15471	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T15474	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T15475	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T15751	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T16232	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T16234	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T16264	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T16265	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T16268	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T16269	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T16545	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17026	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17028	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17058	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17059	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T17062	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17063	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17339	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17820	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17822	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17852	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17853	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T17856	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T17857	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T18133	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T18620	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T18622	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T18653	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T18654	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T18657	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T18658	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T18936	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T19423	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T19425	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T19456	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T19457	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T19460	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T19461	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T19739	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T20226	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T20228	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T20259	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T20260	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T20263	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T20264	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T20542	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T21029	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T21031	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T21062	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T21063	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T21066	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T21067	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T21345	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T21832	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T21834	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T21865	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T21866	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T21869	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T21870	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T22148	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T22519	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T22520	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T22631	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T22633	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T22663	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T22664	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T22667	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T22668	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T22946	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T23317	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T23318	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T23429	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T23431	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T23461	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T23462	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T23465	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T23466	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T23744	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T24115	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T24116	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T24227	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T24229	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T24259	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T24260	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T24263	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T24264	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T24542	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T24913	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T24914	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25025	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25027	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25057	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T25058	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T25061	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25062	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25340	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25711	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25712	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25823	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25825	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25855	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T25856	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T25859	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T25860	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T26139	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T26197	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T26679	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T26680	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T26683	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T26684	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T26964	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T27022	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T27504	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T27505	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T27508	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T27509	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T27789	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T27847	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T28329	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T28330	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T28333	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T28334	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T28614	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T28672	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T29154	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T29155	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T29158	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T29159	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T29439	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T29497	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T29979	啟停扇出		+4	家族狀態一致化
+s39	eff_append	T29980	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T29983	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T29984	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30094	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30095	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30096	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30097	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30098	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30099	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30100	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30101	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30102	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30103	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30104	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30105	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30106	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30107	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30108	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30109	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30110	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30111	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30112	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30113	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30114	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30115	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30116	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30117	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30118	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30119	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30120	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30121	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30122	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30123	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30124	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30125	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30126	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30127	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30128	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30129	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30198	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30199	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30202	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30203	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30206	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30207	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30210	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30211	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30214	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30215	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30218	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30219	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30222	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30223	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30226	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30227	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30230	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30231	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30234	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30235	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30238	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30239	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30242	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30243	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30246	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30247	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30250	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30251	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30254	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30255	啟停扇出		+2	家族狀態一致化
+s39	eff_append	T30282	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30283	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30284	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30285	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30286	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30287	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30288	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30289	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30290	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30291	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30292	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30293	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30294	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30295	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30296	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30297	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30298	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30299	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30300	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30301	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30302	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30303	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30304	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30305	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30306	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30307	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30308	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30309	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30310	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30311	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30312	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30313	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30314	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30315	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30316	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30317	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30318	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30319	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30320	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30321	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30322	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30323	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30324	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30325	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30326	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30327	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30328	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30329	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30330	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30331	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30332	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30333	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30334	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30335	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30336	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30337	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30338	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30339	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30340	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30341	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30342	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30343	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30346	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30347	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30350	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30351	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30354	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30355	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30358	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30359	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30362	啟停扇出		+10	家族狀態一致化
+s39	eff_append	T30363	啟停扇出		+10	家族狀態一致化
 s39	trigger_add	命盡1位1	trigger		T30364	復活鏈
 s39	trigger_add	訊1位1終步	trigger		T30365	死亡訊息三態
 s39	trigger_add	訊1位1終俠	trigger		T30366	死亡訊息三態
