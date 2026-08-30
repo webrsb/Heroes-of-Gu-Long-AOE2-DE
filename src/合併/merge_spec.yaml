@@ -255,6 +255,15 @@ params:
     - {tid: 5340, name: 小哈5, const: 165, display: 賓周幫幫眾, lv: null}
     - {tid: 5372, name: 非魂, const: 424, display: 非魂, lv: null}
     - {tid: 4788, name: 遊俠, const: 773, display: 赤武, lv: 66}   # 使用者裁決：生成征服者＝赤武
+    # ---- B 類區間等級（2026-08-30 裁決：照排名表區間原文；80~10 正規化為 10~80）----
+    - {tid: 2723, name: 飛鵬幫先鋒, const: 195, display: 飛鵬幫先鋒, lv: '90~100'}
+    - {tid: 2725, name: 飛鵬幫刀組, const: 474, display: 飛鵬幫刀組, lv: '81~100'}
+    - {tid: 3853, name: 渦怪, const: 426, display: 渦怪洛洛普, lv: '10~100'}
+    - {tid: 3854, name: 渦怪手下, const: 171, display: 渦怪洛洛普手下, lv: '10~80'}
+    - {tid: 4785, name: 紅衣, const: 171, display: 渦怪洛洛普手下, lv: '10~80'}
+    - {tid: 4786, name: 9天, const: 165, display: 渦怪洛洛普, lv: '10~100'}
+    - {tid: 4787, name: 劍勇, const: 765, display: 飛鵬幫先鋒, lv: '90~100'}
+    - {tid: 4787, name: 劍勇, const: 640, display: 飛鵬幫戰將, lv: 90}
 
   # 【2026-08-30 擊殺獎勵變數化】Kill Ratio(屬性44)=擊殺−損失，英雄死亡算損失→復活後獎勵停擺；
   # DE 中屬性44唯讀(Modify Resource 無效, spike_killratio)。改以屬性20(純擊殺)＋DE變數重建：

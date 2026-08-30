@@ -39,6 +39,12 @@ def test_no_level_uses_display_only(f):
     assert renames(t)[0]['message'] == '鐵豬王'
 
 
+def test_range_level_string_kept_verbatim(f):
+    t = spawn(f, tid=2723, name='飛鵬幫先鋒', const=195, locs=((60, 191),), stray=False)
+    apply_mob_names(f.tm([t]), [dict(tid=2723, name='飛鵬幫先鋒', const=195, display='飛鵬幫先鋒', lv='90~100')])
+    assert renames(t)[0]['message'] == 'Lv90~100 飛鵬幫先鋒'
+
+
 def test_multi_const_trigger_uses_row_per_const(f):
     effs = [f.eff_create(sp=7, olu=424, x=10, y=10), f.eff_create(sp=7, olu=698, x=12, y=10)]
     t = f.trig(tid=4680, name='鐵鎚', effects=effs)
