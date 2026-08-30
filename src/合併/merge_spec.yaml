@@ -438,6 +438,1021 @@ params:
     - {trigger_id: 3991, name: 5缺, kind: effect, index: 0, field: message, old: "\x7f<ORANGE>商人南宮缺：我的武林秘笈給強盜搶了，你可替我取回嗎？", new: "<ORANGE>商人南宮缺：我的武林秘笈給強盜搶了，你可替我取回嗎？", reason: 去開頭 DEL}
     - {trigger_id: 794, name: 2武, kind: effect, index: 4, field: message, old: "<GREEN>得到了　\x7f技能點數　2", new: "<GREEN>得到了　技能點數　2", reason: 去中間 DEL（顯示為空框）}
 
+    # 【2026-08-30 船夫搭船 DE 重做】由 tools/gen_ferry_spec.py 產生；設計見 docs/superpowers/specs/2026-08-30-船夫搭船-design.md
+    - kind: trigger_add
+      name: 1船暈東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位1：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 0, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      effects:
+      - {type: activate_trigger, trigger_id: 5358}
+    - kind: trigger_add
+      name: 1船入東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位1：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      - {type: accumulate_attribute, source_player: 1, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 1, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
+    - kind: trigger_add
+      name: 1船窗止東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位1：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 1船入東}
+      - {type: deactivate_trigger, trigger_name: 1船暈東}
+    - kind: trigger_add
+      name: 1船出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位1：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
+      effects:
+      - {type: teleport_object, source_player: 1, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
+    - kind: trigger_add
+      name: 1船清入東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位1：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      effects:
+      - {type: task_object, source_player: 1, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+    - kind: trigger_add
+      name: 1船清出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位1：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      effects:
+      - {type: task_object, source_player: 1, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+    - kind: trigger_add
+      name: 2船暈東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位2：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 1, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      effects:
+      - {type: activate_trigger, trigger_id: 5361}
+    - kind: trigger_add
+      name: 2船入東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位2：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      - {type: accumulate_attribute, source_player: 2, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 2, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
+    - kind: trigger_add
+      name: 2船窗止東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位2：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 2船入東}
+      - {type: deactivate_trigger, trigger_name: 2船暈東}
+    - kind: trigger_add
+      name: 2船出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位2：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
+      effects:
+      - {type: teleport_object, source_player: 2, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
+    - kind: trigger_add
+      name: 2船清入東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位2：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      effects:
+      - {type: task_object, source_player: 2, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+    - kind: trigger_add
+      name: 2船清出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位2：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      effects:
+      - {type: task_object, source_player: 2, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+    - kind: trigger_add
+      name: 3船暈東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位3：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 2, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      effects:
+      - {type: activate_trigger, trigger_id: 5363}
+    - kind: trigger_add
+      name: 3船入東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位3：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      - {type: accumulate_attribute, source_player: 3, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 3, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
+    - kind: trigger_add
+      name: 3船窗止東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位3：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 3船入東}
+      - {type: deactivate_trigger, trigger_name: 3船暈東}
+    - kind: trigger_add
+      name: 3船出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位3：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
+      effects:
+      - {type: teleport_object, source_player: 3, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
+    - kind: trigger_add
+      name: 3船清入東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位3：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      effects:
+      - {type: task_object, source_player: 3, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+    - kind: trigger_add
+      name: 3船清出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位3：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      effects:
+      - {type: task_object, source_player: 3, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+    - kind: trigger_add
+      name: 4船暈東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位4：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 502, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      effects:
+      - {type: activate_trigger, trigger_id: 5365}
+    - kind: trigger_add
+      name: 4船入東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位4：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      - {type: accumulate_attribute, source_player: 4, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 4, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
+    - kind: trigger_add
+      name: 4船窗止東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位4：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 4船入東}
+      - {type: deactivate_trigger, trigger_name: 4船暈東}
+    - kind: trigger_add
+      name: 4船出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位4：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
+      effects:
+      - {type: teleport_object, source_player: 4, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
+    - kind: trigger_add
+      name: 4船清入東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位4：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      effects:
+      - {type: task_object, source_player: 4, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+    - kind: trigger_add
+      name: 4船清出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位4：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      effects:
+      - {type: task_object, source_player: 4, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+    - kind: trigger_add
+      name: 5船暈東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位5：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 7, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      effects:
+      - {type: activate_trigger, trigger_id: 5367}
+    - kind: trigger_add
+      name: 5船入東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位5：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      - {type: accumulate_attribute, source_player: 5, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 5, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
+    - kind: trigger_add
+      name: 5船窗止東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位5：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 5船入東}
+      - {type: deactivate_trigger, trigger_name: 5船暈東}
+    - kind: trigger_add
+      name: 5船出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位5：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
+      effects:
+      - {type: teleport_object, source_player: 5, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
+    - kind: trigger_add
+      name: 5船清入東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位5：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      effects:
+      - {type: task_object, source_player: 5, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+    - kind: trigger_add
+      name: 5船清出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位5：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      effects:
+      - {type: task_object, source_player: 5, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+    - kind: trigger_add
+      name: 6船暈東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位6：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 45117, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      effects:
+      - {type: activate_trigger, trigger_id: 5369}
+    - kind: trigger_add
+      name: 6船入東
+      enabled: 0
+      looping: 1
+      reason: 渡船東座位6：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227}
+      - {type: accumulate_attribute, source_player: 6, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 6, area_x1: 112, area_y1: 227, area_x2: 112, area_y2: 227, location_x: 110, location_y: 226}
+    - kind: trigger_add
+      name: 6船窗止東
+      enabled: 0
+      looping: 0
+      reason: 渡船東座位6：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 6船入東}
+      - {type: deactivate_trigger, trigger_name: 6船暈東}
+    - kind: trigger_add
+      name: 6船出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位6：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
+      effects:
+      - {type: teleport_object, source_player: 6, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
+    - kind: trigger_add
+      name: 6船清入東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位6：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      effects:
+      - {type: task_object, source_player: 6, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+    - kind: trigger_add
+      name: 6船清出東
+      enabled: 1
+      looping: 1
+      reason: 渡船東座位6：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      effects:
+      - {type: task_object, source_player: 6, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+    - kind: trigger_add
+      name: 1船暈西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位1：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 0, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      effects:
+      - {type: activate_trigger, trigger_id: 5358}
+    - kind: trigger_add
+      name: 1船入西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位1：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      - {type: accumulate_attribute, source_player: 1, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
+    - kind: trigger_add
+      name: 1船窗止西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位1：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 1船入西}
+      - {type: deactivate_trigger, trigger_name: 1船暈西}
+    - kind: trigger_add
+      name: 1船出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位1：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
+      effects:
+      - {type: teleport_object, source_player: 1, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
+    - kind: trigger_add
+      name: 1船清入西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位1：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      effects:
+      - {type: task_object, source_player: 1, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+    - kind: trigger_add
+      name: 1船清出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位1：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      effects:
+      - {type: task_object, source_player: 1, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+    - kind: trigger_add
+      name: 2船暈西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位2：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      effects:
+      - {type: activate_trigger, trigger_id: 5361}
+    - kind: trigger_add
+      name: 2船入西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位2：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      - {type: accumulate_attribute, source_player: 2, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
+    - kind: trigger_add
+      name: 2船窗止西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位2：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 2船入西}
+      - {type: deactivate_trigger, trigger_name: 2船暈西}
+    - kind: trigger_add
+      name: 2船出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位2：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
+      effects:
+      - {type: teleport_object, source_player: 2, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
+    - kind: trigger_add
+      name: 2船清入西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位2：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      effects:
+      - {type: task_object, source_player: 2, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+    - kind: trigger_add
+      name: 2船清出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位2：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      effects:
+      - {type: task_object, source_player: 2, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+    - kind: trigger_add
+      name: 3船暈西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位3：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      effects:
+      - {type: activate_trigger, trigger_id: 5363}
+    - kind: trigger_add
+      name: 3船入西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位3：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      - {type: accumulate_attribute, source_player: 3, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 3, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
+    - kind: trigger_add
+      name: 3船窗止西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位3：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 3船入西}
+      - {type: deactivate_trigger, trigger_name: 3船暈西}
+    - kind: trigger_add
+      name: 3船出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位3：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
+      effects:
+      - {type: teleport_object, source_player: 3, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
+    - kind: trigger_add
+      name: 3船清入西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位3：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      effects:
+      - {type: task_object, source_player: 3, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+    - kind: trigger_add
+      name: 3船清出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位3：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      effects:
+      - {type: task_object, source_player: 3, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+    - kind: trigger_add
+      name: 4船暈西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位4：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 502, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      effects:
+      - {type: activate_trigger, trigger_id: 5365}
+    - kind: trigger_add
+      name: 4船入西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位4：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      - {type: accumulate_attribute, source_player: 4, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 4, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
+    - kind: trigger_add
+      name: 4船窗止西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位4：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 4船入西}
+      - {type: deactivate_trigger, trigger_name: 4船暈西}
+    - kind: trigger_add
+      name: 4船出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位4：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
+      effects:
+      - {type: teleport_object, source_player: 4, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
+    - kind: trigger_add
+      name: 4船清入西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位4：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      effects:
+      - {type: task_object, source_player: 4, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+    - kind: trigger_add
+      name: 4船清出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位4：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      effects:
+      - {type: task_object, source_player: 4, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+    - kind: trigger_add
+      name: 5船暈西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位5：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 7, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      effects:
+      - {type: activate_trigger, trigger_id: 5367}
+    - kind: trigger_add
+      name: 5船入西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位5：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      - {type: accumulate_attribute, source_player: 5, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 5, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
+    - kind: trigger_add
+      name: 5船窗止西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位5：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 5船入西}
+      - {type: deactivate_trigger, trigger_name: 5船暈西}
+    - kind: trigger_add
+      name: 5船出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位5：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
+      effects:
+      - {type: teleport_object, source_player: 5, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
+    - kind: trigger_add
+      name: 5船清入西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位5：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      effects:
+      - {type: task_object, source_player: 5, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+    - kind: trigger_add
+      name: 5船清出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位5：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      effects:
+      - {type: task_object, source_player: 5, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+    - kind: trigger_add
+      name: 6船暈西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位6：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      conditions:
+      - {type: bring_object_to_area, unit_object: 45117, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      effects:
+      - {type: activate_trigger, trigger_id: 5369}
+    - kind: trigger_add
+      name: 6船入西
+      enabled: 0
+      looping: 1
+      reason: 渡船西座位6：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
+      - {type: accumulate_attribute, source_player: 6, quantity: 1160, attribute: 2}
+      effects:
+      - {type: teleport_object, source_player: 6, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 233}
+    - kind: trigger_add
+      name: 6船窗止西
+      enabled: 0
+      looping: 0
+      reason: 渡船西座位6：售票窗 3 分鐘關閉
+      conditions:
+      - {type: timer, timer: 180}
+      effects:
+      - {type: deactivate_trigger, trigger_name: 6船入西}
+      - {type: deactivate_trigger, trigger_name: 6船暈西}
+    - kind: trigger_add
+      name: 6船出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位6：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
+      effects:
+      - {type: teleport_object, source_player: 6, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
+    - kind: trigger_add
+      name: 6船清入西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位6：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      effects:
+      - {type: task_object, source_player: 6, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+    - kind: trigger_add
+      name: 6船清出西
+      enabled: 1
+      looping: 1
+      reason: 渡船西座位6：牆外落點被壓住→叫走
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      effects:
+      - {type: task_object, source_player: 6, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 73, location_y: 234}
+    - kind: trigger_add
+      name: 船卸東
+      enabled: 0
+      looping: 0
+      reason: 渡船東：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
+      conditions:
+      - {type: timer, timer: 8}
+      - {type: objects_in_area, quantity: 1, source_player: 8, object_list: 545, area_x1: 107, area_y1: 225, area_x2: 109, area_y2: 229}
+      effects:
+      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 107, area_y1: 225, area_x2: 109, area_y2: 229, location_x: 110, location_y: 226}
+    - kind: trigger_add
+      name: 船卸西
+      enabled: 0
+      looping: 0
+      reason: 渡船西：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
+      conditions:
+      - {type: timer, timer: 8}
+      - {type: objects_in_area, quantity: 1, source_player: 8, object_list: 545, area_x1: 82, area_y1: 233, area_x2: 84, area_y2: 235}
+      effects:
+      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 82, area_y1: 233, area_x2: 84, area_y2: 235, location_x: 81, location_y: 233}
+    - kind: trigger_add
+      name: 船旗初始化
+      enabled: 1
+      looping: 0
+      reason: 渡船：兩碼頭牆外／牆內 Gaia 旗（FLAG_A 600）
+      conditions:
+      - {type: timer, timer: 0}
+      effects:
+      - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 112, location_y: 227}
+      - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 110, location_y: 228}
+      - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 79, location_y: 233}
+      - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 81, location_y: 235}
+    - {trigger_id: 3750, name: 1船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - {trigger_id: 3750, name: 1船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - trigger_id: 3750
+      name: 1船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 1船入東}
+      reason: 買票開售票窗
+    - trigger_id: 3750
+      name: 1船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 1船窗止東}
+      reason: 買票開售票窗
+    - trigger_id: 3750
+      name: 1船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 1船暈東}
+      reason: 買票開售票窗
+    - trigger_id: 3750
+      name: 1船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3755, name: 2船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - {trigger_id: 3755, name: 2船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - trigger_id: 3755
+      name: 2船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 2船入東}
+      reason: 買票開售票窗
+    - trigger_id: 3755
+      name: 2船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 2船窗止東}
+      reason: 買票開售票窗
+    - trigger_id: 3755
+      name: 2船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 2船暈東}
+      reason: 買票開售票窗
+    - trigger_id: 3755
+      name: 2船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 2, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3760, name: 3船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - {trigger_id: 3760, name: 3船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - trigger_id: 3760
+      name: 3船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 3船入東}
+      reason: 買票開售票窗
+    - trigger_id: 3760
+      name: 3船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 3船窗止東}
+      reason: 買票開售票窗
+    - trigger_id: 3760
+      name: 3船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 3船暈東}
+      reason: 買票開售票窗
+    - trigger_id: 3760
+      name: 3船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3765, name: 4船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - {trigger_id: 3765, name: 4船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - trigger_id: 3765
+      name: 4船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 4船入東}
+      reason: 買票開售票窗
+    - trigger_id: 3765
+      name: 4船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 4船窗止東}
+      reason: 買票開售票窗
+    - trigger_id: 3765
+      name: 4船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 4船暈東}
+      reason: 買票開售票窗
+    - trigger_id: 3765
+      name: 4船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 4, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3770, name: 5船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - {trigger_id: 3770, name: 5船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - trigger_id: 3770
+      name: 5船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 5船入東}
+      reason: 買票開售票窗
+    - trigger_id: 3770
+      name: 5船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 5船窗止東}
+      reason: 買票開售票窗
+    - trigger_id: 3770
+      name: 5船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 5船暈東}
+      reason: 買票開售票窗
+    - trigger_id: 3770
+      name: 5船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3775, name: 6船6, kind: effect, index: 1, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - {trigger_id: 3775, name: 6船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - trigger_id: 3775
+      name: 6船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 6船入東}
+      reason: 買票開售票窗
+    - trigger_id: 3775
+      name: 6船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 6船窗止東}
+      reason: 買票開售票窗
+    - trigger_id: 3775
+      name: 6船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 6船暈東}
+      reason: 買票開售票窗
+    - trigger_id: 3775
+      name: 6船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 6, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3781, name: 1船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - trigger_id: 3781
+      name: 1船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 1船入西}
+      reason: 買票開售票窗
+    - trigger_id: 3781
+      name: 1船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 1船窗止西}
+      reason: 買票開售票窗
+    - trigger_id: 3781
+      name: 1船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 1船暈西}
+      reason: 買票開售票窗
+    - trigger_id: 3781
+      name: 1船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3787, name: 2船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - trigger_id: 3787
+      name: 2船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 2船入西}
+      reason: 買票開售票窗
+    - trigger_id: 3787
+      name: 2船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 2船窗止西}
+      reason: 買票開售票窗
+    - trigger_id: 3787
+      name: 2船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 2船暈西}
+      reason: 買票開售票窗
+    - trigger_id: 3787
+      name: 2船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 2, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3793, name: 3船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - trigger_id: 3793
+      name: 3船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 3船入西}
+      reason: 買票開售票窗
+    - trigger_id: 3793
+      name: 3船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 3船窗止西}
+      reason: 買票開售票窗
+    - trigger_id: 3793
+      name: 3船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 3船暈西}
+      reason: 買票開售票窗
+    - trigger_id: 3793
+      name: 3船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3799, name: 4船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - trigger_id: 3799
+      name: 4船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 4船入西}
+      reason: 買票開售票窗
+    - trigger_id: 3799
+      name: 4船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 4船窗止西}
+      reason: 買票開售票窗
+    - trigger_id: 3799
+      name: 4船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 4船暈西}
+      reason: 買票開售票窗
+    - trigger_id: 3799
+      name: 4船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 4, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3805, name: 5船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - trigger_id: 3805
+      name: 5船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 5船入西}
+      reason: 買票開售票窗
+    - trigger_id: 3805
+      name: 5船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 5船窗止西}
+      reason: 買票開售票窗
+    - trigger_id: 3805
+      name: 5船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 5船暈西}
+      reason: 買票開售票窗
+    - trigger_id: 3805
+      name: 5船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3811, name: 6船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
+    - trigger_id: 3811
+      name: 6船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 6船入西}
+      reason: 買票開售票窗
+    - trigger_id: 3811
+      name: 6船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 6船窗止西}
+      reason: 買票開售票窗
+    - trigger_id: 3811
+      name: 6船6
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 6船暈西}
+      reason: 買票開售票窗
+    - trigger_id: 3811
+      name: 6船6
+      kind: effect_add
+      effect: {type: send_chat, source_player: 6, message: <ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸}
+      reason: 買票提示，僅買票座位可見
+    - {trigger_id: 3760, name: 3船6, kind: effect, index: 3, field: message, old: <GREEN>失去了　2000　兩銀, new: <GREEN>失去精力        100000, reason: 東碼頭扣的是精力，其餘五座位皆「失去精力 100000」，3P 抄錯}
+    - trigger_id: 3732
+      name: 船
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 船卸東}
+      reason: 派船時武裝一次性卸貨
+    - trigger_id: 3732
+      name: 船
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 船卸西}
+      reason: 派船時武裝一次性卸貨
+    - trigger_id: 3733
+      name: 船2
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 船卸東}
+      reason: 派船時武裝一次性卸貨
+    - trigger_id: 3733
+      name: 船2
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 船卸西}
+      reason: 派船時武裝一次性卸貨
+    - {trigger_id: 3748, name: 1船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3753, name: 2船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3758, name: 3船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3763, name: 4船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3768, name: 5船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3773, name: 6船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3779, name: 1船4, kind: effect, index: 2, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3785, name: 2船4, kind: effect, index: 2, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3791, name: 3船4, kind: effect, index: 2, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3797, name: 4船4, kind: effect, index: 2, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3803, name: 5船4, kind: effect, index: 2, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3809, name: 6船4, kind: effect, index: 2, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
+    - {trigger_id: 3734, name: 1草, kind: trigger, field: enabled, old: 1, new: 0, reason: 基底 ID 位移：指到箭影高人迴圈，牆內有人即誤啟}
+    - {trigger_id: 3735, name: 1草2., kind: effect, index: 0, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3735, name: 1草2., kind: effect, index: 1, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3736, name: 2草, kind: trigger, field: enabled, old: 1, new: 0, reason: 基底 ID 位移：指到箭影高人迴圈，牆內有人即誤啟}
+    - {trigger_id: 3737, name: 2草2, kind: effect, index: 0, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3737, name: 2草2, kind: effect, index: 1, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3738, name: 3草, kind: trigger, field: enabled, old: 1, new: 0, reason: 基底 ID 位移：指到箭影高人迴圈，牆內有人即誤啟}
+    - {trigger_id: 3739, name: 3草2, kind: effect, index: 0, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3739, name: 3草2, kind: effect, index: 1, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3740, name: 4草, kind: trigger, field: enabled, old: 1, new: 0, reason: 基底 ID 位移：指到箭影高人迴圈，牆內有人即誤啟}
+    - {trigger_id: 3741, name: 4草2, kind: effect, index: 0, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3741, name: 4草2, kind: effect, index: 1, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3742, name: 5草, kind: trigger, field: enabled, old: 1, new: 0, reason: 基底 ID 位移：指到箭影高人迴圈，牆內有人即誤啟}
+    - {trigger_id: 3743, name: 5草2, kind: effect, index: 0, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3743, name: 5草2, kind: effect, index: 1, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3744, name: 6草, kind: trigger, field: enabled, old: 1, new: 0, reason: 基底 ID 位移：指到箭影高人迴圈，牆內有人即誤啟}
+    - {trigger_id: 3745, name: 6草2, kind: effect, index: 0, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+    - {trigger_id: 3745, name: 6草2, kind: effect, index: 1, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
+
   # 【2026-08-29 Fable裁決代理定案】死亡連動42支：a×6/a+flag×6/b×6/d×24（c=0）
   # 詳細逐支語意與斷邊清單見 docs spec §七之二 與裁決報告；extras 為施工指令。
   death_linked_rulings:
