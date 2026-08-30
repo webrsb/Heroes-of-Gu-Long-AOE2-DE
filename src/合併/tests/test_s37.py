@@ -120,3 +120,24 @@ def test_trigger_add_builds_conditions_and_effects(f):
     assert t.new_condition.calls == [('accumulate_attribute', {'source_player': 5, 'quantity': 500000, 'attribute': 3})]
     assert t.new_effect.calls == [('tribute', {'source_player': 5, 'target_player': 0, 'quantity': 10000000, 'tribute_list': 3})]
     assert c.kind == 'trigger_add' and c.new.startswith(f'T{t.trigger_id}')
+
+
+def test_trigger_add_effect_resolves_trigger_name(f):
+    target = f.trig(name='1船入東')
+    tm = f.tm([target])
+    apply_fix(tm, {'kind': 'trigger_add', 'name': '1船窗止東', 'enabled': 0, 'looping': 0,
+                   'conditions': [{'type': 'timer', 'timer': 180}],
+                   'effects': [{'type': 'deactivate_trigger', 'trigger_name': '1船入東'}],
+                   'reason': '售票窗'})
+    t = tm.triggers[-1]
+    assert t.new_effect.calls == [('deactivate_trigger', {'trigger_id': target.trigger_id})]
+
+
+def test_trigger_add_effect_trigger_name_must_hit_exactly_one(f):
+    a = f.trig(name='重名'); b = f.trig(name='重名')
+    with pytest.raises(BuildError):
+        apply_fix(f.tm([a, b]), {'kind': 'trigger_add', 'name': 'x', 'effects': [
+            {'type': 'activate_trigger', 'trigger_name': '重名'}]})
+    with pytest.raises(BuildError):
+        apply_fix(f.tm([a]), {'kind': 'trigger_add', 'name': 'x', 'effects': [
+            {'type': 'activate_trigger', 'trigger_name': '不存在'}]})

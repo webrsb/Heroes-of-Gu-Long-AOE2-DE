@@ -59,9 +59,17 @@ def apply_fix(tm, entry) -> Change:
                   entry.get('reason', ''))
 
 
+def _resolve_by_name(tm, name, tag):
+    """以觸發名找恰一支目標（新觸發的 id 在寫 spec 時不存在，只能以名指）。"""
+    hits = [t for t in tm.triggers if (t.name or '') == name]
+    if len(hits) != 1:
+        raise BuildError(f'缺裁決：{tag} trigger_name「{name}」命中 {len(hits)} 支（須恰 1），請重查')
+    return hits[0]
+
+
 def _add_trigger(tm, entry) -> Change:
     """新增觸發：name/enabled/looping ＋ conditions/effects 列，每項 {type: <parser 方法名>, ...欄位}。
-    kind 記為 trigger_add，供 s90 觸發數對帳。"""
+    效果可用 trigger_name 取代 trigger_id（施作時解析）。kind 記為 trigger_add，供 s90 觸發數對帳。"""
     t = tm.add_trigger(entry.get('name', ''), enabled=bool(entry.get('enabled', 1)),
                        looping=bool(entry.get('looping', 0)))
     for c in entry.get('conditions') or []:
@@ -69,6 +77,9 @@ def _add_trigger(tm, entry) -> Change:
         getattr(t.new_condition, c['type'])(**kw)
     for e in entry.get('effects') or []:
         kw = {k: v for k, v in e.items() if k != 'type'}
+        if 'trigger_name' in kw:
+            kw['trigger_id'] = _resolve_by_name(tm, kw.pop('trigger_name'),
+                                                f'trigger_add「{entry.get("name", "")}」').trigger_id
         getattr(t.new_effect, e['type'])(**kw)
     summary = f'{len(entry.get("conditions") or [])}條件/{len(entry.get("effects") or [])}效果'
     return Change('s37', 'trigger_add', entry.get('name', ''), 'trigger', '', f'T{t.trigger_id} {summary}',
