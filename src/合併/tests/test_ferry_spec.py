@@ -29,8 +29,8 @@ def _adds(entries):
 def _check_block(entries):
     adds = _adds(entries)
     names = [a['name'] for a in adds]
-    # 72 座位×碼頭 ＋ 船卸×2 ＋ 船旗 ＋ 西等級門檻 2–6 ＋ 東精力封鎖 1–6
-    assert len(names) == len(set(names)) == 86
+    # 72 座位×碼頭 ＋ 船卸×2 ＋ 船旗 ＋ 西等級門檻 2–6 ＋ 東精力封鎖 1–6 ＋ 東扣費 1–6
+    assert len(names) == len(set(names)) == 92
     for s in SEATS:
         for p in PIERS:
             for k in KINDS:
@@ -46,6 +46,8 @@ def _check_block(entries):
             seen.add(e['name'])
         elif e.get('kind') == 'effect_add' and 'trigger_name' in e['effect']:
             assert e['effect']['trigger_name'] in seen, e
+            if 'target_name' in e:
+                assert e['target_name'] in seen, e
     # X船6：CREATE 837 中和（東座位 6 在 E1）、東 E4 頭暈啟動中和、三個啟動＋一個私訊
     for p in PIERS:
         for s, tid in X6[p].items():
@@ -58,10 +60,18 @@ def _check_block(entries):
                 assert any(e.get('kind') == 'effect' and e.get('index') == 4 and e.get('old') == 8 and e.get('new') == 0 for e in mine)
             adds_ = [e for e in mine if e.get('kind') == 'effect_add']
             acts = sorted(e['effect']['trigger_name'] for e in adds_ if e['effect']['type'] == 'activate_trigger')
-            assert acts == sorted([f'{s}船入{p}', f'{s}船窗止{p}', f'{s}船暈{p}', f'{s}船免{p}'])
             chats = [e for e in adds_ if e['effect']['type'] == 'send_chat']
-            assert len(chats) == 1 and chats[0]['effect']['source_player'] == s \
-                and chats[0]['effect']['message'].startswith('<ORANGE>')
+            if p == '東':          # 扣費與售票窗搬到 X船費東；本支只武裝封鎖＋扣費
+                assert acts == sorted([f'{s}船血東', f'{s}船費東'])
+                assert chats == []
+                assert any(e.get('kind') == 'effect' and e.get('index') == (3 if s == 6 else 1)
+                           and e.get('old') == 24 and e.get('new') == 0 for e in mine), (p, s)
+                assert any(e.get('kind') == 'effect' and e.get('index') == (2 if s == 6 else 3)
+                           and e.get('old') == 3 and e.get('new') == 0 for e in mine), (p, s)
+            else:
+                assert acts == sorted([f'{s}船入{p}', f'{s}船窗止{p}', f'{s}船暈{p}', f'{s}船免{p}'])
+                assert len(chats) == 1 and chats[0]['effect']['source_player'] == s \
+                    and chats[0]['effect']['message'].startswith('<ORANGE>')
     # X船4：REMOVE 中和（東 E1、西 E2）
     for p, (ids, idx) in X4.items():
         for s, tid in ids.items():
@@ -129,21 +139,29 @@ def _check_block(entries):
             p = a['name'][-1]
             e = a['effects'][0]
             assert (e['location_x'], e['location_y']) == DOCK_OUT[p], a['name']
-    # 東碼頭精力不足封鎖：由報價武裝、一次性、極性＝血 ≤100000 才封鎖（拆確認與扣費）
+    # 東碼頭：血東（封鎖，小 id）必須排在 費東（扣費，大 id）之前；扣費與售票窗都在費東
     HERO = {1: 0, 2: 1, 3: 2, 4: 502, 5: 7, 6: 45117}
-    QUOTE = {1: 3746, 2: 3751, 3: 3756, 4: 3761, 5: 3766, 6: 3771}
-    CONFIRM = {1: 3747, 2: 3752, 3: 3757, 4: 3762, 5: 3767, 6: 3772}
     for s in SEATS:
+        assert names.index(f'{s}船血東') < names.index(f'{s}船費東'), s
         a = next(x for x in adds if x['name'] == f'{s}船血東')
         assert a['enabled'] == 0 and a['looping'] == 0
         c = a['conditions'][0]
         assert c['type'] == 'object_hp' and c['unit_object'] == HERO[s] \
             and c['quantity'] == 100000 and c['comparison'] == 3, a['name']
-        assert [e['type'] for e in a['effects']] == ['send_chat', 'deactivate_trigger', 'deactivate_trigger']
+        assert [e['type'] for e in a['effects']] == ['send_chat']
         assert a['effects'][0]['source_player'] == s and '精力不足' in a['effects'][0]['message']
-        assert {e['trigger_id'] for e in a['effects'][1:]} == {CONFIRM[s], X6['東'][s]}, a['name']
-        assert any(e.get('trigger_id') == QUOTE[s] and e.get('kind') == 'effect_add'
+        # 互指的線走 effect_add（以名稱指定目標）——新增階段不能前向引用
+        assert any(e.get('kind') == 'effect_add' and e.get('target_name') == f'{s}船血東'
+                   and e['effect'].get('trigger_name') == f'{s}船費東' for e in entries), s
+        assert any(e.get('kind') == 'effect_add' and e.get('target_name') == f'{s}船費東'
                    and e['effect'].get('trigger_name') == f'{s}船血東' for e in entries), s
+        b = next(x for x in adds if x['name'] == f'{s}船費東')
+        assert b['enabled'] == 0 and b['looping'] == 0 and b['conditions'] == []
+        assert [e['type'] for e in b['effects']] == ['damage_object', 'send_chat', 'send_chat'] \
+            + ['activate_trigger'] * 4, b['name']
+        assert b['effects'][0]['quantity'] == 100000 and b['effects'][0]['selected_object_ids'] == [HERO[s]]
+        assert sorted(e['trigger_name'] for e in b['effects'][3:]) \
+            == sorted([f'{s}船入東', f'{s}船窗止東', f'{s}船暈東', f'{s}船免東'])
     # 西碼頭等級門檻：基底只有座位 1，補 2–6（反相＝<1159 才推）
     for s in range(2, 7):
         a = next(x for x in adds if x['name'] == f'{s}船級西')
@@ -161,8 +179,11 @@ def _check_block(entries):
     for s in SEATS:
         for p in PIERS:
             assert names.index(f'{s}船暈{p}') < names.index(f'{s}船入{p}')
-    # 3船6 訊息
-    assert any(e.get('trigger_id') == 3760 and e.get('field') == 'message' and '100000' in e['new'] for e in entries)
+    # 「失去精力 100000」統一由費東發（原作 3船6 抄成 2000 兩銀，該效果已隨扣費中和）
+    for s in SEATS:
+        b = next(x for x in adds if x['name'] == f'{s}船費東')
+        assert any('100000' in e.get('message', '') and '精力' in e.get('message', '')
+                   for e in b['effects'] if e['type'] == 'send_chat'), s
 
 
 def test_generator_block():
@@ -180,5 +201,6 @@ def test_merge_spec_contains_block():
     raw = yaml.safe_load(Path('merge_spec.yaml').read_text(encoding='utf-8'))
     entries = raw['params']['trigger_fixes']
     ferry = [e for e in entries if (e.get('kind') == 'trigger_add' and '船' in e['name'])
+             or '船' in (e.get('target_name') or '')
              or e.get('trigger_id') in FERRY_IDS]
     _check_block(ferry)

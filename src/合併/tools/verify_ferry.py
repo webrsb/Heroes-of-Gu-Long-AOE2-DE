@@ -51,8 +51,13 @@ def main(path):
         check(not any(int(e.effect_type) == 11 for e in t.effects), f'T{tid}「{t.name}」無 CREATE（票已清）')
         check(not any(int(e.effect_type) == 8 and e.trigger_id in (5358, 5361, 5363, 5365, 5367, 5369) for e in t.effects),
               f'T{tid}「{t.name}」不直接啟動 X頭暈起')
-        check(sum(1 for e in t.effects if int(e.effect_type) == 8) == 4, f'T{tid}「{t.name}」啟動 4 支（入/窗止/暈/免）')
-        check(any(int(e.effect_type) == 3 and '三分鐘' in (e.message or '') for e in t.effects), f'T{tid}「{t.name}」有買票提示')
+        east = tid in (3750, 3755, 3760, 3765, 3770, 3775)
+        n_act = sum(1 for e in t.effects if int(e.effect_type) == 8)
+        check(n_act == (2 if east else 4),
+              f'T{tid}「{t.name}」啟動 {2 if east else 4} 支（' +
+              ('血東/費東；開窗與提示搬到費東）' if east else '入/窗止/暈/免）'))
+        has_hint = any(int(e.effect_type) == 3 and '三分鐘' in (e.message or '') for e in t.effects)
+        check(has_hint != east, f'T{tid}「{t.name}」買票提示{"在費東（本支不該有）" if east else "在本支"}')
     def area_of(o):
         return (o.area_x1, o.area_y1, o.area_x2, o.area_y2)
     # s39 把所有矩陣觸發的 enabled 一律設 0、改由選角啟動清單打開 → 查 enabled 是假陽性，改查有啟動邊指向
@@ -103,20 +108,31 @@ def main(path):
         t = tm.triggers[tid]
         check(not any(int(e.effect_type) == 8 for e in t.effects), f'T{tid}「{t.name}」周賓橋啟動邊已清')
         check(any(int(e.effect_type) == 9 for e in t.effects), f'T{tid}「{t.name}」保留關等級提示迴圈的 DEACTIVATE')
-    t = tm.triggers[3760]
-    check(any('100000' in (e.message or '') for e in t.effects if int(e.effect_type) == 3), 'T3760 3船6 訊息已改精力')
+    for s in SEATS:      # 「失去精力 100000」統一由費東發（原作 3船6 抄成「失去了 2000 兩銀」）
+        fee = by_name.get(f'{s}船費東', [])
+        check(bool(fee) and any('100000' in (e.message or '') and '精力' in (e.message or '')
+                                for e in fee[0].effects if int(e.effect_type) == 3),
+              f'{s}船費東 發「失去精力 100000」')
     for tid in (3673, 3675, 3677, 3679, 3681, 3683, 3685):
         t = tm.triggers[tid]
         check(int(t.conditions[1].inverted or 0) == 1, f'T{tid}「{t.name}」等級門檻已反相（<1159 才推）')
     HERO = {1: 0, 2: 1, 3: 2, 4: 502, 5: 7, 6: 45117}
-    QUOTE = {1: 3746, 2: 3751, 3: 3756, 4: 3761, 5: 3766, 6: 3771}
-    for s in SEATS:                          # 東碼頭精力不足封鎖（原作血不夠會當場死）
-        got = by_name.get(f'{s}船血東', [])
-        ok = len(got) == 1 and got[0].conditions[0].unit_object == HERO[s] \
-            and got[0].conditions[0].quantity == 100000 and got[0].conditions[0].comparison == 3
-        armed = any(int(e.effect_type) == 8 and e.trigger_id == got[0].trigger_id
-                    for e in tm.triggers[QUOTE[s]].effects) if got else False
-        check(ok and armed, f'{s}船血東 條件 ref{HERO[s]} HP≤100000、由 T{QUOTE[s]} 報價武裝')
+    X6E = {1: 3750, 2: 3755, 3: 3760, 4: 3765, 5: 3770, 6: 3775}
+    for s in SEATS:                          # 東碼頭：封鎖(小id) → 扣費(大id)，皆由 X船6 同 tick 武裝
+        blk = by_name.get(f'{s}船血東', [])
+        fee = by_name.get(f'{s}船費東', [])
+        ok = len(blk) == 1 and len(fee) == 1 and blk[0].trigger_id < fee[0].trigger_id
+        if ok:
+            c = blk[0].conditions[0]
+            ok = c.unit_object == HERO[s] and c.quantity == 100000 and c.comparison == 3
+            armed = {e.trigger_id for e in tm.triggers[X6E[s]].effects if int(e.effect_type) == 8}
+            ok = ok and {blk[0].trigger_id, fee[0].trigger_id} <= armed
+            ok = ok and any(int(e.effect_type) == 9 and e.trigger_id == fee[0].trigger_id for e in blk[0].effects)
+            ok = ok and any(int(e.effect_type) == 24 and e.quantity == 100000 for e in fee[0].effects)
+        check(ok, f'{s}船血東(小id) HP≤100000→拆 {s}船費東(大id)，兩支由 T{X6E[s]} 武裝、扣費在費東')
+        t = tm.triggers[X6E[s]]
+        check(not any(int(e.effect_type) == 24 for e in t.effects),
+              f'T{X6E[s]}「{t.name}」原扣費效果已中和（改由費東執行）')
     for s in range(2, 7):                    # 西碼頭 2–6 座位補的等級門檻（基底缺）
         got = by_name.get(f'{s}船級西', [])
         variants = [x for slot in SEATS if slot != s for x in by_name.get(f'{s}船級西◇位{slot}', [])]

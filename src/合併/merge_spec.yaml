@@ -1135,68 +1135,206 @@ params:
       name: 1船血東
       enabled: 0
       looping: 0
-      reason: 東碼頭精力不足封鎖座位 1：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      reason: 東碼頭精力不足封鎖座位 1（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
       - {type: object_hp, unit_object: 0, quantity: 100000, comparison: 3}
       effects:
       - {type: send_chat, source_player: 1, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
-      - {type: deactivate_trigger, trigger_id: 3747}
-      - {type: deactivate_trigger, trigger_id: 3750}
+    - kind: trigger_add
+      name: 1船費東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭真扣費座位 1：零條件、由 X船6 武裝；血不足時已被 1船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+      conditions: []
+      effects:
+      - type: damage_object
+        source_player: 1
+        selected_object_ids: [0]
+        quantity: 100000
+      - {type: send_chat, source_player: 1, message: <GREEN>失去精力        100000}
+      - {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
+      - {type: activate_trigger, trigger_name: 1船入東}
+      - {type: activate_trigger, trigger_name: 1船窗止東}
+      - {type: activate_trigger, trigger_name: 1船暈東}
+      - {type: activate_trigger, trigger_name: 1船免東}
     - kind: trigger_add
       name: 2船血東
       enabled: 0
       looping: 0
-      reason: 東碼頭精力不足封鎖座位 2：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      reason: 東碼頭精力不足封鎖座位 2（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
       - {type: object_hp, unit_object: 1, quantity: 100000, comparison: 3}
       effects:
       - {type: send_chat, source_player: 2, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
-      - {type: deactivate_trigger, trigger_id: 3752}
-      - {type: deactivate_trigger, trigger_id: 3755}
+    - kind: trigger_add
+      name: 2船費東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭真扣費座位 2：零條件、由 X船6 武裝；血不足時已被 2船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+      conditions: []
+      effects:
+      - type: damage_object
+        source_player: 2
+        selected_object_ids: [1]
+        quantity: 100000
+      - {type: send_chat, source_player: 2, message: <GREEN>失去精力        100000}
+      - {type: send_chat, source_player: 2, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
+      - {type: activate_trigger, trigger_name: 2船入東}
+      - {type: activate_trigger, trigger_name: 2船窗止東}
+      - {type: activate_trigger, trigger_name: 2船暈東}
+      - {type: activate_trigger, trigger_name: 2船免東}
     - kind: trigger_add
       name: 3船血東
       enabled: 0
       looping: 0
-      reason: 東碼頭精力不足封鎖座位 3：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      reason: 東碼頭精力不足封鎖座位 3（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
       - {type: object_hp, unit_object: 2, quantity: 100000, comparison: 3}
       effects:
       - {type: send_chat, source_player: 3, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
-      - {type: deactivate_trigger, trigger_id: 3757}
-      - {type: deactivate_trigger, trigger_id: 3760}
+    - kind: trigger_add
+      name: 3船費東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭真扣費座位 3：零條件、由 X船6 武裝；血不足時已被 3船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+      conditions: []
+      effects:
+      - type: damage_object
+        source_player: 3
+        selected_object_ids: [2]
+        quantity: 100000
+      - {type: send_chat, source_player: 3, message: <GREEN>失去精力        100000}
+      - {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
+      - {type: activate_trigger, trigger_name: 3船入東}
+      - {type: activate_trigger, trigger_name: 3船窗止東}
+      - {type: activate_trigger, trigger_name: 3船暈東}
+      - {type: activate_trigger, trigger_name: 3船免東}
     - kind: trigger_add
       name: 4船血東
       enabled: 0
       looping: 0
-      reason: 東碼頭精力不足封鎖座位 4：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      reason: 東碼頭精力不足封鎖座位 4（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
       - {type: object_hp, unit_object: 502, quantity: 100000, comparison: 3}
       effects:
       - {type: send_chat, source_player: 4, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
-      - {type: deactivate_trigger, trigger_id: 3762}
-      - {type: deactivate_trigger, trigger_id: 3765}
+    - kind: trigger_add
+      name: 4船費東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭真扣費座位 4：零條件、由 X船6 武裝；血不足時已被 4船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+      conditions: []
+      effects:
+      - type: damage_object
+        source_player: 4
+        selected_object_ids: [502]
+        quantity: 100000
+      - {type: send_chat, source_player: 4, message: <GREEN>失去精力        100000}
+      - {type: send_chat, source_player: 4, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
+      - {type: activate_trigger, trigger_name: 4船入東}
+      - {type: activate_trigger, trigger_name: 4船窗止東}
+      - {type: activate_trigger, trigger_name: 4船暈東}
+      - {type: activate_trigger, trigger_name: 4船免東}
     - kind: trigger_add
       name: 5船血東
       enabled: 0
       looping: 0
-      reason: 東碼頭精力不足封鎖座位 5：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      reason: 東碼頭精力不足封鎖座位 5（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
       - {type: object_hp, unit_object: 7, quantity: 100000, comparison: 3}
       effects:
       - {type: send_chat, source_player: 5, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
-      - {type: deactivate_trigger, trigger_id: 3767}
-      - {type: deactivate_trigger, trigger_id: 3770}
+    - kind: trigger_add
+      name: 5船費東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭真扣費座位 5：零條件、由 X船6 武裝；血不足時已被 5船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+      conditions: []
+      effects:
+      - type: damage_object
+        source_player: 5
+        selected_object_ids: [7]
+        quantity: 100000
+      - {type: send_chat, source_player: 5, message: <GREEN>失去精力        100000}
+      - {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
+      - {type: activate_trigger, trigger_name: 5船入東}
+      - {type: activate_trigger, trigger_name: 5船窗止東}
+      - {type: activate_trigger, trigger_name: 5船暈東}
+      - {type: activate_trigger, trigger_name: 5船免東}
     - kind: trigger_add
       name: 6船血東
       enabled: 0
       looping: 0
-      reason: 東碼頭精力不足封鎖座位 6：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      reason: 東碼頭精力不足封鎖座位 6（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
       - {type: object_hp, unit_object: 45117, quantity: 100000, comparison: 3}
       effects:
       - {type: send_chat, source_player: 6, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
-      - {type: deactivate_trigger, trigger_id: 3772}
-      - {type: deactivate_trigger, trigger_id: 3775}
+    - kind: trigger_add
+      name: 6船費東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭真扣費座位 6：零條件、由 X船6 武裝；血不足時已被 6船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+      conditions: []
+      effects:
+      - type: damage_object
+        source_player: 6
+        selected_object_ids: [45117]
+        quantity: 100000
+      - {type: send_chat, source_player: 6, message: <GREEN>失去精力        100000}
+      - {type: send_chat, source_player: 6, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
+      - {type: activate_trigger, trigger_name: 6船入東}
+      - {type: activate_trigger, trigger_name: 6船窗止東}
+      - {type: activate_trigger, trigger_name: 6船暈東}
+      - {type: activate_trigger, trigger_name: 6船免東}
+    - kind: effect_add
+      target_name: 1船血東
+      effect: {type: deactivate_trigger, trigger_name: 1船費東}
+      reason: 血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+    - kind: effect_add
+      target_name: 1船費東
+      effect: {type: deactivate_trigger, trigger_name: 1船血東}
+      reason: 扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+    - kind: effect_add
+      target_name: 2船血東
+      effect: {type: deactivate_trigger, trigger_name: 2船費東}
+      reason: 血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+    - kind: effect_add
+      target_name: 2船費東
+      effect: {type: deactivate_trigger, trigger_name: 2船血東}
+      reason: 扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+    - kind: effect_add
+      target_name: 3船血東
+      effect: {type: deactivate_trigger, trigger_name: 3船費東}
+      reason: 血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+    - kind: effect_add
+      target_name: 3船費東
+      effect: {type: deactivate_trigger, trigger_name: 3船血東}
+      reason: 扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+    - kind: effect_add
+      target_name: 4船血東
+      effect: {type: deactivate_trigger, trigger_name: 4船費東}
+      reason: 血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+    - kind: effect_add
+      target_name: 4船費東
+      effect: {type: deactivate_trigger, trigger_name: 4船血東}
+      reason: 扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+    - kind: effect_add
+      target_name: 5船血東
+      effect: {type: deactivate_trigger, trigger_name: 5船費東}
+      reason: 血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+    - kind: effect_add
+      target_name: 5船費東
+      effect: {type: deactivate_trigger, trigger_name: 5船血東}
+      reason: 扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+    - kind: effect_add
+      target_name: 6船血東
+      effect: {type: deactivate_trigger, trigger_name: 6船費東}
+      reason: 血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+    - kind: effect_add
+      target_name: 6船費東
+      effect: {type: deactivate_trigger, trigger_name: 6船血東}
+      reason: 扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
     - kind: trigger_add
       name: 2船級西
       enabled: 1
@@ -1253,167 +1391,89 @@ params:
       - {type: send_chat, source_player: 6, message: '<ORANGE>對不起你等極不夠資格搭這艘船,需要16等級以上'}
       - {type: task_object, source_player: 6, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
     - {trigger_id: 3750, name: 1船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
-    - {trigger_id: 3750, name: 1船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - {trigger_id: 3750, name: 1船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩進入點觸發（X船暈）}
+    - {trigger_id: 3750, name: 1船6, kind: effect, index: 1, field: effect_type, old: 24, new: 0, reason: '100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）'}
+    - {trigger_id: 3750, name: 1船6, kind: effect, index: 3, field: effect_type, old: 3, new: 0, reason: 「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）}
     - trigger_id: 3750
       name: 1船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 1船入東}
-      reason: 買票開售票窗
+      effect: {type: activate_trigger, trigger_name: 1船血東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - trigger_id: 3750
       name: 1船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 1船窗止東}
-      reason: 買票開售票窗
-    - trigger_id: 3750
-      name: 1船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 1船暈東}
-      reason: 買票開售票窗
-    - trigger_id: 3750
-      name: 1船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 1船免東}
-      reason: 買票開售票窗
-    - trigger_id: 3750
-      name: 1船6
-      kind: effect_add
-      effect: {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
-      reason: 買票提示，僅買票座位可見
+      effect: {type: activate_trigger, trigger_name: 1船費東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - {trigger_id: 3755, name: 2船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
-    - {trigger_id: 3755, name: 2船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - {trigger_id: 3755, name: 2船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩進入點觸發（X船暈）}
+    - {trigger_id: 3755, name: 2船6, kind: effect, index: 1, field: effect_type, old: 24, new: 0, reason: '100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）'}
+    - {trigger_id: 3755, name: 2船6, kind: effect, index: 3, field: effect_type, old: 3, new: 0, reason: 「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）}
     - trigger_id: 3755
       name: 2船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 2船入東}
-      reason: 買票開售票窗
+      effect: {type: activate_trigger, trigger_name: 2船血東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - trigger_id: 3755
       name: 2船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 2船窗止東}
-      reason: 買票開售票窗
-    - trigger_id: 3755
-      name: 2船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 2船暈東}
-      reason: 買票開售票窗
-    - trigger_id: 3755
-      name: 2船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 2船免東}
-      reason: 買票開售票窗
-    - trigger_id: 3755
-      name: 2船6
-      kind: effect_add
-      effect: {type: send_chat, source_player: 2, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
-      reason: 買票提示，僅買票座位可見
+      effect: {type: activate_trigger, trigger_name: 2船費東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - {trigger_id: 3760, name: 3船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
-    - {trigger_id: 3760, name: 3船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - {trigger_id: 3760, name: 3船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩進入點觸發（X船暈）}
+    - {trigger_id: 3760, name: 3船6, kind: effect, index: 1, field: effect_type, old: 24, new: 0, reason: '100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）'}
+    - {trigger_id: 3760, name: 3船6, kind: effect, index: 3, field: effect_type, old: 3, new: 0, reason: 「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）}
     - trigger_id: 3760
       name: 3船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 3船入東}
-      reason: 買票開售票窗
+      effect: {type: activate_trigger, trigger_name: 3船血東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - trigger_id: 3760
       name: 3船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 3船窗止東}
-      reason: 買票開售票窗
-    - trigger_id: 3760
-      name: 3船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 3船暈東}
-      reason: 買票開售票窗
-    - trigger_id: 3760
-      name: 3船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 3船免東}
-      reason: 買票開售票窗
-    - trigger_id: 3760
-      name: 3船6
-      kind: effect_add
-      effect: {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
-      reason: 買票提示，僅買票座位可見
+      effect: {type: activate_trigger, trigger_name: 3船費東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - {trigger_id: 3765, name: 4船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
-    - {trigger_id: 3765, name: 4船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - {trigger_id: 3765, name: 4船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩進入點觸發（X船暈）}
+    - {trigger_id: 3765, name: 4船6, kind: effect, index: 1, field: effect_type, old: 24, new: 0, reason: '100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）'}
+    - {trigger_id: 3765, name: 4船6, kind: effect, index: 3, field: effect_type, old: 3, new: 0, reason: 「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）}
     - trigger_id: 3765
       name: 4船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 4船入東}
-      reason: 買票開售票窗
+      effect: {type: activate_trigger, trigger_name: 4船血東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - trigger_id: 3765
       name: 4船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 4船窗止東}
-      reason: 買票開售票窗
-    - trigger_id: 3765
-      name: 4船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 4船暈東}
-      reason: 買票開售票窗
-    - trigger_id: 3765
-      name: 4船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 4船免東}
-      reason: 買票開售票窗
-    - trigger_id: 3765
-      name: 4船6
-      kind: effect_add
-      effect: {type: send_chat, source_player: 4, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
-      reason: 買票提示，僅買票座位可見
+      effect: {type: activate_trigger, trigger_name: 4船費東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - {trigger_id: 3770, name: 5船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
-    - {trigger_id: 3770, name: 5船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - {trigger_id: 3770, name: 5船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩進入點觸發（X船暈）}
+    - {trigger_id: 3770, name: 5船6, kind: effect, index: 1, field: effect_type, old: 24, new: 0, reason: '100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）'}
+    - {trigger_id: 3770, name: 5船6, kind: effect, index: 3, field: effect_type, old: 3, new: 0, reason: 「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）}
     - trigger_id: 3770
       name: 5船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 5船入東}
-      reason: 買票開售票窗
+      effect: {type: activate_trigger, trigger_name: 5船血東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - trigger_id: 3770
       name: 5船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 5船窗止東}
-      reason: 買票開售票窗
-    - trigger_id: 3770
-      name: 5船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 5船暈東}
-      reason: 買票開售票窗
-    - trigger_id: 3770
-      name: 5船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 5船免東}
-      reason: 買票開售票窗
-    - trigger_id: 3770
-      name: 5船6
-      kind: effect_add
-      effect: {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
-      reason: 買票提示，僅買票座位可見
+      effect: {type: activate_trigger, trigger_name: 5船費東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - {trigger_id: 3775, name: 6船6, kind: effect, index: 1, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
-    - {trigger_id: 3775, name: 6船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
+    - {trigger_id: 3775, name: 6船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩進入點觸發（X船暈）}
+    - {trigger_id: 3775, name: 6船6, kind: effect, index: 3, field: effect_type, old: 24, new: 0, reason: '100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）'}
+    - {trigger_id: 3775, name: 6船6, kind: effect, index: 2, field: effect_type, old: 3, new: 0, reason: 「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）}
     - trigger_id: 3775
       name: 6船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 6船入東}
-      reason: 買票開售票窗
+      effect: {type: activate_trigger, trigger_name: 6船血東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - trigger_id: 3775
       name: 6船6
       kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 6船窗止東}
-      reason: 買票開售票窗
-    - trigger_id: 3775
-      name: 6船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 6船暈東}
-      reason: 買票開售票窗
-    - trigger_id: 3775
-      name: 6船6
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 6船免東}
-      reason: 買票開售票窗
-    - trigger_id: 3775
-      name: 6船6
-      kind: effect_add
-      effect: {type: send_chat, source_player: 6, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
-      reason: 買票提示，僅買票座位可見
+      effect: {type: activate_trigger, trigger_name: 6船費東}
+      reason: 同 tick 武裝封鎖（小 id）與扣費（大 id）
     - {trigger_id: 3781, name: 1船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - trigger_id: 3781
       name: 1船6
@@ -1570,7 +1630,6 @@ params:
       kind: effect_add
       effect: {type: send_chat, source_player: 6, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
-    - {trigger_id: 3760, name: 3船6, kind: effect, index: 3, field: message, old: <GREEN>失去了　2000　兩銀, new: <GREEN>失去精力        100000, reason: 東碼頭扣的是精力，其餘五座位皆「失去精力 100000」，3P 抄錯}
     - trigger_id: 3732
       name: 船
       kind: effect_add
@@ -1591,36 +1650,6 @@ params:
       kind: effect_add
       effect: {type: activate_trigger, trigger_name: 船卸西}
       reason: 派船時武裝一次性卸貨
-    - trigger_id: 3746
-      name: 1船
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 1船血東}
-      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-    - trigger_id: 3751
-      name: 2船
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 2船血東}
-      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-    - trigger_id: 3756
-      name: 3船
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 3船血東}
-      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-    - trigger_id: 3761
-      name: 4船
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 4船血東}
-      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-    - trigger_id: 3766
-      name: 5船
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 5船血東}
-      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-    - trigger_id: 3771
-      name: 6船
-      kind: effect_add
-      effect: {type: activate_trigger, trigger_name: 6船血東}
-      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
     - {trigger_id: 3748, name: 1船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
     - {trigger_id: 3753, name: 2船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
     - {trigger_id: 3758, name: 3船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}

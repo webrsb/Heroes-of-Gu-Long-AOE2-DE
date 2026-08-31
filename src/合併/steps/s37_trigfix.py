@@ -11,11 +11,17 @@ from .base import Step, BuildError
 def apply_fix(tm, entry) -> Change:
     if entry['kind'] == 'trigger_add':            # 原作漏建的座位副本（如 5/6 座位銀兩護欄）
         return _add_trigger(tm, entry)
-    tid = entry['trigger_id']
-    t = tm.triggers[tid]
-    if (t.name or '') != entry.get('name', ''):
-        raise BuildError(f'缺裁決：T{tid} 名稱「{t.name}」≠ spec 預期「{entry.get("name", "")}」，'
-                         f'基底觸發編號可能位移，請重查')
+    if entry['kind'] == 'effect_add' and 'trigger_id' not in entry:
+        # 以名稱指定目標：接「新觸發之間」的線用（新觸發 id 在寫 spec 時不存在），
+        # 且可繞過名稱前向引用——先把兩支都新增，再回頭補互指的效果。
+        t = _resolve_by_name(tm, entry['target_name'], f'effect_add「{entry["target_name"]}」')
+        tid = t.trigger_id
+    else:
+        tid = entry['trigger_id']
+        t = tm.triggers[tid]
+        if (t.name or '') != entry.get('name', ''):
+            raise BuildError(f'缺裁決：T{tid} 名稱「{t.name}」≠ spec 預期「{entry.get("name", "")}」，'
+                             f'基底觸發編號可能位移，請重查')
     kind = entry['kind']
     if kind == 'effect_add':                      # 尾端新增效果：啟停（id+名防呆，或以名指）或座位私訊
         spec = entry['effect']

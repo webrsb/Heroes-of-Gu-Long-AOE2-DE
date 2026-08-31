@@ -168,3 +168,21 @@ def test_trigger_add_effect_trigger_name_must_hit_exactly_one(f):
     with pytest.raises(BuildError):
         apply_fix(f.tm([a]), {'kind': 'trigger_add', 'name': 'x', 'effects': [
             {'type': 'activate_trigger', 'trigger_name': '不存在'}]})
+
+
+def test_effect_add_target_by_name_for_new_triggers(f):
+    a = f.trig(name='1船血東')
+    b = f.trig(name='1船費東')
+    tm = f.tm([a, b])
+    c = apply_fix(tm, {'kind': 'effect_add', 'target_name': '1船血東',
+                       'effect': {'type': 'deactivate_trigger', 'trigger_name': '1船費東'},
+                       'reason': '血不足拆掉扣費'})
+    assert a.new_effect.calls == [('deactivate_trigger', {'trigger_id': b.trigger_id})]
+    assert '1船費東' in c.new
+
+
+def test_effect_add_target_name_must_hit_exactly_one(f):
+    a = f.trig(name='重名'); b = f.trig(name='重名')
+    with pytest.raises(BuildError):
+        apply_fix(f.tm([a, b]), {'kind': 'effect_add', 'target_name': '重名',
+                                 'effect': {'type': 'send_chat', 'source_player': 1, 'message': 'x'}})

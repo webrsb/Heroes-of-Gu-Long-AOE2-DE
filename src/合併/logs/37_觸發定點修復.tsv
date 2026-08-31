@@ -191,59 +191,71 @@ s37	trigger_add	6船出西	trigger		T5673 0條件/2效果	渡船西座位6：踩
 s37	trigger_add	船卸東	trigger		T5674 2條件/1效果	渡船東：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
 s37	trigger_add	船卸西	trigger		T5675 2條件/1效果	渡船西：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
 s37	trigger_add	船旗初始化	trigger		T5676 1條件/4效果	渡船：兩碼頭進入點／出來點 Gaia 旗（FLAG_A 600）
-s37	trigger_add	1船血東	trigger		T5677 1條件/3效果	東碼頭精力不足封鎖座位 1：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
-s37	trigger_add	2船血東	trigger		T5678 1條件/3效果	東碼頭精力不足封鎖座位 2：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
-s37	trigger_add	3船血東	trigger		T5679 1條件/3效果	東碼頭精力不足封鎖座位 3：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
-s37	trigger_add	4船血東	trigger		T5680 1條件/3效果	東碼頭精力不足封鎖座位 4：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
-s37	trigger_add	5船血東	trigger		T5681 1條件/3效果	東碼頭精力不足封鎖座位 5：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
-s37	trigger_add	6船血東	trigger		T5682 1條件/3效果	東碼頭精力不足封鎖座位 6：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
-s37	trigger_add	2船級西	trigger		T5683 2條件/2效果	西碼頭等級門檻座位 2：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
-s37	trigger_add	3船級西	trigger		T5684 2條件/2效果	西碼頭等級門檻座位 3：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
-s37	trigger_add	4船級西	trigger		T5685 2條件/2效果	西碼頭等級門檻座位 4：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
-s37	trigger_add	5船級西	trigger		T5686 2條件/2效果	西碼頭等級門檻座位 5：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
-s37	trigger_add	6船級西	trigger		T5687 2條件/2效果	西碼頭等級門檻座位 6：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+s37	trigger_add	1船血東	trigger		T5677 1條件/1效果	東碼頭精力不足封鎖座位 1（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
+s37	trigger_add	1船費東	trigger		T5678 0條件/7效果	東碼頭真扣費座位 1：零條件、由 X船6 武裝；血不足時已被 1船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+s37	trigger_add	2船血東	trigger		T5679 1條件/1效果	東碼頭精力不足封鎖座位 2（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
+s37	trigger_add	2船費東	trigger		T5680 0條件/7效果	東碼頭真扣費座位 2：零條件、由 X船6 武裝；血不足時已被 2船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+s37	trigger_add	3船血東	trigger		T5681 1條件/1效果	東碼頭精力不足封鎖座位 3（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
+s37	trigger_add	3船費東	trigger		T5682 0條件/7效果	東碼頭真扣費座位 3：零條件、由 X船6 武裝；血不足時已被 3船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+s37	trigger_add	4船血東	trigger		T5683 1條件/1效果	東碼頭精力不足封鎖座位 4（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
+s37	trigger_add	4船費東	trigger		T5684 0條件/7效果	東碼頭真扣費座位 4：零條件、由 X船6 武裝；血不足時已被 4船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+s37	trigger_add	5船血東	trigger		T5685 1條件/1效果	東碼頭精力不足封鎖座位 5（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
+s37	trigger_add	5船費東	trigger		T5686 0條件/7效果	東碼頭真扣費座位 5：零條件、由 X船6 武裝；血不足時已被 5船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+s37	trigger_add	6船血東	trigger		T5687 1條件/1效果	東碼頭精力不足封鎖座位 6（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
+s37	trigger_add	6船費東	trigger		T5688 0條件/7效果	東碼頭真扣費座位 6：零條件、由 X船6 武裝；血不足時已被 6船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
+s37	effect_add	T5677「1船血東」effect_add	deactivate_trigger		→T5678「1船費東」	血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+s37	effect_add	T5678「1船費東」effect_add	deactivate_trigger		→T5677「1船血東」	扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+s37	effect_add	T5679「2船血東」effect_add	deactivate_trigger		→T5680「2船費東」	血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+s37	effect_add	T5680「2船費東」effect_add	deactivate_trigger		→T5679「2船血東」	扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+s37	effect_add	T5681「3船血東」effect_add	deactivate_trigger		→T5682「3船費東」	血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+s37	effect_add	T5682「3船費東」effect_add	deactivate_trigger		→T5681「3船血東」	扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+s37	effect_add	T5683「4船血東」effect_add	deactivate_trigger		→T5684「4船費東」	血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+s37	effect_add	T5684「4船費東」effect_add	deactivate_trigger		→T5683「4船血東」	扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+s37	effect_add	T5685「5船血東」effect_add	deactivate_trigger		→T5686「5船費東」	血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+s37	effect_add	T5686「5船費東」effect_add	deactivate_trigger		→T5685「5船血東」	扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+s37	effect_add	T5687「6船血東」effect_add	deactivate_trigger		→T5688「6船費東」	血不足→拆掉扣費（本支 id 較小，同 tick 先跑）
+s37	effect_add	T5688「6船費東」effect_add	deactivate_trigger		→T5687「6船血東」	扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
+s37	trigger_add	2船級西	trigger		T5689 2條件/2效果	西碼頭等級門檻座位 2：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+s37	trigger_add	3船級西	trigger		T5690 2條件/2效果	西碼頭等級門檻座位 3：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+s37	trigger_add	4船級西	trigger		T5691 2條件/2效果	西碼頭等級門檻座位 4：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+s37	trigger_add	5船級西	trigger		T5692 2條件/2效果	西碼頭等級門檻座位 5：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+s37	trigger_add	6船級西	trigger		T5693 2條件/2效果	西碼頭等級門檻座位 6：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
 s37	effect_field	T3750「1船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_field	T3750「1船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5603「1船入東」	買票開售票窗
-s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5605「1船窗止東」	買票開售票窗
-s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5602「1船暈東」	買票開售票窗
-s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5604「1船免東」	買票開售票窗
-s37	effect_add	T3750「1船6」effect_add	send_chat		sp1「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
+s37	effect_field	T3750「1船6」E#4	effect_type	8	0	頭暈改由英雄踩進入點觸發（X船暈）
+s37	effect_field	T3750「1船6」E#1	effect_type	24	0	100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）
+s37	effect_field	T3750「1船6」E#3	effect_type	3	0	「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）
+s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5677「1船血東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
+s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5678「1船費東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
 s37	effect_field	T3755「2船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_field	T3755「2船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5609「2船入東」	買票開售票窗
-s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5611「2船窗止東」	買票開售票窗
-s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5608「2船暈東」	買票開售票窗
-s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5610「2船免東」	買票開售票窗
-s37	effect_add	T3755「2船6」effect_add	send_chat		sp2「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
+s37	effect_field	T3755「2船6」E#4	effect_type	8	0	頭暈改由英雄踩進入點觸發（X船暈）
+s37	effect_field	T3755「2船6」E#1	effect_type	24	0	100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）
+s37	effect_field	T3755「2船6」E#3	effect_type	3	0	「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）
+s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5679「2船血東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
+s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5680「2船費東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
 s37	effect_field	T3760「3船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_field	T3760「3船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5615「3船入東」	買票開售票窗
-s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5617「3船窗止東」	買票開售票窗
-s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5614「3船暈東」	買票開售票窗
-s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5616「3船免東」	買票開售票窗
-s37	effect_add	T3760「3船6」effect_add	send_chat		sp3「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
+s37	effect_field	T3760「3船6」E#4	effect_type	8	0	頭暈改由英雄踩進入點觸發（X船暈）
+s37	effect_field	T3760「3船6」E#1	effect_type	24	0	100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）
+s37	effect_field	T3760「3船6」E#3	effect_type	3	0	「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）
+s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5681「3船血東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
+s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5682「3船費東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
 s37	effect_field	T3765「4船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_field	T3765「4船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5621「4船入東」	買票開售票窗
-s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5623「4船窗止東」	買票開售票窗
-s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5620「4船暈東」	買票開售票窗
-s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5622「4船免東」	買票開售票窗
-s37	effect_add	T3765「4船6」effect_add	send_chat		sp4「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
+s37	effect_field	T3765「4船6」E#4	effect_type	8	0	頭暈改由英雄踩進入點觸發（X船暈）
+s37	effect_field	T3765「4船6」E#1	effect_type	24	0	100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）
+s37	effect_field	T3765「4船6」E#3	effect_type	3	0	「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）
+s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5683「4船血東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
+s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5684「4船費東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
 s37	effect_field	T3770「5船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_field	T3770「5船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5627「5船入東」	買票開售票窗
-s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5629「5船窗止東」	買票開售票窗
-s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5626「5船暈東」	買票開售票窗
-s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5628「5船免東」	買票開售票窗
-s37	effect_add	T3770「5船6」effect_add	send_chat		sp5「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
+s37	effect_field	T3770「5船6」E#4	effect_type	8	0	頭暈改由英雄踩進入點觸發（X船暈）
+s37	effect_field	T3770「5船6」E#1	effect_type	24	0	100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）
+s37	effect_field	T3770「5船6」E#3	effect_type	3	0	「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）
+s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5685「5船血東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
+s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5686「5船費東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
 s37	effect_field	T3775「6船6」E#1	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_field	T3775「6船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5633「6船入東」	買票開售票窗
-s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5635「6船窗止東」	買票開售票窗
-s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5632「6船暈東」	買票開售票窗
-s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5634「6船免東」	買票開售票窗
-s37	effect_add	T3775「6船6」effect_add	send_chat		sp6「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
+s37	effect_field	T3775「6船6」E#4	effect_type	8	0	頭暈改由英雄踩進入點觸發（X船暈）
+s37	effect_field	T3775「6船6」E#3	effect_type	24	0	100,000 精力扣費搬到 X船費東，先過血量封鎖才扣（原作血不夠當場死）
+s37	effect_field	T3775「6船6」E#2	effect_type	3	0	「失去精力」訊息隨扣費搬到 X船費東，被封鎖時不該印；順帶解決 3船6 抄成「失去了 2000 兩銀」（費東統一發正確字串）
+s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5687「6船血東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
+s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5688「6船費東」	同 tick 武裝封鎖（小 id）與扣費（大 id）
 s37	effect_field	T3781「1船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
 s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5639「1船入西」	買票開售票窗
 s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5641「1船窗止西」	買票開售票窗
@@ -280,17 +292,10 @@ s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5671「6船窗�
 s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5668「6船暈西」	買票開售票窗
 s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5670「6船免西」	買票開售票窗
 s37	effect_add	T3811「6船6」effect_add	send_chat		sp6「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
-s37	effect_field	T3760「3船6」E#3	message	<GREEN>失去了　2000　兩銀	<GREEN>失去精力        100000	東碼頭扣的是精力，其餘五座位皆「失去精力 100000」，3P 抄錯
 s37	effect_add	T3732「船」effect_add	activate_trigger		→T5674「船卸東」	派船時武裝一次性卸貨
 s37	effect_add	T3732「船」effect_add	activate_trigger		→T5675「船卸西」	派船時武裝一次性卸貨
 s37	effect_add	T3733「船2」effect_add	activate_trigger		→T5674「船卸東」	派船時武裝一次性卸貨
 s37	effect_add	T3733「船2」effect_add	activate_trigger		→T5675「船卸西」	派船時武裝一次性卸貨
-s37	effect_add	T3746「1船」effect_add	activate_trigger		→T5677「1船血東」	報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-s37	effect_add	T3751「2船」effect_add	activate_trigger		→T5678「2船血東」	報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-s37	effect_add	T3756「3船」effect_add	activate_trigger		→T5679「3船血東」	報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-s37	effect_add	T3761「4船」effect_add	activate_trigger		→T5680「4船血東」	報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-s37	effect_add	T3766「5船」effect_add	activate_trigger		→T5681「5船血東」	報價時同步武裝精力不足封鎖（每次走近重新判定一次）
-s37	effect_add	T3771「6船」effect_add	activate_trigger		→T5682「6船血東」	報價時同步武裝精力不足封鎖（每次走近重新判定一次）
 s37	effect_field	T3748「1船4」E#1	effect_type	15	0	票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄
 s37	effect_field	T3753「2船4」E#1	effect_type	15	0	票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄
 s37	effect_field	T3758「3船4」E#1	effect_type	15	0	票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄
