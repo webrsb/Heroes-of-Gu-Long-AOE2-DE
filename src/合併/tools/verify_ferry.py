@@ -108,6 +108,15 @@ def main(path):
     for tid in (3673, 3675, 3677, 3679, 3681, 3683, 3685):
         t = tm.triggers[tid]
         check(int(t.conditions[1].inverted or 0) == 1, f'T{tid}「{t.name}」等級門檻已反相（<1159 才推）')
+    HERO = {1: 0, 2: 1, 3: 2, 4: 502, 5: 7, 6: 45117}
+    QUOTE = {1: 3746, 2: 3751, 3: 3756, 4: 3761, 5: 3766, 6: 3771}
+    for s in SEATS:                          # 東碼頭精力不足封鎖（原作血不夠會當場死）
+        got = by_name.get(f'{s}船血東', [])
+        ok = len(got) == 1 and got[0].conditions[0].unit_object == HERO[s] \
+            and got[0].conditions[0].quantity == 100000 and got[0].conditions[0].comparison == 3
+        armed = any(int(e.effect_type) == 8 and e.trigger_id == got[0].trigger_id
+                    for e in tm.triggers[QUOTE[s]].effects) if got else False
+        check(ok and armed, f'{s}船血東 條件 ref{HERO[s]} HP≤100000、由 T{QUOTE[s]} 報價武裝')
     for s in range(2, 7):                    # 西碼頭 2–6 座位補的等級門檻（基底缺）
         got = by_name.get(f'{s}船級西', [])
         variants = [x for slot in SEATS if slot != s for x in by_name.get(f'{s}船級西◇位{slot}', [])]

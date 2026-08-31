@@ -30,6 +30,10 @@ PIER = {
               dock_out=(82, 232), dock=(82, 233, 84, 235)),
 }
 # 西碼頭等級門檻：基底只有座位 1（1船 T3685），2–6 座位從來沒有 → 照 T3685 鏡像補五支（條件已反相：<1159 才推）
+EAST_QUOTE = {1: 3746, 2: 3751, 3: 3756, 4: 3761, 5: 3766, 6: 3771}    # 東 X船（報價，武裝確認與血量封鎖）
+EAST_CONFIRM = {1: 3747, 2: 3752, 3: 3757, 4: 3762, 5: 3767, 6: 3772}  # 東 X船3（確認→武裝扣費）
+EAST_FARE = 100000                       # 東碼頭票價＝對英雄打 100,000 傷害（精力）
+LE = 3                                   # Comparison.LESS_OR_EQUAL
 WEST_GATE_COND = (68, 231, 78, 239)     # 偵測區（同 T3685）
 WEST_GATE_TASK = (72, 230, 82, 239)     # 推人區（同 T3685）
 WEST_GATE_TO = (73, 226)                # 推到（同 T3685）
@@ -125,6 +129,17 @@ def global_triggers():
              for p in PIER for k in ('enter', 'in_flag')]
     out.append(_add('船旗初始化', 1, 0, [dict(type='timer', timer=0)], flags,
                     '渡船：兩碼頭進入點／出來點 Gaia 旗（FLAG_A 600）'))
+    for s in range(1, 7):
+        out.append(_add(f'{s}船血東', 0, 0,
+                        [dict(type='object_hp', unit_object=HERO_REF[s], quantity=EAST_FARE, comparison=LE)],
+                        [dict(type='send_chat', source_player=s,
+                              message='<ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。'),
+                         dict(type='deactivate_trigger', trigger_id=EAST_CONFIRM[s]),
+                         dict(type='deactivate_trigger', trigger_id=X6['東'][s])],
+                        f'東碼頭精力不足封鎖座位 {s}：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。'
+                        f'由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。'
+                        f'極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，'
+                        f'「≥ 才允許」會被滿血備身滿足＝等於沒檢查'))
     for s in range(2, 7):
         out.append(_add(f'{s}船級西', 1, 1,
                         [dict(type='objects_in_area', quantity=1, source_player=s, **_rect(WEST_GATE_COND)),
@@ -164,6 +179,10 @@ def edits():
             out.append(dict(trigger_id=tid, name=nm, kind='effect_add',
                             effect=dict(type='activate_trigger', trigger_name=f'船卸{p}'),
                             reason='派船時武裝一次性卸貨'))
+    for s, tid in EAST_QUOTE.items():
+        out.append(dict(trigger_id=tid, name=f'{s}船', kind='effect_add',
+                        effect=dict(type='activate_trigger', trigger_name=f'{s}船血東'),
+                        reason='報價時同步武裝精力不足封鎖（每次走近重新判定一次）'))
     for p, (ids, idx) in X4.items():
         for s, tid in ids.items():
             out.append(dict(trigger_id=tid, name=f'{s}船4', kind='effect', index=idx, field='effect_type',

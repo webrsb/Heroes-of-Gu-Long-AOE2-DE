@@ -18,6 +18,7 @@ X6 = {'東': {1: 3750, 2: 3755, 3: 3760, 4: 3765, 5: 3770, 6: 3775},
 X4 = {'東': ({1: 3748, 2: 3753, 3: 3758, 4: 3763, 5: 3768, 6: 3773}, 1),
       '西': ({1: 3779, 2: 3785, 3: 3791, 4: 3797, 5: 3803, 6: 3809}, 2)}
 FERRY_IDS = set(range(3734, 3746)) | {3732, 3733} | set(range(3673, 3686)) \
+    | {3746, 3751, 3756, 3761, 3766, 3771} \
     | {t for d in X6.values() for t in d.values()} | {t for d, _ in X4.values() for t in d.values()}
 
 
@@ -28,7 +29,8 @@ def _adds(entries):
 def _check_block(entries):
     adds = _adds(entries)
     names = [a['name'] for a in adds]
-    assert len(names) == len(set(names)) == 80        # 72 座位×碼頭 ＋ 船卸×2 ＋ 船旗 ＋ 西等級門檻 2–6
+    # 72 座位×碼頭 ＋ 船卸×2 ＋ 船旗 ＋ 西等級門檻 2–6 ＋ 東精力封鎖 1–6
+    assert len(names) == len(set(names)) == 86
     for s in SEATS:
         for p in PIERS:
             for k in KINDS:
@@ -127,6 +129,21 @@ def _check_block(entries):
             p = a['name'][-1]
             e = a['effects'][0]
             assert (e['location_x'], e['location_y']) == DOCK_OUT[p], a['name']
+    # 東碼頭精力不足封鎖：由報價武裝、一次性、極性＝血 ≤100000 才封鎖（拆確認與扣費）
+    HERO = {1: 0, 2: 1, 3: 2, 4: 502, 5: 7, 6: 45117}
+    QUOTE = {1: 3746, 2: 3751, 3: 3756, 4: 3761, 5: 3766, 6: 3771}
+    CONFIRM = {1: 3747, 2: 3752, 3: 3757, 4: 3762, 5: 3767, 6: 3772}
+    for s in SEATS:
+        a = next(x for x in adds if x['name'] == f'{s}船血東')
+        assert a['enabled'] == 0 and a['looping'] == 0
+        c = a['conditions'][0]
+        assert c['type'] == 'object_hp' and c['unit_object'] == HERO[s] \
+            and c['quantity'] == 100000 and c['comparison'] == 3, a['name']
+        assert [e['type'] for e in a['effects']] == ['send_chat', 'deactivate_trigger', 'deactivate_trigger']
+        assert a['effects'][0]['source_player'] == s and '精力不足' in a['effects'][0]['message']
+        assert {e['trigger_id'] for e in a['effects'][1:]} == {CONFIRM[s], X6['東'][s]}, a['name']
+        assert any(e.get('trigger_id') == QUOTE[s] and e.get('kind') == 'effect_add'
+                   and e['effect'].get('trigger_name') == f'{s}船血東' for e in entries), s
     # 西碼頭等級門檻：基底只有座位 1，補 2–6（反相＝<1159 才推）
     for s in range(2, 7):
         a = next(x for x in adds if x['name'] == f'{s}船級西')

@@ -1132,6 +1132,72 @@ params:
       - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 79, location_y: 233}
       - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 81, location_y: 235}
     - kind: trigger_add
+      name: 1船血東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭精力不足封鎖座位 1：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      conditions:
+      - {type: object_hp, unit_object: 0, quantity: 100000, comparison: 3}
+      effects:
+      - {type: send_chat, source_player: 1, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
+      - {type: deactivate_trigger, trigger_id: 3747}
+      - {type: deactivate_trigger, trigger_id: 3750}
+    - kind: trigger_add
+      name: 2船血東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭精力不足封鎖座位 2：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      conditions:
+      - {type: object_hp, unit_object: 1, quantity: 100000, comparison: 3}
+      effects:
+      - {type: send_chat, source_player: 2, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
+      - {type: deactivate_trigger, trigger_id: 3752}
+      - {type: deactivate_trigger, trigger_id: 3755}
+    - kind: trigger_add
+      name: 3船血東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭精力不足封鎖座位 3：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      conditions:
+      - {type: object_hp, unit_object: 2, quantity: 100000, comparison: 3}
+      effects:
+      - {type: send_chat, source_player: 3, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
+      - {type: deactivate_trigger, trigger_id: 3757}
+      - {type: deactivate_trigger, trigger_id: 3760}
+    - kind: trigger_add
+      name: 4船血東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭精力不足封鎖座位 4：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      conditions:
+      - {type: object_hp, unit_object: 502, quantity: 100000, comparison: 3}
+      effects:
+      - {type: send_chat, source_player: 4, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
+      - {type: deactivate_trigger, trigger_id: 3762}
+      - {type: deactivate_trigger, trigger_id: 3765}
+    - kind: trigger_add
+      name: 5船血東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭精力不足封鎖座位 5：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      conditions:
+      - {type: object_hp, unit_object: 7, quantity: 100000, comparison: 3}
+      effects:
+      - {type: send_chat, source_player: 5, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
+      - {type: deactivate_trigger, trigger_id: 3767}
+      - {type: deactivate_trigger, trigger_id: 3770}
+    - kind: trigger_add
+      name: 6船血東
+      enabled: 0
+      looping: 0
+      reason: 東碼頭精力不足封鎖座位 6：原作直接打 100,000 傷害、血不夠就當場死（2026-08-31 使用者回報）。由 X船（報價）武裝、一次性：血 ≤100,000 就提示並拆掉確認與扣費，走到船夫前也不會被扣。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 跨命 OR 展開，「≥ 才允許」會被滿血備身滿足＝等於沒檢查
+      conditions:
+      - {type: object_hp, unit_object: 45117, quantity: 100000, comparison: 3}
+      effects:
+      - {type: send_chat, source_player: 6, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
+      - {type: deactivate_trigger, trigger_id: 3772}
+      - {type: deactivate_trigger, trigger_id: 3775}
+    - kind: trigger_add
       name: 2船級西
       enabled: 1
       looping: 1
@@ -1525,6 +1591,36 @@ params:
       kind: effect_add
       effect: {type: activate_trigger, trigger_name: 船卸西}
       reason: 派船時武裝一次性卸貨
+    - trigger_id: 3746
+      name: 1船
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 1船血東}
+      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
+    - trigger_id: 3751
+      name: 2船
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 2船血東}
+      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
+    - trigger_id: 3756
+      name: 3船
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 3船血東}
+      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
+    - trigger_id: 3761
+      name: 4船
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 4船血東}
+      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
+    - trigger_id: 3766
+      name: 5船
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 5船血東}
+      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
+    - trigger_id: 3771
+      name: 6船
+      kind: effect_add
+      effect: {type: activate_trigger, trigger_name: 6船血東}
+      reason: 報價時同步武裝精力不足封鎖（每次走近重新判定一次）
     - {trigger_id: 3748, name: 1船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
     - {trigger_id: 3753, name: 2船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
     - {trigger_id: 3758, name: 3船4, kind: effect, index: 1, field: effect_type, old: 15, new: 0, reason: 票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄}
