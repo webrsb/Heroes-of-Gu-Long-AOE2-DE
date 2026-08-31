@@ -48,6 +48,16 @@ def main(path):
               f'T{tid}「{t.name}」不直接啟動 X頭暈起')
         check(sum(1 for e in t.effects if int(e.effect_type) == 8) == 4, f'T{tid}「{t.name}」啟動 4 支（入/窗止/暈/免）')
         check(any(int(e.effect_type) == 3 and '三分鐘' in (e.message or '') for e in t.effects), f'T{tid}「{t.name}」有買票提示')
+    ENTER = {'東': (112, 226, 112, 228), '西': (79, 233, 79, 234)}
+    for p in PIERS:
+        for s in SEATS:
+            for kind in ('船入', '船暈'):
+                t = by_name[f'{s}{kind}{p}'][0]
+                c = t.conditions[0]
+                got = (c.area_x1, c.area_y1, c.area_x2, c.area_y2)
+                check(got == ENTER[p], f'{s}{kind}{p} 進場感應區＝貼牆整排 {ENTER[p]} → 得 {got}')
+            t = by_name[f'{s}船入{p}'][0]
+            check(len(t.conditions) == 1, f'{s}船入{p} 無閱歷門檻（靜默失敗源）→ 得 {len(t.conditions)} 條件')
     for tid in (3748, 3753, 3758, 3763, 3768, 3773, 3779, 3785, 3791, 3797, 3803, 3809):
         t = tm.triggers[tid]
         check(not any(int(e.effect_type) == 15 for e in t.effects), f'T{tid}「{t.name}」REMOVE 已清')

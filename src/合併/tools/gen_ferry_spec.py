@@ -17,9 +17,13 @@ GRASS = [(3734, '1草'), (3735, '1草2.'), (3736, '2草'), (3737, '2草2'), (373
          (3740, '4草'), (3741, '4草2'), (3742, '5草'), (3743, '5草2'), (3744, '6草'), (3745, '6草2')]
 FLAG_A, TRANSPORT = 600, 545
 PIER = {
-    '東': dict(out_flag=(112, 227), in_land=(110, 226), in_clear=(110, 225), in_flag=(110, 228),
+    # enter＝進場感應區（貼牆那一排，含旗格）。2026-08-31 驗收：只認單一旗格時右鍵點旗子只會停在旗子旁邊，
+    # 永遠踩不到 → 擴成貼牆整排；西刻意排除 (79,235)（出港清場格），否則出港者會被叫回來又被吸進去。
+    '東': dict(out_flag=(112, 227), enter=(112, 226, 112, 228),
+              in_land=(110, 226), in_clear=(110, 225), in_flag=(110, 228),
               out_land=(116, 232), out_clear=(116, 234), dock=(107, 225, 109, 229)),
-    '西': dict(out_flag=(79, 233), in_land=(81, 233), in_clear=(81, 232), in_flag=(81, 235),
+    '西': dict(out_flag=(79, 233), enter=(79, 233, 79, 234),
+              in_land=(81, 233), in_clear=(81, 232), in_flag=(81, 235),
               out_land=(75, 234), out_clear=(79, 235), dock=(82, 233, 84, 235)),
               # out_clear (79,235)＝使用者 2026-08-31 指定（外旗南 2 格），舊值 (73,234) 堵住走進碼頭的動線
 }
@@ -34,8 +38,7 @@ BUY_CHAIN = {'東': {1: (3746, 3747, 3750), 2: (3751, 3752, 3755), 3: (3756, 375
                     4: (3761, 3762, 3765), 5: (3766, 3767, 3770), 6: (3771, 3772, 3775)},
              '西': {1: (3776, 3778, 3781), 2: (3782, 3784, 3787), 3: (3788, 3790, 3793),
                     4: (3794, 3796, 3799), 5: (3800, 3802, 3805), 6: (3806, 3808, 3811)}}
-LEVEL_XP, XP_ATTR = 1160, 2                          # 與 X草2 同門檻（石頭＝閱歷）
-HINT = '<ORANGE>買票後三分鐘內踩牆邊旗子進入登船處，船上踩旗可回岸'
+HINT = '<ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸'
 
 
 def _tile(xy):
@@ -58,15 +61,15 @@ def seat_triggers(s, p):
     return [
         # 暈必須排在入之前：同 tick 內入先執行會把英雄傳走，暈就看不到旗格上的英雄（legacy 順序＝id 順序）
         _add(f'{s}船暈{p}', 0, 0,
-             [dict(type='bring_object_to_area', unit_object=HERO_REF[s], **_tile(c['out_flag']))],
+             [dict(type='bring_object_to_area', unit_object=HERO_REF[s], **_rect(c['enter']))],
              [dict(type='activate_trigger', trigger_id=DIZZY[s])],
-             f'{tag}：英雄踩牆外旗（窗開）→ 啟動 X頭暈起；取代原作付費即暈'),
+             f'{tag}：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈'),
         _add(f'{s}船入{p}', 0, 1,
-             [dict(type='objects_in_area', quantity=1, source_player=s, **_tile(c['out_flag'])),
-              dict(type='accumulate_attribute', source_player=s, quantity=LEVEL_XP, attribute=XP_ATTR)],
-             [dict(type='teleport_object', source_player=s, **_tile(c['out_flag']),
+             [dict(type='objects_in_area', quantity=1, source_player=s, **_rect(c['enter']))],
+             [dict(type='teleport_object', source_player=s, **_rect(c['enter']),
                    location_x=c['in_land'][0], location_y=c['in_land'][1])],
-             f'{tag}：售票窗內踩牆外旗→傳一隻進牆內落點；閱歷門檻防 <16 級被 X草 推人迴圈彈出'),
+             f'{tag}：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發'
+             f'（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗'),
         _add(f'{s}船免{p}', 0, 1,
              [],
              [dict(type='deactivate_trigger', trigger_id=BUY_CHAIN[p][s][0]),

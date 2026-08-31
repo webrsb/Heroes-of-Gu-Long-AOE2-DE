@@ -75,7 +75,7 @@ def _check_block(entries):
             assert a['enabled'] == 0 and a['looping'] == 0
             assert [c['type'] for c in a['conditions']] == ['timer', 'objects_in_area'] and a['conditions'][0]['timer'] == 8
         if '船入' in a['name']:
-            assert [c['type'] for c in a['conditions']] == ['objects_in_area', 'accumulate_attribute']
+            assert [c['type'] for c in a['conditions']] == ['objects_in_area']     # 不再設閱歷門檻（靜默失敗）
         if '船免' in a['name']:
             assert a['enabled'] == 0 and a['looping'] == 1 and a['conditions'] == []
             assert [e['type'] for e in a['effects']] == ['deactivate_trigger'] * 3
@@ -95,6 +95,18 @@ def _check_block(entries):
         if '船清出西' in a['name']:
             eff = a['effects'][0]
             assert (eff['location_x'], eff['location_y']) == (79, 235), a['name']
+    # 進場感應區＝貼牆整排（非單一旗格），且入／暈同區；西不得含出港清場格 (79,235)
+    ENTER = {'東': (112, 226, 112, 228), '西': (79, 233, 79, 234)}
+    for s in SEATS:
+        for p in PIERS:
+            for kind in ('船入', '船暈'):
+                a = next(x for x in adds if x['name'] == f'{s}{kind}{p}')
+                c = a['conditions'][0]
+                got = (c['area_x1'], c['area_y1'], c['area_x2'], c['area_y2'])
+                assert got == ENTER[p], (a['name'], got)
+            a = next(x for x in adds if x['name'] == f'{s}船入{p}')
+            e = a['effects'][0]
+            assert (e['area_x1'], e['area_y1'], e['area_x2'], e['area_y2']) == ENTER[p]
     # 暈在入之前（同 tick 競態）
     for s in SEATS:
         for p in PIERS:
