@@ -55,6 +55,16 @@ def spec_covers(key, idx):
         hit = [e for e in fixes if e.get('field') in REF_FIELDS]
         if hit:
             return True, f'spec 已改 {hit[0].get("kind")} #{hit[0].get("index")} 的 {hit[0].get("field")}'
+    if where.startswith('→') and field in ('edge_pol', 'edge_missing'):
+        # 邊類 finding 的「位置」是目標樣式不是 E#n，無法逐位比對；
+        # spec 若在該支改過 effect_type（啟停極性抄反）或 trigger_id（指錯目標）或補過啟停效果，即視為已修。
+        hit = [e for e in fixes if (e.get('kind') == 'effect' and e.get('field') in ('effect_type', 'trigger_id'))
+               or e.get('kind') == 'effect_add']
+        if hit:
+            k = hit[0]
+            desc = (f'{k.get("kind")} #{k.get("index")} 的 {k.get("field")}'
+                    if k.get('kind') == 'effect' else 'effect_add 補啟停效果')
+            return True, f'spec 已改該支的啟停邊（{desc}）'
     if where[:2] in ('E#', 'C#') and where[2:].isdigit():
         want_kind = 'effect' if where[0] == 'E' else 'condition'
         want_field = FIELD_MAP.get(field)

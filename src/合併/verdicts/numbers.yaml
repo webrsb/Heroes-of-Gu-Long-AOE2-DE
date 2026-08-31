@@ -1,0 +1,266 @@
+# 六座位對稱稽核 — 數值欄位裁決（qty 67／timer 17／olu 3，共 87 條）
+# 基底：F:/aoe2de/src/origin/古龍921_無法無天.aoe2scenario（套用 merge_spec.params.renames 後比對）
+# verdict: wontfix＝確定不是 bug；pending＋「建議修：」＝原作 bug 且有具體修法；
+#          pending＋「需裁決：」＝像 bug 但需使用者取捨。本檔唯讀產物，不是建置輸入。
+entries:
+- key: X 1-5Lv|2|T3270|E#4|qty
+  verdict: pending
+  reason: '**建議修：**同支 E#0 給本尊[1] +5 上限血，E#4 給馬騎分身[26186] 卻是 0；其餘五座位 E#0/E#4 都是 5/5。2P 的馬騎分身在 1–5 級完全不長血上限（共少 25）。trigger_fixes 條目：{trigger_id: 3270, name: "2 1-5Lv", kind: effect, index: 4, field: quantity, old: 0, new: 5, reason: "分身升級加血漏填，應與同支 E#0 及其他座位同為 5"}'
+- key: X 11-20Lv|3|T3354|E#0|qty
+  verdict: wontfix
+  reason: 3槍的本尊升級加血在各級距一律比別人高 4：11-20Lv 是 9（別人 5）、21-30 是 10（別人 6）。跨兩個級距一致的偏移＝刻意的職業加成，不是單點抄錯。
+- key: X 11-20Lv|3|T3354|E#5|qty
+  verdict: wontfix
+  reason: 3槍攻擊加成 12（別人 10）在 X 21-30 E#1/E#5、X 61-80 E#5 也同樣是 12，跨樣式一致 → 職業平衡差異。同支 E#1 也是 12，本尊/分身成對，沒有內部矛盾。
+- key: X 21-30|3|T3420|E#0|qty
+  verdict: wontfix
+  reason: 同上：3槍本尊加血 10（別人 6），與 11-20Lv 的 9（別人 5）同樣是 +4 偏移；同支 E#4 也是 10，成對無矛盾。
+- key: X 31-50|1|T961|E#4|qty
+  verdict: pending
+  reason: '**建議修：**同支 E#0 本尊[0] +10 上限血，E#4 分身[26109] 只有 8；其餘五座位 E#0/E#4 都是 10/10。1P 分身在 31–50 級每級少 2 上限血（共少 40）。trigger_fixes 條目：{trigger_id: 961, name: "1 31-50", kind: effect, index: 4, field: quantity, old: 8, new: 10, reason: "分身升級加血應與同支 E#0 及其他座位同為 10"}'
+- key: X 31-50|5|T1045|E#1|qty
+  verdict: wontfix
+  reason: 5拳攻擊加成 12，同支 E#5 也是 12（本尊/分身成對）；本族 P6 是 20，本來就有 10/12/20 的職業散佈。
+- key: X 31-50|5|T1045|E#5|qty
+  verdict: wontfix
+  reason: 同 X 31-50|5|E#1：本尊/分身成對皆 12，屬職業平衡散佈。
+- key: X 42|3|T1015|C#0|qty
+  verdict: pending
+  reason: '**建議修：**六座位等級表 lv42 只有 3P 是 15875，其餘五座位 15785 —— 78/87 數字對調的典型手誤。仍單調（14760 < 15875 < 16856）所以不會卡等級，但 3槍 升 42 級要多 90 點經驗。trigger_fixes 條目：{trigger_id: 1015, name: "3 42", kind: condition, index: 0, field: quantity, old: 15875, new: 15785, reason: "等級表 lv42 六座位應同值 15785（15875 為數字對調）"}'
+- key: X 48|5|T1063|C#0|qty
+  verdict: pending
+  reason: '**建議修：****等級表斷裂（本批最嚴重）**：5P lv47=21620、lv48=33936、lv49=34304、lv50=25725 —— lv48/49 高過 lv50，單調性被破壞。實跑時 5拳 累積到 25725 就先觸發 lv50 改名，之後才在 33936 跳回顯示「等級48」，等級顯示會倒退。其餘五座位 lv48 全是 22936（33936 = 22936 首位 2→3 打錯）。trigger_fixes 條目：{trigger_id: 1063, name: "5 48", kind: condition, index: 0, field: quantity, old: 33936, new: 22936, reason: "等級表 lv48 應為 22936，33936 破壞 lv48<lv50 單調性"}。必須與 X 49|5 同批修，只修一條仍然斷裂。'
+- key: X 49|5|T1064|C#0|qty
+  verdict: pending
+  reason: '**建議修：**同上一條的姊妹傷口：5P lv49=34304、其餘五座位 24304（首位 2→3 打錯），也高過 lv50 的 25725。trigger_fixes 條目：{trigger_id: 1064, name: "5 49", kind: condition, index: 0, field: quantity, old: 34304, new: 24304, reason: "等級表 lv49 應為 24304，34304 破壞 lv49<lv50 單調性"}'
+- key: X 61-80|2|T44|E#4|qty
+  verdict: wontfix
+  reason: 2P 同支 E#0 本尊也是 8（8/8 成對），且 3P 同樣是 8/8 —— 兩個座位同值，不是孤例，屬職業平衡。
+- key: X 61-80|6|T64|E#5|qty
+  verdict: wontfix
+  reason: 6箭攻擊加成 20，同支 E#1 也是 20（成對），且 X 31-50 P6 E#1 同樣是 20，跨樣式一致 → 職業平衡。
+- key: X 82|3|T726|C#0|qty
+  verdict: pending
+  reason: '**建議修：**六座位等級表 lv82 只有 3P 是 105187、其餘五座位 105137（13/18 對調手誤）。單調性未破，僅門檻多 50 點。trigger_fixes 條目：{trigger_id: 726, name: "3 82", kind: condition, index: 0, field: quantity, old: 105187, new: 105137, reason: "等級表 lv82 六座位應同值 105137"}'
+- key: X 8|3|T3311|C#0|qty
+  verdict: pending
+  reason: '**建議修：**六座位 99 級經驗表逐級比對，只有 lv8 的 3P 是 194、其餘五座位都是 196（lv7=140、lv9=264 也全一致）。單純打錯，槍客提早 2 點經驗升 8 級。trigger_fixes 條目：{trigger_id: 3311, name: "3 8", kind: condition, index: 0, field: quantity, old: 194, new: 196, reason: "等級表 lv8 六座位應同值 196"}'
+- key: X-79|6|T2030|C#0|qty
+  verdict: pending
+  reason: '**建議修：****等級表重複值**：6P lv79 填 97945，而 6P lv80 也是 97945（其餘五座位 lv79=94474）。兩級同門檻 → 6箭 的「等級79」改名與「等級80」同時成立，等級 79 等於被吃掉，而且 T2030 E#0 會提前啟動 T64「6 61-80」升級效果。trigger_fixes 條目：{trigger_id: 2030, name: "6-79", kind: condition, index: 0, field: quantity, old: 97945, new: 94474, reason: "等級表 lv79 應為 94474；97945 與 lv80 撞值"}'
+- key: XC8|4|T2241|C#0|timer
+  verdict: pending
+  reason: '**建議修：**「N拳/槍/棍 8」是 loop=1 的每秒回血技：3槍 -77/1秒、5拳 -78/1秒、4棍卻是 -76/**5秒**。三個座位刻意把回血量寫成 76/77/78（幾乎同值）＝設計上是同一個「每秒 N 點」的速率，週期一改成 5 秒，4棍的實際回復只剩其他人的 1/5。trigger_fixes 條目：{trigger_id: 2241, name: "4棍8", kind: condition, index: 0, field: timer, old: 5, new: 1, reason: "每秒回血技的週期應為 1 秒，與 3槍8/5拳8 一致"}'
+- key: XC合5|1|T2214|C#0|timer
+  verdict: wontfix
+  reason: '**同名不同族**：這一族根本不是同一段劇情 —— 1P 是傅紅雪在 (216,214)-(218,216) 說「待你把人刀合一…」，2P 是燕十三在 (196,111)-(198,113) 說「我學的劍已漸入魔道…」。NPC、地點、台詞全不同，對白重播週期自然可以不同。'
+- key: XC氣|1|T5448|E#1|qty
+  verdict: pending
+  reason: '**建議修：**「N氣（毀學）」六支除了區域座標微差之外結構完全相同，E#1 對自家後方區域的群體回血：2P–6P 一律 -400，只有 1P 是 -200，且同支沒有任何訊息或成對效果支持減半。孤例少數派。trigger_fixes 條目：{trigger_id: 5448, name: "刀氣"(原名「觸發事件 刀氣」), kind: effect, index: 1, field: quantity, old: -200, new: -400, reason: "毀學群體回血六座位應同為 -400"}。影響偏低（後方區域一次性回血），但屬明確抄漏。'
+- key: XC氣|4|T5457|C#1|timer
+  verdict: pending
+  reason: '**需裁決：**六支「N氣（毀學）」的 BRING_OBJECT_TO_AREA + TIMER：五座位都是 6 秒，4P 是 2 秒，意即 4棍 只要踏進該區 2 秒就會被「毀學」懲罰。同支的傷害值本來就按職業調（4000/4300/4400），所以 timer 也可能是刻意加難；但 2 vs 6 是孤例少數派。若要統一：{trigger_id: 5457, name: "棍氣"(原名「觸發事件 棍氣」), kind: condition, index: 1, field: timer, old: 2, new: 6}'
+- key: X佛4|4|T312|E#3|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T312 的 E#3/E#6 兩顆攻擊都是 22（其餘座位 20）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X佛4|4|T312|E#6|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T312 的 E#3/E#6 兩顆攻擊都是 22（其餘座位 20）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X佛4|4|T444|E#3|qty
+  verdict: wontfix
+  reason: T444 的 E#3/E#6 兩顆攻擊都是 16、本尊/分身成對；而且本族第二支的加成本來就散佈成 10/16/20（P6 是 20），不是「五個同值一個孤例」的形狀 → 職業平衡。
+- key: X佛4|4|T444|E#6|qty
+  verdict: wontfix
+  reason: 同 X佛4|4|T444|E#3：E#3/E#6 成對皆 16，本族散佈 10/16/20。
+- key: X偏|6|T1266|E#0|qty
+  verdict: wontfix
+  reason: 6P 給 -276 點閱歷，同支 E#3 訊息也寫「最後一擊得到了 276 點江湖閱歷」（其餘座位 131/131）。數值與訊息同步改動＝作者刻意調高，不是抄錯。
+- key: X傷|5|T1489|C#0|timer
+  verdict: pending
+  reason: '**需裁決：**「N傷」是 loop=1 的持續回血：P1/P2/P6 是 -20/1秒、P3 -23/1秒、P4 -22/1秒，5P 卻是 **-120/2秒 ＝ 60/秒**，換算後仍是別人的近 3 倍。與姊妹族「N治病」不同（那邊 -56/2秒＝28/秒剛好落在 18–27/秒帶內，屬等效寫法），這裡換算後明顯出帶。可能是刻意讓 5拳 有超強回復，也可能是 -120 抄自別處、事後把 timer 改成 2 想補償卻沒補平。要改的話：{trigger_id: 1489, name: "5傷", kind: condition, index: 0, field: timer, old: 2, new: 1} 會變成 120/秒（更誇張），比較合理的是改 E#0/E#1 的 quantity 為 -20 並把 timer 改回 1 —— 這已經超出單欄位修正、需要使用者決定 5拳 的回復強度定位。'
+- key: X六|6|T688|E#0|qty
+  verdict: wontfix
+  reason: 6P -251 且同支 E#3 訊息寫「251 點江湖閱歷」（其餘 42/42），數值與訊息同步 → 刻意。
+- key: X刀3|3|T4716|E#0|qty
+  verdict: wontfix
+  reason: 「N刀3＝配戴神兵、N刀4＝卸下神兵」是嚴格互為反元素的一對。把 DE 讀到的 quantity 還原成 AoC 的 class×256+amount 之後：2P/4P/5P 配戴 = 78×256+32 = **+20000 攻擊**（卸下 177×256+224 = 45536 = 65536-20000 = -20000）；3P 霸王槍 = 93×256+192 = **+24000**（卸下 162×256+64 = 41536 = 65536-24000）；6P 落月弓本尊 = 89×256+216 = **+23000**、分身 = +24000（卸下各自互補）。六座位每一對的 配戴+卸下 都等於同一個常數 16711936，配對完整無誤 → 差異來自「每個職業拿的是不同神兵」（倚天劍／霸王槍／如意金箍棒／力套／落月弓），是設計不是抄錯。附註：這一族仍需依 migration_guide §3.1 統一重編碼（DE 會把它讀成 class 78/93 這種不存在的護甲類），但那是全六座位一起的遷移工作，不是座位不對稱。
+- key: X刀3|3|T4716|E#1|qty
+  verdict: wontfix
+  reason: 「N刀3＝配戴神兵、N刀4＝卸下神兵」是嚴格互為反元素的一對。把 DE 讀到的 quantity 還原成 AoC 的 class×256+amount 之後：2P/4P/5P 配戴 = 78×256+32 = **+20000 攻擊**（卸下 177×256+224 = 45536 = 65536-20000 = -20000）；3P 霸王槍 = 93×256+192 = **+24000**（卸下 162×256+64 = 41536 = 65536-24000）；6P 落月弓本尊 = 89×256+216 = **+23000**、分身 = +24000（卸下各自互補）。六座位每一對的 配戴+卸下 都等於同一個常數 16711936，配對完整無誤 → 差異來自「每個職業拿的是不同神兵」（倚天劍／霸王槍／如意金箍棒／力套／落月弓），是設計不是抄錯。附註：這一族仍需依 migration_guide §3.1 統一重編碼（DE 會把它讀成 class 78/93 這種不存在的護甲類），但那是全六座位一起的遷移工作，不是座位不對稱。 本條與 E#0 同值，本尊/分身成對。
+- key: X刀4|3|T4717|E#0|qty
+  verdict: wontfix
+  reason: 「N刀3＝配戴神兵、N刀4＝卸下神兵」是嚴格互為反元素的一對。把 DE 讀到的 quantity 還原成 AoC 的 class×256+amount 之後：2P/4P/5P 配戴 = 78×256+32 = **+20000 攻擊**（卸下 177×256+224 = 45536 = 65536-20000 = -20000）；3P 霸王槍 = 93×256+192 = **+24000**（卸下 162×256+64 = 41536 = 65536-24000）；6P 落月弓本尊 = 89×256+216 = **+23000**、分身 = +24000（卸下各自互補）。六座位每一對的 配戴+卸下 都等於同一個常數 16711936，配對完整無誤 → 差異來自「每個職業拿的是不同神兵」（倚天劍／霸王槍／如意金箍棒／力套／落月弓），是設計不是抄錯。附註：這一族仍需依 migration_guide §3.1 統一重編碼（DE 會把它讀成 class 78/93 這種不存在的護甲類），但那是全六座位一起的遷移工作，不是座位不對稱。 本條是「卸下」那一半，與 T4716 的 6095040 互補（和＝16711936）。
+- key: X刀4|3|T4717|E#1|qty
+  verdict: wontfix
+  reason: 「N刀3＝配戴神兵、N刀4＝卸下神兵」是嚴格互為反元素的一對。把 DE 讀到的 quantity 還原成 AoC 的 class×256+amount 之後：2P/4P/5P 配戴 = 78×256+32 = **+20000 攻擊**（卸下 177×256+224 = 45536 = 65536-20000 = -20000）；3P 霸王槍 = 93×256+192 = **+24000**（卸下 162×256+64 = 41536 = 65536-24000）；6P 落月弓本尊 = 89×256+216 = **+23000**、分身 = +24000（卸下各自互補）。六座位每一對的 配戴+卸下 都等於同一個常數 16711936，配對完整無誤 → 差異來自「每個職業拿的是不同神兵」（倚天劍／霸王槍／如意金箍棒／力套／落月弓），是設計不是抄錯。附註：這一族仍需依 migration_guide §3.1 統一重編碼（DE 會把它讀成 class 78/93 這種不存在的護甲類），但那是全六座位一起的遷移工作，不是座位不對稱。 同上，本尊/分身成對。
+- key: X哥4|6|T4247|E#4|qty
+  verdict: pending
+  reason: '**建議修：**「哥4＝穿上哥薩克鐵甲」的契約在 1P–5P 完全一致：上限血 **-500**、攻擊 **+50**，本尊與分身各一份。6P 卻把上限血寫成 **+1000**（正負顛倒且倍率放大）。同劇情的 6哥5 又扣 -1000/-500，導致 45117 淨變 0、26110 淨 +500 —— 連 6P 自己兩具分身都不對稱。**溢位風險**：上限血是 int16（上限 32767），本圖多處刻意貼齊 32767；把 -500 寫成 +1000 是往天花板加，一旦與其他加血效果疊加超過 32767 會回繞成負值、當前血等比縮放後亦負 → 英雄直接暴斃。trigger_fixes 條目：{trigger_id: 4247, name: "6哥4", kind: effect, index: 4, field: quantity, old: 1000, new: -500, reason: "穿鐵甲應扣 500 上限血，與 1P–5P 及同支 E#6 一致"}'
+- key: X哥4|6|T4247|E#6|qty
+  verdict: pending
+  reason: '**建議修：**同上，這是分身[26110] 那一份：+1000 應為 -500。兩條必須同批修，否則 6P 兩具分身血量上限會分岔。trigger_fixes 條目：{trigger_id: 4247, name: "6哥4", kind: effect, index: 6, field: quantity, old: 1000, new: -500, reason: "同 E#4，穿鐵甲扣 500 上限血"}'
+- key: X哥5|1|T4189|E#4|qty
+  verdict: pending
+  reason: '**建議修：**1P 分身[26109] 卸鐵甲只扣 50 攻擊，同支本尊 E#2 是 -100，其餘五座位的分身也都是 -100。trigger_fixes 條目：{trigger_id: 4189, name: "1哥5", kind: effect, index: 4, field: quantity, old: -50, new: -100, reason: "卸鐵甲扣攻應為 100，與同支 E#2 及其他座位一致"}；同時 **armour_attack_quantity 65486 → 65436**，**armour_attack_class 維持 -1（未填）**。'
+- key: X哥5|6|T4248|E#1|qty
+  verdict: pending
+  reason: '**建議修：**「哥5＝卸下鐵甲」在 1P–5P 一律：上限血 -500、攻擊 -100，本尊與分身各一份。6P 的本尊[45117] 卻是 -1000，而同支分身[26110] 的 E#3 仍是正確的 -500 —— 同一支內兩具分身不一致。trigger_fixes 條目：{trigger_id: 4248, name: "6哥5", kind: effect, index: 1, field: quantity, old: -1000, new: -500, reason: "卸鐵甲應扣 500 上限血，與 1P–5P 及同支 E#3 一致"}'
+- key: X哥5|6|T4248|E#2|qty
+  verdict: pending
+  reason: '**建議修：**6P 本尊[45117] 卸鐵甲只扣 50 攻擊，但穿上時（6哥4 E#5）加了 50、1P–5P 卸下時一律扣 100，同支分身 E#4 也是 -100。攻擊力效果採 int16 補數：-100 對應 armour_attack_quantity=65436（65536-100）。trigger_fixes 條目：{trigger_id: 4248, name: "6哥5", kind: effect, index: 2, field: quantity, old: -50, new: -100, reason: "卸鐵甲扣攻應為 100，與同支 E#4 及 1P–5P 一致"}；同時 **armour_attack_quantity 由 65486 改為 65436**，**armour_attack_class 維持原檔的 -1（未填）**——本族六座位的這兩顆效果都沒填 class，不要順手補 0。'
+- key: X大2|3|T4354|E#4|qty
+  verdict: wontfix
+  reason: 「N大2＝買大環丹」整支 3P 都被放大：E#3/E#4 給英雄回 -2000（別人 -1000，P6 是 -1200）、E#6 給隨從 -270、E#7 -2296（別人 -100/-80/-100）、E#9 -10000（別人 -1000）。唯一有數字的訊息是「失去了 1000 兩銀」，講的是**售價**不是回血量，沒有矛盾。整支等比放大＝刻意。
+- key: X大2|3|T4354|E#6|qty
+  verdict: wontfix
+  reason: 同 X大2|3|E#4：3P 整支放大（E#7 甚至是 -2296、E#9 -10000），非單點抄錯。
+- key: X失血|3|T4730|E#1|qty
+  verdict: wontfix
+  reason: 「N失血」六座位的傷害值本來就散佈：P1 6000/6000、P2 5500/6000、P3 5400/5600、P4 6000/6000、P5 5800/6000。3P 的 E#0/E#1 是全族最低的一對（5400/5600），同支內部一致，屬職業體質調校。
+- key: X子|4|T2576|E#0|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2576 的 E#0/E#1 兩顆回血都是 -221（其餘座位 -171）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X子|4|T2576|E#1|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2576 的 E#0/E#1 兩顆回血都是 -221（其餘座位 -171）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X平3|1|T590|C#0|timer
+  verdict: pending
+  reason: '**需裁決：**六支「N平3」是同一個技能點關卡（同區域 (88,111)-(90,113)、同門檻「技能點 ≥ 8」、同樣三顆啟停效果），只有 1P 要停留 14 秒、其餘 12 秒。孤例抄錯的形狀，但只差 2 秒，機制不受影響。若要統一：{trigger_id: 590, name: "1平3", kind: condition, index: 0, field: timer, old: 14, new: 12}'
+- key: X收3|1|T3887|C#0|timer
+  verdict: pending
+  reason: '**需裁決：**六支「N收3」是古董收藏家收購渦怪假牙的一次性交易（同區域 (235,12)-(237,14)、同台詞），只有 1P 要停留 5 秒、其餘 8 秒。孤例抄錯的形狀，只影響等待時間。若要統一：{trigger_id: 3887, name: "1收3", kind: condition, index: 0, field: timer, old: 5, new: 8}'
+- key: X收3|6|T3907|E#3|qty
+  verdict: wontfix
+  reason: 6P 賣渦怪假牙得 -150000 兩銀，同支 E#2 訊息也寫「得到了 150000 兩銀」（其餘座位 50000/50000）。數值與訊息同步改動 → 刻意。黃金是 int32，15 萬不會溢位。
+- key: X武|6|T802|E#0|qty
+  verdict: wontfix
+  reason: 6P -102 且同支 E#3 訊息寫「102 點江湖閱歷」（其餘 51/51），數值與訊息同步 → 刻意。
+- key: X治病|4|T368|C#0|timer
+  verdict: wontfix
+  reason: 4P 是 -56/**2秒** ＝ 28/秒，其餘座位是 -20/1秒、-25/1秒、-27/1秒、-18/1秒、-20/1秒 ＝ 18–27/秒。換算後 4P 落在同一個速率帶內，只是用「兩秒一跳、量加倍」表達 → 等效寫法，不是 bug。
+- key: X灸4|4|T1383|C#0|timer
+  verdict: pending
+  reason: '**需裁決：**「N灸4＝醫師教會針灸」是 loop=0 的一次性學技事件：其餘五座位都要求在 (142,83)-(143,84) 停留 5 秒，4P 要求 16 秒。孤例少數派，機制不會壞，但 4棍 學針灸要多站 11 秒。這族的 5 與 16 在別族（X醫5 是 16 為主、XC合5 混用）都出現過，作者本來就兩個值混用，無法斷定 16 是刻意刁難還是抄自隔壁族 → 請使用者決定要不要統一。若要統一：{trigger_id: 1383, name: "4灸4", kind: condition, index: 0, field: timer, old: 16, new: 5}'
+- key: X王3|6|T4387|E#3|qty
+  verdict: pending
+  reason: '**建議修：**「N王3＝進入醉酒/興奮狀態」的契約：攻擊 +N、當前血回 10×N，本尊與分身**同值成對**（1P 100/-1000、2P 150/-1500、3P/4P/5P 100/-1000）。6P 攻擊 E#0/E#1 都是 +100，回血卻是 E#2=-1000（分身）、E#3=-2000（本尊）—— 同支兩具分身分岔。trigger_fixes 條目：{trigger_id: 4387, name: "6王3", kind: effect, index: 3, field: quantity, old: -2000, new: -1000, reason: "醉酒回血本尊/分身應同值，與同支 E#2 及攻擊 +100 的比例一致"}'
+- key: X生4|4|T2681|E#4|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2681 的 E#4/E#6 兩顆上限血都是 1100（其餘座位 1000）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X生4|4|T2681|E#6|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2681 的 E#4/E#6 兩顆上限血都是 1100（其餘座位 1000）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X當2|1|T1191|E#4|qty
+  verdict: pending
+  reason: '**建議修：****訊息與數值直接矛盾**：同族 NPC 台詞寫死「只需150兩，可回復100精力」，同支 E#3 也確實給本尊[0] 回 100，但 E#4 給分身[26109] 是 **0**；其餘五座位 E#3/E#4 都是 -100/-100。1P 買當歸丸後騎馬型態完全沒回血，錢照扣。trigger_fixes 條目：{trigger_id: 1191, name: "1當2", kind: effect, index: 4, field: quantity, old: 0, new: -100, reason: "當歸丸回復 100 精力，分身那一份漏填（NPC 台詞與同支 E#3 皆為 100）"}'
+- key: X當|4|T1196|C#0|timer
+  verdict: pending
+  reason: '**需裁決：**六支「N當」是雜貨店伙計的招攬對白（同 NPC、同區域 (132,13)-(134,15)、同台詞），只有 4P 週期 5 秒、其餘 6 秒。純對白節奏、DE 又會對相同訊息去重，機制無影響。若要統一：{trigger_id: 1196, name: "4當", kind: condition, index: 0, field: timer, old: 5, new: 6}'
+- key: X神4|4|T2513|E#4|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2513 的 E#4/E#8 兩顆上限血都是 11000（其餘座位 10000）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X神4|4|T2513|E#8|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2513 的 E#4/E#8 兩顆上限血都是 11000（其餘座位 10000）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X神|6|T4418|E#0|qty
+  verdict: pending
+  reason: '**建議修：**T4403–T4418「N神」是 loop=1 + OBJECT_HAS_TARGET(30608) 的持續回血迴圈：只要該 NPC 有攻擊目標，每 tick 就給自家英雄回血。1P–5P 都是 -49，6P 是 **-7000（143 倍）**。當前血是 float32、負傷害＝回血且無上限，這正是「無敵迴圈」的成因（見近期 commit「去無敵迴圈(血量異常根因)」）：6箭在該段劇情等同不死。trigger_fixes 條目：{trigger_id: 4418, name: "6神", kind: effect, index: 0, field: quantity, old: -7000, new: -49, reason: "持續回血迴圈六座位應同為 -49，-7000 造成無敵"}'
+- key: X船2|3|T3713|E#0|olu
+  verdict: pending
+  reason: '**建議修：****指錯物件種類**：這一族是「清掉自家在地圖左緣的旗標」——P1(0,222)/P2(0,221)/P4(0,219)/P5(0,218)/P6(0,217) 都是 REMOVE_OBJECT sp=8(Gaia) object_list_unit_id=**837 MAP_REVEALER**，只有 3P(0,220) 填 **723 CRATER**。該格上放的是 MAP_REVEATER 系列旗標（全圖多處以 CREATE_OBJECT 837 當座位旗標），CRATER 根本不在那裡 → 3P 的旗標永遠清不掉，依賴「該格沒有物件」的後續判斷會一直不成立。trigger_fixes 條目：{trigger_id: 3713, name: "3船2", kind: effect, index: 0, field: object_list_unit_id, old: 723, new: 837, reason: "座位旗標是 MAP_REVEALER(837)，723 CRATER 清不到東西"}'
+- key: X草2|1|T3674|C#2|timer
+  verdict: pending
+  reason: '**需裁決：**六支「N草2」是「你以符合等級條件,可搭這艘船了」的提示（同台詞、同等級門檻 1160），只有 1P 週期 5 秒、其餘 6 秒。純提示節奏，機制無影響。若要統一：{trigger_id: 3674, name: "1草2", kind: condition, index: 2, field: timer, old: 5, new: 6}'
+- key: X血|6|T1291|E#0|qty
+  verdict: pending
+  reason: '**建議修：****訊息與數值矛盾**：6P 同支 E#3 的聊天訊息仍寫「最後一擊得到了 51 點江湖閱歷」，負進貢卻只給 -42。其餘五座位都是 -51 且訊息 51，一致。（對照組：同批的 X偏/X六/X武/X收3 各自把數值與訊息一起改過，那些是刻意；這一條沒改訊息＝抄錯。）trigger_fixes 條目：{trigger_id: 1291, name: "6血", kind: effect, index: 0, field: quantity, old: -42, new: -51, reason: "與同支 E#3 訊息「51 點江湖閱歷」及其他五座位一致"}'
+- key: X血死2|6|T1304|C#1|timer
+  verdict: wontfix
+  reason: 同上，6箭是自家門派，timer 2→8 秒與專屬台詞同批放寬。
+- key: X血死2|6|T1304|E#0|qty
+  verdict: wontfix
+  reason: '**同族專屬**：這是「箭界」區域，6P 就是箭客本人，訊息換成「東郭蠻人：冷月箭法非你所敵！(精力 -800)」，其餘座位是「箭法豈能讓你耍刀/劍/槍/棍…(精力 -3000)」。數值 800 與台詞 800 完全吻合。'
+- key: X血死|4|T1299|C#1|timer
+  verdict: wontfix
+  reason: 同上，4棍是自家門派，連 timer（2→5 秒）都一起放寬，與專屬台詞同批改動。
+- key: X血死|4|T1299|E#0|qty
+  verdict: wontfix
+  reason: '**同族專屬**：這是「棍界」的驅逐區域傷害。4P 就是棍客本人，訊息也換成專屬台詞「棍法無邊，小輩膽敢挑戰前人！(精力 -2000)」，其餘座位是「棍界豈能讓你耍刀/劍/槍/拳/箭…(精力 -3000)」。數值與台詞一起改且互相吻合 → 刻意設計。'
+- key: X變4|4|T1425|E#10|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T1425 的 E#3/E#10 兩顆攻擊都是 2（其餘座位 1）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X變4|4|T1425|E#3|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T1425 的 E#3/E#10 兩顆攻擊都是 2（其餘座位 1）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X谷2|1|T4007|E#0|qty
+  verdict: pending
+  reason: '**建議修：**「N谷2」大回血迴圈五座位一律 -1000，1P 是 -3000。同樣是 loop=1 的持續回血，三倍速度等於半無敵。trigger_fixes 條目：{trigger_id: 4007, name: "1谷2", kind: effect, index: 0, field: quantity, old: -3000, new: -1000, reason: "大回血迴圈六座位應同為 -1000"}'
+- key: X谷|6|T4401|E#0|qty
+  verdict: pending
+  reason: '**建議修：**「N谷」與「N谷2」是同一個 OBJECT_HAS_TARGET(28185) 迴圈的兩段：谷＝小回血 -19、谷2＝大回血 -1000。6P 的「谷」卻填了 -1000 —— 正好等於「谷2」的值，典型的把下一支的數字貼錯格。（6谷 目前 en=0，但 6谷 會被別支啟動，仍要修。）trigger_fixes 條目：{trigger_id: 4401, name: "6谷", kind: effect, index: 0, field: quantity, old: -1000, new: -19, reason: "小回血迴圈六座位應同為 -19；-1000 是「谷2」的值貼錯"}'
+- key: X赤|2|T2989|E#0|qty
+  verdict: wontfix
+  reason: 2P 得 -430 點閱歷，同支 E#3 訊息也寫「430 點江湖閱歷」（其餘座位 500/500），數值與訊息同步 → 刻意。（同支 E#1 的 -590 與訊息 490 不符，但那是另一顆效果、不在本條 key 範圍；而且 P4/P5/P6 的 E#1 也同樣 -600 vs 訊息 400，是全族既有瑕疵。）
+- key: X軒2|3|T1861|E#8|qty
+  verdict: pending
+  reason: '**需裁決：**「N軒2」尾端有一顆正值進貢＝扣經驗值：P1/P2/P5/P6 是 10000、3P 是 8000、4P 結構不同（是 5000 且有「失去了經驗值 5000」的訊息）。作者自己的散佈就有 5000/8000/10000 三種值，且這一顆沒有對應訊息可對帳。8000 究竟是刻意讓 3槍 少扣 2000，還是打字時少按一位，無法從檔內判定 → 請使用者定奪。若要統一：{trigger_id: 1861, name: "3軒2", kind: effect, index: 8, field: quantity, old: 8000, new: 10000}'
+- key: X軒2|6|T1867|E#2|qty
+  verdict: pending
+  reason: '**需裁決：****同一支內出現兩次扣經驗**：P1/P2/P3/P5 的 E#2 是 -1000（給 1000 經驗，訊息「得到了 1000 點江湖閱歷」），6P 的 E#2 卻是 **+10000**，訊息也同步改成「失去了 10000 點江湖閱歷」；而六座位共有的 E#8 又扣 10000。結果 6箭 在同一段劇情淨扣 20000 經驗，其餘座位是淨扣 9000。訊息有跟著改 → 不像單純抄錯；但同一個 NPC、同一段劇情，6P 與其他座位的落差高達 11000 點，對照 X偏/X六/X武 那種「調高獎勵」的方向也相反。是懲罰性設計還是把 -1000 打成 10000 後補改訊息，需使用者以遊戲體驗判斷。若要對齊：{trigger_id: 1867, name: "6軒2", kind: effect, index: 2, field: quantity, old: 10000, new: -1000, reason: "與其他五座位一致"}（並須同步改 E#3 訊息文字）。'
+- key: X迪3|2|T4614|C#0|olu
+  verdict: wontfix
+  reason: '**只是條件順序對調**：2P 的 C#0/C#1 內容與其他五座位的 C#1/C#0 完全一一對應（一顆是 quantity=5 object_list=720 的自家區域檢查、一顆是 quantity=1 無過濾的 (11,56)-(13,58) 檢查）。條件之間是 AND，順序不影響語意。稽核的 bag 去重只套用在 sel/sp/tp/uo/qty，沒涵蓋 olu 才誤報。'
+- key: X迪3|2|T4614|C#1|olu
+  verdict: wontfix
+  reason: 與 X迪3|2|C#0 是同一次順序對調的另一半，同理不是 bug。
+- key: X道4|2|T2108|C#0|timer
+  verdict: pending
+  reason: '**建議修：**「N道4」是 loop=1 每秒回血技，六座位回血量 -8（4P 為 -12），週期 P1/P3/P4/P5/P6 全是 1 秒，只有 2P 是 2 秒 —— 回血量沒有跟著加倍，等於 2劍 的回復速率只有別人的一半。同族「醫4 針灸 1秒38精力」這類物件名稱可證設計就是以「每秒」計價。trigger_fixes 條目：{trigger_id: 2108, name: "2道4", kind: condition, index: 0, field: timer, old: 2, new: 1, reason: "每秒回血技週期應為 1 秒，且回血量未加倍補償"}'
+- key: X道4|4|T2110|E#0|qty
+  verdict: wontfix
+  reason: 「N道4」每秒回血量六座位為 -8，4P 是 -12，同支 E#0/E#1 成對一致；對照同機制的「N治病」六座位是 -18～-27 的散佈，可見每秒回血量本來就按職業調 → 平衡差異。
+- key: X道4|4|T2110|E#1|qty
+  verdict: wontfix
+  reason: 同 X道4|4|T2110|E#0：E#0/E#1 成對皆 -12。
+- key: X道4|4|T282|E#6|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T282 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X道4|4|T282|E#7|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T282 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X道4|4|T282|E#8|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T282 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X道4|4|T282|E#9|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T282 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X酒4|6|T4320|E#2|qty
+  verdict: pending
+  reason: '**建議修：**「N酒4＝解除醉酒」的契約：每具分身各三顆效果 —— 當前血 -100（回 100）、上限血 -100、攻擊 -5，把 X王3 的加成收回。6P 本尊[45117] 的當前血那顆是 **-1000**，但同支上限血仍是 -100，而分身[26110] 的 E#5/E#6 是正常的 -100/-100。同支自相矛盾。trigger_fixes 條目：{trigger_id: 4320, name: "6酒4", kind: effect, index: 2, field: quantity, old: -1000, new: -100, reason: "解酒回血應與同支 E#3 上限血 -100 及 E#5 分身 -100 成對"}'
+- key: X醫4|4|T384|E#6|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T384 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X醫4|4|T384|E#7|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T384 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X醫4|4|T384|E#8|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T384 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X醫4|4|T384|E#9|qty
+  verdict: wontfix
+  reason: 4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T384 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。
+- key: X醫5|5|T390|C#0|timer
+  verdict: pending
+  reason: '**需裁決：**六支「N醫5」的 NPC（醫學者）、區域 (64,105)-(66,107)、台詞「練熟了再來找我。」完全相同，只有 5P 的重播週期是 5 秒、其餘五座位 16 秒。形狀上是明確的抄錯，但這是純對白重播、且 DE 會把相同內容的聊天訊息去重（見 migration_guide §4），機制影響為零。要不要為了六座位一致而動它，屬使用者取捨。若要統一：{trigger_id: 390, name: "5醫5", kind: condition, index: 0, field: timer, old: 5, new: 16}'
+- key: X青3|6|T5549|C#0|timer
+  verdict: pending
+  reason: '**需裁決：**「N青3」的作用是在玩家於 (78,44)-(100,60) 停留 N 秒後 **Deactivate 對應的「N青」獎勵觸發**（碧海藍圖 + 30 點閱歷）。五座位給 6 秒，6P 只給 3 秒；而「N青」本身還要等 timer 2–3 秒並取得一次擊殺，等於 6箭 的領獎窗口從 4 秒縮到 1 秒。這是**會影響能不能拿到獎勵**的差異，但也可能是刻意加難。若要統一：{trigger_id: 5549, name: "6青3", kind: condition, index: 0, field: timer, old: 3, new: 6}'
+- key: X青|5|T464|C#1|timer
+  verdict: pending
+  reason: '**需裁決：**「N青」領獎觸發的等待秒數五座位是 2、5P 是 3。搭配上面的「N青3」關窗機制，多 1 秒等待會讓 5拳 的領獎窗口縮短 1 秒（窗口本身 4 秒）。同支 5P 另外多一句「繼續逗留者必遭天譴」的訊息，代表作者確實單獨改過這一支 → 可能是刻意。若要統一：{trigger_id: 464, name: "5青", kind: condition, index: 1, field: timer, old: 3, new: 2}'
+- key: X魔|6|T2931|E#1|qty
+  verdict: pending
+  reason: '**建議修：**「N魔」最後一擊獎勵：1P–5P 全是黃金負進貢 -600，6P 是 -330，且六座位的訊息文字完全相同（「得到了 800 兩銀」）—— 6P 沒有跟著改訊息，屬單點抄錯（對照 X偏/X六/X武 都是數值＋訊息一起改）。trigger_fixes 條目：{trigger_id: 2931, name: "6魔", kind: effect, index: 1, field: quantity, old: -330, new: -600, reason: "與其他五座位一致；六座位訊息皆為同一句"}。附帶提醒：這一族的訊息寫 800 而效果是 600，六座位皆然，是另一個層級的原作瑕疵，不在本條修法內。'
+- key: X黃|2|T4052|C#0|timer
+  verdict: pending
+  reason: '**需裁決：**六支「N黃」是金元寶商人的招攬對白（同 NPC、同區域、同台詞），只有 2P 週期 5 秒、其餘 6 秒。（另注意 1P 的 C#0/C#1 是相反順序，所以 P1 那格顯示的是 OBJECTS_IN_AREA，不影響語意。）純對白節奏，機制無影響。若要統一：{trigger_id: 4052, name: "2黃", kind: condition, index: 0, field: timer, old: 5, new: 6}'

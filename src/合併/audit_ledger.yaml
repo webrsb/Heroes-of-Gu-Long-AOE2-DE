@@ -1,665 +1,665 @@
 # 六座位對稱稽核裁決帳本（analysis/ledger.py；不是建置輸入，真要修寫進 merge_spec）
 entries:
-  - {key: "$修端木N|1|T4896|整支|struct", verdict: pending, reason: ""}
-  - {key: "$修端木N|4|T4902|整支|struct", verdict: pending, reason: ""}
-  - {key: "$南宮尾葉N|1|T5200|→南宮尾葉|edge_missing", verdict: pending, reason: ""}
-  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策11|edge_missing", verdict: pending, reason: ""}
-  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策22|edge_missing", verdict: pending, reason: ""}
-  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策33|edge_missing", verdict: pending, reason: ""}
-  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策44|edge_missing", verdict: pending, reason: ""}
-  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策55|edge_missing", verdict: pending, reason: ""}
-  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策66|edge_missing", verdict: pending, reason: ""}
-  - {key: "$南宮尾葉N|1|T5200|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "$堡定N|6|T5020|→失血|edge_missing", verdict: pending, reason: ""}
-  - {key: "$堡定N|6|T5020|整支|struct", verdict: pending, reason: ""}
-  - {key: "$墓3~N|1|T5149|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "$墓3~N|2|T5150|整支|foreign", verdict: pending, reason: ""}
-  - {key: "$女N|3|T2873|整支|absent", verdict: pending, reason: ""}
-  - {key: "$女N|5|T5595|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "$女N|5|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "$女N|6|T5596|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "$女N|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "$完全教戰守策N|2|T4964|整支|struct", verdict: pending, reason: ""}
-  - {key: "$完全教戰守策N|3|T4965|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "$完全教戰守策N|3|T4965|整支|struct", verdict: pending, reason: ""}
-  - {key: "$殺豬N|1|T5113|整支|struct", verdict: pending, reason: ""}
-  - {key: "$殺豬N|2|T5115|整支|struct", verdict: pending, reason: ""}
-  - {key: "$漢娜斯N|1|T5491|→漢娜斯|edge_missing", verdict: pending, reason: ""}
-  - {key: "$漢娜斯N|1|T5491|整支|foreign", verdict: pending, reason: ""}
-  - {key: "$白N|2|T1811|整支|absent", verdict: pending, reason: ""}
-  - {key: "$白N|2|T1811|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "$白N|2|T1811|整支|struct", verdict: pending, reason: ""}
-  - {key: "$白N|2|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "$被擊敗N|1|T5051|整支|struct", verdict: pending, reason: ""}
-  - {key: "$被擊敗N|6|T5056|整支|struct", verdict: pending, reason: ""}
-  - {key: "$解咒N|6|T5034|整支|struct", verdict: pending, reason: ""}
-  - {key: "$金N|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "$金N|3|T4076|整支|foreign", verdict: pending, reason: ""}
-  - {key: "$金N|4|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "$金獅2~N|1|T5137|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "$金獅2~N|3|T5139|整支|foreign", verdict: pending, reason: ""}
-  - {key: "$魂移N|5|T5306|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "C1|5|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "C1|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "C2|2|T4834|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "C2|4|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "C333|3|T4840|整支|absent", verdict: pending, reason: ""}
-  - {key: "C333|3|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "C333|4|T4533|E#0|sp", verdict: pending, reason: ""}
-  - {key: "C333|4|T4533|整支|foreign", verdict: pending, reason: ""}
-  - {key: "C33|3|T4839|整支|absent", verdict: pending, reason: ""}
-  - {key: "C33|3|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "C555|4|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "C555|5|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "C55|4|T4847|整支|absent", verdict: pending, reason: ""}
-  - {key: "C55|4|T4871|整支|absent", verdict: pending, reason: ""}
-  - {key: "C55|4|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "C|1|T4459|整支|absent", verdict: pending, reason: ""}
-  - {key: "C|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "C客回血|1|T4773|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "C客斷魂推|1|T5296|整支|struct", verdict: pending, reason: ""}
-  - {key: "C客毀滅之魂|1|T5272|整支|struct", verdict: pending, reason: ""}
-  - {key: "C客毀滅之魂|1|T5273|→C客破壞之神|edge_missing", verdict: pending, reason: ""}
-  - {key: "C客毀滅之魂|5|T5284|→少林寺|edge_missing", verdict: pending, reason: ""}
-  - {key: "C客破壞之神|1|T5266|→X升級|edge_missing", verdict: pending, reason: ""}
-  - {key: "C客破壞之神|1|T5266|整支|struct", verdict: pending, reason: ""}
-  - {key: "C駝|6|T4799|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 1-5Lv|2|T3270|E#4|qty", verdict: pending, reason: ""}
-  - {key: "X 1-5Lv|6|T3290|E#3|sp", verdict: pending, reason: ""}
-  - {key: "X 1-5Lv|6|T3290|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X 100|6|T3523|→X神兵1|edge_missing", verdict: pending, reason: ""}
-  - {key: "X 100|6|T3523|→X神兵|edge_pol", verdict: pending, reason: ""}
-  - {key: "X 10|3|T3313|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 11-20Lv|3|T3354|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X 11-20Lv|3|T3354|E#5|qty", verdict: pending, reason: ""}
-  - {key: "X 11|1|T3333|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 11|6|T3388|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 12|2|T3345|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 16|1|T3338|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 18|2|T3351|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 20|1|T3342|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 20|3|T3364|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 21-30|3|T3420|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X 23|5|T3445|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 26|4|T3437|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 27|4|T3438|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 29|6|T3462|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 31-50|1|T961|E#4|qty", verdict: pending, reason: ""}
-  - {key: "X 31-50|4|T1024|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 31-50|5|T1045|E#1|qty", verdict: pending, reason: ""}
-  - {key: "X 31-50|5|T1045|E#5|qty", verdict: pending, reason: ""}
-  - {key: "X 31-50|6|T1066|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 31|2|T983|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 35|2|T987|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 38|3|T1011|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 41|6|T1077|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 42|3|T1015|C#0|qty", verdict: pending, reason: ""}
-  - {key: "X 42|5|T1057|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 48|5|T1063|C#0|qty", verdict: pending, reason: ""}
-  - {key: "X 49|5|T1064|C#0|qty", verdict: pending, reason: ""}
-  - {key: "X 58|2|T1708|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 6-10Lv|2|T3302|E#1|nsel", verdict: pending, reason: ""}
-  - {key: "X 6-10Lv|2|T3302|E#1|sel", verdict: pending, reason: ""}
-  - {key: "X 61-80|2|T44|E#4|qty", verdict: pending, reason: ""}
-  - {key: "X 61-80|3|T49|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 61-80|5|T59|E#1|nsel", verdict: pending, reason: ""}
-  - {key: "X 61-80|5|T59|E#1|sel", verdict: pending, reason: ""}
-  - {key: "X 61-80|6|T64|E#5|qty", verdict: pending, reason: ""}
-  - {key: "X 7|3|T3310|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 7|6|T3328|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 81|4|T736|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 81|5|T747|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 82|3|T726|C#0|qty", verdict: pending, reason: ""}
-  - {key: "X 86|2|T719|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 88|6|T765|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 89|3|T733|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 89|6|T766|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 8|3|T3311|C#0|qty", verdict: pending, reason: ""}
-  - {key: "X 8|6|T3329|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 90|3|T734|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 91|2|T3474|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 91|5|T3504|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 92|2|T3475|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 92|5|T3505|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 93|2|T3476|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 93|5|T3506|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 94|2|T3477|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 94|5|T3507|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 95|2|T3478|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 95|5|T3508|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 96|2|T3479|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 96|5|T3509|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 97|2|T3480|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 97|5|T3510|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 98|2|T3481|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 98|5|T3511|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 99|2|T3482|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 99|5|T3512|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 9|1|T3300|→X 6-10Lv|edge_pol", verdict: pending, reason: ""}
-  - {key: "X 9|1|T3300|整支|struct", verdict: pending, reason: ""}
-  - {key: "X 9|2|T3306|整支|struct", verdict: pending, reason: ""}
-  - {key: "X-61|6|T65|整支|struct", verdict: pending, reason: ""}
-  - {key: "X-62|1|T41|整支|struct", verdict: pending, reason: ""}
-  - {key: "X-62|3|T51|整支|struct", verdict: pending, reason: ""}
-  - {key: "X-64|1|T43|整支|struct", verdict: pending, reason: ""}
-  - {key: "X-64|5|T63|整支|struct", verdict: pending, reason: ""}
-  - {key: "X-69|4|T125|整支|struct", verdict: pending, reason: ""}
-  - {key: "X-70|1|T99|整支|struct", verdict: pending, reason: ""}
-  - {key: "X-74|1|T103|整支|struct", verdict: pending, reason: ""}
-  - {key: "X-79|6|T2030|C#0|qty", verdict: pending, reason: ""}
-  - {key: "XC2|1|T3094|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC2|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "XC2|4|T4064|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC2|4|T4140|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC2|4|T854|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC2|4|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "XC3|4|T4066|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC3|4|T4141|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC3|4|T855|→C333|edge_missing", verdict: pending, reason: ""}
-  - {key: "XC3|4|T855|→C33|edge_missing", verdict: pending, reason: ""}
-  - {key: "XC3|4|T855|→XC32|edge_missing", verdict: pending, reason: ""}
-  - {key: "XC3|4|T855|→XC3|edge_missing", verdict: pending, reason: ""}
-  - {key: "XC3|4|T855|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC3|4|T855|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "XC3|4|T855|整支|struct", verdict: pending, reason: ""}
-  - {key: "XC3|4|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "XC4|3|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "XC4|4|T4067|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC4|4|T4142|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC4|4|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "XC4|5|T353|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC4|5|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "XC5|3|T2078|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC5|4|T349|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC5|4|T349|整支|struct", verdict: pending, reason: ""}
-  - {key: "XC5|4|T857|→C555|edge_missing", verdict: pending, reason: ""}
-  - {key: "XC5|4|T857|→C55|edge_missing", verdict: pending, reason: ""}
-  - {key: "XC5|4|T857|→XC52|edge_missing", verdict: pending, reason: ""}
-  - {key: "XC5|4|T857|→XC5|edge_missing", verdict: pending, reason: ""}
-  - {key: "XC5|4|T857|整支|struct", verdict: pending, reason: ""}
-  - {key: "XC5|4|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "XC8|4|T2241|C#0|timer", verdict: pending, reason: ""}
-  - {key: "XC92|5|T2289|→XC92|edge_pol", verdict: pending, reason: ""}
-  - {key: "XC92|6|T2291|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "XC92|6|T2291|整支|struct", verdict: pending, reason: ""}
-  - {key: "XC9|6|T2290|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "XC9|6|T2290|整支|struct", verdict: pending, reason: ""}
-  - {key: "XC|1|T3093|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "XC|4|T4138|整支|absent", verdict: pending, reason: ""}
-  - {key: "XC|4|T853|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "XC|4|T853|整支|struct", verdict: pending, reason: ""}
-  - {key: "XC|4|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "XC合5|1|T2214|C#0|timer", verdict: pending, reason: ""}
-  - {key: "XC氣|1|T5448|E#1|qty", verdict: pending, reason: ""}
-  - {key: "XC氣|4|T5457|C#1|timer", verdict: pending, reason: ""}
-  - {key: "X九3|1|T3911|整支|struct", verdict: pending, reason: ""}
-  - {key: "X九3|4|T3920|整支|struct", verdict: pending, reason: ""}
-  - {key: "X九|5|T3921|整支|struct", verdict: pending, reason: ""}
-  - {key: "X仙3|3|T2555|整支|struct", verdict: pending, reason: ""}
-  - {key: "X仙3|5|T2565|整支|struct", verdict: pending, reason: ""}
-  - {key: "X仙4|1|T2546|整支|struct", verdict: pending, reason: ""}
-  - {key: "X仙4|4|T2561|整支|struct", verdict: pending, reason: ""}
-  - {key: "X佛4|1|T429|整支|struct", verdict: pending, reason: ""}
-  - {key: "X佛4|4|T312|E#3|qty", verdict: pending, reason: ""}
-  - {key: "X佛4|4|T312|E#6|qty", verdict: pending, reason: ""}
-  - {key: "X佛4|4|T444|E#3|qty", verdict: pending, reason: ""}
-  - {key: "X佛4|4|T444|E#6|qty", verdict: pending, reason: ""}
-  - {key: "X佛4|6|T454|整支|struct", verdict: pending, reason: ""}
-  - {key: "X偏|6|T1266|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X傷|5|T1489|C#0|timer", verdict: pending, reason: ""}
-  - {key: "X僧|6|T2051|整支|struct", verdict: pending, reason: ""}
-  - {key: "X八|1|T1812|整支|struct", verdict: pending, reason: ""}
-  - {key: "X八|2|T1814|整支|struct", verdict: pending, reason: ""}
-  - {key: "X六|6|T688|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X刀1|2|T4710|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X刀2|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X刀3|3|T4716|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X刀3|3|T4716|E#1|qty", verdict: pending, reason: ""}
-  - {key: "X刀3|6|T4726|→X刀1|edge_missing", verdict: pending, reason: ""}
-  - {key: "X刀3|6|T4726|→X刀2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X刀3|6|T4726|→X失血|edge_missing", verdict: pending, reason: ""}
-  - {key: "X刀3|6|T4726|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X刀3|6|T4726|整支|struct", verdict: pending, reason: ""}
-  - {key: "X刀4|3|T4717|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X刀4|3|T4717|E#1|qty", verdict: pending, reason: ""}
-  - {key: "X刀4|6|T4727|→X刀1|edge_missing", verdict: pending, reason: ""}
-  - {key: "X刀4|6|T4727|→X刀2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X刀4|6|T4727|→X失血|edge_missing", verdict: pending, reason: ""}
-  - {key: "X刀4|6|T4727|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X刀4|6|T4727|整支|struct", verdict: pending, reason: ""}
-  - {key: "X功|6|T1348|整支|struct", verdict: pending, reason: ""}
-  - {key: "X南|3|T2042|整支|struct", verdict: pending, reason: ""}
-  - {key: "X南|4|T2043|整支|struct", verdict: pending, reason: ""}
-  - {key: "X南僧|4|T2035|C#0|type", verdict: pending, reason: ""}
-  - {key: "X南僧|4|T2035|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X南僧|6|T2037|C#0|type", verdict: pending, reason: ""}
-  - {key: "X卜2|4|T2540|→X卜|edge_missing", verdict: pending, reason: ""}
-  - {key: "X卜2|4|T2540|整支|struct", verdict: pending, reason: ""}
-  - {key: "X召|6|T4197|C#0|uo", verdict: pending, reason: ""}
-  - {key: "X司2|1|T4276|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X吹8|1|T4091|整支|struct", verdict: pending, reason: ""}
-  - {key: "X吹9|1|T4092|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X吹9|1|T4092|整支|struct", verdict: pending, reason: ""}
-  - {key: "X吹9|3|T4110|整支|struct", verdict: pending, reason: ""}
-  - {key: "X和|6|T2368|整支|struct", verdict: pending, reason: ""}
-  - {key: "X哥3|1|T4187|E#7|nsel", verdict: pending, reason: ""}
-  - {key: "X哥3|1|T4187|E#7|sel", verdict: pending, reason: ""}
-  - {key: "X哥4|1|T4188|E#5|nsel", verdict: pending, reason: ""}
-  - {key: "X哥4|1|T4188|E#5|sel", verdict: pending, reason: ""}
-  - {key: "X哥4|6|T4247|E#4|qty", verdict: pending, reason: ""}
-  - {key: "X哥4|6|T4247|E#6|qty", verdict: pending, reason: ""}
-  - {key: "X哥5|1|T4189|E#4|qty", verdict: pending, reason: ""}
-  - {key: "X哥5|2|T4220|E#2|nsel", verdict: pending, reason: ""}
-  - {key: "X哥5|2|T4220|E#2|sel", verdict: pending, reason: ""}
-  - {key: "X哥5|6|T4248|E#1|qty", verdict: pending, reason: ""}
-  - {key: "X哥5|6|T4248|E#2|qty", verdict: pending, reason: ""}
-  - {key: "X哥8|6|T4209|C#0|uo", verdict: pending, reason: ""}
-  - {key: "X唐|6|T2275|整支|absent", verdict: pending, reason: ""}
-  - {key: "X唐|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X商2|3|T4031|整支|struct", verdict: pending, reason: ""}
-  - {key: "X商2|4|T4033|整支|struct", verdict: pending, reason: ""}
-  - {key: "X商|3|T4030|整支|struct", verdict: pending, reason: ""}
-  - {key: "X啞3|1|T1661|整支|struct", verdict: pending, reason: ""}
-  - {key: "X啞4|5|T1682|整支|struct", verdict: pending, reason: ""}
-  - {key: "X啞|4|T1674|E#0|sp", verdict: pending, reason: ""}
-  - {key: "X啞|4|T1674|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X壁2|1|T3862|整支|struct", verdict: pending, reason: ""}
-  - {key: "X壁2|2|T3865|整支|struct", verdict: pending, reason: ""}
-  - {key: "X壁3|2|T3866|整支|struct", verdict: pending, reason: ""}
-  - {key: "X壁3|6|T3878|整支|struct", verdict: pending, reason: ""}
-  - {key: "X壁|5|T3873|整支|struct", verdict: pending, reason: ""}
-  - {key: "X大2|3|T4354|E#4|qty", verdict: pending, reason: ""}
-  - {key: "X大2|3|T4354|E#6|qty", verdict: pending, reason: ""}
-  - {key: "X大2|5|T4358|整支|struct", verdict: pending, reason: ""}
-  - {key: "X大2|6|T4360|E#9|sp", verdict: pending, reason: ""}
-  - {key: "X大3|2|T5154|整支|struct", verdict: pending, reason: ""}
-  - {key: "X大4|1|T5153|整支|struct", verdict: pending, reason: ""}
-  - {key: "X大師|2|T812|整支|struct", verdict: pending, reason: ""}
-  - {key: "X大師|6|T816|整支|struct", verdict: pending, reason: ""}
-  - {key: "X大師守候|5|T5474|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X大師守候|6|T5476|整支|struct", verdict: pending, reason: ""}
-  - {key: "X失血|3|T4730|E#1|qty", verdict: pending, reason: ""}
-  - {key: "X失血|5|T4732|E#1|sp", verdict: pending, reason: ""}
-  - {key: "X女2|2|T1829|整支|struct", verdict: pending, reason: ""}
-  - {key: "X女3|2|T1830|→~首  C2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X女3|2|T1830|整支|struct", verdict: pending, reason: ""}
-  - {key: "X女3|4|T1838|E#0|nsel", verdict: pending, reason: ""}
-  - {key: "X女3|4|T1838|E#0|sel", verdict: pending, reason: ""}
-  - {key: "X女4|1|T1827|整支|struct", verdict: pending, reason: ""}
-  - {key: "X女4|2|T1831|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X女4|2|T1831|整支|struct", verdict: pending, reason: ""}
-  - {key: "X子|4|T2576|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X子|4|T2576|E#1|qty", verdict: pending, reason: ""}
-  - {key: "X子|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X孽|2|T2911|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X客棧5扣|1|T5373|整支|struct", verdict: pending, reason: ""}
-  - {key: "X客棧5扣|2|T5376|整支|struct", verdict: pending, reason: ""}
-  - {key: "X客棧5罰|2|T5378|整支|struct", verdict: pending, reason: ""}
-  - {key: "X客棧8罰|3|T5399|E#2|sp", verdict: pending, reason: ""}
-  - {key: "X客棧8罰|3|T5399|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X客棧拒罰|1|T5409|整支|struct", verdict: pending, reason: ""}
-  - {key: "X實|3|T2385|整支|struct", verdict: pending, reason: ""}
-  - {key: "X屍|6|T3020|整支|struct", verdict: pending, reason: ""}
-  - {key: "X峨|6|T1097|→X升級|edge_missing", verdict: pending, reason: ""}
-  - {key: "X幫|1|T4157|E#0|sp", verdict: pending, reason: ""}
-  - {key: "X幫|1|T4157|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X平3|1|T590|C#0|timer", verdict: pending, reason: ""}
-  - {key: "X平3|5|T610|整支|struct", verdict: pending, reason: ""}
-  - {key: "X幽|5|T2971|E#4|sp", verdict: pending, reason: ""}
-  - {key: "X幽|5|T2971|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X幽死2|6|T2986|整支|struct", verdict: pending, reason: ""}
-  - {key: "X打山賊|2|T29|整支|struct", verdict: pending, reason: ""}
-  - {key: "X打山賊|5|T35|整支|struct", verdict: pending, reason: ""}
-  - {key: "X收3|1|T3887|C#0|timer", verdict: pending, reason: ""}
-  - {key: "X收3|6|T3907|E#3|qty", verdict: pending, reason: ""}
-  - {key: "X收4|1|T3888|整支|struct", verdict: pending, reason: ""}
-  - {key: "X收4|5|T3904|整支|struct", verdict: pending, reason: ""}
-  - {key: "X教頭2|2|T197|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X教頭4|2|T199|→X教頭5|edge_pol", verdict: pending, reason: ""}
-  - {key: "X教頭4|3|T203|→X教頭5|edge_pol", verdict: pending, reason: ""}
-  - {key: "X教頭4|4|T540|→X修|edge_missing", verdict: pending, reason: ""}
-  - {key: "X教頭|1|T516|整支|struct", verdict: pending, reason: ""}
-  - {key: "X教頭|5|T542|E#0|sp", verdict: pending, reason: ""}
-  - {key: "X教頭|5|T542|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X明|1|T1605|整支|struct", verdict: pending, reason: ""}
-  - {key: "X明|3|T1607|整支|struct", verdict: pending, reason: ""}
-  - {key: "X春4|2|T4332|整支|struct", verdict: pending, reason: ""}
-  - {key: "X木2|1|T4683|→X木4|edge_missing", verdict: pending, reason: ""}
-  - {key: "X木2|1|T4683|整支|struct", verdict: pending, reason: ""}
-  - {key: "X木2|6|T1945|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X木2|6|T1945|整支|struct", verdict: pending, reason: ""}
-  - {key: "X木4|1|T4685|整支|struct", verdict: pending, reason: ""}
-  - {key: "X木4|2|T4689|整支|struct", verdict: pending, reason: ""}
-  - {key: "X木|1|T2483|整支|struct", verdict: pending, reason: ""}
-  - {key: "X木|3|T2485|整支|struct", verdict: pending, reason: ""}
-  - {key: "X木|4|T1936|→X南僧|edge_missing", verdict: pending, reason: ""}
-  - {key: "X木|6|T1944|→X木2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X木|6|T1944|→X端2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X木|6|T1944|→X血2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X松2|2|T1205|E#4|nsel", verdict: pending, reason: ""}
-  - {key: "X松2|2|T1205|E#4|sel", verdict: pending, reason: ""}
-  - {key: "X林4|1|T3551|C#0|sp", verdict: pending, reason: ""}
-  - {key: "X林4|1|T3551|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X林4|6|T1188|→X林|edge_pol", verdict: pending, reason: ""}
-  - {key: "X楚|3|T2186|整支|struct", verdict: pending, reason: ""}
-  - {key: "X武2|1|T793|整支|struct", verdict: pending, reason: ""}
-  - {key: "X武|1|T792|整支|struct", verdict: pending, reason: ""}
-  - {key: "X武|6|T802|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X武死2|1|T2837|→X赤|edge_missing", verdict: pending, reason: ""}
-  - {key: "X武死3|1|T2843|→X赤|edge_missing", verdict: pending, reason: ""}
-  - {key: "X武死|1|T2831|→X赤|edge_missing", verdict: pending, reason: ""}
-  - {key: "X毒2|6|T956|整支|absent", verdict: pending, reason: ""}
-  - {key: "X毒2|6|T956|整支|struct", verdict: pending, reason: ""}
-  - {key: "X毒2|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X毒3|6|T957|→X毒2|edge_pol", verdict: pending, reason: ""}
-  - {key: "X毒3|6|T957|整支|absent", verdict: pending, reason: ""}
-  - {key: "X毒3|6|T957|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X毒3|6|T957|整支|struct", verdict: pending, reason: ""}
-  - {key: "X毒3|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X毒4|6|T958|→X毒2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X毒4|6|T958|→X毒3|edge_missing", verdict: pending, reason: ""}
-  - {key: "X毒4|6|T958|→X毒|edge_missing", verdict: pending, reason: ""}
-  - {key: "X毒4|6|T958|整支|absent", verdict: pending, reason: ""}
-  - {key: "X毒4|6|T958|整支|struct", verdict: pending, reason: ""}
-  - {key: "X毒4|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X毒|1|T4467|E#0|sp", verdict: pending, reason: ""}
-  - {key: "X毒|6|T955|→X毒4|edge_missing", verdict: pending, reason: ""}
-  - {key: "X毒|6|T955|整支|absent", verdict: pending, reason: ""}
-  - {key: "X毒|6|T955|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X毒|6|T955|整支|struct", verdict: pending, reason: ""}
-  - {key: "X毒|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X民團死|3|T23|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X治病|4|T368|C#0|timer", verdict: pending, reason: ""}
-  - {key: "X流|2|T901|→X升級|edge_missing", verdict: pending, reason: ""}
-  - {key: "X流|2|T901|整支|absent", verdict: pending, reason: ""}
-  - {key: "X流|2|T901|整支|struct", verdict: pending, reason: ""}
-  - {key: "X流|2|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X渦|5|T2857|→X升級|edge_missing", verdict: pending, reason: ""}
-  - {key: "X渦|6|T2859|整支|struct", verdict: pending, reason: ""}
-  - {key: "X渦死5|5|T2907|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X渦死5|5|T2907|整支|struct", verdict: pending, reason: ""}
-  - {key: "X渦死5|6|T2908|→X珠|edge_missing", verdict: pending, reason: ""}
-  - {key: "X渦死5|6|T2908|整支|struct", verdict: pending, reason: ""}
-  - {key: "X漢|4|T1440|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X灸4|4|T1383|C#0|timer", verdict: pending, reason: ""}
-  - {key: "X燒2|3|T4043|整支|struct", verdict: pending, reason: ""}
-  - {key: "X狂2|1|T896|→X狂|edge_missing", verdict: pending, reason: ""}
-  - {key: "X狂2|1|T896|整支|absent", verdict: pending, reason: ""}
-  - {key: "X狂2|1|T896|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X狂2|1|T896|整支|struct", verdict: pending, reason: ""}
-  - {key: "X狂2|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X狂3|1|T897|→X狂|edge_missing", verdict: pending, reason: ""}
-  - {key: "X狂3|1|T897|整支|absent", verdict: pending, reason: ""}
-  - {key: "X狂3|1|T897|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X狂3|1|T897|整支|struct", verdict: pending, reason: ""}
-  - {key: "X狂3|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X狂|1|T895|→X升級|edge_missing", verdict: pending, reason: ""}
-  - {key: "X狂|1|T895|整支|absent", verdict: pending, reason: ""}
-  - {key: "X狂|1|T895|整支|struct", verdict: pending, reason: ""}
-  - {key: "X狂|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X狂死2|6|T3164|→X狂|edge_pol", verdict: pending, reason: ""}
-  - {key: "X狂死7|2|T3190|→X狂|edge_pol", verdict: pending, reason: ""}
-  - {key: "X王3|2|T4371|整支|struct", verdict: pending, reason: ""}
-  - {key: "X王3|5|T4383|整支|struct", verdict: pending, reason: ""}
-  - {key: "X王3|6|T4387|E#3|qty", verdict: pending, reason: ""}
-  - {key: "X王4|2|T4372|整支|struct", verdict: pending, reason: ""}
-  - {key: "X王|4|T2302|整支|struct", verdict: pending, reason: ""}
-  - {key: "X珠2|2|T4261|整支|struct", verdict: pending, reason: ""}
-  - {key: "X珠2|3|T4264|整支|struct", verdict: pending, reason: ""}
-  - {key: "X珠3|5|T4271|整支|struct", verdict: pending, reason: ""}
-  - {key: "X珠3|6|T4274|整支|struct", verdict: pending, reason: ""}
-  - {key: "X珠4|4|T3611|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X珠|3|T4263|→X升級|edge_missing", verdict: pending, reason: ""}
-  - {key: "X珠|3|T4263|整支|struct", verdict: pending, reason: ""}
-  - {key: "X生2|3|T2674|E#0|sp", verdict: pending, reason: ""}
-  - {key: "X生2|3|T2674|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X生4|3|T2676|整支|struct", verdict: pending, reason: ""}
-  - {key: "X生4|4|T2681|E#4|qty", verdict: pending, reason: ""}
-  - {key: "X生4|4|T2681|E#6|qty", verdict: pending, reason: ""}
-  - {key: "X當2|1|T1191|E#4|qty", verdict: pending, reason: ""}
-  - {key: "X當2|4|T1197|E#1|sp", verdict: pending, reason: ""}
-  - {key: "X當2|4|T1197|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X當|4|T1196|C#0|timer", verdict: pending, reason: ""}
-  - {key: "X破|6|T2151|整支|absent", verdict: pending, reason: ""}
-  - {key: "X破|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X神3|2|T2502|整支|struct", verdict: pending, reason: ""}
-  - {key: "X神4|4|T2513|E#4|qty", verdict: pending, reason: ""}
-  - {key: "X神4|4|T2513|E#8|qty", verdict: pending, reason: ""}
-  - {key: "X神|2|T2500|整支|struct", verdict: pending, reason: ""}
-  - {key: "X神|3|T2505|整支|struct", verdict: pending, reason: ""}
-  - {key: "X神|6|T4418|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X神兵2|1|T4737|整支|struct", verdict: pending, reason: ""}
-  - {key: "X神兵2|6|T4751|→X神兵1|edge_missing", verdict: pending, reason: ""}
-  - {key: "X神兵2|6|T4751|整支|struct", verdict: pending, reason: ""}
-  - {key: "X神兵|6|T4750|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X神兵|6|T4750|整支|struct", verdict: pending, reason: ""}
-  - {key: "X端|4|T1934|整支|struct", verdict: pending, reason: ""}
-  - {key: "X紅|4|T774|整支|struct", verdict: pending, reason: ""}
-  - {key: "X練|5|T1595|整支|struct", verdict: pending, reason: ""}
-  - {key: "X罩3|4|T2428|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船2|1|T3686|整支|absent", verdict: pending, reason: ""}
-  - {key: "X船2|1|T3686|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船2|1|T3703|→X船3|edge_pol", verdict: pending, reason: ""}
-  - {key: "X船2|1|T3703|整支|absent", verdict: pending, reason: ""}
-  - {key: "X船2|1|T3703|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船2|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X船2|2|T3708|整支|absent", verdict: pending, reason: ""}
-  - {key: "X船2|2|T3708|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船2|3|T3713|E#0|olu", verdict: pending, reason: ""}
-  - {key: "X船2|5|T3801|整支|absent", verdict: pending, reason: ""}
-  - {key: "X船2|5|T3801|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船3|1|T3687|→X船4|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船3|1|T3687|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X船3|1|T3687|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船3|1|T3704|→X船6|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船3|1|T3704|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X船3|1|T3704|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船3|1|T3747|→X船2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船3|1|T3747|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船3|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X船3|2|T3709|→X船4|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船3|2|T3709|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船4|1|T3688|→X船5|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船4|1|T3688|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X船4|1|T3688|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船4|1|T3705|→X船|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船4|1|T3705|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X船4|1|T3705|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船4|1|T3748|→X船2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船4|1|T3748|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船4|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X船4|5|T3725|整支|absent", verdict: pending, reason: ""}
-  - {key: "X船4|5|T3725|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船5|1|T3689|→X船5|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船5|1|T3689|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X船5|1|T3706|→X船|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船5|1|T3706|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X船5|1|T3706|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船5|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X船5|6|T3731|整支|absent", verdict: pending, reason: ""}
-  - {key: "X船6|1|T3690|→X頭暈起|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船6|1|T3690|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船6|1|T3750|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船6|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X船6|6|T3775|整支|absent", verdict: pending, reason: ""}
-  - {key: "X船6|6|T3775|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船|1|T3685|→X船2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船|1|T3685|→X船3|edge_missing", verdict: pending, reason: ""}
+  - {key: "$修端木N|1|T4896|整支|struct", verdict: pending, reason: "**需裁決：**修端木1（T4896）少了他座都有的 REMOVE_OBJECT sp=N（2P/3P/5P/6P 在 E2、4P 在 E4），只做「把 37096 轉給 Gaia → TASK_OBJECT → 停用 1木／1木2」。少的那筆是區域式清場，會不會讓 P1 的端木草任務留下不該留的單位需進遊戲確認。trigger_fixes 目前不支援新增 REMOVE_OBJECT 效果（s37 的 effect_add 僅 activate/deactivate/send_chat），要修得先擴充 s37。"}
+  - {key: "$修端木N|4|T4902|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。（4P 只是把 REMOVE_OBJECT 排到最後。）"}
+  - {key: "$南宮尾葉N|1|T5200|→南宮尾葉|edge_missing", verdict: wontfix, reason: "座位1 命名慣例造成的誤配：座位1 的主支是無編號的 T5199「南宮尾葉」（3c15e，與 T5204/5209/5214/5219/5224 同形、同樣 DEA 其他五座＋六支完全教戰守策）；T5200「南宮尾葉1」（1c6e）其實對應他座的「南宮尾葉NN」（T5205/5210/5215/5220/5225）。seat_pattern 把 T5200 誤配成主支，本條邊比較的兩支不同層級、不同功能。"}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策11|edge_missing", verdict: wontfix, reason: "座位1 命名慣例造成的誤配：座位1 的主支是無編號的 T5199「南宮尾葉」（3c15e，與 T5204/5209/5214/5219/5224 同形、同樣 DEA 其他五座＋六支完全教戰守策）；T5200「南宮尾葉1」（1c6e）其實對應他座的「南宮尾葉NN」（T5205/5210/5215/5220/5225）。seat_pattern 把 T5200 誤配成主支，本條邊比較的兩支不同層級、不同功能。"}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策22|edge_missing", verdict: wontfix, reason: "座位1 命名慣例造成的誤配：座位1 的主支是無編號的 T5199「南宮尾葉」（3c15e，與 T5204/5209/5214/5219/5224 同形、同樣 DEA 其他五座＋六支完全教戰守策）；T5200「南宮尾葉1」（1c6e）其實對應他座的「南宮尾葉NN」（T5205/5210/5215/5220/5225）。seat_pattern 把 T5200 誤配成主支，本條邊比較的兩支不同層級、不同功能。"}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策33|edge_missing", verdict: wontfix, reason: "座位1 命名慣例造成的誤配：座位1 的主支是無編號的 T5199「南宮尾葉」（3c15e，與 T5204/5209/5214/5219/5224 同形、同樣 DEA 其他五座＋六支完全教戰守策）；T5200「南宮尾葉1」（1c6e）其實對應他座的「南宮尾葉NN」（T5205/5210/5215/5220/5225）。seat_pattern 把 T5200 誤配成主支，本條邊比較的兩支不同層級、不同功能。"}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策44|edge_missing", verdict: wontfix, reason: "座位1 命名慣例造成的誤配：座位1 的主支是無編號的 T5199「南宮尾葉」（3c15e，與 T5204/5209/5214/5219/5224 同形、同樣 DEA 其他五座＋六支完全教戰守策）；T5200「南宮尾葉1」（1c6e）其實對應他座的「南宮尾葉NN」（T5205/5210/5215/5220/5225）。seat_pattern 把 T5200 誤配成主支，本條邊比較的兩支不同層級、不同功能。"}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策55|edge_missing", verdict: wontfix, reason: "座位1 命名慣例造成的誤配：座位1 的主支是無編號的 T5199「南宮尾葉」（3c15e，與 T5204/5209/5214/5219/5224 同形、同樣 DEA 其他五座＋六支完全教戰守策）；T5200「南宮尾葉1」（1c6e）其實對應他座的「南宮尾葉NN」（T5205/5210/5215/5220/5225）。seat_pattern 把 T5200 誤配成主支，本條邊比較的兩支不同層級、不同功能。"}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策66|edge_missing", verdict: wontfix, reason: "座位1 命名慣例造成的誤配：座位1 的主支是無編號的 T5199「南宮尾葉」（3c15e，與 T5204/5209/5214/5219/5224 同形、同樣 DEA 其他五座＋六支完全教戰守策）；T5200「南宮尾葉1」（1c6e）其實對應他座的「南宮尾葉NN」（T5205/5210/5215/5220/5225）。seat_pattern 把 T5200 誤配成主支，本條邊比較的兩支不同層級、不同功能。"}
+  - {key: "$南宮尾葉N|1|T5200|整支|enabled/looping", verdict: wontfix, reason: "配對錯位：座位 1 的真正對應支是 T5199「南宮尾葉」（en=1 loop=0，與 5204/5209/5214/5219/5224 一致）。 T5200「南宮尾葉1」是子觸發，同族還有 南宮尾葉111/1111/11111（T5201–5203，全部 en=0 loop=0）， 由 T5199 E#1 啟動。尾數樣式規則把「1」當成座位號才誤配。"}
+  - {key: "$堡定N|6|T5020|→失血|edge_missing", verdict: pending, reason: "**建議修：**T5020「堡定6」只有 2 個效果（ACT 堡定66、ACT 毀咒），座位1–5 的「堡定N」都是 4 個（ACT 堡定NN、ACT 神弓之洛N~1、ACT 失血、ACT 毀咒）。缺 ACT T4677「失血」，也缺 ACT T5050「神弓之洛6~1」——P6 走堡定6 這條路時不會流血、也不會召出神弓之洛。（附帶：全檔沒有「神弓之洛6~2」，T5022「堡定666」只好也用 ~1，屬另一條 absent 級問題。）trigger_fixes 條目（兩條）：{kind: effect_add, trigger_id: 5020, name: '堡定6', effect: {type: activate_trigger, trigger_id: 4677, target_name: '失血'}, reason: '原作漏接：堡定6 未啟動 失血'}；{kind: effect_add, trigger_id: 5020, name: '堡定6', effect: {type: activate_trigger, trigger_id: 5050, target_name: '神弓之洛6~1'}, reason: '原作漏接：堡定6 未啟動 神弓之洛6~1'}"}
+  - {key: "$堡定N|6|T5020|整支|struct", verdict: pending, reason: "**需裁決：**堡定6（T5020）只啟動「堡定66」與「毀咒」，少了他座都有的 ACTIVATE →「神弓之洛6~1」（T5050）與 →「失血」（T4677）。查證後發現深一層的「堡定666」（T5022）確實有補上這兩條，所以 P6 不是完全拿不到，而是晚兩個鏈節才觸發。要不要把 P6 拉齊成跟 1P–5P 同步，屬遊戲難度取捨，需使用者裁決。"}
+  - {key: "$墓3~N|1|T5149|整支|enabled/looping", verdict: wontfix, reason: "不是六座位家族，而是同一個 P3 提示的三件套：T5149「墓3~1」是訊息本體（周賓：你還沒有資格拿酒給我喝）， T5150「墓3~2」進區 ACT 它、T5151「墓3~3」離區 DEACT 它。訊息本體出廠停用（en=0 loop=0）正是設計， 1/2/3 三支旗標本來就該不同。"}
+  - {key: "$墓3~N|2|T5150|整支|foreign", verdict: wontfix, reason: "原作把「對話本體＋進區啟用＋離區停用」寫成三支同名尾數觸發，audit_symmetry.seat_pattern 的「尾數編號」規則把序號誤判成座位。墓3~1（周賓對話，en=0 timer=3，E0 sp=3）／墓3~2（P3 進 178,223–187,233 → 啟動）／墓3~3（P3 進 170,216–189,222 → 停用）三支的 sp 一律為 3，是同一組 P3 專屬的墓區 NPC，「~2/~3」不是座位 2/3。同形式的 銀龍5~／冷月6~／棍4~／金獅2~ 一字排開（T5137–T5151）可證；對應的 TASK 母體 T5136「墓0」sp 也是 3"}
+  - {key: "$女N|3|T2873|整支|absent", verdict: wontfix, reason: "同名不同族：T2873「女3」是 Gaia(sp=7) 刷怪數量指示器（olu=629 在區(2,169)-(23,190) 有 2 隻→在 (233,231) 生一個 NINE_BANDS 標記），與 T2871「女」/T2872「女2」/T2874「女4」同組（生/移標記各兩支）。$女N 族真正的六座位成員是 T5591-T5596「女1…女6」（客棧伙計：女兒紅不適合你身上的逆流精術！，各 sp=1..6、同區(210,30)-(212,32)、全六座位齊）。尾數編號樣式把兩族混在一起。"}
+  - {key: "$女N|5|T5595|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：T2872–2874「女2/女3/女4」是 Gaia(sp=7) 的地圖計數器觸發（在 (233,231)/(234,231) 增刪 720）， 多數值 (1,1) 由它們投出；T5595「女5」與 T5596「女6」才是同一族（客棧伙計台詞），兩支 en=0 loop=1 完全一致，且分別由 T5475「5當僧」E#11、T5477「6當僧」E#10 啟動。"}
+  - {key: "$女N|5|TNone|組|count", verdict: wontfix, reason: "統計假象：T2871–2874「女／女2／女3／女4」是一條 4 步的 NPC 小鏈（各 1c1e），首字沒有座位語意；真正的六座位族是 T5591–5596「女…女6」（各 2c1e）。座位2/3/4 是多吃到那條小鏈的成員才變成 2 支，座位5/6 的 1 支才是正常值。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "$女N|6|T5596|整支|enabled/looping", verdict: wontfix, reason: "同上：與 T5595「女5」成對且旗標完全相同（en=0 loop=1），由 T5477「6當僧」E#10 啟動； 多數值來自不同族的 女2/女3/女4（Gaia 計數器）。"}
+  - {key: "$女N|6|TNone|組|count", verdict: wontfix, reason: "同 $女N|5：座位5/6 的 1 支（T5595/T5596）才是六座位族的正常值，座位2/3/4 的第 2 支來自 T2871–2874 那條與座位無關的 4 步小鏈。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "$完全教戰守策N|2|T4964|整支|struct", verdict: wontfix, reason: "2P/3P 的清場觸發做 6 次 REMOVE_OBJECT、4P–6P 做 5 次，全部是區域式清除自家單位的教學殘留。多清一組不會壞事（清場觸發多做無害），且此樣式根本沒有 1P 副本。"}
+  - {key: "$完全教戰守策N|3|T4965|整支|enabled/looping", verdict: fixed, reason: "spec 已改整支旗標（enabled: 0→1）；原裁決：**建議修：** 完全教戰守策1–6（T4963–4968）是「禁止玩家蓋建築」的常駐清除規則：無條件、loop=1、 六支各以 REMOVE_OBJECT(t"}
+  - {key: "$完全教戰守策N|3|T4965|整支|struct", verdict: wontfix, reason: "2P/3P 的清場觸發做 6 次 REMOVE_OBJECT、4P–6P 做 5 次，全部是區域式清除自家單位的教學殘留。多清一組不會壞事（清場觸發多做無害），且此樣式根本沒有 1P 副本。"}
+  - {key: "$殺豬N|1|T5113|整支|struct", verdict: pending, reason: "**需裁決：**殺豬1（T5113）只有 ACCUMULATE_ATTRIBUTE（attr=44 擊殺數）一個條件，他座還有 OBJECTS_IN_AREA sp=N（人要在現場）與 TIMER 2。少了在場檢查，P1 可能在不在場的情況下也拿到 500 點江湖閱歷的「最後一擊」獎勵。這是實質偏差，但 s37 的 trigger_fixes 沒有新增條件的 kind，要修得先擴充 s37（新增 condition_add）。"}
+  - {key: "$殺豬N|2|T5115|整支|struct", verdict: wontfix, reason: "殺豬2 只少了 TIMER tm=2 這道 2 秒延遲，獎勵內容（升級、-500 閱歷、訊息）與他座完全一致，差別僅是提前 2 秒結算。"}
+  - {key: "$漢娜斯N|1|T5491|→漢娜斯|edge_missing", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #0 的 trigger_id）；原裁決：**建議修：**T5491「漢娜斯1」唯一的效果 ACTIVATE 指到 T5489「6假牙查」，應為 T5490「漢娜斯」。T5490–5501 是六組配對（"}
+  - {key: "$漢娜斯N|1|T5491|整支|foreign", verdict: pending, reason: "**建議修：** {trigger_id: 5491, name: 漢娜斯1, kind: effect, index: 0, field: trigger_id, old: 5489, new: 5490} reason: T5493/5495/5497/5499/5501（2–6P）各啟動緊鄰前一支無名「漢娜斯」對話 T5492/5494/5496/5498/5500；1P 的對話 T5490「漢娜斯」（C0 sp=1、en=0，就在 T5491 前面）沒人啟動，T5491 反而去啟動 T5489「6假牙查」＝1P 進漢娜斯門口永遠聽不到台詞　（已存在於 merge_spec.params.trigger_fixes，本輪複核確認正確）"}
+  - {key: "$白N|2|T1811|整支|absent", verdict: wontfix, reason: "同名不同族：T1811「白2」是白雲城開場初始化（無條件、enabled=1 loop=0、14 效果：把 12863 命名「葉孤城」並設 HP 30900／攻 1245303、12930「衙門」、12866「客棧」、12870「客棧伙計」、11376「礦場」、13045/13046「侍衛」…）。$白N 族其餘成員是白雲城進出提示 T4806「白1」/T4810「白2」/T4814「白3」/T4818「白4」/T4822「白5」/T4826「白6」（各配 白11/白111/白1111 一組四支）。"}
+  - {key: "$白N|2|T1811|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：座位 2 有兩支「白2」，T1811 是白雲城地圖初始化（命名葉孤城／衙門／客棧／礦場、 設 30900 血與 1245303 攻、侍衛 245 血 16 攻），0 條件 14 效果；1/3/4/5/6白 是「你已離開白雲城」提示。 初始化觸發 en=1 loop=0（開局跑一次）正確，且它同時被 absent 規則標為「僅座位2有」。"}
+  - {key: "$白N|2|T1811|整支|struct", verdict: wontfix, reason: "同名不同族：2P 的「白2」是白雲城地圖初始化（把 12863 改名葉孤城、設定 30900 血與1245303 攻擊、改名衙門／客棧／礦場、設定兩名侍衛），其他座位的「白N」只是「你已離開白雲城」提示。"}
+  - {key: "$白N|2|TNone|組|count", verdict: wontfix, reason: "統計假象：座位2 多出的 T1811「白2」（0c14e）與六座位族無關；真正的族是 T4806–4829「白1/白11/白111/白1111、白2/白22/…」——那是「你已進入／離開香城」的區域提示鏈，每座位 4 支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "$被擊敗N|1|T5051|整支|struct", verdict: wontfix, reason: "1P 多一筆「柵欄轉給 Gaia」的清場、6P 少一筆 DEACTIVATE→神弓之洛6~2；實測全檔只有「神弓之洛1~1/1~2 … 5~1/5~2」加上「6~1」（T5040–T5050），根本沒有 6~2 這支，6P 沒得停是正確的。"}
+  - {key: "$被擊敗N|6|T5056|整支|struct", verdict: wontfix, reason: "1P 多一筆「柵欄轉給 Gaia」的清場、6P 少一筆 DEACTIVATE→神弓之洛6~2；實測全檔只有「神弓之洛1~1/1~2 … 5~1/5~2」加上「6~1」（T5040–T5050），根本沒有 6~2 這支，6P 沒得停是正確的。"}
+  - {key: "$解咒N|6|T5034|整支|struct", verdict: pending, reason: "**需裁決：**解咒6（T5034）少了 TIMER tm=10 條件（他座都有），也少了 DEACTIVATE →「神弓之洛6~1」。後者不算漏（堡定6 本來就沒啟動它，且解咒66/T5035 有停），但少 TIMER 使 P6 的生死定身咒一碰到目標就立即解除，其他座位要等 10 秒——P6 偏易。要不要補 TIMER 需遊戲取捨，且 trigger_fixes 目前無法新增條件。"}
+  - {key: "$金N|1|TNone|組|count", verdict: wontfix, reason: "統計假象：T4074–4076「金／金2／金3」（與 T4077–4079「銀／銀2／銀3」成對）是一條獨立的小鏈，被 seat_pattern 讀成座位2/3；真正的族是 T4854–4869「金1/金11/金111/金1111…金4444」香城區域提示。座位1/4 的 1 支才是正常值。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "$金N|3|T4076|整支|foreign", verdict: wontfix, reason: "「金1/2/3/4」被當成座位 1–4，實際上是兩組不同機制混名。T4075「金2」與 T4076「金3」屬同一組：CHANGE_OWNERSHIP 把金獅 28742 在 P8/P7 間交接、TASK 追向 ref 1（2P 本體），C0 區域 62,151–65,153 正是 T5139「金獅2~3」的同一塊——整組都是 P2 的金獅戰。T4854/4858/4862/4866（「你已進入金鵬島」）才是真正的 1–4P 複製組，sp 各為自己，無誤"}
+  - {key: "$金N|4|TNone|組|count", verdict: wontfix, reason: "同 $金N|1：座位1/4 的 1 支（T4854/T4866）才是正常值，座位2/3 的第 2 支來自 T4074–4076 那條與座位無關的金銀小鏈。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "$金獅2~N|1|T5137|整支|enabled/looping", verdict: wontfix, reason: "與 墓3~ 同構：T5137「金獅2~1」是訊息本體（金獅：你還沒有資格跟我挑戰），出廠停用； T5138「金獅2~2」進區 ACT、T5139「金獅2~3」離區 DEACT。三支旗標本就不同，不是座位複製。"}
+  - {key: "$金獅2~N|3|T5139|整支|foreign", verdict: wontfix, reason: "原作把「對話本體＋進區啟用＋離區停用」寫成三支同名尾數觸發，audit_symmetry.seat_pattern 的「尾數編號」規則把序號誤判成座位。金獅2~1/2/3 的 sp 一律為 2，是 P2 專屬的金獅 boss 追擊組（母體 T5132「金獅0」TASK sp=2）。與 墓3~（sp=3）／銀龍5~（sp=5）／冷月6~（sp=6）／棍4~（sp=4）成套，每個職業一隻守關 boss"}
+  - {key: "$魂移N|5|T5306|整支|enabled/looping", verdict: fixed, reason: "spec 已改整支旗標（enabled: 1→0）；原裁決：**建議修：** 魂移1–6（T5302–5307）條件都是「英雄被摧毀」，出廠 en=0 loop=1，由 馬1–馬6（T5308–5313）啟動 ＝取得坐騎"}
+  - {key: "C1|5|TNone|組|count", verdict: wontfix, reason: "統計假象：C1 樣式把至少四個不同族混在一起——T4706「刀1」（刀客神兵踏板鏈）、T4830「刀1」（香城提示）、T2052「棍1」與 T2053「拳1」（教頭4 啟動的每 10 秒回血支）、T4870「棍1」與 T4874「箭1」（金鵬島提示，且名字抄錯：應為「拳1」「箭6」）。支數差異純屬名稱碰撞。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "C1|6|TNone|組|count", verdict: wontfix, reason: "統計假象：C1 樣式把至少四個不同族混在一起——T4706「刀1」（刀客神兵踏板鏈）、T4830「刀1」（香城提示）、T2052「棍1」與 T2053「拳1」（教頭4 啟動的每 10 秒回血支）、T4870「棍1」與 T4874「箭1」（金鵬島提示，且名字抄錯：應為「拳1」「箭6」）。支數差異純屬名稱碰撞。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "C2|2|T4834|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：T4707「刀2」是區域檢查、T2054「槍2」/T2055「棍2」是回血迴圈， T4834「劍2」則是「你已離開香城」提示，由 T4836「劍222」ACT、T4837「劍2222」DEACT， 出廠 en=0 loop=0 與同類的 白1/白3/1金2 等離場提示完全一致。"}
+  - {key: "C2|4|TNone|組|count", verdict: wontfix, reason: "統計假象：座位4 多出的 T4065「棍2」（0c16e，對 P7/P8 一批單位 STOP＋FREEZE）是 boss 定身雜項支，與 T2054/2055「槍2/棍2」不同族。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "C333|3|T4840|整支|absent", verdict: wontfix, reason: "同名不同族：香城進出提示族（刀1/刀11、劍2/劍22、槍3/槍33/槍333、棍4/棍44、拳5/棍55/拳555、箭6/箭66）。T4840「槍333」是 P3 的離場偵測：區(87,118)-(90,119) → 停 T4839「槍33」（進入香城）、開 T4838「槍3」（離開香城），與 P5 的 T4848「拳555」完全對應。C333 族真正的本體是 T4530-T4535「刀333…箭333」（馬騎N俠使用了X技能）。"}
+  - {key: "C333|3|TNone|組|count", verdict: wontfix, reason: "統計假象：座位3 多出的 T4840「槍333」同屬 T4838–4841 香城提示鏈，與技能播報族 T4530–4535 不同族。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "C333|4|T4533|E#0|sp", verdict: fixed, reason: "spec 已改 E#0 的 source_player（3→4）；原裁決：**建議修：** {trigger_id: 4533, name: 棍333, kind: effect, index: 0, field: source_pl"}
+  - {key: "C333|4|T4533|整支|foreign", verdict: fixed, reason: "spec 已改 effect #0 的 source_player；原裁決：**建議修：** {trigger_id: 4533, name: 棍333, kind: effect, index: 0, field: source_pl"}
+  - {key: "C33|3|T4839|整支|absent", verdict: wontfix, reason: "同名不同族：T4839「槍33」＝P3 的「你已進入香城」提示（區(88,120)-(89,120)，與 T4838「槍3」離開香城成對，由 T4840「槍333」切換）。C33 族本體是 T4504-T4509「刀33…箭33」（N客使用了X技能）。"}
+  - {key: "C33|3|TNone|組|count", verdict: wontfix, reason: "統計假象：座位3 多出的 T4839「槍33」屬香城進出提示鏈（T4838–4841「槍3/槍33/槍333/槍3333」），與技能播報族 T4504–4509「C客使用了…」不同族。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "C555|4|TNone|組|count", verdict: wontfix, reason: "統計假象：多出的 T4872「棍555」是 P5 金鵬島提示鏈成員（source_player=5，名字抄成「棍」），非棍客技能播報（T4539）。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "C555|5|TNone|組|count", verdict: wontfix, reason: "統計假象：多出的 T4848「拳555」是 P5 香城提示鏈成員，非拳客技能播報（T4540「拳555」才是）。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "C55|4|T4847|整支|absent", verdict: wontfix, reason: "同名不同族且名字與座位無關：T4847「棍55」的 sp=5，是 P5 的「你已進入香城」（區(88,120)-(89,120)），與 T4846「拳5」（離開香城）、T4848「拳555」（切換）同組——原作在 P5 這一格把名字寫成「棍55」。C55 族本體是 T4524-T4529「刀55…箭55」（N客使用了X技能）。"}
+  - {key: "C55|4|T4871|整支|absent", verdict: wontfix, reason: "同名不同族且名字與座位無關：T4871「棍55」的 sp=5，是 P5 的「你已離開金鵬島」（區(71,142)-(71,146)），與 T4870「棍1」（你已進入金鵬島）成對；同族還有 金1/金11、金2/金22、金3/金33、金4/金44、箭1/箭66，P5 這一對被命名成「棍1/棍55」。"}
+  - {key: "C55|4|TNone|組|count", verdict: wontfix, reason: "統計假象：座位4 多出的 T4847「棍55」與 T4871「棍55」都是抄錯名字的區域提示支——T4847 其實是 P5 香城鏈（T4846「拳5」的搭檔），T4871 其實是 P5 金鵬島鏈；兩者 source_player 都是 5，不是棍客技能播報（那是 T4527）。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "C|1|T4459|整支|absent", verdict: wontfix, reason: "同名不同族＋設計如此：T4459「刀」與 T4457「劍」/T4455「槍」/T4453「棍」/T4451「拳」是護送接力鏈（物件 30316-30320，每段被摧毀就停掉下一段的 TASK 迴圈：拳→地、棍→沙、槍→冰、劍→竹、刀→水）。T4459 是鏈的終點，所以不做 CHANGE_OBJECT_HP 開門，而是停 T4460「水」＋T4594「成」、開 T4463「周2」＋T4597「78敵對」——本來就該不同形。C 族真正的六座位本體是 T5274/5277/5280/5283/5286/5289「刀/劍/槍/棍/拳/箭」破壞之神（26 效果、六座位齊全）。"}
+  - {key: "C|6|TNone|組|count", verdict: wontfix, reason: "統計假象：T4451「拳」/4453「棍」/4455「槍」/4457「劍」/4459「刀」是「弟子→大弟子→雪→拳→地→棍→沙→槍→冰→劍→竹→刀→水→賓」這條 boss 接力鏈的關卡標籤（每支條件都是 DESTROY_OBJECT 前一個 boss），不是座位；這條鏈本來就沒有「箭」。座位6 的 1 支（T5289「箭」）才是唯一的座位族成員，反而是座位1–5 各多算了一支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "C客回血|1|T4773|整支|enabled/looping", verdict: wontfix, reason: "只有 1/3/6 三座位有此族且結構本就不同：3/6 版多一條 SEND_CHAT 且由「N回血術得」回頭停用自己， 所以需要 loop=1；1 版沒有回收機制（E#0 直接啟動 T4774「1回血術迴圈」），loop=0 讓它自然一次性。 en=0 三座位一致，皆由 T5316/T5318/T5321 啟動。兩取一的「多數」只有兩票，不足以定案。"}
+  - {key: "C客斷魂推|1|T5296|整支|struct", verdict: wontfix, reason: "刀客斷魂推只是比他座多生一顆 PETARD（7 顆 vs 6 顆），加攻、KILL、REMOVE、提示全部齊備，屬原作給刀客的威力微調。"}
+  - {key: "C客毀滅之魂|1|T5272|整支|struct", verdict: wontfix, reason: "刀客毀滅之魂少的是 BRING_OBJECT_TO_AREA（本體到少林寺）這道條件，但保留的 OBJECTS_IN_AREA sp=1 qty=1 NINE_BANDS 已經要求 P1 在同一區域內持有九節鞭，在場檢查實質上沒有漏掉；效果側八個啟停與他座完全對應。"}
+  - {key: "C客毀滅之魂|1|T5273|→C客破壞之神|edge_missing", verdict: wontfix, reason: "由別支代勞：T5273 沒有直接 ACT T5266「刀客破壞之神」，但它 ACT 了 T5274「刀」，而 T5274（0 條件、loop=1，下一輪必定執行）E#25 就是 ACT T5266。座位2–6 是兩條路都接（例如 T5276 同時 ACT「劍」與「劍客破壞之神」），座位1 只接一條，功能不缺，最多差一個觸發輪。"}
+  - {key: "C客毀滅之魂|5|T5284|→少林寺|edge_missing", verdict: wontfix, reason: "名稱含控制字元造成的假象：T5284 E 確實有 DEACTIVATE，目標是 T5294，其名為「\x7F少林寺」（U+007F ＋ 少林寺），與他座指的 T5290/5291/5292/5293/5295「少林寺」是同一批六支之一。邊存在、指的座位也對，只是正規化後名稱對不上。建議順手在 params.renames 把 T5294 更名為「少林寺」，此假陽性即消失。"}
+  - {key: "C客破壞之神|1|T5266|→X升級|edge_missing", verdict: pending, reason: "**建議修：**T5266「刀客破壞之神」缺 ACTIVATE T7「1升級」。座位2–6 的對應支（T5267–5271）都在放完「破壞武神」後 ACT 自己的 N升級（T8/T9/T12/T15/T18），只有座位1 沒有（T5266 共 36 效果，他座 39）。「升級」是等級檢查支，打完後不重新武裝就少一次升級判定。trigger_fixes 條目：{kind: effect_add, trigger_id: 5266, name: '刀客破壞之神', effect: {type: activate_trigger, trigger_id: 7, target_name: '1升級'}, reason: '原作漏接：破壞武神後未重新武裝 1升級'}"}
+  - {key: "C客破壞之神|1|T5266|整支|struct", verdict: pending, reason: "**建議修：**刀客破壞之神（T5266）比他座少兩個效果：(a) 少 ACTIVATE_TRIGGER →「1升級」（2P→T8、3P→T9、4P→T12、5P→T15、6P→T18 都有），P1 施展破壞武神打死目標後不做升級結算；(b) 少 KILL 後的 REMOVE_OBJECT sp=8 SABOTEUR 清尾（他座都有），可能留下殘存爆破兵。(a) 可直接寫 trigger_fixes：{kind: effect_add, trigger_id: 5266, name: '刀客破壞之神', effect: {type: activate_trigger, trigger_id: 7, target_name: '1升級'}, reason: '原作 1P 漏抄升級啟動'}；(b) s37 的 effect_add 只支援 activate/deactivate_trigger 與 send_chat，補 REMOVE_OBJECT 需先擴充 s37，建議先修 (a)。註：(a) 亦見於 `C客破壞之神|1|T5266|→X升級|edge_missing`。"}
+  - {key: "C駝|6|T4799|整支|struct", verdict: pending, reason: "**需裁決：**箭駝（T4799）除了跟他座一樣的 CHANGE_OBJECT_ATTACK +100 之外，還多了 TIMER 10 條件與四個效果：對白、TRIBUTE -10000（贈 1 萬兩黃金）、獲得黃金訊息、產生九節鞭、啟動「6端2」。1P–5P 的「N駝」只有純加攻。這是 P6 獨得的一大筆資源與支線入口——若是原作刻意給箭客的劇情獎勵就不動，若是抄漏其他五座位則要補；需使用者裁決。"}
+  - {key: "X 1-5Lv|2|T3270|E#4|qty", verdict: pending, reason: "**建議修：**同支 E#0 給本尊[1] +5 上限血，E#4 給馬騎分身[26186] 卻是 0；其餘五座位 E#0/E#4 都是 5/5。2P 的馬騎分身在 1–5 級完全不長血上限（共少 25）。trigger_fixes 條目：{trigger_id: 3270, name: '2 1-5Lv', kind: effect, index: 4, field: quantity, old: 0, new: 5, reason: '分身升級加血漏填，應與同支 E#0 及其他座位同為 5'}"}
+  - {key: "X 1-5Lv|6|T3290|E#3|sp", verdict: fixed, reason: "spec 已改 E#3 的 source_player（5→6）；原裁決：**建議修：** {trigger_id: 3290, name: 6 1-5Lv, kind: effect, index: 3, field: source"}
+  - {key: "X 1-5Lv|6|T3290|整支|foreign", verdict: fixed, reason: "spec 已改 effect #3 的 source_player；原裁決：**建議修：** {trigger_id: 3290, name: 6 1-5Lv, kind: effect, index: 3, field: source"}
+  - {key: "X 100|6|T3523|→X神兵1|edge_missing", verdict: wontfix, reason: "由別支代勞、座位6 少一階：座位1–5 是 N神兵（「你等級不夠 去了也是送死」，en=1 loop=1）→ N神兵1（「給我1000靈島鳳仙肉」，由 N 100 啟動）→ N神兵2（成交）。座位6 沒有「6神兵1」，T4750「6神兵」直接扮演 N神兵1 的角色（en=0，由 T3523 啟動→ACT 6神兵2），所以 T3523 ACT 的是 6神兵。功能等價；真正缺的是「等級不夠」那句提示支，屬 absent 類。"}
+  - {key: "X 100|6|T3523|→X神兵|edge_pol", verdict: wontfix, reason: "座位 6 的神兵族結構本就不同：1–5 有「N神兵（等級不夠警告，en=1 loop=1）」＋「N神兵1」， N 100 的作法是 ACT N神兵1／DEACT N神兵；座位 6 沒有 6神兵1，T4750「6神兵」被改寫成等級100 的閘門 （en=0，E#0 直接 ACT T4751「6神兵2」），所以 T3523「6 100」E#4 用 ACTIVATE 是與該座位設計自洽的正確極性。 （P6 因此少了「你等級不夠」警告，屬 absent 類，不在本欄位。）"}
+  - {key: "X 10|3|T3313|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 11-20Lv|3|T3354|E#0|qty", verdict: wontfix, reason: "3槍的本尊升級加血在各級距一律比別人高 4：11-20Lv 是 9（別人 5）、21-30 是 10（別人 6）。跨兩個級距一致的偏移＝刻意的職業加成，不是單點抄錯。"}
+  - {key: "X 11-20Lv|3|T3354|E#5|qty", verdict: wontfix, reason: "3槍攻擊加成 12（別人 10）在 X 21-30 E#1/E#5、X 61-80 E#5 也同樣是 12，跨樣式一致 → 職業平衡差異。同支 E#1 也是 12，本尊/分身成對，沒有內部矛盾。"}
+  - {key: "X 11|1|T3333|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 11|6|T3388|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 12|2|T3345|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 16|1|T3338|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 18|2|T3351|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 20|1|T3342|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 20|3|T3364|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 21-30|3|T3420|E#0|qty", verdict: wontfix, reason: "同上：3槍本尊加血 10（別人 6），與 11-20Lv 的 9（別人 5）同樣是 +4 偏移；同支 E#4 也是 10，成對無矛盾。"}
+  - {key: "X 23|5|T3445|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 26|4|T3437|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 27|4|T3438|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 29|6|T3462|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 31-50|1|T961|E#4|qty", verdict: pending, reason: "**建議修：**同支 E#0 本尊[0] +10 上限血，E#4 分身[26109] 只有 8；其餘五座位 E#0/E#4 都是 10/10。1P 分身在 31–50 級每級少 2 上限血（共少 40）。trigger_fixes 條目：{trigger_id: 961, name: '1 31-50', kind: effect, index: 4, field: quantity, old: 8, new: 10, reason: '分身升級加血應與同支 E#0 及其他座位同為 10'}"}
+  - {key: "X 31-50|4|T1024|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 31-50|5|T1045|E#1|qty", verdict: wontfix, reason: "5拳攻擊加成 12，同支 E#5 也是 12（本尊/分身成對）；本族 P6 是 20，本來就有 10/12/20 的職業散佈。"}
+  - {key: "X 31-50|5|T1045|E#5|qty", verdict: wontfix, reason: "同 X 31-50|5|E#1：本尊/分身成對皆 12，屬職業平衡散佈。"}
+  - {key: "X 31-50|6|T1066|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 31|2|T983|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 35|2|T987|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 38|3|T1011|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 41|6|T1077|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 42|3|T1015|C#0|qty", verdict: pending, reason: "**建議修：**六座位等級表 lv42 只有 3P 是 15875，其餘五座位 15785 —— 78/87 數字對調的典型手誤。仍單調（14760 < 15875 < 16856）所以不會卡等級，但 3槍 升 42 級要多 90 點經驗。trigger_fixes 條目：{trigger_id: 1015, name: '3 42', kind: condition, index: 0, field: quantity, old: 15875, new: 15785, reason: '等級表 lv42 六座位應同值 15785（15875 為數字對調）'}"}
+  - {key: "X 42|5|T1057|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 48|5|T1063|C#0|qty", verdict: pending, reason: "**建議修：****等級表斷裂（本批最嚴重）**：5P lv47=21620、lv48=33936、lv49=34304、lv50=25725 —— lv48/49 高過 lv50，單調性被破壞。實跑時 5拳 累積到 25725 就先觸發 lv50 改名，之後才在 33936 跳回顯示「等級48」，等級顯示會倒退。其餘五座位 lv48 全是 22936（33936 = 22936 首位 2→3 打錯）。trigger_fixes 條目：{trigger_id: 1063, name: '5 48', kind: condition, index: 0, field: quantity, old: 33936, new: 22936, reason: '等級表 lv48 應為 22936，33936 破壞 lv48<lv50 單調性'}。必須與 X 49|5 同批修，只修一條仍然斷裂。"}
+  - {key: "X 49|5|T1064|C#0|qty", verdict: pending, reason: "**建議修：**同上一條的姊妹傷口：5P lv49=34304、其餘五座位 24304（首位 2→3 打錯），也高過 lv50 的 25725。trigger_fixes 條目：{trigger_id: 1064, name: '5 49', kind: condition, index: 0, field: quantity, old: 34304, new: 24304, reason: '等級表 lv49 應為 24304，34304 破壞 lv49<lv50 單調性'}"}
+  - {key: "X 58|2|T1708|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 6-10Lv|2|T3302|E#1|nsel", verdict: fixed, reason: "spec 已改 E#1 的 selected_object_ids（[]→[1]）；原裁決：**建議修：** {trigger_id: 3302, name: 2 6-10Lv, kind: effect, index: 1, field: selec"}
+  - {key: "X 6-10Lv|2|T3302|E#1|sel", verdict: fixed, reason: "spec 已改 E#1 的 selected_object_ids（[]→[1]）；原裁決：**建議修：** {trigger_id: 3302, name: 2 6-10Lv, kind: effect, index: 1, field: selec"}
+  - {key: "X 61-80|2|T44|E#4|qty", verdict: wontfix, reason: "2P 同支 E#0 本尊也是 8（8/8 成對），且 3P 同樣是 8/8 —— 兩個座位同值，不是孤例，屬職業平衡。"}
+  - {key: "X 61-80|3|T49|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 61-80|5|T59|E#1|nsel", verdict: fixed, reason: "spec 已改 E#1 的 selected_object_ids（[]→[7]）；原裁決：**建議修：** {trigger_id: 59, name: 5 61-80, kind: effect, index: 1, field: selected"}
+  - {key: "X 61-80|5|T59|E#1|sel", verdict: fixed, reason: "spec 已改 E#1 的 selected_object_ids（[]→[7]）；原裁決：**建議修：** {trigger_id: 59, name: 5 61-80, kind: effect, index: 1, field: selected"}
+  - {key: "X 61-80|6|T64|E#5|qty", verdict: wontfix, reason: "6箭攻擊加成 20，同支 E#1 也是 20（成對），且 X 31-50 P6 E#1 同樣是 20，跨樣式一致 → 職業平衡。"}
+  - {key: "X 7|3|T3310|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 7|6|T3328|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 81|4|T736|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 81|5|T747|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 82|3|T726|C#0|qty", verdict: pending, reason: "**建議修：**六座位等級表 lv82 只有 3P 是 105187、其餘五座位 105137（13/18 對調手誤）。單調性未破，僅門檻多 50 點。trigger_fixes 條目：{trigger_id: 726, name: '3 82', kind: condition, index: 0, field: quantity, old: 105187, new: 105137, reason: '等級表 lv82 六座位應同值 105137'}"}
+  - {key: "X 86|2|T719|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 88|6|T765|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 89|3|T733|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 89|6|T766|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 8|3|T3311|C#0|qty", verdict: pending, reason: "**建議修：**六座位 99 級經驗表逐級比對，只有 lv8 的 3P 是 194、其餘五座位都是 196（lv7=140、lv9=264 也全一致）。單純打錯，槍客提早 2 點經驗升 8 級。trigger_fixes 條目：{trigger_id: 3311, name: '3 8', kind: condition, index: 0, field: quantity, old: 194, new: 196, reason: '等級表 lv8 六座位應同值 196'}"}
+  - {key: "X 8|6|T3329|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 90|3|T734|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 91|2|T3474|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 91|5|T3504|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 92|2|T3475|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 92|5|T3505|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 93|2|T3476|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 93|5|T3506|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 94|2|T3477|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 94|5|T3507|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 95|2|T3478|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 95|5|T3508|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 96|2|T3479|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 96|5|T3509|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 97|2|T3480|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 97|5|T3510|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 98|2|T3481|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 98|5|T3511|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 99|2|T3482|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 99|5|T3512|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 9|1|T3300|→X 6-10Lv|edge_pol", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #0 的 effect_type）；原裁決：**建議修：** 等級 6/7/8/9/10 的每一支「N Lv」都以 ACTIVATE 啟動「N 6-10Lv」領取該級加成 （+5 血、+8~10 攻、−2"}
+  - {key: "X 9|1|T3300|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X 9|2|T3306|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X-61|6|T65|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X-62|1|T41|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X-62|3|T51|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X-64|1|T43|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X-64|5|T63|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X-69|4|T125|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X-70|1|T99|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X-74|1|T103|整支|struct", verdict: wontfix, reason: "升級提示家族：少數派差異只是「本體更名／啟動級距觸發」兩個效果順序對調，或該座位額外多掛一支劇情觸發（N青2、獅頭魔、青銅獅、停用 N改、首  NN）加一句提示訊息；等級更名與級距觸發這兩項實質效果六座位齊備。"}
+  - {key: "X-79|6|T2030|C#0|qty", verdict: pending, reason: "**建議修：****等級表重複值**：6P lv79 填 97945，而 6P lv80 也是 97945（其餘五座位 lv79=94474）。兩級同門檻 → 6箭 的「等級79」改名與「等級80」同時成立，等級 79 等於被吃掉，而且 T2030 E#0 會提前啟動 T64「6 61-80」升級效果。trigger_fixes 條目：{trigger_id: 2030, name: '6-79', kind: condition, index: 0, field: quantity, old: 97945, new: 94474, reason: '等級表 lv79 應為 94474；97945 與 lv80 撞值'}"}
+  - {key: "XC2|1|T3094|整支|absent", verdict: wontfix, reason: "樣式正規化假陽性（FP1）：T3094「1刀2」的真族是 T3094/T3096/T3098/T3100/T3102/T3104「1刀2…6刀2」——全六座位、形狀完全相同（區(22,164)-(50,185) 有自己人 → 啟動 N刀 擊殺獎勵）。但 seat_pattern 只在座位 1 把「刀」換成 C，2-6 座位歸到樣式 X刀，於是座位 1 那支變孤兒。非缺席。"}
+  - {key: "XC2|1|TNone|組|count", verdict: wontfix, reason: "統計假象：T3093–3104「N刀／N刀2」是完整的六座位擊殺獎勵族，但 seat_pattern 只在「自己座位」把職業字換成 C——座位1 的「1刀」→XC、座位2–6 的「2刀」…「6刀」→X刀，同一族被拆成兩個樣式，只有座位1 落在 XC 這一邊。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "XC2|4|T4064|整支|absent", verdict: wontfix, reason: "職業專屬：段干往生擂台（4P 棍客專屬支線 T4063/4064/4066/4067/4068 與圍欄 T4138-4142，位於區(191,137)-(193,139)）。T4064 是「好！有膽色！」接受挑戰分支（把如意棒 28463 由 P8 轉 P7、生 HAWK、開 4棍3、停 4棍）。由 T735「4 81-100」啟動，其他座位沒有對應 NPC。"}
+  - {key: "XC2|4|T4140|整支|absent", verdict: wontfix, reason: "職業專屬＋命名拆散：段干往生擂台的四面圍欄 T4139「4棍1」/T4140「4棍2」/T4141「4棍3」/T4142「4棍4」，各守擂台一邊（區(190,136,190,139) 等），玩家越界就把如意棒 28463 由 P7 交還 P8。四支因名字尾數不同被拆到 XC1/XC2/XC3/XC4 四個樣式，每支都成孤兒。4P 專屬支線。"}
+  - {key: "XC2|4|T854|整支|absent", verdict: wontfix, reason: "職業專屬：棍法家（區(147,30)-(149,32)）只教 4P 棍客——T853「4棍」（看你根底也不錯，我就傳授你棍法吧！）→ T854「4棍2」（棍法家：你沒有足夠的技能點數。＋TASK_OBJECT 推開）→ T855「4棍3」→ T856「4棍4」→ T857「4棍5」。其他座位只有 T858-T863「1棍…6棍」的路人對白，沒有技能鏈。"}
+  - {key: "XC2|4|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "XC3|4|T4066|整支|absent", verdict: wontfix, reason: "職業專屬：段干往生擂台鏈（4P）中的計時關卡 T4066「4棍3」（TIMER 5＋人在擂台 → 開 T4067 如意棒大招），由 T4064 啟動、T4068「4段」停用。同 XC2|4|T4064。"}
+  - {key: "XC3|4|T4141|整支|absent", verdict: wontfix, reason: "職業專屬＋命名拆散：段干往生擂台四面圍欄之一（區(190,140)-(194,140)），與 T4139/4140/4142 同族。同 XC2|4|T4140。"}
+  - {key: "XC3|4|T855|→C333|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。"}
+  - {key: "XC3|4|T855|→C33|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。"}
+  - {key: "XC3|4|T855|→XC32|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。"}
+  - {key: "XC3|4|T855|→XC3|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。"}
+  - {key: "XC3|4|T855|整支|absent", verdict: wontfix, reason: "職業專屬：棍法家技能鏈（4P）第三段——技能點數 ≥8 → 停 T854「沒有足夠的技能點數」、開 T856「你已學會了棍法修為」。同 XC2|4|T854。"}
+  - {key: "XC3|4|T855|整支|enabled/looping", verdict: wontfix, reason: "配對錯位：T855「4棍3」屬 4棍/4棍2/4棍3/4棍4 的棍法家傳藝鏈（由 T853「4棍」E#2 啟動， 條件是 TIMER12＋技能點8＋站 (146,29)-(150,33)），而 1刀3/2劍3/3槍3/5拳3/6箭3（T2062–2072） 是教頭4 啟動的加攻迴圈。座位 4 在「XC3」樣式下共 5 支，索引配對把不同族湊在一起。"}
+  - {key: "XC3|4|T855|整支|struct", verdict: wontfix, reason: "同名不同族＋族內支數不齊：這個樣式底下 4P 有 5 支（4棍／4棍2／4棍3…＝棍法家傳授棍法鏈），其他座位只有 2–3 支（NPC 對白或攻擊力加成），主迴圈以索引配對必然錯位，被拿來比的兩支不是同一功能。"}
+  - {key: "XC3|4|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "XC4|3|TNone|組|count", verdict: wontfix, reason: "統計假象：座位3/4/5 多出的 T2092「3槍4」/T2093「4棍4」/T2094「5拳4」是「修為」鏈的持續回血支（分別由 T844「3修4」、T856「4棍4」、T868「5修4」啟動，1c2e、每隔數秒回血），與職業技能族 T343/348/353 不同族；座位1/2/6 的等價支則被命名成 T2052「棍1」一類的名字。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "XC4|4|T4067|整支|absent", verdict: wontfix, reason: "職業專屬：段干往生「如意棒」大招（無條件、17 效果：重建擂台四角 816、對場內 P4 造成 1000 傷害、SEND_CHAT「段干往生使用了如意棒」、STOP_OBJECT＋FREEZE_OBJECT、對 P2/P3/P5/P6 各 4000 傷害）。4P 專屬支線，其他座位無此 NPC。"}
+  - {key: "XC4|4|T4142|整支|absent", verdict: wontfix, reason: "職業專屬＋命名拆散：段干往生擂台第四面圍欄（區(194,136)-(194,141)）。同 XC2|4|T4140。"}
+  - {key: "XC4|4|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "XC4|5|T353|整支|absent", verdict: wontfix, reason: "設計如此（職業差異）：教頭「初級X法」六座位都有（T327/T338/T343/T348/T353/T358），但獎勵按職業分三種——刀/劍/暗給 +20 攻擊（CHANGE_OBJECT_ATTACK ×2，道具名「刀2 初級刀法 20勇氣」）、槍/棍改為啟動 T2054「槍2」/T2055「棍2」精力回復迴圈（「棍2 初級棍法 1秒20精力」）、拳則是 +300 最大精力（CHANGE_OBJECT_HP ×2，「拳2 初級拳法 300精力」）。T353 是拳的那一種，形狀本來就獨一份。"}
+  - {key: "XC4|5|TNone|組|count", verdict: wontfix, reason: "統計假象：座位3/4/5 多出的 T2092「3槍4」/T2093「4棍4」/T2094「5拳4」是「修為」鏈的持續回血支（分別由 T844「3修4」、T856「4棍4」、T868「5修4」啟動，1c2e、每隔數秒回血），與職業技能族 T343/348/353 不同族；座位1/2/6 的等價支則被命名成 T2052「棍1」一類的名字。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "XC5|3|T2078|整支|absent", verdict: wontfix, reason: "效果順序假陽性（FP2）：T2078「3槍5」與 T2080「4棍5」同族同參數（TIMER 11 → CHANGE_OBJECT_ATTACK +65652 給英雄與馬騎、開 N槍52、停自己、開 X55/X555 技能提示），差別只在 E1/E2（ACTIVATE 與 DEACTIVATE）順序對調。shape_of 含順序才判成孤立。"}
+  - {key: "XC5|4|T349|整支|absent", verdict: wontfix, reason: "條件順序假陽性（FP2）：T349「4棍5」＝(OBJECTS_IN_AREA sp=4 區(91,100)-(93,102), TIMER 16) → 「教頭：練熟了再來找我。」；兄弟 T328/T339/T344/T354/T359 是 (TIMER, OBJECTS_IN_AREA) 同樣兩條、同訊息同區。內容完全相同。"}
+  - {key: "XC5|4|T349|整支|struct", verdict: wontfix, reason: "同名不同族＋族內支數不齊：這個樣式底下 4P 有 5 支（4棍／4棍2／4棍3…＝棍法家傳授棍法鏈），其他座位只有 2–3 支（NPC 對白或攻擊力加成），主迴圈以索引配對必然錯位，被拿來比的兩支不是同一功能。"}
+  - {key: "XC5|4|T857|→C555|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。"}
+  - {key: "XC5|4|T857|→C55|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。"}
+  - {key: "XC5|4|T857|→XC52|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。"}
+  - {key: "XC5|4|T857|→XC5|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。"}
+  - {key: "XC5|4|T857|整支|struct", verdict: wontfix, reason: "同名不同族＋族內支數不齊：這個樣式底下 4P 有 5 支（4棍／4棍2／4棍3…＝棍法家傳授棍法鏈），其他座位只有 2–3 支（NPC 對白或攻擊力加成），主迴圈以索引配對必然錯位，被拿來比的兩支不是同一功能。"}
+  - {key: "XC5|4|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "XC8|4|T2241|C#0|timer", verdict: pending, reason: "**建議修：**「N拳/槍/棍 8」是 loop=1 的每秒回血技：3槍 -77/1秒、5拳 -78/1秒、4棍卻是 -76/**5秒**。三個座位刻意把回血量寫成 76/77/78（幾乎同值）＝設計上是同一個「每秒 N 點」的速率，週期一改成 5 秒，4棍的實際回復只剩其他人的 1/5。trigger_fixes 條目：{trigger_id: 2241, name: '4棍8', kind: condition, index: 0, field: timer, old: 5, new: 1, reason: '每秒回血技的週期應為 1 秒，與 3槍8/5拳8 一致'}"}
+  - {key: "XC92|5|T2289|→XC92|edge_pol", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #5 的 effect_type）；原裁決：**建議修：** 1刀92/2劍92/3槍92/4棍92 末尾 E#5 都是 DEACTIVATE 自己（一次性領取）， T2289「5拳92」抄成 ACTIV"}
+  - {key: "XC92|6|T2291|整支|enabled/looping", verdict: wontfix, reason: "loop=1 但 E#2 就是 DEACTIVATE 自己，行為與 1–5 的 loop=0 等效（同拍自停，不會重跑）。 en=0 與其他座位一致，由 T2290「6箭9」E#1 啟動。"}
+  - {key: "XC92|6|T2291|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。（6箭92 只是把停用自己那筆挪到 E2；加攻負值與 looping 旗標屬 qty／enabled/looping 類，不在 struct 管轄。）"}
+  - {key: "XC9|6|T2290|整支|enabled/looping", verdict: wontfix, reason: "同上：T2290「6箭9」loop=1 但 E#2 DEACTIVATE 自己，與 1–5 的 loop=0＋E#5 自停等效； en=0 一致，由 T2278「6唐4」E#4 與 T2291「6箭92」E#1 啟動。"}
+  - {key: "XC9|6|T2290|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。（6箭9 只是把停用自己那筆挪到 E2；looping 旗標差異屬 enabled/looping 類。）"}
+  - {key: "XC|1|T3093|整支|absent", verdict: wontfix, reason: "樣式正規化假陽性（FP1）：T3093「1刀」的真族是 T3093/T3095/T3097/T3099/T3101/T3103「1刀…6刀」——全六座位、形狀與數值完全相同（擊殺數 1＋TIMER 2 → 進貢 -482 閱歷／-100 兩銀、開 N升級、兩句提示）。座位 1 因「刀」被正規化成 C 而落在 XC，2-6 落在 X刀，於是孤立。非缺席。"}
+  - {key: "XC|1|TNone|組|count", verdict: wontfix, reason: "統計假象：T3093–3104「N刀／N刀2」是完整的六座位擊殺獎勵族，但 seat_pattern 只在「自己座位」把職業字換成 C——座位1 的「1刀」→XC、座位2–6 的「2刀」…「6刀」→X刀，同一族被拆成兩個樣式，只有座位1 落在 XC 這一邊。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "XC|4|T4138|整支|absent", verdict: pending, reason: "建議修：T4138「4棍」E0 的 CHANGE_OWNERSHIP sp=8 tp=7 三種目標全空（selected_object_ids=[]、area 全 -1、object_list_unit_id=-1）＝把 P8 全圖物件整批轉給 P7。對照同一支線：T4064「4棍2」E1 同向 8→7 帶 sel=[28463]，圍欄 T4139/4140/4141/4142 反向 7→8 也都帶 sel=[28463]，可見 T4138 漏填目標。現況是 enabled=0 且全檔沒有任何觸發啟動它（refs 為空）＝死碼，不會爆；但只要日後被啟用或被批次啟用 pass 掃到就是全域災難，建議先補上目標當保險。merge_spec.params.trigger_fixes 條目：{trigger_id: 4138, name: 4棍, kind: effect, index: 0, field: selected_object_ids, old: [], new: [28463], reason: 段干往生擂台入場轉移漏填目標；空 sel 會把 P8 全圖物件轉給 P7}"}
+  - {key: "XC|4|T853|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：1刀/2劍/3槍/5拳/6暗（T822/835/848/874/887）是 en=1 loop=1 的 NPC 閒聊迴圈， 由「N刀刀／N劍劍…」停用；T853「4棍」是棍法家傳藝（多一條 C2 計數條件、E#1/E#2 啟動 4棍2/4棍3）， 由 T540「4教頭4」E#5 啟動，出廠停用正確。"}
+  - {key: "XC|4|T853|整支|struct", verdict: wontfix, reason: "同名不同族＋族內支數不齊：這個樣式底下 4P 有 5 支（4棍／4棍2／4棍3…＝棍法家傳授棍法鏈），其他座位只有 2–3 支（NPC 對白或攻擊力加成），主迴圈以索引配對必然錯位，被拿來比的兩支不是同一功能。"}
+  - {key: "XC|4|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T853–857「4棍…4棍5」是座位4 的「修為」學習鏈（棍法家在 (147,30)，8 技能點換「棍法修為」），他座對應的是「N修」（T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」）——全檔沒有「4修」。名稱撞上職業技能族（T345–349「4棍…4棍5」），使座位4 在 XC/XC2/XC3/XC4/XC5 各多一支並整組錯位。另 T4063–4067、T4138–4142 也是兩組同名雜項支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "XC合5|1|T2214|C#0|timer", verdict: wontfix, reason: "**同名不同族**：這一族根本不是同一段劇情 —— 1P 是傅紅雪在 (216,214)-(218,216) 說「待你把人刀合一…」，2P 是燕十三在 (196,111)-(198,113) 說「我學的劍已漸入魔道…」。NPC、地點、台詞全不同，對白重播週期自然可以不同。"}
+  - {key: "XC氣|1|T5448|E#1|qty", verdict: pending, reason: "**建議修：**「N氣（毀學）」六支除了區域座標微差之外結構完全相同，E#1 對自家後方區域的群體回血：2P–6P 一律 -400，只有 1P 是 -200，且同支沒有任何訊息或成對效果支持減半。孤例少數派。trigger_fixes 條目：{trigger_id: 5448, name: '刀氣'(原名「觸發事件 刀氣」), kind: effect, index: 1, field: quantity, old: -200, new: -400, reason: '毀學群體回血六座位應同為 -400'}。影響偏低（後方區域一次性回血），但屬明確抄漏。"}
+  - {key: "XC氣|4|T5457|C#1|timer", verdict: pending, reason: "**需裁決：**六支「N氣（毀學）」的 BRING_OBJECT_TO_AREA + TIMER：五座位都是 6 秒，4P 是 2 秒，意即 4棍 只要踏進該區 2 秒就會被「毀學」懲罰。同支的傷害值本來就按職業調（4000/4300/4400），所以 timer 也可能是刻意加難；但 2 vs 6 是孤例少數派。若要統一：{trigger_id: 5457, name: '棍氣'(原名「觸發事件 棍氣」), kind: condition, index: 1, field: timer, old: 2, new: 6}"}
+  - {key: "X九3|1|T3911|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X九3|4|T3920|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X九|5|T3921|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X仙3|3|T2555|整支|struct", verdict: wontfix, reason: "該座位職業專屬數值：負血劍譜體系每個職業的加血／加攻／自傷筆數本來就各自手調，效果與該座位自己的說明訊息自洽，不是漏抄。"}
+  - {key: "X仙3|5|T2565|整支|struct", verdict: wontfix, reason: "該座位職業專屬數值：負血劍譜體系每個職業的加血／加攻／自傷筆數本來就各自手調，效果與該座位自己的說明訊息自洽，不是漏抄。"}
+  - {key: "X仙4|1|T2546|整支|struct", verdict: pending, reason: "**需裁決：**1仙4（T2546）學會仙子附體後只有 5 個效果，2P/3P/5P/6P 都額外有兩筆 CHANGE_OBJECT_HP（本體＋馬騎本體，各座位 900–2100 不等）。P1 與 P4 拿不到這筆血量獎勵。各座位數值是手調的，要補得先決定 P1 該給多少；屬平衡取捨。"}
+  - {key: "X仙4|4|T2561|整支|struct", verdict: pending, reason: "**需裁決：**4仙4（T2561）同上——比 2P/3P/5P/6P 少兩筆 CHANGE_OBJECT_HP 血量獎勵。注意 4P 的技能說明訊息寫「1秒221精力」（他座 171），代表作者確實動過 4P，究竟是刻意不給血還是漏抄需使用者判斷。"}
+  - {key: "X佛4|1|T429|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X佛4|4|T312|E#3|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T312 的 E#3/E#6 兩顆攻擊都是 22（其餘座位 20）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X佛4|4|T312|E#6|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T312 的 E#3/E#6 兩顆攻擊都是 22（其餘座位 20）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X佛4|4|T444|E#3|qty", verdict: wontfix, reason: "T444 的 E#3/E#6 兩顆攻擊都是 16、本尊/分身成對；而且本族第二支的加成本來就散佈成 10/16/20（P6 是 20），不是「五個同值一個孤例」的形狀 → 職業平衡。"}
+  - {key: "X佛4|4|T444|E#6|qty", verdict: wontfix, reason: "同 X佛4|4|T444|E#3：E#3/E#6 成對皆 16，本族散佈 10/16/20。"}
+  - {key: "X佛4|6|T454|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X偏|6|T1266|E#0|qty", verdict: wontfix, reason: "6P 給 -276 點閱歷，同支 E#3 訊息也寫「最後一擊得到了 276 點江湖閱歷」（其餘座位 131/131）。數值與訊息同步改動＝作者刻意調高，不是抄錯。"}
+  - {key: "X傷|5|T1489|C#0|timer", verdict: pending, reason: "**需裁決：**「N傷」是 loop=1 的持續回血：P1/P2/P6 是 -20/1秒、P3 -23/1秒、P4 -22/1秒，5P 卻是 **-120/2秒 ＝ 60/秒**，換算後仍是別人的近 3 倍。與姊妹族「N治病」不同（那邊 -56/2秒＝28/秒剛好落在 18–27/秒帶內，屬等效寫法），這裡換算後明顯出帶。可能是刻意讓 5拳 有超強回復，也可能是 -120 抄自別處、事後把 timer 改成 2 想補償卻沒補平。要改的話：{trigger_id: 1489, name: '5傷', kind: condition, index: 0, field: timer, old: 2, new: 1} 會變成 120/秒（更誇張），比較合理的是改 E#0/E#1 的 quantity 為 -20 並把 timer 改回 1 —— 這已經超出單欄位修正、需要使用者決定 5拳 的回復強度定位。"}
+  - {key: "X僧|6|T2051|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X八|1|T1812|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X八|2|T1814|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X六|6|T688|E#0|qty", verdict: wontfix, reason: "6P -251 且同支 E#3 訊息寫「251 點江湖閱歷」（其餘 42/42），數值與訊息同步 → 刻意。"}
+  - {key: "X刀1|2|T4710|整支|enabled/looping", verdict: wontfix, reason: "loop 在此鏈路無語意差：2/3/4/5刀1 都由「N刀3」E#3 明確停用、由「N刀4」E#5 重新啟動， T4710 的 loop=0 只是在同一拍提早自停，之後同樣由 T4713「2刀4」E#5 復活。en=1 與其他三座位一致。"}
+  - {key: "X刀2|6|TNone|組|count", verdict: wontfix, reason: "同 X刀3|6／X刀4|6：職業專屬設計：T4706–4725 是各座位的「神兵」踏板開關（N刀1 踩點→N刀3 裝備、ACT N失血；N刀2 踩點→N刀4 卸下）。座位6（箭客／神兵落月弓）沒有 6刀1、6刀2 踏板，也沒有「6失血」，改成計時器自動循環（T4726 7 秒開、T4727 15 秒關）並自帶 DAMAGE 4000 反噬，由 T4751「6神兵2」啟動。訊息也另寫（「一觸即發 神兵落月弓」）。是另一套實作，不是漏接。 因此本檔沒有「6刀1」「6刀2」——少的那兩支是刻意的另一套實作。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X刀3|3|T4716|E#0|qty", verdict: wontfix, reason: "「N刀3＝配戴神兵、N刀4＝卸下神兵」是嚴格互為反元素的一對。把 DE 讀到的 quantity 還原成 AoC 的 class×256+amount 之後：2P/4P/5P 配戴 = 78×256+32 = **+20000 攻擊**（卸下 177×256+224 = 45536 = 65536-20000 = -20000）；3P 霸王槍 = 93×256+192 = **+24000**（卸下 162×256+64 = 41536 = 65536-24000）；6P 落月弓本尊 = 89×256+216 = **+23000**、分身 = +24000（卸下各自互補）。六座位每一對的 配戴+卸下 都等於同一個常數 16711936，配對完整無誤 → 差異來自「每個職業拿的是不同神兵」（倚天劍／霸王槍／如意金箍棒／力套／落月弓），是設計不是抄錯。附註：這一族仍需依 migration_guide §3.1 統一重編碼（DE 會把它讀成 class 78/93 這種不存在的護甲類），但那是全六座位一起的遷移工作，不是座位不對稱。"}
+  - {key: "X刀3|3|T4716|E#1|qty", verdict: wontfix, reason: "「N刀3＝配戴神兵、N刀4＝卸下神兵」是嚴格互為反元素的一對。把 DE 讀到的 quantity 還原成 AoC 的 class×256+amount 之後：2P/4P/5P 配戴 = 78×256+32 = **+20000 攻擊**（卸下 177×256+224 = 45536 = 65536-20000 = -20000）；3P 霸王槍 = 93×256+192 = **+24000**（卸下 162×256+64 = 41536 = 65536-24000）；6P 落月弓本尊 = 89×256+216 = **+23000**、分身 = +24000（卸下各自互補）。六座位每一對的 配戴+卸下 都等於同一個常數 16711936，配對完整無誤 → 差異來自「每個職業拿的是不同神兵」（倚天劍／霸王槍／如意金箍棒／力套／落月弓），是設計不是抄錯。附註：這一族仍需依 migration_guide §3.1 統一重編碼（DE 會把它讀成 class 78/93 這種不存在的護甲類），但那是全六座位一起的遷移工作，不是座位不對稱。 本條與 E#0 同值，本尊/分身成對。"}
+  - {key: "X刀3|6|T4726|→X刀1|edge_missing", verdict: wontfix, reason: "職業專屬設計：T4706–4725 是各座位的「神兵」踏板開關（N刀1 踩點→N刀3 裝備、ACT N失血；N刀2 踩點→N刀4 卸下）。座位6（箭客／神兵落月弓）沒有 6刀1、6刀2 踏板，也沒有「6失血」，改成計時器自動循環（T4726 7 秒開、T4727 15 秒關）並自帶 DAMAGE 4000 反噬，由 T4751「6神兵2」啟動。訊息也另寫（「一觸即發 神兵落月弓」）。是另一套實作，不是漏接。"}
+  - {key: "X刀3|6|T4726|→X刀2|edge_missing", verdict: wontfix, reason: "職業專屬設計：T4706–4725 是各座位的「神兵」踏板開關（N刀1 踩點→N刀3 裝備、ACT N失血；N刀2 踩點→N刀4 卸下）。座位6（箭客／神兵落月弓）沒有 6刀1、6刀2 踏板，也沒有「6失血」，改成計時器自動循環（T4726 7 秒開、T4727 15 秒關）並自帶 DAMAGE 4000 反噬，由 T4751「6神兵2」啟動。訊息也另寫（「一觸即發 神兵落月弓」）。是另一套實作，不是漏接。"}
+  - {key: "X刀3|6|T4726|→X失血|edge_missing", verdict: wontfix, reason: "職業專屬設計：T4706–4725 是各座位的「神兵」踏板開關（N刀1 踩點→N刀3 裝備、ACT N失血；N刀2 踩點→N刀4 卸下）。座位6（箭客／神兵落月弓）沒有 6刀1、6刀2 踏板，也沒有「6失血」，改成計時器自動循環（T4726 7 秒開、T4727 15 秒關）並自帶 DAMAGE 4000 反噬，由 T4751「6神兵2」啟動。訊息也另寫（「一觸即發 神兵落月弓」）。是另一套實作，不是漏接。"}
+  - {key: "X刀3|6|T4726|整支|enabled/looping", verdict: wontfix, reason: "座位 6 的神兵落月弓被改寫成 TIMER 7 的一次性爆發（自付 DAMAGE 4000×2，E#6 自我停用）， 而 2/3/4/5刀3 是「裝備／卸下」切換（含 N失血、N刀2）。結構本就不同， loop=0 搭配 E#6 自停與 loop=1 搭配 E#4 自停等效。en=0 一致。"}
+  - {key: "X刀3|6|T4726|整支|struct", verdict: wontfix, reason: "6P（箭客）的神兵是另一套設計：不走 N失血 迴圈，而是每次使用直接自傷 4000（6神兵→6神兵2→6刀3／6刀4 全都自成一格），條件與效果序列本就與 2P–5P 的倚天劍／霸王槍／金箍棒／力套不同，屬職業專屬而非漏抄。"}
+  - {key: "X刀4|3|T4717|E#0|qty", verdict: wontfix, reason: "「N刀3＝配戴神兵、N刀4＝卸下神兵」是嚴格互為反元素的一對。把 DE 讀到的 quantity 還原成 AoC 的 class×256+amount 之後：2P/4P/5P 配戴 = 78×256+32 = **+20000 攻擊**（卸下 177×256+224 = 45536 = 65536-20000 = -20000）；3P 霸王槍 = 93×256+192 = **+24000**（卸下 162×256+64 = 41536 = 65536-24000）；6P 落月弓本尊 = 89×256+216 = **+23000**、分身 = +24000（卸下各自互補）。六座位每一對的 配戴+卸下 都等於同一個常數 16711936，配對完整無誤 → 差異來自「每個職業拿的是不同神兵」（倚天劍／霸王槍／如意金箍棒／力套／落月弓），是設計不是抄錯。附註：這一族仍需依 migration_guide §3.1 統一重編碼（DE 會把它讀成 class 78/93 這種不存在的護甲類），但那是全六座位一起的遷移工作，不是座位不對稱。 本條是「卸下」那一半，與 T4716 的 6095040 互補（和＝16711936）。"}
+  - {key: "X刀4|3|T4717|E#1|qty", verdict: wontfix, reason: "「N刀3＝配戴神兵、N刀4＝卸下神兵」是嚴格互為反元素的一對。把 DE 讀到的 quantity 還原成 AoC 的 class×256+amount 之後：2P/4P/5P 配戴 = 78×256+32 = **+20000 攻擊**（卸下 177×256+224 = 45536 = 65536-20000 = -20000）；3P 霸王槍 = 93×256+192 = **+24000**（卸下 162×256+64 = 41536 = 65536-24000）；6P 落月弓本尊 = 89×256+216 = **+23000**、分身 = +24000（卸下各自互補）。六座位每一對的 配戴+卸下 都等於同一個常數 16711936，配對完整無誤 → 差異來自「每個職業拿的是不同神兵」（倚天劍／霸王槍／如意金箍棒／力套／落月弓），是設計不是抄錯。附註：這一族仍需依 migration_guide §3.1 統一重編碼（DE 會把它讀成 class 78/93 這種不存在的護甲類），但那是全六座位一起的遷移工作，不是座位不對稱。 同上，本尊/分身成對。"}
+  - {key: "X刀4|6|T4727|→X刀1|edge_missing", verdict: wontfix, reason: "職業專屬設計：T4706–4725 是各座位的「神兵」踏板開關（N刀1 踩點→N刀3 裝備、ACT N失血；N刀2 踩點→N刀4 卸下）。座位6（箭客／神兵落月弓）沒有 6刀1、6刀2 踏板，也沒有「6失血」，改成計時器自動循環（T4726 7 秒開、T4727 15 秒關）並自帶 DAMAGE 4000 反噬，由 T4751「6神兵2」啟動。訊息也另寫（「一觸即發 神兵落月弓」）。是另一套實作，不是漏接。"}
+  - {key: "X刀4|6|T4727|→X刀2|edge_missing", verdict: wontfix, reason: "職業專屬設計：T4706–4725 是各座位的「神兵」踏板開關（N刀1 踩點→N刀3 裝備、ACT N失血；N刀2 踩點→N刀4 卸下）。座位6（箭客／神兵落月弓）沒有 6刀1、6刀2 踏板，也沒有「6失血」，改成計時器自動循環（T4726 7 秒開、T4727 15 秒關）並自帶 DAMAGE 4000 反噬，由 T4751「6神兵2」啟動。訊息也另寫（「一觸即發 神兵落月弓」）。是另一套實作，不是漏接。"}
+  - {key: "X刀4|6|T4727|→X失血|edge_missing", verdict: wontfix, reason: "職業專屬設計：T4706–4725 是各座位的「神兵」踏板開關（N刀1 踩點→N刀3 裝備、ACT N失血；N刀2 踩點→N刀4 卸下）。座位6（箭客／神兵落月弓）沒有 6刀1、6刀2 踏板，也沒有「6失血」，改成計時器自動循環（T4726 7 秒開、T4727 15 秒關）並自帶 DAMAGE 4000 反噬，由 T4751「6神兵2」啟動。訊息也另寫（「一觸即發 神兵落月弓」）。是另一套實作，不是漏接。"}
+  - {key: "X刀4|6|T4727|整支|enabled/looping", verdict: pending, reason: "**需裁決：** loop 旗標本身無害（T4726/T4727 都以最後一個效果自我停用，與 2/3/4/5 的 loop=1 等效）； 真正的問題是 **T4727「6刀4」全檔沒有任何 ACTIVATE 指向它**（只有它自己 E#4 停用自己）， 而 2/3/4/5刀4 是由 N刀2 E#0 啟動的。座位 6 的神兵落月弓被改寫成「6神兵2 → ACT 6刀3（TIMER 7 一次性爆發， 自付 4000 傷害）」，沒有 6刀2、也沒有裝備／卸下切換。所以「6刀4（卸下落月弓）」到底是刻意廢棄的殘留、 還是漏接的死碼，需要使用者以遊戲體驗判定：若要救活，需在 6刀3 加 ACTIVATE→4727（effect_add）， 而非改 loop。"}
+  - {key: "X刀4|6|T4727|整支|struct", verdict: wontfix, reason: "6P（箭客）的神兵是另一套設計：不走 N失血 迴圈，而是每次使用直接自傷 4000（6神兵→6神兵2→6刀3／6刀4 全都自成一格），條件與效果序列本就與 2P–5P 的倚天劍／霸王槍／金箍棒／力套不同，屬職業專屬而非漏抄。"}
+  - {key: "X功|6|T1348|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X南|3|T2042|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X南|4|T2043|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X南僧|4|T2035|C#0|type", verdict: pending, reason: "**建議修：** 1/2/3/5南僧 的 C#0 都是 OBJECTS_IN_AREA(type5) sp=N 物件=840 qty=1 區(234,179)-(234,179) ——那是計數格上的旗標物件；T2035「4南僧」抄成 BRING_OBJECT_TO_AREA(type1) unit=502(4P棍本體) 到同一格 ＝要英雄走到計數欄那一格，永遠不成立。後果：T5473「4當僧」全檔唯一啟動來源就是 T2035 E#0， 所以 P4 拿不到少林大師支線，連帶 T5472「4大師守候」（由 4當僧 E#2 停用）永遠關不掉、無限重播提示。 trigger_fixes（四條，型別＋隨附欄位）: {trigger_id: 2035, name: 4南僧, kind: condition, index: 0, field: condition_type, old: 1, new: 5, reason: 抄成 BRING 英雄到計數格，永不成立} / 同 index 的 {field: source_player, old: -1, new: 4} / {field: object_list, old: -1, new: 840} / {field: quantity, old: -1, new: 1}；並把 unit_object 由 502 還原為 -1。"}
+  - {key: "X南僧|4|T2035|整支|enabled/looping", verdict: pending, reason: "**建議修：** 1/2/3/5/6南僧 都是 en=0，由「N木」啟動（1木 E#4、2木 E#4、3木 E#4、5木 E#4、6木 E#1 皆 ACTIVATE→N南僧）；T2035 是唯一 en=1 的，而 T1936「4木」E#4 啟動的是 T1935「4端2」、漏掉 4南僧 ——出廠啟用只是掩蓋漏啟動。**必須與上一條 C#0 修法一起做，而且先補啟動再改旗標**，否則單改 en=0 會讓 4當僧 徹底斷線。trigger_fixes（兩條）: {trigger_id: 1936, name: 4木, kind: effect_add, index: 5, field: ACTIVATE_TRIGGER→2035, reason: 4木 漏抄「啟動 4南僧」（1/2/3/5/6木 皆有）} / {trigger_id: 2035, name: 4南僧, kind: trigger, field: enabled, old: 1, new: 0, reason: 南僧六支皆出廠停用、由 N木 啟動}。"}
+  - {key: "X南僧|6|T2037|C#0|type", verdict: wontfix, reason: "與 T2035 同一處抄錯（BRING 本體到計數格 (234,179)），但座位 6 功能未失： T5477「6當僧」有四個啟動來源——T816「6大師」E#7、T1943「6端2」E#12、T2037 E#0、T4625「6迪2」E#13（en=1）， 其中 6迪2 是常駐可達路徑。且座位 6 的端木林支線刻意改寫（T1944「6木」訊息為 「你不該找到我,你或許去少林會有所收穫！」，且不啟動 6木2／6端2），6南僧 本就是殘留。 若之後為了對稱想一併修，修法同 T2035 那條。"}
+  - {key: "X卜2|4|T2540|→X卜|edge_missing", verdict: pending, reason: "**建議修：**T2540「4卜2」條件齊全（2 條）卻一個效果都沒有，座位1/2/3/5/6 的「N卜2」都只有一個效果：DEACTIVATE T253x「N卜」（T2537→T2531、T2538→T2532、T2539→T2533、T2541→T2535、T2542→T2536）。P4 的「4卜」（T2534）因此永遠關不掉，卜卦對白會一直重播。trigger_fixes 條目：{kind: effect_add, trigger_id: 2540, name: '4卜2', effect: {type: deactivate_trigger, trigger_id: 2534, target_name: '4卜'}, reason: '原作漏做：4卜2 空效果，未停 4卜'}"}
+  - {key: "X卜2|4|T2540|整支|struct", verdict: pending, reason: "**建議修：**4卜2（T2540）有 2 個條件卻 0 個效果——他座 N卜2 都以 DEACTIVATE_TRIGGER 停用自己的「N卜」（1→T2531、2→T2532、3→T2533、5→T2535、6→T2536），唯獨 4P 漏了。實測全檔沒有任何觸發引用 T2534「4卜」，代表 4P 的「4卜」迴圈永遠停不下來。merge_spec.params.trigger_fixes：{kind: effect_add, trigger_id: 2540, name: '4卜2', effect: {type: deactivate_trigger, trigger_id: 2534, target_name: '4卜'}, reason: '原作 4P 漏抄停用邊，4卜 迴圈無人停'}。註：同一修法也被 `X卜2|4|T2540|→X卜|edge_missing` 承接，兩處只需寫一條 trigger_fixes。"}
+  - {key: "X召|6|T4197|C#0|uo", verdict: fixed, reason: "spec 已改 C#0 的 unit_object（8→45117）；原裁決：**建議修：** {trigger_id: 4197, name: 6召, kind: condition, index: 0, field: unit_obj"}
+  - {key: "X司2|1|T4276|整支|enabled/looping", verdict: wontfix, reason: "loop=1 但 E#3 DEACTIVATE 自己，與 2–6司2 的 loop=0 等效；en=1 與所有座位一致， 且六支都只有「自己停用自己」一個啟停來源。"}
+  - {key: "X吹8|1|T4091|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X吹9|1|T4092|整支|foreign", verdict: wontfix, reason: "被點名的 E10 指向 T4082「惡3」，名稱尾數 3 被誤判為座位 3。T4080「惡」／T4081「惡2」／T4082「惡3」是 1P 專屬的惡 boss（物件 28741）追擊組，兩支帶條件的 C0 皆 sp=1；T4092 的 E9 啟動追擊、E10 啟動收工、E11 啟動 T4924「惡夢斷頭」（刀客絕技），三條成套。其餘座位同位置各自啟動 T4922 劍金獅吼／T4920 魔棍／T4923 猛拳一擊／T4921 箭月，形狀一致"}
+  - {key: "X吹9|1|T4092|整支|struct", verdict: pending, reason: "**需裁決：**1吹9（T4092）比他座多啟動「惡」（T4080）與「惡3」（T4082）兩支劇情觸發，實測全檔只有 1吹9 會啟動它們（惡2 由惡啟動）。也就是說只要玩家不是選 1P 刀客，「惡」這條劇情線永遠不會開始。要不要把它改成六座位共通（或搬到中性觸發）屬劇情設計決策。"}
+  - {key: "X吹9|3|T4110|整支|struct", verdict: pending, reason: "**需裁決：**3吹9（T4110）少了他座都有的「西門吹雪獎勵技能」啟動：1P→惡夢斷頭(T4924)、2P→劍金獅吼(T4922)、4P→魔棍(T4920)、5P→猛拳一擊(T4923)、6P→箭月(T4921)。實測全檔沒有任何槍系對應觸發存在（T4917–T4926 之間只有上述五支），所以這不是漏接線而是原作根本沒寫槍客版本——要補得整支新造（DESTROY_OBJECT 條件＋加血＋對 sp=8 的巨額 DAMAGE），數值需使用者決定。"}
+  - {key: "X和|6|T2368|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X哥3|1|T4187|E#7|nsel", verdict: fixed, reason: "spec 已改 E#7 的 selected_object_ids（[]→[0]）；原裁決：**建議修：** {trigger_id: 4187, name: 1哥3, kind: effect, index: 7, field: selected_o"}
+  - {key: "X哥3|1|T4187|E#7|sel", verdict: fixed, reason: "spec 已改 E#7 的 selected_object_ids（[]→[0]）；原裁決：**建議修：** {trigger_id: 4187, name: 1哥3, kind: effect, index: 7, field: selected_o"}
+  - {key: "X哥4|1|T4188|E#5|nsel", verdict: fixed, reason: "spec 已改 E#5 的 selected_object_ids（[]→[0]）；原裁決：**建議修：** {trigger_id: 4188, name: 1哥4, kind: effect, index: 5, field: selected_o"}
+  - {key: "X哥4|1|T4188|E#5|sel", verdict: fixed, reason: "spec 已改 E#5 的 selected_object_ids（[]→[0]）；原裁決：**建議修：** {trigger_id: 4188, name: 1哥4, kind: effect, index: 5, field: selected_o"}
+  - {key: "X哥4|6|T4247|E#4|qty", verdict: fixed, reason: "spec 已改 E#4 的 quantity（1000→-500）；原裁決：**建議修：**「哥4＝穿上哥薩克鐵甲」的契約在 1P–5P 完全一致：上限血 **-500**、攻擊 **+50**，本尊與分身各一份。6P 卻把上限血寫成 "}
+  - {key: "X哥4|6|T4247|E#6|qty", verdict: fixed, reason: "spec 已改 E#6 的 quantity（1000→-500）；原裁決：**建議修：**同上，這是分身[26110] 那一份：+1000 應為 -500。兩條必須同批修，否則 6P 兩具分身血量上限會分岔。trigger_fixes"}
+  - {key: "X哥5|1|T4189|E#4|qty", verdict: pending, reason: "**建議修：**1P 分身[26109] 卸鐵甲只扣 50 攻擊，同支本尊 E#2 是 -100，其餘五座位的分身也都是 -100。trigger_fixes 條目：{trigger_id: 4189, name: '1哥5', kind: effect, index: 4, field: quantity, old: -50, new: -100, reason: '卸鐵甲扣攻應為 100，與同支 E#2 及其他座位一致'}；同時 **armour_attack_quantity 65486 → 65436**，**armour_attack_class 維持 -1（未填）**。"}
+  - {key: "X哥5|2|T4220|E#2|nsel", verdict: fixed, reason: "spec 已改 E#2 的 selected_object_ids（[]→[1]）；原裁決：**建議修：** {trigger_id: 4220, name: 2哥5, kind: effect, index: 2, field: selected_o"}
+  - {key: "X哥5|2|T4220|E#2|sel", verdict: fixed, reason: "spec 已改 E#2 的 selected_object_ids（[]→[1]）；原裁決：**建議修：** {trigger_id: 4220, name: 2哥5, kind: effect, index: 2, field: selected_o"}
+  - {key: "X哥5|6|T4248|E#1|qty", verdict: fixed, reason: "spec 已改 E#1 的 quantity（-1000→-500）；原裁決：**建議修：**「哥5＝卸下鐵甲」在 1P–5P 一律：上限血 -500、攻擊 -100，本尊與分身各一份。6P 的本尊[45117] 卻是 -1000，而同支"}
+  - {key: "X哥5|6|T4248|E#2|qty", verdict: pending, reason: "**建議修：**6P 本尊[45117] 卸鐵甲只扣 50 攻擊，但穿上時（6哥4 E#5）加了 50、1P–5P 卸下時一律扣 100，同支分身 E#4 也是 -100。攻擊力效果採 int16 補數：-100 對應 armour_attack_quantity=65436（65536-100）。trigger_fixes 條目：{trigger_id: 4248, name: '6哥5', kind: effect, index: 2, field: quantity, old: -50, new: -100, reason: '卸鐵甲扣攻應為 100，與同支 E#4 及 1P–5P 一致'}；同時 **armour_attack_quantity 由 65486 改為 65436**，**armour_attack_class 維持原檔的 -1（未填）**——本族六座位的這兩顆效果都沒填 class，不要順手補 0。"}
+  - {key: "X哥8|6|T4209|C#0|uo", verdict: fixed, reason: "spec 已改 C#0 的 unit_object（8→45117）；原裁決：**建議修：** {trigger_id: 4209, name: 6哥8, kind: condition, index: 0, field: unit_ob"}
+  - {key: "X唐|6|T2275|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：T2275「6唐」是李尋歡教唐門暗器（6P 暗殺者專屬鏈 T2275/2276/2277 → T2326「6歡歡」），由 T2238「6飛4」（學會飛刀手）啟動。X唐 族真正的六座位本體是 T2191-T2196「1唐…6唐」（唐天容：我精通唐門暗器…，六座位同形同區）。"}
+  - {key: "X唐|6|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2275–2279「6唐…」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T2191–2196「N唐」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X商2|3|T4031|整支|struct", verdict: wontfix, reason: "3P 多產生一個 Gaia 九節鞭標記物件、4P 只是條件順序對調；「多謝客官／扣 500 兩／得到祭品」三項實質效果六座位齊備。"}
+  - {key: "X商2|4|T4033|整支|struct", verdict: wontfix, reason: "3P 多產生一個 Gaia 九節鞭標記物件、4P 只是條件順序對調；「多謝客官／扣 500 兩／得到祭品」三項實質效果六座位齊備。"}
+  - {key: "X商|3|T4030|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X啞3|1|T1661|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X啞4|5|T1682|整支|struct", verdict: wontfix, reason: "該座位職業專屬數值：負血劍譜體系每個職業的加血／加攻／自傷筆數本來就各自手調，效果與該座位自己的說明訊息自洽，不是漏抄。"}
+  - {key: "X啞|4|T1674|E#0|sp", verdict: fixed, reason: "spec 已改 E#0 的 source_player（5→4）；原裁決：**建議修：** {trigger_id: 1674, name: 4啞, kind: effect, index: 0, field: source_play"}
+  - {key: "X啞|4|T1674|整支|foreign", verdict: fixed, reason: "spec 已改 effect #0 的 source_player；原裁決：**建議修：** {trigger_id: 1674, name: 4啞, kind: effect, index: 0, field: source_play"}
+  - {key: "X壁2|1|T3862|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X壁2|2|T3865|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X壁3|2|T3866|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X壁3|6|T3878|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X壁|5|T3873|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X大2|3|T4354|E#4|qty", verdict: wontfix, reason: "「N大2＝買大環丹」整支 3P 都被放大：E#3/E#4 給英雄回 -2000（別人 -1000，P6 是 -1200）、E#6 給隨從 -270、E#7 -2296（別人 -100/-80/-100）、E#9 -10000（別人 -1000）。唯一有數字的訊息是「失去了 1000 兩銀」，講的是**售價**不是回血量，沒有矛盾。整支等比放大＝刻意。"}
+  - {key: "X大2|3|T4354|E#6|qty", verdict: wontfix, reason: "同 X大2|3|E#4：3P 整支放大（E#7 甚至是 -2296、E#9 -10000），非單點抄錯。"}
+  - {key: "X大2|5|T4358|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X大2|6|T4360|E#9|sp", verdict: pending, reason: "**需裁決：** T4360「6大2」E9 DAMAGE_OBJECT（回復大環丹商販 ref 43835）寫 sp=0，1–5P 同位皆 sp=8——但這次少數派可能才是對的：開場觸發 T1「名」E59 CHANGE_OWNERSHIP sp=8 → tp=0 sel=[43835] 已把「流動商人夏侯象」交給 Gaia，T4950「馬」E39 對 43835 也用 sp=0。若 sp 會過濾 sel 指定的物件，則錯的是 1–5P（該把 T4350/4352/4354/4356/4358 的 E9 sp 由 8 改 0），6P 不動；若 sp 不過濾（merge_spec 既有註解「sp 是否過濾未實測」），六支都無影響。請使用者擇一：(a) 不動，(b) 6P 改 8 對齊多數，(c) 1–5P 改 0 對齊實際擁有者。建議先實測 sp 對 sel 型效果是否過濾再定案"}
+  - {key: "X大3|2|T5154|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X大4|1|T5153|整支|struct", verdict: wontfix, reason: "1大4 只是比他座多一筆對 sp=7 NPC 的 DAMAGE_OBJECT -100（他座一筆、1P 兩筆），玩家側的扣銀、訊息、補血完全一致。"}
+  - {key: "X大師|2|T812|整支|struct", verdict: wontfix, reason: "2P 只是效果順序對調；6P（箭客）走的是專屬支線——條件用九節鞭而非火把、少 TIMER、多啟動「6當僧」，與「6大師守候」要求解 3 個任務的設計一致，屬原作為 P6 另寫的劇情分支。"}
+  - {key: "X大師|6|T816|整支|struct", verdict: wontfix, reason: "2P 只是效果順序對調；6P（箭客）走的是專屬支線——條件用九節鞭而非火把、少 TIMER、多啟動「6當僧」，與「6大師守候」要求解 3 個任務的設計一致，屬原作為 P6 另寫的劇情分支。"}
+  - {key: "X大師守候|5|T5474|整支|enabled/looping", verdict: fixed, reason: "spec 已改整支旗標（enabled: 0→1）；原裁決：**建議修：** 1/2/3/4/6大師守候 全是 en=1 loop=1（英雄站在 (129,48)-(131,50) 且 TIMER 16 就重播 「大師："}
+  - {key: "X大師守候|6|T5476|整支|struct", verdict: wontfix, reason: "6P 專屬劇情分支：TIMER 改 40 秒、對白改成「解開3個任務再來找我吧」並多一句「任務學家」，與「6大師」多掛的「6當僧」是同一套設計。"}
+  - {key: "X失血|3|T4730|E#1|qty", verdict: wontfix, reason: "「N失血」六座位的傷害值本來就散佈：P1 6000/6000、P2 5500/6000、P3 5400/5600、P4 6000/6000、P5 5800/6000。3P 的 E#0/E#1 是全族最低的一對（5400/5600），同支內部一致，屬職業體質調校。"}
+  - {key: "X失血|5|T4732|E#1|sp", verdict: fixed, reason: "spec 已改 E#1 的 source_player（0→5）；原裁決：**建議修：** {trigger_id: 4732, name: 5失血, kind: effect, index: 1, field: source_pla"}
+  - {key: "X女2|2|T1829|整支|struct", verdict: wontfix, reason: "2P 把「首  劍2」的啟動從 2女3 提前到 2女2，2女3 改掛劍客專屬的「2+／2++」；兩支合起來看，2P 該做的事一件不少。"}
+  - {key: "X女3|2|T1830|→~首  C2|edge_missing", verdict: wontfix, reason: "由別支代勞：反查 T5533「首  劍2」的啟動來源是 T1829「2女2」（他座是由「N女3」啟動——T1826/1834/1838/1842/1846）。座位2 把這條啟動邊提早了一支，功能不缺。T1830 多接的 T4293「2+」/T4295「2++」是另一條加攻拾取鏈（(239,232) 踏點），與首領無關。"}
+  - {key: "X女3|2|T1830|整支|struct", verdict: wontfix, reason: "同 X女2：2P 的「首  劍2」被提前到 2女2，2女3 改掛專屬的「2+／2++」醉酒加成，實質齊備。"}
+  - {key: "X女3|4|T1838|E#0|nsel", verdict: fixed, reason: "spec 已改 E#0 的 selected_object_ids（[]→[502]）；原裁決：**建議修：** {trigger_id: 1838, name: 4女3, kind: effect, index: 0, field: selected_o"}
+  - {key: "X女3|4|T1838|E#0|sel", verdict: fixed, reason: "spec 已改 E#0 的 selected_object_ids（[]→[502]）；原裁決：**建議修：** {trigger_id: 1838, name: 4女3, kind: effect, index: 0, field: selected_o"}
+  - {key: "X女4|1|T1827|整支|struct", verdict: wontfix, reason: "1P 只是效果順序對調；2P 多的兩筆 DEACTIVATE 正是停用它自己在 2女3 啟動的「2+／2++」，成對無誤。"}
+  - {key: "X女4|2|T1831|整支|foreign", verdict: fixed, reason: "spec 已改 effect #1 的 source_player；原裁決：**建議修：** {trigger_id: 1831, name: 2女4, kind: effect, index: 1, field: source_pla"}
+  - {key: "X女4|2|T1831|整支|struct", verdict: wontfix, reason: "1P 只是效果順序對調；2P 多的兩筆 DEACTIVATE 正是停用它自己在 2女3 啟動的「2+／2++」，成對無誤。"}
+  - {key: "X子|4|T2576|E#0|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2576 的 E#0/E#1 兩顆回血都是 -221（其餘座位 -171）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X子|4|T2576|E#1|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2576 的 E#0/E#1 兩顆回血都是 -221（其餘座位 -171）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X子|6|TNone|組|count", verdict: wontfix, reason: "統計假象：T4183 被打成「6子6」（多一個 6），因此沒被歸入 X子 族；它與 T4178–4182「1子…5子」是同一批（2c1e，緊接著 T4184「6子死」）。實際支數齊全，只是命名筆誤。建議 renames 改回「6子」。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X孽|2|T2911|整支|foreign", verdict: fixed, reason: "spec 已改 effect #1 的 source_player；原裁決：**建議修：** {trigger_id: 2911, name: 2孽, kind: effect, index: 1, field: source_play"}
+  - {key: "X客棧5扣|1|T5373|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X客棧5扣|2|T5376|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X客棧5罰|2|T5378|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X客棧8罰|3|T5399|E#2|sp", verdict: fixed, reason: "spec 已改 E#2 的 source_player（4→3）；原裁決：**建議修：** {trigger_id: 5399, name: '觸發事件 3', kind: effect, index: 2, field: sourc"}
+  - {key: "X客棧8罰|3|T5399|整支|foreign", verdict: fixed, reason: "spec 已改 effect #2 的 source_player；原裁決：**建議修：** {trigger_id: 5399, name: '觸發事件 3', kind: effect, index: 2, field: sourc"}
+  - {key: "X客棧拒罰|1|T5409|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X實|3|T2385|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X屍|6|T3020|整支|struct", verdict: wontfix, reason: "該座位職業專屬數值：負血劍譜體系每個職業的加血／加攻／自傷筆數本來就各自手調，效果與該座位自己的說明訊息自洽，不是漏抄。"}
+  - {key: "X峨|6|T1097|→X升級|edge_missing", verdict: pending, reason: "**建議修：**T1097「6峨」E#2 的 ACTIVATE 指向自己（T1097），應為 T18「6升級」。座位1–5 的「N峨」（T1087/1089/1091/1093/1095）E#2 都是 ACT 自己的 N升級。此支同時進貢 77 點閱歷＋30 兩銀，卻沒重新武裝升級檢查，P6 這一筆經驗不會即時升級。trigger_fixes 條目：{kind: effect, trigger_id: 1097, name: '6峨', index: 2, field: trigger_id, old: 1097, new: 18, reason: '原作自指：6峨 應啟動 6升級'}"}
+  - {key: "X幫|1|T4157|E#0|sp", verdict: fixed, reason: "spec 已改 E#0 的 source_player（3→1）；原裁決：**建議修：** {trigger_id: 4157, name: 1幫, kind: effect, index: 0, field: source_play"}
+  - {key: "X幫|1|T4157|整支|foreign", verdict: fixed, reason: "spec 已改 effect #0 的 source_player；原裁決：**建議修：** {trigger_id: 4157, name: 1幫, kind: effect, index: 0, field: source_play"}
+  - {key: "X平3|1|T590|C#0|timer", verdict: pending, reason: "**需裁決：**六支「N平3」是同一個技能點關卡（同區域 (88,111)-(90,113)、同門檻「技能點 ≥ 8」、同樣三顆啟停效果），只有 1P 要停留 14 秒、其餘 12 秒。孤例抄錯的形狀，但只差 2 秒，機制不受影響。若要統一：{trigger_id: 590, name: '1平3', kind: condition, index: 0, field: timer, old: 14, new: 12}"}
+  - {key: "X平3|5|T610|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X幽|5|T2971|E#4|sp", verdict: fixed, reason: "spec 已改 E#4 的 source_player（4→5）；原裁決：**建議修：** {trigger_id: 2971, name: 5幽, kind: effect, index: 4, field: source_play"}
+  - {key: "X幽|5|T2971|整支|foreign", verdict: fixed, reason: "spec 已改 effect #4 的 source_player；原裁決：**建議修：** {trigger_id: 2971, name: 5幽, kind: effect, index: 4, field: source_play"}
+  - {key: "X幽死2|6|T2986|整支|struct", verdict: wontfix, reason: "6P 多一筆 DEACTIVATE→「6渦」的清場，屬多做且無害。"}
+  - {key: "X打山賊|2|T29|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X打山賊|5|T35|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X收3|1|T3887|C#0|timer", verdict: pending, reason: "**需裁決：**六支「N收3」是古董收藏家收購渦怪假牙的一次性交易（同區域 (235,12)-(237,14)、同台詞），只有 1P 要停留 5 秒、其餘 8 秒。孤例抄錯的形狀，只影響等待時間。若要統一：{trigger_id: 3887, name: '1收3', kind: condition, index: 0, field: timer, old: 5, new: 8}"}
+  - {key: "X收3|6|T3907|E#3|qty", verdict: wontfix, reason: "6P 賣渦怪假牙得 -150000 兩銀，同支 E#2 訊息也寫「得到了 150000 兩銀」（其餘座位 50000/50000）。數值與訊息同步改動 → 刻意。黃金是 int32，15 萬不會溢位。"}
+  - {key: "X收4|1|T3888|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X收4|5|T3904|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X教頭2|2|T197|整支|enabled/looping", verdict: fixed, reason: "spec 已改整支旗標（looping: 0→1）；原裁決：**建議修：** 1/3/4/5/6教頭2 都是 en=0 loop=1——「教頭：你沒有足夠的技能點數。」＋TASK_OBJECT 把玩家 推離 (91,10"}
+  - {key: "X教頭4|2|T199|→X教頭5|edge_pol", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #3 的 effect_type）；原裁決：**建議修：** T195/T207/T211/T215（1/4/5/6教頭4）E#3 都是 ACTIVATE→N教頭5，T199「2教頭4」抄成 DEACTI"}
+  - {key: "X教頭4|3|T203|→X教頭5|edge_pol", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #3 的 effect_type）；原裁決：**建議修：** 同上（3P）。T203「3教頭4」E#3 DEACTIVATE→T218「3教頭5」，應為 ACTIVATE。 trigger_fixes: "}
+  - {key: "X教頭4|4|T540|→X修|edge_missing", verdict: wontfix, reason: "全檔沒有「4修」：座位4 的修為鏈命名為 T853–857「4棍…4棍5」（棍法家教「棍法修為」），對應他座的 T817「1修」/T829「2修」/T841「3修」/T865「5修」/T877「6修」。T540「4教頭4」E#5 ACT T853「4棍」正是他座 ACT N修 的等價邊，只是名字不同。"}
+  - {key: "X教頭|1|T516|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X教頭|5|T542|E#0|sp", verdict: fixed, reason: "spec 已改 E#0 的 source_player（3→5）；原裁決：**建議修：** {trigger_id: 542, name: 5教頭, kind: effect, index: 0, field: source_play"}
+  - {key: "X教頭|5|T542|整支|foreign", verdict: fixed, reason: "spec 已改 effect #0 的 source_player；原裁決：**建議修：** {trigger_id: 542, name: 5教頭, kind: effect, index: 0, field: source_play"}
+  - {key: "X明|1|T1605|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X明|3|T1607|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X春4|2|T4332|整支|struct", verdict: wontfix, reason: "該座位額外掛的是自己專屬的「N+／N++」醉酒加成觸發（起手啟動、退場停用成對），其他實質效果與他座一致。"}
+  - {key: "X木2|1|T4683|→X木4|edge_missing", verdict: wontfix, reason: "命名互換、接線等價：T4682「1木1」E 同時 ACT 1木3／1木4／1木2，與他座「N木1」同時 ACT N木2／N木3／N木4 是同一組。座位1 把「拾獲珍貴木材 2 點」放在 1木2、把「2 秒後關閉」放在 1木4；座位2–6 相反（N木2＝2 秒關、N木4＝拾木材）。因此座位1 的 木2 不需要再去停 木4（他座是 木2 停 木4），該由 T4685「1木4」停 T4683。"}
+  - {key: "X木2|1|T4683|整支|struct", verdict: wontfix, reason: "1P 的第三支「1木2」與「1木4」內容互換了（1木2 給木材、1木4 做停用；他座相反），兩支加起來的行為與他座等價。"}
+  - {key: "X木2|6|T1945|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：1–5木2 是「英雄領路端木林」（TASK 本體到 ref 37096、幫 30315 回血、把別座位單位趕開）； T1945「6木2」內容完全不同（TIMER3、清 P4 建物、指派 Gaia 73/559 到定點），是開場地圖整備。 它沒有任何 ACTIVATE 來源（只有 6端2／修端木6 停用它），所以必須出廠 en=1 才會跑一次。"}
+  - {key: "X木2|6|T1945|整支|struct", verdict: pending, reason: "**需裁決：**6木2（T1945）與 1P–5P 的「N木2」內容完全不同：他座是「TASK_OBJECT 本體 + 對 30315 系列補血 + 對其餘五家 TASK_OBJECT」（端木草護送引路），6P 卻是「REMOVE_OBJECT sp=4 + 對 sp=7 的諸葛弩 TASK_OBJECT ×4」，而且 enabled=1（他座 0）。修端木6（T4906）確實會停用它，代表它掛在同一條任務鏈上——P6 走端木草支線時引路行為可能是壞的。需進遊戲確認。"}
+  - {key: "X木4|1|T4685|整支|struct", verdict: wontfix, reason: "1P 是與「1木2」內容互換（見 X木2），2P 只是 TRIBUTE 與 SEND_CHAT 順序對調；實質等價。"}
+  - {key: "X木4|2|T4689|整支|struct", verdict: wontfix, reason: "1P 是與「1木2」內容互換（見 X木2），2P 只是 TRIBUTE 與 SEND_CHAT 順序對調；實質等價。"}
+  - {key: "X木|1|T2483|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X木|3|T2485|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X木|4|T1936|→X南僧|edge_missing", verdict: pending, reason: "**建議修：**T1936「4木」缺 ACTIVATE T2035「4南僧」。座位1/2/3/5/6 的「N木」都有這條邊（T1924/1928/1932/1940 皆 E#4、T1944 E#1），而全檔沒有任何觸發啟動 T2035（反查只有它自己 DEA 自己）——P4 永遠拿不到南僧劇情。merge_spec.params.trigger_fixes 條目：{kind: effect_add, trigger_id: 1936, name: '4木', effect: {type: activate_trigger, trigger_id: 2035, target_name: '4南僧'}, reason: '原作漏接：4木 未啟動 4南僧，T2035 全檔無啟動來源'}"}
+  - {key: "X木|6|T1944|→X木2|edge_missing", verdict: wontfix, reason: "職業專屬設計：T1944「6木」的對白改寫成「端木林：大俠！你不該找到我,你或許去少林會有所收穫！」——座位6 的端木林拒絕護送任務、改把玩家導向少林，所以刻意不 ACT 6木2、不 ACT 6端2、不 DEA 6血2，只留 ACT T2037「6南僧」。另 T1945「6木2」（1c5e，TASK P7 單位）是同名不同族的雜項支，不是護送鏈成員。"}
+  - {key: "X木|6|T1944|→X端2|edge_missing", verdict: wontfix, reason: "職業專屬設計：T1944「6木」的對白改寫成「端木林：大俠！你不該找到我,你或許去少林會有所收穫！」——座位6 的端木林拒絕護送任務、改把玩家導向少林，所以刻意不 ACT 6木2、不 ACT 6端2、不 DEA 6血2，只留 ACT T2037「6南僧」。另 T1945「6木2」（1c5e，TASK P7 單位）是同名不同族的雜項支，不是護送鏈成員。"}
+  - {key: "X木|6|T1944|→X血2|edge_missing", verdict: wontfix, reason: "職業專屬設計：T1944「6木」的對白改寫成「端木林：大俠！你不該找到我,你或許去少林會有所收穫！」——座位6 的端木林拒絕護送任務、改把玩家導向少林，所以刻意不 ACT 6木2、不 ACT 6端2、不 DEA 6血2，只留 ACT T2037「6南僧」。另 T1945「6木2」（1c5e，TASK P7 單位）是同名不同族的雜項支，不是護送鏈成員。"}
+  - {key: "X松2|2|T1205|E#4|nsel", verdict: fixed, reason: "spec 已改 E#4 的 selected_object_ids（[]→[26186]）；原裁決：**建議修：** {trigger_id: 1205, name: 2松2, kind: effect, index: 4, field: selected_o"}
+  - {key: "X松2|2|T1205|E#4|sel", verdict: fixed, reason: "spec 已改 E#4 的 selected_object_ids（[]→[26186]）；原裁決：**建議修：** {trigger_id: 1205, name: 2松2, kind: effect, index: 4, field: selected_o"}
+  - {key: "X林4|1|T3551|C#0|sp", verdict: fixed, reason: "spec 已改 C#0 的 source_player（2→1）；原裁決：**建議修：** {trigger_id: 3551, name: 1林4, kind: condition, index: 0, field: source_"}
+  - {key: "X林4|1|T3551|整支|foreign", verdict: fixed, reason: "spec 已改 condition #0 的 source_player；原裁決：**建議修：** {trigger_id: 3551, name: 1林4, kind: condition, index: 0, field: source_"}
+  - {key: "X林4|6|T1188|→X林|edge_pol", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #1 的 effect_type）；原裁決：**建議修：** 1/2/3/4/5林4 都是「ACTIVATE N林2 ＋ DEACTIVATE N林」；T1188「6林4」兩個效果都是 ACTIVATE（"}
+  - {key: "X楚|3|T2186|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X武2|1|T793|整支|struct", verdict: pending, reason: "**需裁決：**1武2（T793）少了 TIMER tm=20 條件。它是 looping 的重新武裝器：他座每 20 秒才把「N武」重新啟動一次，P1 則每個 tick 都重新啟動，等於 P1 的擊殺獎勵冷卻被拿掉。要不要補 20 秒屬平衡取捨，且 trigger_fixes 無法新增條件。"}
+  - {key: "X武|1|T792|整支|struct", verdict: pending, reason: "**需裁決：**1武（T792）只有 2 個條件，他座都有第三個 OBJECTS_IN_AREA sp=N（人要在現場）。少了在場檢查，P1 可能不在場也拿到 51 閱歷的擊殺獎勵。（另註：1P 給的是 25 兩銀、他座給 2 點技能點，但訊息各自自洽，不算錯。）trigger_fixes 無法新增條件，要修得先擴充 s37。"}
+  - {key: "X武|6|T802|E#0|qty", verdict: wontfix, reason: "6P -102 且同支 E#3 訊息寫「102 點江湖閱歷」（其餘 51/51），數值與訊息同步 → 刻意。"}
+  - {key: "X武死2|1|T2837|→X赤|edge_missing", verdict: wontfix, reason: "名稱多一字造成的假象：座位1 的目標觸發是 T2987「1赤1」（他座是 T2989–2997「N赤」）。這六支（T2831/2837/2843/2988/2999/3005）的啟停邊都正確指向 T2987，只是正規化後名稱對不上。建議在 params.renames 把 T2987 更名為「1赤」，這一批假陽性即消失。"}
+  - {key: "X武死3|1|T2843|→X赤|edge_missing", verdict: wontfix, reason: "名稱多一字造成的假象：座位1 的目標觸發是 T2987「1赤1」（他座是 T2989–2997「N赤」）。這六支（T2831/2837/2843/2988/2999/3005）的啟停邊都正確指向 T2987，只是正規化後名稱對不上。建議在 params.renames 把 T2987 更名為「1赤」，這一批假陽性即消失。"}
+  - {key: "X武死|1|T2831|→X赤|edge_missing", verdict: wontfix, reason: "名稱多一字造成的假象：座位1 的目標觸發是 T2987「1赤1」（他座是 T2989–2997「N赤」）。這六支（T2831/2837/2843/2988/2999/3005）的啟停邊都正確指向 T2987，只是正規化後名稱對不上。建議在 params.renames 把 T2987 更名為「1赤」，這一批假陽性即消失。"}
+  - {key: "X毒2|6|T956|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：毒鏢鏈第二段「暗殺者：你沒有足夠的技能點數。＋TASK_OBJECT 推開」。同 X毒|6|T955。"}
+  - {key: "X毒2|6|T956|整支|struct", verdict: wontfix, reason: "同名不同族：1P–5P 的「N毒」「N毒2」「N毒3」「N毒4」是中毒狀態機（中毒→每2秒扣100血→解毒），6P 的「6毒」系列卻是暗殺者傳授毒鏢的教學鏈（對白→技能點不足→扣點→學會毒鏢）；名字碰巧一樣，功能毫無關係。"}
+  - {key: "X毒2|6|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T955–960「6毒…6毒6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T4467–4498「N毒／N毒2／N毒3／N毒4」中毒狀態機 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X毒3|6|T957|→X毒2|edge_pol", verdict: wontfix, reason: "配對錯位：座位 6 有兩支「6毒3」——T957 屬 6毒/6毒2/6毒3/6毒4/6毒5/6毒6（暗殺者教毒鏢支線）， T4484 才是與 1–5毒3（T4479–4483「中毒狀態」）同族的那支。索引 k=0 挑到 T957 才產生極性差。"}
+  - {key: "X毒3|6|T957|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：毒鏢鏈第三段（技能點數 ≥8 → 停 6毒2、開 6毒4）。同 X毒|6|T955。"}
+  - {key: "X毒3|6|T957|整支|enabled/looping", verdict: wontfix, reason: "同上配對錯位：T957 是毒鏢支線的第三段（由 T955「6毒」E#2 啟動，en=0 loop=0）， 與 1–5毒3（en=1 loop=0 的中毒狀態）不同族；真對應支是 T4484（en=1 loop=0，與多數一致）。"}
+  - {key: "X毒3|6|T957|整支|struct", verdict: wontfix, reason: "同名不同族：1P–5P 的「N毒」「N毒2」「N毒3」「N毒4」是中毒狀態機（中毒→每2秒扣100血→解毒），6P 的「6毒」系列卻是暗殺者傳授毒鏢的教學鏈（對白→技能點不足→扣點→學會毒鏢）；名字碰巧一樣，功能毫無關係。"}
+  - {key: "X毒3|6|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T955–960「6毒…6毒6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T4467–4498「N毒／N毒2／N毒3／N毒4」中毒狀態機 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X毒4|6|T958|→X毒2|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T955–960「6毒…6毒6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T4467–4498「N毒／N毒2／N毒3／N毒4」中毒狀態機 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X毒4|6|T958|→X毒3|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T955–960「6毒…6毒6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T4467–4498「N毒／N毒2／N毒3／N毒4」中毒狀態機 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X毒4|6|T958|→X毒|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T955–960「6毒…6毒6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T4467–4498「N毒／N毒2／N毒3／N毒4」中毒狀態機 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X毒4|6|T958|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：毒鏢鏈第四段（你已學會了毒鏢、扣 8 技能點、開 6毒5 與 6箭6、改名 7987、開 T2151「6破」、生地圖顯示器）。同 X毒|6|T955。"}
+  - {key: "X毒4|6|T958|整支|struct", verdict: wontfix, reason: "同名不同族：1P–5P 的「N毒」「N毒2」「N毒3」「N毒4」是中毒狀態機（中毒→每2秒扣100血→解毒），6P 的「6毒」系列卻是暗殺者傳授毒鏢的教學鏈（對白→技能點不足→扣點→學會毒鏢）；名字碰巧一樣，功能毫無關係。"}
+  - {key: "X毒4|6|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T955–960「6毒…6毒6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T4467–4498「N毒／N毒2／N毒3／N毒4」中毒狀態機 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X毒|1|T4467|E#0|sp", verdict: fixed, reason: "spec 已改 E#0 的 source_player（7→1）；原裁決：**建議修：** {trigger_id: 4467, name: 1毒, kind: effect, index: 0, field: source_play"}
+  - {key: "X毒|6|T955|→X毒4|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T955–960「6毒…6毒6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T4467–4498「N毒／N毒2／N毒3／N毒4」中毒狀態機 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X毒|6|T955|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：T955/T956/T957/T958/T959 是 6P 暗殺者「毒鏢」技能鏈（暗殺者：你現在可以學毒鏢了。→ 技能點數不足推開 → 點數 ≥8 → 你已學會了毒鏢，扣 8 技能點、改名「暗6 毒鏢 1秒73精力」、開 T2151「6破」唐門暗器）。X毒 族真正的六座位本體是 T4467-T4472「1毒…6毒」＋T4473-4478「N毒2」＋T4479-4484「N毒3」＋T4493-4498「N毒4」的「中毒　狀態」機制（全六座位齊、形狀一致）。"}
+  - {key: "X毒|6|T955|整支|enabled/looping", verdict: wontfix, reason: "配對錯位：T955「6毒」是暗殺者教毒鏢的入口（3 條件、由 T952「6無4」E#5 啟動、en=0 loop=0）， 與 1–5毒（T4467–4471「中毒狀態」，en=1 loop=0）不同族；座位 6 的真對應支是 T4472「6毒」（en=1 loop=0）。"}
+  - {key: "X毒|6|T955|整支|struct", verdict: wontfix, reason: "同名不同族：1P–5P 的「N毒」「N毒2」「N毒3」「N毒4」是中毒狀態機（中毒→每2秒扣100血→解毒），6P 的「6毒」系列卻是暗殺者傳授毒鏢的教學鏈（對白→技能點不足→扣點→學會毒鏢）；名字碰巧一樣，功能毫無關係。"}
+  - {key: "X毒|6|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T955–960「6毒…6毒6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T4467–4498「N毒／N毒2／N毒3／N毒4」中毒狀態機 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X民團死|3|T23|整支|enabled/looping", verdict: fixed, reason: "spec 已改整支旗標（looping: 0→1）；原裁決：**建議修：** 1/2/4/5/6民團死 都是 en=1 loop=1，配合 en=1 loop=1 的「N打民團2」形成可反覆開關的 進區/出區配對（打民團"}
+  - {key: "X治病|4|T368|C#0|timer", verdict: wontfix, reason: "4P 是 -56/**2秒** ＝ 28/秒，其餘座位是 -20/1秒、-25/1秒、-27/1秒、-18/1秒、-20/1秒 ＝ 18–27/秒。換算後 4P 落在同一個速率帶內，只是用「兩秒一跳、量加倍」表達 → 等效寫法，不是 bug。"}
+  - {key: "X流|2|T901|→X升級|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T901–905「2流…2流5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T1989–1994「N流」擊殺獎勵支 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X流|2|T901|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：T901「2流」是劍客教「流星追月」的鏈起點（區(220,9)-(221,10)＋技能書 5 本 → 開 T902「2流2」、T903「2流3」、「劍客：你想學流星追月嗎？」），只有 2P 劍客有。X流 族真正的六座位本體是 T1989-T1994「1流…6流」擊殺獎勵（-116 閱歷／-45~55 兩銀，六座位齊）。"}
+  - {key: "X流|2|T901|整支|struct", verdict: wontfix, reason: "同名不同族：2P 的「2流」是劍客傳授流星追月的教學鏈，1P/3P–6P 的「N流」是流星怪擊殺獎勵（116 閱歷／45 兩銀）。"}
+  - {key: "X流|2|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T901–905「2流…2流5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T1989–1994「N流」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X渦|5|T2857|→X升級|edge_missing", verdict: pending, reason: "**建議修：**T2857「5渦」E#1 的 ACTIVATE 指向自己（T2857），應為 T15「5升級」。座位1–4、6 的「N渦」（T2849/2851/2853/2855/2859）同一格都是 ACT 自己的 N升級。此支同時給 751 點閱歷與南宮世家邀請函，卻沒重新武裝升級檢查。trigger_fixes 條目：{kind: effect, trigger_id: 2857, name: '5渦', index: 1, field: trigger_id, old: 2857, new: 15, reason: '原作自指：5渦 應啟動 5升級'}"}
+  - {key: "X渦|6|T2859|整支|struct", verdict: wontfix, reason: "該座位職業專屬數值：負血劍譜體系每個職業的加血／加攻／自傷筆數本來就各自手調，效果與該座位自己的說明訊息自洽，不是漏抄。"}
+  - {key: "X渦死5|5|T2907|整支|foreign", verdict: pending, reason: "**建議修：** {trigger_id: 2907, name: 5渦死5, kind: effect, index: 3, field: trigger_id, old: 4272, new: 4269}　另補 {trigger_id: 2908, name: 6渦死5, kind: effect_add, effect: {type: deactivate_trigger, trigger_id: 4272, target_name: 6珠}} reason: 1–4P 的渦死5 各停用「N渦／N孽／N珠」三支；5P 多一條 E3 停用 T4272「6珠」（別人的），而 6P 的 T2908 只有兩條、缺自己的 6珠＝這一條放錯支　（已存在於 merge_spec.params.trigger_fixes，本輪複核確認正確）"}
+  - {key: "X渦死5|5|T2907|整支|struct", verdict: wontfix, reason: "5渦死5 多停了一個「6珠」＝跨座位越權停用，屬 A 類 foreign 規則的管轄（同鍵已有 foreign／edge 條目），就 struct 面來說 5P 自己的三條停用邊一條不少。"}
+  - {key: "X渦死5|6|T2908|→X珠|edge_missing", verdict: fixed, reason: "spec 已改該支的啟停邊（effect_add 補啟停效果）；原裁決：**建議修：**T2908「6渦死5」只有 2 個效果（DEA 6渦、DEA 6孽），座位1–5 都有第三條 DEA 自己的「N珠」（T2903→T4257、T"}
+  - {key: "X渦死5|6|T2908|整支|struct", verdict: pending, reason: "**建議修：**6渦死5（T2908）只停用 6渦、6孽，少了 DEACTIVATE_TRIGGER →「6珠」（T4272）；而 5渦死5（T2907）卻多停了一個 6珠——典型的複製貼上寫錯家。trigger_fixes：{kind: effect_add, trigger_id: 2908, name: '6渦死5', effect: {type: deactivate_trigger, trigger_id: 4272, target_name: '6珠'}, reason: '原作把 6珠 的停用邊誤寫進 5渦死5'}；若要一併去掉 5P 的越權停用，交給 `X渦死5|5|…|foreign` 那條處理。影響有限（6珠3 另有一條停用 6珠），但清場路徑不齊。註：同一修法亦見於 `X渦死5|6|T2908|→X珠|edge_missing`。"}
+  - {key: "X漢|4|T1440|整支|enabled/looping", verdict: fixed, reason: "spec 已改整支旗標（enabled: 0→1）；原裁決：**建議修：** 1/2/3/5/6漢 全是 en=1 loop=1（站 (213,14)-(215,16) ＋TIMER16 重播羅漢台詞）， 由 N坐 停用"}
+  - {key: "X灸4|4|T1383|C#0|timer", verdict: pending, reason: "**需裁決：**「N灸4＝醫師教會針灸」是 loop=0 的一次性學技事件：其餘五座位都要求在 (142,83)-(143,84) 停留 5 秒，4P 要求 16 秒。孤例少數派，機制不會壞，但 4棍 學針灸要多站 11 秒。這族的 5 與 16 在別族（X醫5 是 16 為主、XC合5 混用）都出現過，作者本來就兩個值混用，無法斷定 16 是刻意刁難還是抄自隔壁族 → 請使用者決定要不要統一。若要統一：{trigger_id: 1383, name: '4灸4', kind: condition, index: 0, field: timer, old: 16, new: 5}"}
+  - {key: "X燒2|3|T4043|整支|struct", verdict: wontfix, reason: "差異只是多產生一個 Gaia（sp=0）的九節鞭標記物件，不影響玩家獲得的物品與資源。"}
+  - {key: "X狂2|1|T896|→X狂|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T895–900「1狂…1狂6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3135–3152「N狂／N狂2／N狂3」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X狂2|1|T896|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：狂刀震天鏈第二段「刀客：你沒有足夠的技能點數。＋TASK_OBJECT 推開」。同 X狂|1|T895。"}
+  - {key: "X狂2|1|T896|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：T896「1狂2」屬 1狂/1狂2/1狂3/1狂4 的刀客傳藝鏈（TIMER14＋技能點提示＋TASK 推開， 由 T895「1狂」E#1 啟動、T897「1狂3」E#0 停用）；2–6狂2（T3138–3146）是狂夜叉區域的 en=1 loop=1 進區觸發。座位 1 在此樣式下有 2 支，索引配對挑錯。"}
+  - {key: "X狂2|1|T896|整支|struct", verdict: wontfix, reason: "同名不同族：1P 的「1狂」「1狂2」「1狂3」是刀客傳授狂刀震天的教學鏈，2P–6P 的「N狂」是狂怪擊殺獎勵（542 閱歷／110 兩銀）。"}
+  - {key: "X狂2|1|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T895–900「1狂…1狂6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3135–3152「N狂／N狂2／N狂3」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X狂3|1|T897|→X狂|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T895–900「1狂…1狂6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3135–3152「N狂／N狂2／N狂3」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X狂3|1|T897|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：狂刀震天鏈第三段（技能點數 ≥8 → 停 1狂2、開 T898「1狂4」）。同 X狂|1|T895。"}
+  - {key: "X狂3|1|T897|整支|enabled/looping", verdict: wontfix, reason: "同上：T897「1狂3」是刀客傳藝鏈第三段（TIMER12＋技能點8＋站位，由 T895「1狂」E#2 啟動）， 與 2–6狂3（T3148–3152，狂夜叉區域 en=1 loop=1）不同族。"}
+  - {key: "X狂3|1|T897|整支|struct", verdict: wontfix, reason: "同名不同族：1P 的「1狂」「1狂2」「1狂3」是刀客傳授狂刀震天的教學鏈，2P–6P 的「N狂」是狂怪擊殺獎勵（542 閱歷／110 兩銀）。"}
+  - {key: "X狂3|1|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T895–900「1狂…1狂6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3135–3152「N狂／N狂2／N狂3」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X狂|1|T895|→X升級|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T895–900「1狂…1狂6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3135–3152「N狂／N狂2／N狂3」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X狂|1|T895|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：T895/T896/T897/T898 是刀客教「狂刀震天」的技能鏈（1P 刀客專屬，區(168,174)-(170,176)：刀客：你已能拳握天涯絕刀的要決，我現在便教你狂刀震天。）。X狂 族真正的六座位本體是 T3135-T3146/T3147-T3152「N狂/N狂2/N狂3」擊殺獎勵（-542 閱歷／-110 兩銀，六座位齊）。"}
+  - {key: "X狂|1|T895|整支|struct", verdict: wontfix, reason: "同名不同族：1P 的「1狂」「1狂2」「1狂3」是刀客傳授狂刀震天的教學鏈，2P–6P 的「N狂」是狂怪擊殺獎勵（542 閱歷／110 兩銀）。"}
+  - {key: "X狂|1|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T895–900「1狂…1狂6」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3135–3152「N狂／N狂2／N狂3」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X狂死2|6|T3164|→X狂|edge_pol", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #0 的 effect_type）；原裁決：**建議修：** 1–5狂死2（T3159–3163）E#0 都是 DEACTIVATE→N狂；T3164「6狂死2」抄成 ACTIVATE→T3145「6狂」"}
+  - {key: "X狂死7|2|T3190|→X狂|edge_pol", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #0 的 effect_type）；原裁決：**建議修：** 同上（2P）。T3190「2狂死7」E#0 ACTIVATE→T3137「2狂」，1/3/4/5/6 皆 DEACTIVATE。 trigge"}
+  - {key: "X王3|2|T4371|整支|struct", verdict: wontfix, reason: "該座位額外掛的是自己專屬的「N+／N++」醉酒加成觸發（起手啟動、退場停用成對），其他實質效果與他座一致。（5P 則純為效果順序對調。）"}
+  - {key: "X王3|5|T4383|整支|struct", verdict: wontfix, reason: "該座位額外掛的是自己專屬的「N+／N++」醉酒加成觸發（起手啟動、退場停用成對），其他實質效果與他座一致。（5P 則純為效果順序對調。）"}
+  - {key: "X王3|6|T4387|E#3|qty", verdict: pending, reason: "**建議修：**「N王3＝進入醉酒/興奮狀態」的契約：攻擊 +N、當前血回 10×N，本尊與分身**同值成對**（1P 100/-1000、2P 150/-1500、3P/4P/5P 100/-1000）。6P 攻擊 E#0/E#1 都是 +100，回血卻是 E#2=-1000（分身）、E#3=-2000（本尊）—— 同支兩具分身分岔。trigger_fixes 條目：{trigger_id: 4387, name: '6王3', kind: effect, index: 3, field: quantity, old: -2000, new: -1000, reason: '醉酒回血本尊/分身應同值，與同支 E#2 及攻擊 +100 的比例一致'}"}
+  - {key: "X王4|2|T4372|整支|struct", verdict: wontfix, reason: "該座位額外掛的是自己專屬的「N+／N++」醉酒加成觸發（起手啟動、退場停用成對），其他實質效果與他座一致。"}
+  - {key: "X王|4|T2302|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X珠2|2|T4261|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X珠2|3|T4264|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X珠3|5|T4271|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X珠3|6|T4274|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X珠4|4|T3611|整支|enabled/looping", verdict: fixed, reason: "spec 已改整支旗標（enabled: 0→1）；原裁決：**建議修：** 1/2/3/6珠4 都是 en=1 loop=1（進 (133,200)-(135,200) 就 DEACT N珠、ACT N珠2）； T36"}
+  - {key: "X珠|3|T4263|→X升級|edge_missing", verdict: pending, reason: "**建議修：**T4263「3珠」只有 2 個效果（chat「得到了 珠寶項飾」＋CREATE_OBJECT），座位1/2/4/5/6 的對應支（T4257/4260/4266/4269/4272）都多一條 ACT 自己的 N升級。trigger_fixes 條目：{kind: effect_add, trigger_id: 4263, name: '3珠', effect: {type: activate_trigger, trigger_id: 9, target_name: '3升級'}, reason: '原作漏接：3珠 未重新武裝 3升級'}"}
+  - {key: "X珠|3|T4263|整支|struct", verdict: pending, reason: "**建議修：**3珠（T4263）少了 ACTIVATE_TRIGGER →「3升級」。他座 N珠 都是「啟動 N升級 → 得到珠寶項飾訊息 → 產生 MAP_REVEALER」三效果（1→T7、2→T8、4→T12、5→T15、6→T18），3P 只有後兩個，等於 P3 撿到珠寶項飾時不會跑升級結算。trigger_fixes：{kind: effect_add, trigger_id: 4263, name: '3珠', effect: {type: activate_trigger, trigger_id: 9, target_name: '3升級'}, reason: '原作 3P 漏抄升級啟動'}。註：同一修法亦見於 `X珠|3|T4263|→X升級|edge_missing`，只寫一條。"}
+  - {key: "X生2|3|T2674|E#0|sp", verdict: fixed, reason: "spec 已改 E#0 的 source_player（2→3）；原裁決：**建議修：** {trigger_id: 2674, name: 3生2, kind: effect, index: 0, field: source_pla"}
+  - {key: "X生2|3|T2674|整支|foreign", verdict: fixed, reason: "spec 已改 effect #0 的 source_player；原裁決：**建議修：** {trigger_id: 2674, name: 3生2, kind: effect, index: 0, field: source_pla"}
+  - {key: "X生4|3|T2676|整支|struct", verdict: wontfix, reason: "該座位職業專屬數值：負血劍譜體系每個職業的加血／加攻／自傷筆數本來就各自手調，效果與該座位自己的說明訊息自洽，不是漏抄。"}
+  - {key: "X生4|4|T2681|E#4|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2681 的 E#4/E#6 兩顆上限血都是 1100（其餘座位 1000）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X生4|4|T2681|E#6|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2681 的 E#4/E#6 兩顆上限血都是 1100（其餘座位 1000）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X當2|1|T1191|E#4|qty", verdict: pending, reason: "**建議修：****訊息與數值直接矛盾**：同族 NPC 台詞寫死「只需150兩，可回復100精力」，同支 E#3 也確實給本尊[0] 回 100，但 E#4 給分身[26109] 是 **0**；其餘五座位 E#3/E#4 都是 -100/-100。1P 買當歸丸後騎馬型態完全沒回血，錢照扣。trigger_fixes 條目：{trigger_id: 1191, name: '1當2', kind: effect, index: 4, field: quantity, old: 0, new: -100, reason: '當歸丸回復 100 精力，分身那一份漏填（NPC 台詞與同支 E#3 皆為 100）'}"}
+  - {key: "X當2|4|T1197|E#1|sp", verdict: fixed, reason: "spec 已改 E#1 的 source_player（2→4）；原裁決：**建議修：** {trigger_id: 1197, name: 4當2, kind: effect, index: 1, field: source_pla"}
+  - {key: "X當2|4|T1197|整支|foreign", verdict: fixed, reason: "spec 已改 effect #1 的 source_player；原裁決：**建議修：** {trigger_id: 1197, name: 4當2, kind: effect, index: 1, field: source_pla"}
+  - {key: "X當|4|T1196|C#0|timer", verdict: pending, reason: "**需裁決：**六支「N當」是雜貨店伙計的招攬對白（同 NPC、同區域 (132,13)-(134,15)、同台詞），只有 4P 週期 5 秒、其餘 6 秒。純對白節奏、DE 又會對相同訊息去重，機制無影響。若要統一：{trigger_id: 1196, name: '4當', kind: condition, index: 0, field: timer, old: 5, new: 6}"}
+  - {key: "X破|6|T2151|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：T2151「6破」是唐天容教唐門暗器的鏈起點（區(127,0)-(129,1)＋技能書 7 本 → 開 T2152「6破2」、T2153「6破3」），由 T958「6毒4」E5 啟動，6P 暗殺者專屬。X破 族真正的六座位本體是 T1521-T1526「1破…6破」（sp=8 對 12697-12702 六個物件的 TASK_OBJECT 巡邏迴圈，六座位齊、每支只有一效果）。"}
+  - {key: "X破|6|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2151–2155「6破…6破5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T1521–1526「N破」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X神3|2|T2502|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X神4|4|T2513|E#4|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2513 的 E#4/E#8 兩顆上限血都是 11000（其餘座位 10000）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X神4|4|T2513|E#8|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T2513 的 E#4/E#8 兩顆上限血都是 11000（其餘座位 10000）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X神|2|T2500|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X神|3|T2505|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X神|6|T4418|E#0|qty", verdict: pending, reason: "**建議修：**T4403–T4418「N神」是 loop=1 + OBJECT_HAS_TARGET(30608) 的持續回血迴圈：只要該 NPC 有攻擊目標，每 tick 就給自家英雄回血。1P–5P 都是 -49，6P 是 **-7000（143 倍）**。當前血是 float32、負傷害＝回血且無上限，這正是「無敵迴圈」的成因（見近期 commit「去無敵迴圈(血量異常根因)」）：6箭在該段劇情等同不死。trigger_fixes 條目：{trigger_id: 4418, name: '6神', kind: effect, index: 0, field: quantity, old: -7000, new: -49, reason: '持續回血迴圈六座位應同為 -49，-7000 造成無敵'}"}
+  - {key: "X神兵2|1|T4737|整支|struct", verdict: wontfix, reason: "1P 為條件／效果順序對調；6P 是箭客專屬的破法神弓設計。6P（箭客）的神兵是另一套設計：不走 N失血 迴圈，而是每次使用直接自傷 4000（6神兵→6神兵2→6刀3／6刀4 全都自成一格），條件與效果序列本就與 2P–5P 的倚天劍／霸王槍／金箍棒／力套不同，屬職業專屬而非漏抄。"}
+  - {key: "X神兵2|6|T4751|→X神兵1|edge_missing", verdict: wontfix, reason: "目標為一次性觸發、毋須停用：他座的「N神兵1」是 loop=1，成交後必須顯式 DEACTIVATE；座位6 的對應支 T4750「6神兵」是 loop=0（非迴圈），觸發一次後引擎自動失效，因此 T4751「6神兵2」沒有這條邊並不造成重複觸發。"}
+  - {key: "X神兵2|6|T4751|整支|struct", verdict: wontfix, reason: "1P 為條件／效果順序對調；6P 是箭客專屬的破法神弓設計。6P（箭客）的神兵是另一套設計：不走 N失血 迴圈，而是每次使用直接自傷 4000（6神兵→6神兵2→6刀3／6刀4 全都自成一格），條件與效果序列本就與 2P–5P 的倚天劍／霸王槍／金箍棒／力套不同，屬職業專屬而非漏抄。"}
+  - {key: "X神兵|6|T4750|整支|enabled/looping", verdict: wontfix, reason: "與 X 100|6 同一件事：1–5神兵是 en=1 loop=1 的「你等級不夠 去了也是送死」常駐警告， 由 N 100 停用；T4750「6神兵」被改寫成等級100 閘門（少一條 TIMER 條件，E#0 直接 ACT T4751「6神兵2」）， 由 T3523「6 100」E#4 啟動——有明確啟動來源，en=0 是正確的。"}
+  - {key: "X神兵|6|T4750|整支|struct", verdict: wontfix, reason: "6P（箭客）的神兵是另一套設計：不走 N失血 迴圈，而是每次使用直接自傷 4000（6神兵→6神兵2→6刀3／6刀4 全都自成一格），條件與效果序列本就與 2P–5P 的倚天劍／霸王槍／金箍棒／力套不同，屬職業專屬而非漏抄。"}
+  - {key: "X端|4|T1934|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X紅|4|T774|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X練|5|T1595|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X罩3|4|T2428|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X船2|1|T3686|整支|absent", verdict: wontfix, reason: "設計如此（且缺席主因已另案修掉）：T3686「1船2」是 T3685「1船」（西碼頭 16 等門檻提示）的關斷器——等級 ≥1160 就停掉提示、順帶停 T3674「1草2」。T3685 的座位缺席已列為真陽性並在 merge_spec 以 trigger_add「2船級西…6船級西」補齊；補進去的五支用 accumulate_attribute inverted:1（<1159 才推）＋looping 自帶門檻，不需要關斷器，所以 2-6 座位沒有 1船2 的對應本來就正確。"}
+  - {key: "X船2|1|T3686|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船2|1|T3703|→X船3|edge_pol", verdict: wontfix, reason: "配對錯位：T3703「1船2」的真對應是 T3708「2船2」等（第10層武功組），它們對「N船3」都是 ACTIVATE，與 T3703 E#0 一致；報告比對的 T3783「2船2」屬另一組（船夫：走吧！窮人！）， 那一組才是 DEACTIVATE→N船3。"}
+  - {key: "X船2|1|T3703|整支|absent", verdict: wontfix, reason: "命名錯位假陽性（FP4）：十級絕招開通鏈在座位 1、2 是「N船2＝改名＋開鏈、N船3＝移除計數物件」，座位 3-6 剛好相反（N船2＝移除計數物件、N船3＝改名＋開鏈）。T3703「1船2」（改名 14713「刀１０ 毀樁之舞」、開 1船3、開 1船4）對應的其實是 T3714/T3719/T3724/T3729「3船3…6船3」；T3704「1船3」對應 T3713/T3718/T3723/T3728「3船2…6船2」。六座位功能齊全，只是編號互換。"}
+  - {key: "X船2|1|T3703|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船2|1|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。 座位1 因此在 X船* 每一個樣式都多算一支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X船2|2|T3708|整支|absent", verdict: wontfix, reason: "命名錯位假陽性（FP4）：T3708「2船2」（改名 7983「劍１０　　毀滅之劍」、開 2船3、開 2船4）與座位 1 的 T3703 同角色，對應座位 3-6 的「N船3」。同 X船2|1|T3703。"}
+  - {key: "X船2|2|T3708|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船2|3|T3713|E#0|olu", verdict: pending, reason: "**建議修：****指錯物件種類**：這一族是「清掉自家在地圖左緣的旗標」——P1(0,222)/P2(0,221)/P4(0,219)/P5(0,218)/P6(0,217) 都是 REMOVE_OBJECT sp=8(Gaia) object_list_unit_id=**837 MAP_REVEALER**，只有 3P(0,220) 填 **723 CRATER**。該格上放的是 MAP_REVEATER 系列旗標（全圖多處以 CREATE_OBJECT 837 當座位旗標），CRATER 根本不在那裡 → 3P 的旗標永遠清不掉，依賴「該格沒有物件」的後續判斷會一直不成立。trigger_fixes 條目：{trigger_id: 3713, name: '3船2', kind: effect, index: 0, field: object_list_unit_id, old: 723, new: 837, reason: '座位旗標是 MAP_REVEALER(837)，723 CRATER 清不到東西'}"}
+  - {key: "X船2|5|T3801|整支|absent", verdict: wontfix, reason: "效果順序假陽性（FP2）：T3801「5船2」與 T3777/T3783/T3789/T3795/T3807「N船2」三個效果完全相同（TASK_OBJECT 把人推回 (74,231)、「船夫：走吧！窮人！」、停 N船3），只是 SEND_CHAT 排到最前面。條件也相同（區(79,233)-(79,235)）。"}
+  - {key: "X船2|5|T3801|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船3|1|T3687|→X船4|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船3|1|T3687|整支|enabled/looping", verdict: wontfix, reason: "T3687「1船3」屬座位 1 獨有的 T3685–3690 組（見 X船|1|T3685），無對照座位可比。"}
+  - {key: "X船3|1|T3687|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船3|1|T3704|→X船6|edge_missing", verdict: wontfix, reason: "索引位移＋命名互換：T3704「1船3」是『移除票券』支（0c1e），對應座位3–6 的「N船2」；他座的「N船3」（改名播報支）才 ACT 船6，座位1 由 T3703「1船2」代勞。接線改配、功能等價：座位1／2 的「武功第10層」鏈把『移除票券』步驟命名為船3，由 T3703/T3708「N船2」同時 ACT 船3＋船4；座位3–6 把該步驟命名為船2，由主支同時 ACT 船2＋船3。兩種接法的集合相同，只是編號互換。"}
+  - {key: "X船3|1|T3704|整支|enabled/looping", verdict: wontfix, reason: "配對錯位：T3704「1船3」（0 條件、單一 REMOVE_OBJECT）的真對應是 T3709「2船3」， 兩者都是 en=0 loop=1，完全相同；報告比對的是 T3752 那一組（en=0 loop=0）。"}
+  - {key: "X船3|1|T3704|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船3|1|T3747|→X船2|edge_missing", verdict: wontfix, reason: "索引位移：座位1 多一條渡船鏈（T3685–3690），使 X船* 整族錯一格；T3747 是東碼頭鏈的 1船3，被拿去和他座的另一支比。同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船3|1|T3747|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船3|1|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。 座位1 因此在 X船* 每一個樣式都多算一支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X船3|2|T3709|→X船4|edge_missing", verdict: wontfix, reason: "命名互換：T3709「2船3」是『移除票券』支（0c1e），對應座位3–6 的「N船2」；座位2 的 ACT 2船4 在 T3708「2船2」E#2。接線改配、功能等價：座位1／2 的「武功第10層」鏈把『移除票券』步驟命名為船3，由 T3703/T3708「N船2」同時 ACT 船3＋船4；座位3–6 把該步驟命名為船2，由主支同時 ACT 船2＋船3。兩種接法的集合相同，只是編號互換。"}
+  - {key: "X船3|2|T3709|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船4|1|T3688|→X船5|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船4|1|T3688|整支|enabled/looping", verdict: wontfix, reason: "T3688「1船4」屬座位 1 獨有的 T3685–3690 組，無對照座位可比。"}
+  - {key: "X船4|1|T3688|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船4|1|T3705|→X船|edge_missing", verdict: wontfix, reason: "索引位移：座位1 多一條渡船鏈（T3685–3690），使 X船* 整族錯一格；T3705 是第10層鏈的 1船4，被拿去和他座的另一支比。同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船4|1|T3705|整支|enabled/looping", verdict: wontfix, reason: "配對錯位：T3705「1船4」的真對應是 T3710「2船4」（4 條件、ACT N船5）， 兩者都是 en=0 loop=1；報告比對的是 T3753 那一組（en=1 loop=1）。"}
+  - {key: "X船4|1|T3705|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船4|1|T3748|→X船2|edge_missing", verdict: wontfix, reason: "索引位移：座位1 多一條渡船鏈（T3685–3690），使 X船* 整族錯一格；T3748 是東碼頭鏈的 1船4，被拿去和他座的另一支比。同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船4|1|T3748|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船4|1|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。 座位1 因此在 X船* 每一個樣式都多算一支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X船4|5|T3725|整支|absent", verdict: wontfix, reason: "設計如此：T3725「5船4」與兄弟 T3705/T3710/T3715/T3720/T3730「N船4」條件完全同構（在指定區域＋擊殺數 1＋TIMER＋場上有 STORMY_DOG → 開 N船5），只是多一句 SEND_CHAT「<AQUA>神拳潰法發揮極致」的風味提示。多一句提示不改變機制。"}
+  - {key: "X船4|5|T3725|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船5|1|T3689|→X船5|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船5|1|T3689|整支|enabled/looping", verdict: wontfix, reason: "T3689「1船5」屬座位 1 獨有的 T3685–3690 組，無對照座位可比。"}
+  - {key: "X船5|1|T3706|→X船|edge_missing", verdict: wontfix, reason: "索引位移：座位1 多一條渡船鏈（T3685–3690），使 X船* 整族錯一格；T3706 是第10層鏈的 1船5，被拿去和他座的另一支比。同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船5|1|T3706|整支|enabled/looping", verdict: wontfix, reason: "配對錯位：T3706「1船5」（毀樁之舞範圍傷害、E#2 自停）的真對應是 T3711「2船5」， 兩者都是 en=0 loop=0；報告比對的是 T3754 那一組（en=1 loop=1）。"}
+  - {key: "X船5|1|T3706|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船5|1|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。 座位1 因此在 X船* 每一個樣式都多算一支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X船5|6|T3731|整支|absent", verdict: wontfix, reason: "設計如此：T3731「6船5」（仙箭毀魔，2000 傷害）用 (OBJECTS_IN_AREA, TIMER 2) 取代兄弟的 (OBJECTS_IN_AREA, ACCUMULATE_ATTRIBUTE qty=1 attr=44)；但擊殺數門檻在上游 T3730「6船4」C1（sp=6 qty=1 attr=44）已經有，並未漏掉。三個效果與兄弟相同（傷害＋招式名提示＋自我停用），只是順序不同。"}
+  - {key: "X船6|1|T3690|→X頭暈起|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船6|1|T3690|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船6|1|T3750|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船6|1|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。 座位1 因此在 X船* 每一個樣式都多算一支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X船6|6|T3775|整支|absent", verdict: wontfix, reason: "效果順序假陽性（FP2）：T3775「6船6」與 T3750/T3755/T3760/T3765/T3770「N船6」五個效果完全相同（船夫：不用急，半個時辰一班船。／扣 100000 精力／生地圖顯示器 (108,227)／失去精力提示／開 N頭暈起），只是 CREATE_OBJECT 與 DAMAGE_OBJECT 前後對調。"}
+  - {key: "X船6|6|T3775|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船|1|T3685|→X船2|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船|1|T3685|→X船3|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
   - {key: "X船|1|T3685|整支|absent", verdict: fixed, reason: "西碼頭等級門檻只有座位1有；2026-08-31 已補 X船級西 2-6（merge_spec trigger_add）"}
-  - {key: "X船|1|T3685|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X船|1|T3702|→X船3|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船|1|T3702|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X船|1|T3702|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船|1|T3746|→X船2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船|1|T3746|整支|struct", verdict: pending, reason: ""}
-  - {key: "X船|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X船|2|T3707|→X船3|edge_missing", verdict: pending, reason: ""}
-  - {key: "X船|2|T3782|E#0|sp", verdict: pending, reason: ""}
-  - {key: "X船|2|T3782|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X船|5|T3800|E#0|sp", verdict: pending, reason: ""}
-  - {key: "X船船|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X船|1|T3685|整支|enabled/looping", verdict: wontfix, reason: "船族在座位 1 有四組（T3685–3690、T3702–3706、T3746–3750、T3776–3781），其他座位只有三組， 索引配對整組錯開。T3685–3690 這一組（(68,231)-(78,239) 碼頭、16 等級門檻）**只有座位 1 有**， 沒有任何座位可比對，旗標少數派無意義。座位缺席本身屬 absent 類，不在本欄位。"}
+  - {key: "X船|1|T3702|→X船3|edge_missing", verdict: wontfix, reason: "索引位移＋接線改配：T3702 才是座位1「武功第10層」鏈的主支（因渡船鏈 T3685 佔掉 #0 而被排到 #1）。接線改配、功能等價：座位1／2 的「武功第10層」鏈把『移除票券』步驟命名為船3，由 T3703/T3708「N船2」同時 ACT 船3＋船4；座位3–6 把該步驟命名為船2，由主支同時 ACT 船2＋船3。兩種接法的集合相同，只是編號互換。"}
+  - {key: "X船|1|T3702|整支|enabled/looping", verdict: wontfix, reason: "配對錯位：T3702「1船」的真對應是 T3707/3712/3717/3722/3727（14 條計數條件＋TIMER10 的第10層武功門檻）， 五支全是 en=1 loop=0，與 T3702 完全相同。報告拿去比的是 T3751 那一組（金鵬島船夫，en=0 loop=0）。"}
+  - {key: "X船|1|T3702|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船|1|T3746|→X船2|edge_missing", verdict: wontfix, reason: "索引位移：座位1 多一條渡船鏈（T3685–3690），使 X船* 整族錯一格；T3746 是東碼頭鏈主支，被拿去和他座的另一支比。同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。"}
+  - {key: "X船|1|T3746|整支|struct", verdict: wontfix, reason: "同名不同族（重災區）：「N船」名下混了三種功能——「武功第10層解鎖」（1船→1船2→…）、「船夫載客去金鵬島」、「船夫載客回中原」；且 1P 有 4 支而其他座位只有 3 支，主迴圈以索引配對必然錯位，被比對的兩支根本不是同一功能。"}
+  - {key: "X船|1|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T3685–3690「1船…1船6」是 P1 專屬的南港畫舫渡船鏈（條件 16 等＋扣 2000 兩、「船夫：每一個時辰才一班船」），其他座位沒有這一鏈；它佔掉座位1 的 #0，使 X船* 整族往後錯一格。本條邊拿渡船支與他座的「武功第10層」／東西碼頭支相比，非同一功能。 座位1 因此在 X船* 每一個樣式都多算一支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X船|2|T3707|→X船3|edge_missing", verdict: wontfix, reason: "由別支代勞：接線改配、功能等價：座位1／2 的「武功第10層」鏈把『移除票券』步驟命名為船3，由 T3703/T3708「N船2」同時 ACT 船3＋船4；座位3–6 把該步驟命名為船2，由主支同時 ACT 船2＋船3。兩種接法的集合相同，只是編號互換。 座位2 的 ACT 2船3 在 T3708「2船2」E#1。"}
+  - {key: "X船|2|T3782|E#0|sp", verdict: fixed, reason: "spec 已改 E#0 的 source_player（1→2）；原裁決：**建議修：** {trigger_id: 3782, name: 2船, kind: effect, index: 0, field: source_play"}
+  - {key: "X船|2|T3782|整支|foreign", verdict: fixed, reason: "spec 已改 effect #0 的 source_player；原裁決：**建議修：** {trigger_id: 3782, name: 2船, kind: effect, index: 0, field: source_play"}
+  - {key: "X船|5|T3800|E#0|sp", verdict: fixed, reason: "spec 已改 E#0 的 source_player（8→5）；原裁決：**建議修：** {trigger_id: 3800, name: 5船, kind: effect, index: 0, field: source_play"}
+  - {key: "X船船|1|TNone|組|count", verdict: wontfix, reason: "統計假象：T3691–3695「2船船…6船船」根本不是座位族——它們內容各異（清場、破軍收尾、TASK P7 單位…），只是隨手用了同一個名字；真正的六座位族是 T3696–3701「N船船」（420 秒後停 N轅／N轅2），座位1 的 T3696 在列。座位1 的 1 支才是正常值，其餘座位各多算了一支。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
   - {key: "X船船|2|T3691|整支|absent", verdict: wontfix, reason: "同名不同族：五支各是獨立世界觸發（移除區域/DESTROY 等），非六座位家族；見遷移記錄「船船 同名不同族誤配」"}
-  - {key: "X船船|2|T3691|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X船船|2|T3691|整支|foreign", verdict: wontfix, reason: "T3691 是刻意的全體廣播：E0–E5 對 P1–P6 各下一次 REMOVE_OBJECT，清空同一塊登船走廊 (0,93)–(60,105)，en=1 loop=1 常駐。六個 sp 依序 1,2,3,4,5,6 無一跳號，是「這塊地不准站人」的設計而非抄錯。真正的 1–6P 船船複製組是 T3696–T3701（timer 420 → 停用 N轅／N轅2），T3691–T3695 是另一組 NPC 船隻清理鏈"}
   - {key: "X船船|3|T3692|整支|absent", verdict: wontfix, reason: "同上"}
   - {key: "X船船|4|T3693|整支|absent", verdict: wontfix, reason: "同上"}
   - {key: "X船船|5|T3694|整支|absent", verdict: wontfix, reason: "同上"}
-  - {key: "X船船|5|T3694|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X船船|5|T3694|整支|foreign", verdict: wontfix, reason: "T3694 屬上述 NPC 船隻鏈而非座位複製：C0 DESTROY_OBJECT 38862（P7 NPC）→ 啟動 T3695「6船船」（TASK P7 船到 9,5）與 T3693「4船船」（清 P7 殘骸）。同鏈的 T3692「3船船」條件也是 P7 的 30317。名稱尾數 3/4/6 是序號不是座位"}
   - {key: "X船船|6|T3695|整支|absent", verdict: wontfix, reason: "同上"}
-  - {key: "X草2|1|T3674|C#2|timer", verdict: pending, reason: ""}
-  - {key: "X草2|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X蕭|4|T1919|整支|struct", verdict: pending, reason: ""}
-  - {key: "X蠱4|1|T2456|整支|struct", verdict: pending, reason: ""}
-  - {key: "X血2|1|T1282|整支|absent", verdict: pending, reason: ""}
-  - {key: "X血2|1|T1282|整支|struct", verdict: pending, reason: ""}
-  - {key: "X血2|2|T2132|整支|absent", verdict: pending, reason: ""}
-  - {key: "X血2|2|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X血2|6|T1292|整支|absent", verdict: pending, reason: ""}
-  - {key: "X血2|6|T1292|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X血2|6|T1292|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X血2|6|T1292|整支|struct", verdict: pending, reason: ""}
-  - {key: "X血|2|T2131|整支|absent", verdict: pending, reason: ""}
-  - {key: "X血|2|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X血|6|T1291|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X血死2|6|T1304|C#1|timer", verdict: pending, reason: ""}
-  - {key: "X血死2|6|T1304|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X血死|4|T1299|C#1|timer", verdict: pending, reason: ""}
-  - {key: "X血死|4|T1299|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X變4|4|T1425|E#10|qty", verdict: pending, reason: ""}
-  - {key: "X變4|4|T1425|E#3|qty", verdict: pending, reason: ""}
-  - {key: "X谷2|1|T4007|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X谷2|6|T4402|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X谷|6|T4401|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X谷|6|T4401|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X賓|1|T4429|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X賓|1|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X賓|2|T4432|整支|absent", verdict: pending, reason: ""}
-  - {key: "X赤2|1|T2988|→X赤|edge_missing", verdict: pending, reason: ""}
-  - {key: "X赤|2|T2989|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X赤死2|1|T3005|→X赤|edge_missing", verdict: pending, reason: ""}
-  - {key: "X赤死|1|T2999|→X赤|edge_missing", verdict: pending, reason: ""}
-  - {key: "X軍|6|T1532|E#0|nsel", verdict: pending, reason: ""}
-  - {key: "X軍|6|T1532|E#0|sel", verdict: pending, reason: ""}
-  - {key: "X軒2|3|T1861|E#8|qty", verdict: pending, reason: ""}
-  - {key: "X軒2|4|T1863|整支|struct", verdict: pending, reason: ""}
-  - {key: "X軒2|6|T1867|E#2|qty", verdict: pending, reason: ""}
-  - {key: "X轅2|1|T1852|C#0|type", verdict: pending, reason: ""}
-  - {key: "X轅2|6|T1878|整支|struct", verdict: pending, reason: ""}
-  - {key: "X迪3|2|T4614|C#0|olu", verdict: pending, reason: ""}
-  - {key: "X迪3|2|T4614|C#1|olu", verdict: pending, reason: ""}
-  - {key: "X迪3|4|T4620|→$漢娜斯N|edge_missing", verdict: pending, reason: ""}
-  - {key: "X迪3|4|T4620|→X哥|edge_missing", verdict: pending, reason: ""}
-  - {key: "X迪3|4|T4620|整支|struct", verdict: pending, reason: ""}
-  - {key: "X進5|1|T2631|整支|struct", verdict: pending, reason: ""}
-  - {key: "X進|6|T2652|整支|struct", verdict: pending, reason: ""}
-  - {key: "X道3|1|T2086|E#1|nsel", verdict: pending, reason: ""}
-  - {key: "X道3|1|T2086|E#1|sel", verdict: pending, reason: ""}
-  - {key: "X道4|1|T261|E#6|nsel", verdict: pending, reason: ""}
-  - {key: "X道4|1|T261|E#6|sel", verdict: pending, reason: ""}
-  - {key: "X道4|2|T2108|C#0|timer", verdict: pending, reason: ""}
-  - {key: "X道4|3|T277|E#9|type", verdict: pending, reason: ""}
-  - {key: "X道4|4|T2110|E#0|qty", verdict: pending, reason: ""}
-  - {key: "X道4|4|T2110|E#1|qty", verdict: pending, reason: ""}
-  - {key: "X道4|4|T282|E#6|qty", verdict: pending, reason: ""}
-  - {key: "X道4|4|T282|E#7|qty", verdict: pending, reason: ""}
-  - {key: "X道4|4|T282|E#8|qty", verdict: pending, reason: ""}
-  - {key: "X道4|4|T282|E#9|qty", verdict: pending, reason: ""}
-  - {key: "X道4|4|T414|整支|struct", verdict: pending, reason: ""}
-  - {key: "X道4|5|T287|→~首  C3|edge_missing", verdict: pending, reason: ""}
-  - {key: "X道4|5|T287|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X道4|6|T292|→~首  C2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X道4|6|T292|→~首  C3|edge_missing", verdict: pending, reason: ""}
-  - {key: "X道4|6|T292|整支|foreign", verdict: pending, reason: ""}
-  - {key: "X道|3|T274|整支|struct", verdict: pending, reason: ""}
-  - {key: "X道|4|T411|整支|struct", verdict: pending, reason: ""}
-  - {key: "X酒4|1|T4300|整支|struct", verdict: pending, reason: ""}
-  - {key: "X酒4|2|T4304|整支|struct", verdict: pending, reason: ""}
-  - {key: "X酒4|6|T4320|E#2|qty", verdict: pending, reason: ""}
-  - {key: "X醫3|5|T388|→X醫學者2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X醫4|4|T384|E#6|qty", verdict: pending, reason: ""}
-  - {key: "X醫4|4|T384|E#7|qty", verdict: pending, reason: ""}
-  - {key: "X醫4|4|T384|E#8|qty", verdict: pending, reason: ""}
-  - {key: "X醫4|4|T384|E#9|qty", verdict: pending, reason: ""}
-  - {key: "X醫5|5|T390|C#0|timer", verdict: pending, reason: ""}
-  - {key: "X醫|6|T391|整支|struct", verdict: pending, reason: ""}
-  - {key: "X醫學者4|2|T230|→X治毒|edge_missing", verdict: pending, reason: ""}
-  - {key: "X醫學者4|4|T243|→X治毒|edge_missing", verdict: pending, reason: ""}
-  - {key: "X金2|5|T2271|整支|absent", verdict: pending, reason: ""}
-  - {key: "X金2|5|T2271|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X金2|5|T2271|整支|struct", verdict: pending, reason: ""}
-  - {key: "X金2|5|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X金3|4|T3634|整支|absent", verdict: pending, reason: ""}
-  - {key: "X金3|5|T2272|→X金|edge_missing", verdict: pending, reason: ""}
-  - {key: "X金3|5|T2272|整支|absent", verdict: pending, reason: ""}
-  - {key: "X金3|5|T2272|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X金3|5|T2272|整支|struct", verdict: pending, reason: ""}
-  - {key: "X金3|5|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X金4|5|T2273|→X金2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X金4|5|T2273|→X金|edge_missing", verdict: pending, reason: ""}
-  - {key: "X金4|5|T2273|整支|absent", verdict: pending, reason: ""}
-  - {key: "X金4|5|T2273|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X金4|5|T2273|整支|struct", verdict: pending, reason: ""}
-  - {key: "X金4|5|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X金|2|T4015|整支|absent", verdict: pending, reason: ""}
-  - {key: "X金|2|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X金|5|T2270|整支|absent", verdict: pending, reason: ""}
-  - {key: "X金|5|T2270|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X金|5|T2270|整支|struct", verdict: pending, reason: ""}
-  - {key: "X金|5|T2361|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X金|5|T2361|整支|struct", verdict: pending, reason: ""}
-  - {key: "X金|5|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X針5|2|T1632|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X青3|6|T5549|C#0|timer", verdict: pending, reason: ""}
-  - {key: "X青|1|T456|整支|struct", verdict: pending, reason: ""}
-  - {key: "X青|5|T464|C#1|timer", verdict: pending, reason: ""}
-  - {key: "X頭暈|6|T5368|→X頭暈|edge_missing", verdict: pending, reason: ""}
-  - {key: "X頭暈|6|T5368|整支|struct", verdict: pending, reason: ""}
-  - {key: "X頭暈起|1|T5358|整支|struct", verdict: pending, reason: ""}
-  - {key: "X頭暈起|4|T5365|→X頭暈|edge_missing", verdict: pending, reason: ""}
-  - {key: "X頭暈起|4|T5365|→X頭暈起|edge_pol", verdict: pending, reason: ""}
-  - {key: "X飛2|6|T2236|→X飛|edge_missing", verdict: pending, reason: ""}
-  - {key: "X飛2|6|T2236|整支|absent", verdict: pending, reason: ""}
-  - {key: "X飛2|6|T2236|整支|struct", verdict: pending, reason: ""}
-  - {key: "X飛2|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X飛|6|T2235|→C  減|edge_missing", verdict: pending, reason: ""}
-  - {key: "X飛|6|T2235|→X升級|edge_missing", verdict: pending, reason: ""}
-  - {key: "X飛|6|T2235|→X武|edge_missing", verdict: pending, reason: ""}
-  - {key: "X飛|6|T2235|整支|absent", verdict: pending, reason: ""}
-  - {key: "X飛|6|T2235|整支|struct", verdict: pending, reason: ""}
-  - {key: "X飛|6|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X首|2|T3963|整支|struct", verdict: pending, reason: ""}
-  - {key: "X馬2|1|T3818|→X資格查|edge_missing", verdict: pending, reason: ""}
-  - {key: "X馬2|1|T3818|整支|absent", verdict: pending, reason: ""}
-  - {key: "X馬2|1|T3818|整支|struct", verdict: pending, reason: ""}
-  - {key: "X馬2|3|T2261|→X死|edge_missing", verdict: pending, reason: ""}
-  - {key: "X馬2|3|T2261|→X資格查|edge_missing", verdict: pending, reason: ""}
-  - {key: "X馬2|3|T2261|→X馬3|edge_missing", verdict: pending, reason: ""}
-  - {key: "X馬2|3|T2261|→X馬|edge_missing", verdict: pending, reason: ""}
-  - {key: "X馬2|3|T2261|整支|absent", verdict: pending, reason: ""}
-  - {key: "X馬2|3|T2261|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X馬2|3|T2261|整支|struct", verdict: pending, reason: ""}
-  - {key: "X馬2|3|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X馬3|1|T3819|整支|absent", verdict: pending, reason: ""}
-  - {key: "X馬3|3|T2262|→X死2|edge_missing", verdict: pending, reason: ""}
-  - {key: "X馬3|3|T2262|整支|absent", verdict: pending, reason: ""}
-  - {key: "X馬3|3|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X馬3|6|T3851|整支|absent", verdict: pending, reason: ""}
-  - {key: "X馬4|3|T2263|整支|absent", verdict: pending, reason: ""}
-  - {key: "X馬4|3|T2263|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X馬4|3|T2263|整支|struct", verdict: pending, reason: ""}
-  - {key: "X馬4|3|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X馬4|5|T3848|整支|absent", verdict: pending, reason: ""}
-  - {key: "X馬4|5|T3848|整支|struct", verdict: pending, reason: ""}
-  - {key: "X馬|1|T3817|整支|struct", verdict: pending, reason: ""}
-  - {key: "X馬|3|T2260|整支|absent", verdict: pending, reason: ""}
-  - {key: "X馬|3|T2260|整支|enabled/looping", verdict: pending, reason: ""}
-  - {key: "X馬|3|T2260|整支|struct", verdict: pending, reason: ""}
-  - {key: "X馬|3|T3837|→X召|edge_missing", verdict: pending, reason: ""}
-  - {key: "X馬|3|T3837|→X哥8|edge_missing", verdict: pending, reason: ""}
-  - {key: "X馬|3|T3837|整支|struct", verdict: pending, reason: ""}
-  - {key: "X馬|3|TNone|組|count", verdict: pending, reason: ""}
-  - {key: "X馬召|6|T3958|C#0|uo", verdict: pending, reason: ""}
-  - {key: "X魔|6|T2931|E#1|qty", verdict: pending, reason: ""}
-  - {key: "X黃2|3|T4055|整支|struct", verdict: pending, reason: ""}
-  - {key: "X黃|1|T4050|整支|struct", verdict: pending, reason: ""}
-  - {key: "X黃|2|T4052|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X草2|1|T3674|C#2|timer", verdict: pending, reason: "**需裁決：**六支「N草2」是「你以符合等級條件,可搭這艘船了」的提示（同台詞、同等級門檻 1160），只有 1P 週期 5 秒、其餘 6 秒。純提示節奏，機制無影響。若要統一：{trigger_id: 3674, name: '1草2', kind: condition, index: 2, field: timer, old: 5, new: 6}"}
+  - {key: "X草2|1|TNone|組|count", verdict: wontfix, reason: "統計假象：T3735 被打成「1草2.」（尾巴多一個句點），因此沒被歸入 X草2 族；它與 T3737/3739/3741/3743/3745「N草2」（1c3e）是同一批。實際支數齊全，只是命名筆誤。建議 renames 改回「1草2」。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X蕭|4|T1919|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X蠱4|1|T2456|整支|struct", verdict: wontfix, reason: "該座位職業專屬數值：負血劍譜體系每個職業的加血／加攻／自傷筆數本來就各自手調，效果與該座位自己的說明訊息自洽，不是漏抄。"}
+  - {key: "X血2|1|T1282|整支|absent", verdict: wontfix, reason: "設計如此：「N血2」是端木林護送的防作弊（該玩家在區(129,48)-(131,50) 出現 olu=840 就 REMOVE_OBJECT 清空該玩家）。T1284/T1286/T1288/T1290（座位 2-5）多的那條 REMOVE_OBJECT sp=1 olu=72 sel=[32561..32564] 區(20..26,239) 是去掉 P1 角落的「踢掉Np」標記牆；由 T1「名」E40-E44 可知那批標記只有 32561-32565＝踢掉2p-踢掉6p，沒有「踢掉1p」，所以座位 1 的 T1282 只有一條效果是正確的，不是漏抄。"}
+  - {key: "X血2|1|T1282|整支|struct", verdict: pending, reason: "**需裁決：**1血2（T1282）只有 REMOVE_OBJECT sp=1 一個效果，2P–5P 都還多一筆 REMOVE_OBJECT sp=1 PALISADE_WALL（各自 sel=32561/32562/32563/32564），照序號推 P1 應該是 32560。少拆那段柵欄可能讓 P1 卡在原地。需先確認 32560 是否真的是 P1 那段柵欄；且 trigger_fixes 目前無法新增 REMOVE_OBJECT 效果。"}
+  - {key: "X血2|2|T2132|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：血影舞鏈第二段「燕十三：你沒有足夠的技能點數。＋TASK_OBJECT 推開」。同 X血|2|T2131。"}
+  - {key: "X血2|2|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2131–2135「2血…2血5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T1281–1292「N血／N血2」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X血2|6|T1292|整支|absent", verdict: wontfix, reason: "同名不同族＋設計如此：T1292「6血2」是開場一次性清角落雜物（無條件、enabled=1 loop=0、12 條 REMOVE_OBJECT 掃 (208..227,225..239)、全檔無人引用），與 T1282-T1290「1血2…5血2」的端木林防作弊族毫無關係。P6 本來就不需要那條防作弊：T1944「6木」對 P6 只回「端木林：大俠！你不該找到我,你或許去少林會有所收穫！」並開 T2037「6南僧」，從不像 1-5 木那樣 CHANGE_OWNERSHIP 把端木林 37096 轉給玩家，所以 P6 拿不到護送物件、沒有作弊路徑。"}
+  - {key: "X血2|6|T1292|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：1–5血2 是「840 物件出現在 (129,48)-(131,50) 就移除自己單位」（en=1 loop=1，由 N木 停用）； T1292「6血2」是 0 條件、12 個 REMOVE_OBJECT 的計數區清場（(209,233)-(227,232) 一帶）， 沒有任何啟停來源，en=1 loop=0 開局跑一次正是它的用法。"}
+  - {key: "X血2|6|T1292|整支|foreign", verdict: wontfix, reason: "T1292 與 1血2–5血2 不同機制：後者是「P<n> 帶物件 840 進 129,48–131,50 → 移除」的六座位複製；T1292 無條件、en=1 loop=0，一次性把 P1–P6 六家的物件從地圖角落 (210,233)–(223,239)、(223,225)–(227,232) 清掉＝開場清場廣播，E0–E5 與 E6–E11 兩輪 sp 皆 1..6 無跳號。（順帶：2–5血2 的 E1 一律 sp=1 移除 P1 的 32561–32564 標記物，六座位一致，也非錯家）"}
+  - {key: "X血2|6|T1292|整支|struct", verdict: wontfix, reason: "同名不同族：6P 的「6血2」是對全 6 位玩家各做兩次 REMOVE_OBJECT 的全域清場，其他座位的「N血2」是偵測 KING_ALFONSO 後移除自己單位並拆一段柵欄。"}
+  - {key: "X血|2|T2131|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：T2131-T2135 是燕十三教「血影舞」的技能鏈（2P 劍客專屬，區(196,111)-(198,113)：燕十三：劍法不一定要孤獨，讓我教你血腥的劍法吧。→ 學會後改名 7983「劍7 血影舞 每10秒4倍勇氣」）。X血 族真正的六座位本體是 T1281-T1291「1血…6血」擊殺獎勵（-51 閱歷／-55 兩銀）與 T1282-T1290「N血2」端木林防作弊。"}
+  - {key: "X血|2|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2131–2135「2血…2血5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T1281–1292「N血／N血2」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X血|6|T1291|E#0|qty", verdict: pending, reason: "**建議修：****訊息與數值矛盾**：6P 同支 E#3 的聊天訊息仍寫「最後一擊得到了 51 點江湖閱歷」，負進貢卻只給 -42。其餘五座位都是 -51 且訊息 51，一致。（對照組：同批的 X偏/X六/X武/X收3 各自把數值與訊息一起改過，那些是刻意；這一條沒改訊息＝抄錯。）trigger_fixes 條目：{trigger_id: 1291, name: '6血', kind: effect, index: 0, field: quantity, old: -42, new: -51, reason: '與同支 E#3 訊息「51 點江湖閱歷」及其他五座位一致'}"}
+  - {key: "X血死2|6|T1304|C#1|timer", verdict: wontfix, reason: "同上，6箭是自家門派，timer 2→8 秒與專屬台詞同批放寬。"}
+  - {key: "X血死2|6|T1304|E#0|qty", verdict: wontfix, reason: "**同族專屬**：這是「箭界」區域，6P 就是箭客本人，訊息換成「東郭蠻人：冷月箭法非你所敵！(精力 -800)」，其餘座位是「箭法豈能讓你耍刀/劍/槍/棍…(精力 -3000)」。數值 800 與台詞 800 完全吻合。"}
+  - {key: "X血死|4|T1299|C#1|timer", verdict: wontfix, reason: "同上，4棍是自家門派，連 timer（2→5 秒）都一起放寬，與專屬台詞同批改動。"}
+  - {key: "X血死|4|T1299|E#0|qty", verdict: wontfix, reason: "**同族專屬**：這是「棍界」的驅逐區域傷害。4P 就是棍客本人，訊息也換成專屬台詞「棍法無邊，小輩膽敢挑戰前人！(精力 -2000)」，其餘座位是「棍界豈能讓你耍刀/劍/槍/拳/箭…(精力 -3000)」。數值與台詞一起改且互相吻合 → 刻意設計。"}
+  - {key: "X變4|4|T1425|E#10|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T1425 的 E#3/E#10 兩顆攻擊都是 2（其餘座位 1）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X變4|4|T1425|E#3|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T1425 的 E#3/E#10 兩顆攻擊都是 2（其餘座位 1）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X谷2|1|T4007|E#0|qty", verdict: pending, reason: "**建議修：**「N谷2」大回血迴圈五座位一律 -1000，1P 是 -3000。同樣是 loop=1 的持續回血，三倍速度等於半無敵。trigger_fixes 條目：{trigger_id: 4007, name: '1谷2', kind: effect, index: 0, field: quantity, old: -3000, new: -1000, reason: '大回血迴圈六座位應同為 -1000'}"}
+  - {key: "X谷2|6|T4402|整支|enabled/looping", verdict: wontfix, reason: "座位 6 刻意把「谷」做成等級100 解鎖：T3523「6 100」E#15 ACTIVATE→T4402， 且 6谷2 的回血量與 1–5 相同（-1000）但本體版 6谷 被加大到 -1000（1–5 是 -19）。 有明確啟動來源，en=0 正確。"}
+  - {key: "X谷|6|T4401|E#0|qty", verdict: pending, reason: "**建議修：**「N谷」與「N谷2」是同一個 OBJECT_HAS_TARGET(28185) 迴圈的兩段：谷＝小回血 -19、谷2＝大回血 -1000。6P 的「谷」卻填了 -1000 —— 正好等於「谷2」的值，典型的把下一支的數字貼錯格。（6谷 目前 en=0，但 6谷 會被別支啟動，仍要修。）trigger_fixes 條目：{trigger_id: 4401, name: '6谷', kind: effect, index: 0, field: quantity, old: -1000, new: -19, reason: '小回血迴圈六座位應同為 -19；-1000 是「谷2」的值貼錯'}"}
+  - {key: "X谷|6|T4401|整支|enabled/looping", verdict: wontfix, reason: "同上：T4401「6谷」由 T3523「6 100」E#14 ACTIVATE，回血量也被特別改成 -1000（1–5 為 -19）， 是座位 6 的等級100 專屬強化，en=0 出廠停用正確。"}
+  - {key: "X賓|1|T4429|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：2–6賓（T4144–4148）是「賓周幫弟子：只有學刀的才可以進去。」常駐提示（en=1 loop=1， 由 T4149「1賓死」停用）；T4429「1賓」是江湖閱歷加點觸發（ACCUMULATE attr44＋TIMER2 → ACT T7「1升級」）， 由 T4430「1賓2」ACT、T4431「1賓3」DEACT，出廠停用正確。座位 1 在此樣式下另有一支才是真對應。"}
+  - {key: "X賓|1|TNone|組|count", verdict: wontfix, reason: "統計假象：T4143 被打成「1賓1」（多一個 1），因此沒被歸入 X賓 族；它與 T4144–4148「2賓…6賓」（2c1e）是同一批。實際支數齊全，只是命名筆誤。建議 renames 改回「1賓」。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X賓|2|T4432|整支|absent", verdict: wontfix, reason: "效果順序假陽性（FP2）：T4432「2賓」與 T4429/T4435/T4438/T4441/T4444「N賓」條件效果完全相同（擊殺數 1＋TIMER 2 → 開 N升級＋「<AQUA>得到了　0　點江湖閱歷」），只有兩個效果順序對調（T4432 是 chat 在前）。"}
+  - {key: "X赤2|1|T2988|→X赤|edge_missing", verdict: wontfix, reason: "名稱多一字造成的假象：座位1 的目標觸發是 T2987「1赤1」（他座是 T2989–2997「N赤」）。這六支（T2831/2837/2843/2988/2999/3005）的啟停邊都正確指向 T2987，只是正規化後名稱對不上。建議在 params.renames 把 T2987 更名為「1赤」，這一批假陽性即消失。"}
+  - {key: "X赤|2|T2989|E#0|qty", verdict: wontfix, reason: "2P 得 -430 點閱歷，同支 E#3 訊息也寫「430 點江湖閱歷」（其餘座位 500/500），數值與訊息同步 → 刻意。（同支 E#1 的 -590 與訊息 490 不符，但那是另一顆效果、不在本條 key 範圍；而且 P4/P5/P6 的 E#1 也同樣 -600 vs 訊息 400，是全族既有瑕疵。）"}
+  - {key: "X赤死2|1|T3005|→X赤|edge_missing", verdict: wontfix, reason: "名稱多一字造成的假象：座位1 的目標觸發是 T2987「1赤1」（他座是 T2989–2997「N赤」）。這六支（T2831/2837/2843/2988/2999/3005）的啟停邊都正確指向 T2987，只是正規化後名稱對不上。建議在 params.renames 把 T2987 更名為「1赤」，這一批假陽性即消失。"}
+  - {key: "X赤死|1|T2999|→X赤|edge_missing", verdict: wontfix, reason: "名稱多一字造成的假象：座位1 的目標觸發是 T2987「1赤1」（他座是 T2989–2997「N赤」）。這六支（T2831/2837/2843/2988/2999/3005）的啟停邊都正確指向 T2987，只是正規化後名稱對不上。建議在 params.renames 把 T2987 更名為「1赤」，這一批假陽性即消失。"}
+  - {key: "X軍|6|T1532|E#0|nsel", verdict: fixed, reason: "spec 已改 E#0 的 selected_object_ids（[]→[12702]）；原裁決：**建議修：** {trigger_id: 1532, name: 6軍, kind: effect, index: 0, field: selected_ob"}
+  - {key: "X軍|6|T1532|E#0|sel", verdict: fixed, reason: "spec 已改 E#0 的 selected_object_ids（[]→[12702]）；原裁決：**建議修：** {trigger_id: 1532, name: 6軍, kind: effect, index: 0, field: selected_ob"}
+  - {key: "X軒2|3|T1861|E#8|qty", verdict: pending, reason: "**需裁決：**「N軒2」尾端有一顆正值進貢＝扣經驗值：P1/P2/P5/P6 是 10000、3P 是 8000、4P 結構不同（是 5000 且有「失去了經驗值 5000」的訊息）。作者自己的散佈就有 5000/8000/10000 三種值，且這一顆沒有對應訊息可對帳。8000 究竟是刻意讓 3槍 少扣 2000，還是打字時少按一位，無法從檔內判定 → 請使用者定奪。若要統一：{trigger_id: 1861, name: '3軒2', kind: effect, index: 8, field: quantity, old: 8000, new: 10000}"}
+  - {key: "X軒2|4|T1863|整支|struct", verdict: wontfix, reason: "4P 的「4軒2」把「TRIBUTE -1000＋得到 1000 點江湖閱歷」換成「TRIBUTE 5000＋失去經驗值 5000」，而且刻意留了一個空白 SEND_CHAT（原本那句被清掉）——6P 也自行改成「失去 10000 點」。效果與該座位自己的訊息自洽，是原作手調獎懲，不是漏抄。"}
+  - {key: "X軒2|6|T1867|E#2|qty", verdict: pending, reason: "**需裁決：****同一支內出現兩次扣經驗**：P1/P2/P3/P5 的 E#2 是 -1000（給 1000 經驗，訊息「得到了 1000 點江湖閱歷」），6P 的 E#2 卻是 **+10000**，訊息也同步改成「失去了 10000 點江湖閱歷」；而六座位共有的 E#8 又扣 10000。結果 6箭 在同一段劇情淨扣 20000 經驗，其餘座位是淨扣 9000。訊息有跟著改 → 不像單純抄錯；但同一個 NPC、同一段劇情，6P 與其他座位的落差高達 11000 點，對照 X偏/X六/X武 那種「調高獎勵」的方向也相反。是懲罰性設計還是把 -1000 打成 10000 後補改訊息，需使用者以遊戲體驗判斷。若要對齊：{trigger_id: 1867, name: '6軒2', kind: effect, index: 2, field: quantity, old: 10000, new: -1000, reason: '與其他五座位一致'}（並須同步改 E#3 訊息文字）。"}
+  - {key: "X轅2|1|T1852|C#0|type", verdict: pending, reason: "**需裁決：** 2–6轅2 的 C#0 是 BRING_OBJECT_TO_AREA(type1) unit=本體 區(234,63)-(239,70)； T1852「1轅2」是 OBJECTS_IN_AREA(type5) sp=1 qty=1 區(234,60)-(239,69)。兩者都可運作 ——該區域確實走得到（T1851「1轅」與 T1857「2轅」的 C1 都是 BRING 本體到同一塊 (234,63)-(239,71)）， 差別在 1P 版比較寬鬆：只要 P1 有「任何」單位在該區就成立（含馬騎 26109），2–6P 則必須是英雄本體 ref。 後果是 P1 騎馬進場也會重新啟動 1轅／回血鐵豬王計數，其餘座位不會。是要統一成 BRING＋本體 ref， 還是承認 1P 這種寬鬆寫法（甚至反過來對其他座位比較友善），屬設計取捨，請使用者裁示。"}
+  - {key: "X轅2|6|T1878|整支|struct", verdict: wontfix, reason: "各座位對 sp=7 NPC 的補血筆數與數值本就各異（-167/-90、-175/-90、-160/-190…），6P 只做一筆 -100。屬原作手調，不影響玩家本體。"}
+  - {key: "X迪3|2|T4614|C#0|olu", verdict: wontfix, reason: "**只是條件順序對調**：2P 的 C#0/C#1 內容與其他五座位的 C#1/C#0 完全一一對應（一顆是 quantity=5 object_list=720 的自家區域檢查、一顆是 quantity=1 無過濾的 (11,56)-(13,58) 檢查）。條件之間是 AND，順序不影響語意。稽核的 bag 去重只套用在 sel/sp/tp/uo/qty，沒涵蓋 olu 才誤報。"}
+  - {key: "X迪3|2|T4614|C#1|olu", verdict: wontfix, reason: "與 X迪3|2|C#0 是同一次順序對調的另一半，同理不是 bug。"}
+  - {key: "X迪3|4|T4620|→$漢娜斯N|edge_missing", verdict: pending, reason: "**建議修：**同 T4620 的另一條漏接：座位1/2/3/5/6 的「N迪3」在收下迪加的餽贈後都會 DEACTIVATE自己的「漢娜斯N」（T5491/5493/5495/5499/5501），座位4 沒有——P4 的漢娜斯對白不會結束。trigger_fixes 條目：{kind: effect_add, trigger_id: 4620, name: '4迪3', effect: {type: deactivate_trigger, trigger_id: 5497, target_name: '漢娜斯4'}, reason: '原作漏接：4迪3 未停 漢娜斯4'}"}
+  - {key: "X迪3|4|T4620|→X哥|edge_missing", verdict: pending, reason: "**建議修：**T4620「4迪3」只有 3 個效果（對白＋進貢 20 萬兩＋提示），座位1/2/3/5/6 的「N迪3」（T4611/4614/4617/4623/4626）都多兩條：ACT 自己的「N哥」與 DEA 自己的「漢娜斯N」。T4230「4哥」存在但這條路沒人啟動它。trigger_fixes 條目：{kind: effect_add, trigger_id: 4620, name: '4迪3', effect: {type: activate_trigger, trigger_id: 4230, target_name: '4哥'}, reason: '原作漏接：4迪3 未啟動 4哥'}"}
+  - {key: "X迪3|4|T4620|整支|struct", verdict: wontfix, reason: "不是漏抄：4迪3（T4620）確實少了 ACTIVATE→「4哥」與 DEACTIVATE→「漢娜斯4」，但實測 T4230「4哥」的唯一啟動者是 T4619「4迪2」、T5497「漢娜斯4」的唯一停用者也是 T4619，也就是這兩個效果被原作放在同鏈的前一支「4迪2」而非「4迪3」，實質效果齊備。"}
+  - {key: "X進5|1|T2631|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X進|6|T2652|整支|struct", verdict: pending, reason: "**需裁決：**6進（T2652）只有 3 個條件，他座都有 4 個（多一個 OBJECTS_IN_AREA sp=N qty=1）。少一道前置檢查代表 P6 可能在未滿足條件時就被胡藥師收為徒。trigger_fixes 無法新增條件，要修得先擴充 s37。"}
+  - {key: "X道3|1|T2086|E#1|nsel", verdict: fixed, reason: "spec 已改 E#1 的 selected_object_ids（[]→[26109]）；原裁決：**建議修：** {trigger_id: 2086, name: 1道3, kind: effect, index: 1, field: selected_o"}
+  - {key: "X道3|1|T2086|E#1|sel", verdict: fixed, reason: "spec 已改 E#1 的 selected_object_ids（[]→[26109]）；原裁決：**建議修：** {trigger_id: 2086, name: 1道3, kind: effect, index: 1, field: selected_o"}
+  - {key: "X道4|1|T261|E#6|nsel", verdict: fixed, reason: "spec 已改 E#6 的 selected_object_ids（[]→[0]）；原裁決：**建議修：** {trigger_id: 261, name: 1道4, kind: effect, index: 6, field: selected_ob"}
+  - {key: "X道4|1|T261|E#6|sel", verdict: fixed, reason: "spec 已改 E#6 的 selected_object_ids（[]→[0]）；原裁決：**建議修：** {trigger_id: 261, name: 1道4, kind: effect, index: 6, field: selected_ob"}
+  - {key: "X道4|2|T2108|C#0|timer", verdict: pending, reason: "**建議修：**「N道4」是 loop=1 每秒回血技，六座位回血量 -8（4P 為 -12），週期 P1/P3/P4/P5/P6 全是 1 秒，只有 2P 是 2 秒 —— 回血量沒有跟著加倍，等於 2劍 的回復速率只有別人的一半。同族「醫4 針灸 1秒38精力」這類物件名稱可證設計就是以「每秒」計價。trigger_fixes 條目：{trigger_id: 2108, name: '2道4', kind: condition, index: 0, field: timer, old: 2, new: 1, reason: '每秒回血技週期應為 1 秒，且回血量未加倍補償'}"}
+  - {key: "X道4|3|T277|E#9|type", verdict: fixed, reason: "spec 已改 E#9 的 effect_type（27→28）；原裁決：**建議修：** 1/2/4/5/6道4 的 E#6–E#9 是「本體+血、本體+攻、馬騎+血、馬騎+攻」四件套； T277「3道4」E#9 抄成 CHANGE"}
+  - {key: "X道4|4|T2110|E#0|qty", verdict: wontfix, reason: "「N道4」每秒回血量六座位為 -8，4P 是 -12，同支 E#0/E#1 成對一致；對照同機制的「N治病」六座位是 -18～-27 的散佈，可見每秒回血量本來就按職業調 → 平衡差異。"}
+  - {key: "X道4|4|T2110|E#1|qty", verdict: wontfix, reason: "同 X道4|4|T2110|E#0：E#0/E#1 成對皆 -12。"}
+  - {key: "X道4|4|T282|E#6|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T282 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X道4|4|T282|E#7|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T282 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X道4|4|T282|E#8|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T282 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X道4|4|T282|E#9|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T282 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X道4|4|T414|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X道4|5|T287|→~首  C3|edge_missing", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #12 的 trigger_id）；原裁決：**建議修：**T287「5道4」E#12 的 DEACTIVATE 指到 T5543「首  箭3」（座位6 的），應為 T5542「首  拳3」。反查證實：T"}
+  - {key: "X道4|5|T287|整支|foreign", verdict: pending, reason: "**建議修：** {trigger_id: 287, name: 5道4, kind: effect, index: 12, field: trigger_id, old: 5543, new: 5542} reason: 道4 尾三效固定為「停用 首N1／啟動 首N2／停用 首N3」；5P 的 E10/E11 指 5530/5536「首  拳1/2」，E12 卻指 T5543「首  箭3」（6P 的），應為 T5542「首  拳3」　（已存在於 merge_spec.params.trigger_fixes，本輪複核確認正確）"}
+  - {key: "X道4|6|T292|→~首  C2|edge_missing", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #11 的 trigger_id）；原裁決：**建議修：**T292「6道4」E#11 的 ACTIVATE 指到 T5535「首  棍2」（座位4 的），應為 T5537「首  箭2」。反查證實：T55"}
+  - {key: "X道4|6|T292|→~首  C3|edge_missing", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #11 的 trigger_id）；原裁決：**建議修：**T292「6道4」E#12 的 DEACTIVATE 指到 T5541「首  棍3」，應為 T5543「首  箭3」。與上一條同一支的連號抄錯（"}
+  - {key: "X道4|6|T292|整支|foreign", verdict: pending, reason: "**建議修：** {trigger_id: 292, name: 6道4, kind: effect, index: 11, field: trigger_id, old: 5535, new: 5537}　與 {trigger_id: 292, name: 6道4, kind: effect, index: 12, field: trigger_id, old: 5541, new: 5543} reason: 6P 的 E10 指 T5531「首  箭1」正確，E11/E12 卻指 T5535/5541「首  棍2/3」（4P 的），應為 T5537/5543「首  箭2/3」。（同支 E0 訊息也抄成「治療中毒」，另有 message 修正條目）　（已存在於 merge_spec.params.trigger_fixes，本輪複核確認正確）"}
+  - {key: "X道|3|T274|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X道|4|T411|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X酒4|1|T4300|整支|struct", verdict: wontfix, reason: "1P 為效果順序對調；2P 多的兩筆 DEACTIVATE 是停用自己專屬的「2+／2++」，成對無誤。"}
+  - {key: "X酒4|2|T4304|整支|struct", verdict: wontfix, reason: "1P 為效果順序對調；2P 多的兩筆 DEACTIVATE 是停用自己專屬的「2+／2++」，成對無誤。"}
+  - {key: "X酒4|6|T4320|E#2|qty", verdict: pending, reason: "**建議修：**「N酒4＝解除醉酒」的契約：每具分身各三顆效果 —— 當前血 -100（回 100）、上限血 -100、攻擊 -5，把 X王3 的加成收回。6P 本尊[45117] 的當前血那顆是 **-1000**，但同支上限血仍是 -100，而分身[26110] 的 E#5/E#6 是正常的 -100/-100。同支自相矛盾。trigger_fixes 條目：{trigger_id: 4320, name: '6酒4', kind: effect, index: 2, field: quantity, old: -1000, new: -100, reason: '解酒回血應與同支 E#3 上限血 -100 及 E#5 分身 -100 成對'}"}
+  - {key: "X醫3|5|T388|→X醫學者2|edge_missing", verdict: pending, reason: "**建議修：**T388「5醫3」E#3 的 DEACTIVATE 指到 T209「5教頭2」，應為 T247「5醫學者2」。座位1/2/3/4/6 的「N醫3」（T362/373/378/383/393）E#3 都是 DEA 自己的 N醫學者2（T223/229/235/241/253）。作者顯然是從隔壁的「N拳3／N刀3」族（那一族才是 DEA N教頭2）抄過來。後果：P5 學完醫術後醫學者的招呼支關不掉，且教頭的第二段對白被誤關。trigger_fixes 條目：{kind: effect, trigger_id: 388, name: '5醫3', index: 3, field: trigger_id, old: 209, new: 247, reason: '原作抄錯族：5教頭2 → 5醫學者2'}"}
+  - {key: "X醫4|4|T384|E#6|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T384 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X醫4|4|T384|E#7|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T384 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X醫4|4|T384|E#8|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T384 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X醫4|4|T384|E#9|qty", verdict: wontfix, reason: "4P 這一支的**每一顆數值效果都被整體調高**（不是單點）：T384 的 E#6/E#7/E#8/E#9 四顆全是 11（其餘座位全是 10）。單點抄錯不會這麼整齊，屬 4棍 的職業加成。"}
+  - {key: "X醫5|5|T390|C#0|timer", verdict: pending, reason: "**需裁決：**六支「N醫5」的 NPC（醫學者）、區域 (64,105)-(66,107)、台詞「練熟了再來找我。」完全相同，只有 5P 的重播週期是 5 秒、其餘五座位 16 秒。形狀上是明確的抄錯，但這是純對白重播、且 DE 會把相同內容的聊天訊息去重（見 migration_guide §4），機制影響為零。要不要為了六座位一致而動它，屬使用者取捨。若要統一：{trigger_id: 390, name: '5醫5', kind: condition, index: 0, field: timer, old: 5, new: 16}"}
+  - {key: "X醫|6|T391|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X醫學者4|2|T230|→X治毒|edge_missing", verdict: wontfix, reason: "命名不一致造成的假象：T223–258 每座位六支一組，第四格（N醫學者4）都會啟動同一格位的「治療/治毒」支——座位1/3/5/6 叫「N治毒」（T226/239/251/257），座位2/4 叫「N治療」（T233/245）。兩者結構完全相同（1 條件、2 個 DAMAGE_OBJECT），玩家欄位也對。邊存在，只是名字不同族。建議 renames 統一成「N治毒」即可消除此假陽性。"}
+  - {key: "X醫學者4|4|T243|→X治毒|edge_missing", verdict: wontfix, reason: "命名不一致造成的假象：T223–258 每座位六支一組，第四格（N醫學者4）都會啟動同一格位的「治療/治毒」支——座位1/3/5/6 叫「N治毒」（T226/239/251/257），座位2/4 叫「N治療」（T233/245）。兩者結構完全相同（1 條件、2 個 DAMAGE_OBJECT），玩家欄位也對。邊存在，只是名字不同族。建議 renames 統一成「N治毒」即可消除此假陽性。"}
+  - {key: "X金2|5|T2271|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：金絲綿掌鏈第二段「陸小鳳：你沒有足夠的技能點數。＋TASK_OBJECT 推開」。同 X金|5|T2270。"}
+  - {key: "X金2|5|T2271|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：1/2/3/4/6金2 是「你已離開金鵬島」提示（T3621/3625/3629/3633/3641，en=0 loop=0）； T2271「5金2」屬陸小鳳金絲綿拳支線（TIMER14＋技能點不足提示＋TASK 推開）， 由 T2270「5金」E#1 啟動、T2272「5金3」E#1 停用。座位 5 在此樣式下有 2 支，索引配對挑錯。"}
+  - {key: "X金2|5|T2271|整支|struct", verdict: wontfix, reason: "同名不同族：5P 的「5金」「5金2」「5金3」「5金4」是陸小鳳傳授金絲綿拳的教學鏈，其他座位的「N金」是「你已到達／離開金鵬島」提示與 3 秒回精迴圈；5P 多一支使整組索引錯位。"}
+  - {key: "X金2|5|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2270–2274「5金…5金5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3620–3643「N金／N金2／N金3／N金4」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X金3|4|T3634|整支|absent", verdict: wontfix, reason: "效果順序假陽性（FP2）：T3634「4金3」＝(DEACTIVATE 4金2, ACTIVATE 4金)，兄弟 T3622/T3626/T3630/T3638/T3642「N金3」＝(ACTIVATE N金, DEACTIVATE N金2)，同兩條同目標、只是順序相反；且同族的「N金4」在座位 1、4 是一種順序、2/3/5/6 是另一種，可見這對啟／停的先後在原作沒有意義（兩個目標互不相同，順序不影響結果）。"}
+  - {key: "X金3|5|T2272|→X金|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2270–2274「5金…5金5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3620–3643「N金／N金2／N金3／N金4」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X金3|5|T2272|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：金絲綿掌鏈第三段（技能點數 ≥80 → 開 5金4、停 5金2）。同 X金|5|T2270。"}
+  - {key: "X金3|5|T2272|整支|enabled/looping", verdict: wontfix, reason: "同上：T2272「5金3」是金絲綿拳支線的門檻判定（TIMER12＋技能點80＋站位 → ACT 5金4）， 由 T2270「5金」E#2 啟動；1/2/3/4/6金3 是金鵬島進出區的 en=1 loop=1 開關。"}
+  - {key: "X金3|5|T2272|整支|struct", verdict: wontfix, reason: "同名不同族：5P 的「5金」「5金2」「5金3」「5金4」是陸小鳳傳授金絲綿拳的教學鏈，其他座位的「N金」是「你已到達／離開金鵬島」提示與 3 秒回精迴圈；5P 多一支使整組索引錯位。"}
+  - {key: "X金3|5|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2270–2274「5金…5金5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3620–3643「N金／N金2／N金3／N金4」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X金4|5|T2273|→X金2|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2270–2274「5金…5金5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3620–3643「N金／N金2／N金3／N金4」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X金4|5|T2273|→X金|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2270–2274「5金…5金5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3620–3643「N金／N金2／N金3／N金4」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X金4|5|T2273|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：金絲綿掌鏈第四段（陸小鳳：你已學會了金絲綿拳、扣 10 技能點、改名 7986、開 5拳9、停 5拳7/5拳72）。同 X金|5|T2270。"}
+  - {key: "X金4|5|T2273|整支|enabled/looping", verdict: wontfix, reason: "同上：T2273「5金4」是「陸小鳳：你已學會了金絲綿拳。」發獎（進貢10、改名、ACT 5拳9）， 由 T2272「5金3」E#0 啟動；1/2/3/4/6金4 是金鵬島區域開關。"}
+  - {key: "X金4|5|T2273|整支|struct", verdict: wontfix, reason: "同名不同族：5P 的「5金」「5金2」「5金3」「5金4」是陸小鳳傳授金絲綿拳的教學鏈，其他座位的「N金」是「你已到達／離開金鵬島」提示與 3 秒回精迴圈；5P 多一支使整組索引錯位。"}
+  - {key: "X金4|5|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2270–2274「5金…5金5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3620–3643「N金／N金2／N金3／N金4」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X金|2|T4015|整支|absent", verdict: wontfix, reason: "同名不同族＋設計如此：T4015「2金」是金獅劍王者（DESTROY_OBJECT uo=28742）擊殺獎勵——1000 閱歷、「得到了 金獅劍(未開光)」、生地圖顯示器、開 T4016「2大金2」，由 T713「2 81-100」啟動。金獅劍是劍系寶物，全檔只有 2P（T4015/T4016/T4017）與 5P（T4019/T4020）兩條大金支線，並非六座位族；X金 族本體是 T3620-T3643 金鵬島進出提示。"}
+  - {key: "X金|2|TNone|組|count", verdict: wontfix, reason: "統計假象：座位2 多出的 T4015「2金」屬 T4010–4020 的「大金／銀」群（2大金／2金／2大金2／2大金3、5銀／5大金2／5大金3），與 T3620–3643「N金」開關族不同族。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X金|5|T2270|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：T2270-T2274 是陸小鳳教「金絲綿掌」的技能鏈（5P 拳客專屬，區(125,22)-(127,24)：陸小鳳：我最喜歡結交朋友，一起研究拳法吧。→ 學會後改名 7986「拳9 金絲綿掌 每10秒8倍勇氣」）。X金 族真正的六座位本體是 T3620-T3643「N金/N金2/N金3/N金4」金鵬島到達／離開提示與切換（六座位齊）。"}
+  - {key: "X金|5|T2270|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：T2270「5金」是陸小鳳支線入口（4 條件、由 T2233「5剛4」E#6 啟動，en=0 loop=0）； 索引 k=0 拿去比的 1/2/3/4/6金（T2357–2362）是「老4」啟動的每 3 秒回血迴圈。"}
+  - {key: "X金|5|T2270|整支|struct", verdict: wontfix, reason: "同名不同族：5P 的「5金」「5金2」「5金3」「5金4」是陸小鳳傳授金絲綿拳的教學鏈，其他座位的「N金」是「你已到達／離開金鵬島」提示與 3 秒回精迴圈；5P 多一支使整組索引錯位。"}
+  - {key: "X金|5|T2361|整支|enabled/looping", verdict: wontfix, reason: "配對錯位：T2361「5金」的真對應是 T2357/2358/2359/2360/2362（老4 啟動的每 3 秒回血迴圈）， 五支全是 en=0 loop=1，與 T2361 完全相同。報告在 k=1 拿去比的是金鵬島族（T3620 等，en=0 loop=0）。"}
+  - {key: "X金|5|T2361|整支|struct", verdict: wontfix, reason: "同名不同族：5P 的「5金」「5金2」「5金3」「5金4」是陸小鳳傳授金絲綿拳的教學鏈，其他座位的「N金」是「你已到達／離開金鵬島」提示與 3 秒回精迴圈；5P 多一支使整組索引錯位。"}
+  - {key: "X金|5|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2270–2274「5金…5金5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3620–3643「N金／N金2／N金3／N金4」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X針5|2|T1632|整支|enabled/looping", verdict: fixed, reason: "spec 已改整支旗標（enabled: 1→0）；原裁決：**建議修：** 1/3/4/5/6針5 都是 en=0 loop=1，由 N針4 E#2 啟動、由 N狂6/N氣6/… 停用。 T1632「2針5」en=1 "}
+  - {key: "X青3|6|T5549|C#0|timer", verdict: pending, reason: "**需裁決：**「N青3」的作用是在玩家於 (78,44)-(100,60) 停留 N 秒後 **Deactivate 對應的「N青」獎勵觸發**（碧海藍圖 + 30 點閱歷）。五座位給 6 秒，6P 只給 3 秒；而「N青」本身還要等 timer 2–3 秒並取得一次擊殺，等於 6箭 的領獎窗口從 4 秒縮到 1 秒。這是**會影響能不能拿到獎勵**的差異，但也可能是刻意加難。若要統一：{trigger_id: 5549, name: '6青3', kind: condition, index: 0, field: timer, old: 3, new: 6}"}
+  - {key: "X青|1|T456|整支|struct", verdict: wontfix, reason: "差異只是多／少一句純提示訊息（SEND_CHAT），不影響任何實質效果。（1青 少了「繼續逗留者必遭天譴」這句，資源與啟停效果齊備。）"}
+  - {key: "X青|5|T464|C#1|timer", verdict: pending, reason: "**需裁決：**「N青」領獎觸發的等待秒數五座位是 2、5P 是 3。搭配上面的「N青3」關窗機制，多 1 秒等待會讓 5拳 的領獎窗口縮短 1 秒（窗口本身 4 秒）。同支 5P 另外多一句「繼續逗留者必遭天譴」的訊息，代表作者確實單獨改過這一支 → 可能是刻意。若要統一：{trigger_id: 464, name: '5青', kind: condition, index: 1, field: timer, old: 3, new: 2}"}
+  - {key: "X頭暈|6|T5368|→X頭暈|edge_missing", verdict: wontfix, reason: "冗餘防呆、無實害：座位1–5 的「N頭暈」（T5359/5360/5362/5364/5366）末尾都有一條DEACTIVATE 自己，T5368「6頭暈」少了它。但這六支都是 looping=0（一次性），引擎在效果執行完就會關掉觸發，該自停效果本來就是空操作。六座位一致性上可順手補，但不構成功能缺漏。"}
+  - {key: "X頭暈|6|T5368|整支|struct", verdict: wontfix, reason: "6頭暈 少的是 DEACTIVATE 自己這一筆。該觸發 looping=0，DE 在觸發執行後本來就會自動停用，自停是多餘動作，不影響行為。"}
+  - {key: "X頭暈起|1|T5358|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X頭暈起|4|T5365|→X頭暈|edge_missing", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #3 的 trigger_id）；原裁決：**建議修：**T5365「4頭暈起」E#3 的 ACTIVATE 指向自己（T5365），應為 T5364「4頭暈」。座位1/2/3/5/6 的「N頭暈起」（"}
+  - {key: "X頭暈起|4|T5365|→X頭暈起|edge_pol", verdict: fixed, reason: "spec 已改該支的啟停邊（effect #3 的 trigger_id）；原裁決：**建議修：** 1/2/3/5/6頭暈起 的 E#3 都是 ACTIVATE→N頭暈（T5359/5360/5362/5366/5368）， T5365「4頭"}
+  - {key: "X飛2|6|T2236|→X飛|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2235–2239「6飛…6飛5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3075–3086「N飛／N飛2」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X飛2|6|T2236|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：飛刀手鏈第二段「唐天容：你沒有足夠的技能點數。＋TASK_OBJECT 推開」。同 X飛|6|T2235。"}
+  - {key: "X飛2|6|T2236|整支|struct", verdict: wontfix, reason: "同名不同族：6P 的「6飛」「6飛2」是唐天容傳授飛刀手的教學鏈，1P–5P 的「N飛」是飛怪擊殺獎勵＋啟動損精術。"}
+  - {key: "X飛2|6|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2235–2239「6飛…6飛5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3075–3086「N飛／N飛2」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X飛|6|T2235|→C  減|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2235–2239「6飛…6飛5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3075–3086「N飛／N飛2」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X飛|6|T2235|→X升級|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2235–2239「6飛…6飛5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3075–3086「N飛／N飛2」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X飛|6|T2235|→X武|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2235–2239「6飛…6飛5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3075–3086「N飛／N飛2」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X飛|6|T2235|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：T2235-T2239 是唐天容教「飛刀手」的技能鏈（6P 暗殺者專屬，區(127,0)-(129,1)：唐天容：你是受推薦的人嗎，那我便傳授你飛刀手。→ 學會後改名 7987「暗8 飛刀手 835勇氣」、加攻 196675、開 T2275「6唐」）。X飛 族真正的六座位本體是 T3075-T3086「N飛/N飛2」損精術刷怪區（區(59,189)-(71,193)，六座位齊）。"}
+  - {key: "X飛|6|T2235|整支|struct", verdict: wontfix, reason: "同名不同族：6P 的「6飛」「6飛2」是唐天容傳授飛刀手的教學鏈，1P–5P 的「N飛」是飛怪擊殺獎勵＋啟動損精術。"}
+  - {key: "X飛|6|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2235–2239「6飛…6飛5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3075–3086「N飛／N飛2」 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X首|2|T3963|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X馬2|1|T3818|→X資格查|edge_missing", verdict: wontfix, reason: "由別支代勞：座位1 把 DEACTIVATE T5508「1資格查」移到下一支 T3819「1馬3」E#11（他座在 N馬2 就停，見 T3834「2馬2」E#6）。功能仍在，只是延到玩家真的牽走馬之後才停。"}
+  - {key: "X馬2|1|T3818|整支|absent", verdict: wontfix, reason: "位置差異而非缺席：伯樂寶馬鏈座位 1 的 T3818「1馬2」比兄弟 T3834/T3838/T3846/T3850 少一條 DEACTIVATE「N資格查」（兄弟放在 E6），但座位 1 把那條挪到了下一支 T3819「1馬3」E11（DEACTIVATE T5508「1資格查」）。功能沒缺，只是掛在鏈上的位置晚一步（改為選到馬之後才關提示）。"}
+  - {key: "X馬2|1|T3818|整支|struct", verdict: wontfix, reason: "不是漏抄：1馬2（T3818）確實少了 DEACTIVATE→「1資格查」，但實測 T5508「1資格查」被 T3819「1馬3」停用，而 1馬2 的 E1 正是 ACTIVATE→1馬3——原作把這個停用邊放在下一支，實質效果齊備。"}
+  - {key: "X馬2|3|T2261|→X死|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 座位3 的伯樂寶馬鏈 T3837–3840 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X馬2|3|T2261|→X資格查|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 座位3 的伯樂寶馬鏈 T3837–3840 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X馬2|3|T2261|→X馬3|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 座位3 的伯樂寶馬鏈 T3837–3840 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X馬2|3|T2261|→X馬|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 座位3 的伯樂寶馬鏈 T3837–3840 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X馬2|3|T2261|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：回馬槍鏈第二段「王大小姐：你沒有足夠的技能點數。＋TASK_OBJECT 推開」。同 X馬|3|T2260。"}
+  - {key: "X馬2|3|T2261|整支|enabled/looping", verdict: wontfix, reason: "同名不同族：1/2/4/5/6馬2 是伯樂送馬（BRING 本體到 (88,179)-(90,181)＋8 個計數物件，en=1 loop=0）； T2261「3馬2」屬王大小姐回馬槍支線（技能點不足提示＋TASK 推開）， 由 T2260「3馬」E#1 啟動、T2262「3馬3」E#0 停用。座位 3 在此樣式下有 2 支。"}
+  - {key: "X馬2|3|T2261|整支|struct", verdict: wontfix, reason: "不是漏抄：1馬2（T3818）確實少了 DEACTIVATE→「1資格查」，但實測 T5508「1資格查」被 T3819「1馬3」停用，而 1馬2 的 E1 正是 ACTIVATE→1馬3——原作把這個停用邊放在下一支，實質效果齊備。"}
+  - {key: "X馬2|3|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3837–3840、T4212 的伯樂寶馬族 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X馬3|1|T3819|整支|absent", verdict: wontfix, reason: "位置差異而非缺席：T3819「1馬3」比兄弟 T3835/T3839/T3847 多的那一條，正是 T3818 少掉的 DEACTIVATE T5508「1資格查」；其餘 11 條效果（移除英雄本體、把坐騎 26109 由 P8 轉給 P1、開 1馬4 與 1死2、清 27077、生標記、角落 556 的血量夾值三連）與兄弟同構。同 X馬2|1|T3818。"}
+  - {key: "X馬3|3|T2262|→X死2|edge_missing", verdict: wontfix, reason: "同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 座位3 的伯樂寶馬鏈 T3837–3840 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X馬3|3|T2262|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：回馬槍鏈第三段（技能點數 ≥80 → 停 3馬2、開 3馬4）。同 X馬|3|T2260。"}
+  - {key: "X馬3|3|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3837–3840、T4212 的伯樂寶馬族 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X馬3|6|T3851|整支|absent", verdict: wontfix, reason: "設計如此：6P 坐騎（olu=172）另有專屬連動——T3851「6馬3」在共通的 11 條之外多了 DEACTIVATE T5067「獅關6」/T5068「獅關66」、DEACTIVATE T3826「6死」與一條額外 DAMAGE_OBJECT，且血量用 -2147483648（INT_MIN）哨兵做夾血解除（見 src/AoC_to_DE_migration_guide.md §2-§4 的哨兵慣例），而 2/3/5 座位用有限值 -240/-90/-230。屬 6P 特有的坐騎與獅關關卡耦合，非漏抄。"}
+  - {key: "X馬4|3|T2263|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：回馬槍鏈第四段（王大小姐：你已學會了回馬槍、扣 10 技能點、改名 7984「槍9 回馬槍 每10秒5倍勇氣」、開 3槍9、英雄與馬騎各 +420 HP）。同 X馬|3|T2260。"}
+  - {key: "X馬4|3|T2263|整支|enabled/looping", verdict: wontfix, reason: "同上：T2263「3馬4」是「王大小姐：你已學會了回馬槍。」發獎（進貢10、改名、ACT 3槍9、+420 血）， 由 T2262「3馬3」E#1 啟動；1/2/4/5/6馬4 是伯樂的常駐台詞（en=0 loop=1）。"}
+  - {key: "X馬4|3|T2263|整支|struct", verdict: wontfix, reason: "同名不同族：3P 的「3馬」「3馬2」「3馬4」是王大小姐傳授回馬槍的教學鏈，其他座位的「N馬」是伯樂賣馬對白；同名下還有第三族（停用 N召／N哥8 的清理觸發）。3P 多一支使索引錯位。"}
+  - {key: "X馬4|3|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3837–3840、T4212 的伯樂寶馬族 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X馬4|5|T3848|整支|absent", verdict: wontfix, reason: "條件順序假陽性（FP2）：T3848「5馬4」＝(TIMER 16, OBJECTS_IN_AREA sp=5 區(88,179)-(90,181))，兄弟 T3820/T3836/T3840/T3852「N馬4」＝(OBJECTS_IN_AREA, TIMER 16)，訊息（伯樂：這匹馬很適合你，你便騎著牠去闖江湖吧！）、區域、enabled/looping 全部相同。"}
+  - {key: "X馬4|5|T3848|整支|struct", verdict: wontfix, reason: "同名不同族：3P 的「3馬」「3馬2」「3馬4」是王大小姐傳授回馬槍的教學鏈，其他座位的「N馬」是伯樂賣馬對白；同名下還有第三族（停用 N召／N哥8 的清理觸發）。3P 多一支使索引錯位。"}
+  - {key: "X馬|1|T3817|整支|struct", verdict: wontfix, reason: "同名不同族：3P 的「3馬」「3馬2」「3馬4」是王大小姐傳授回馬槍的教學鏈，其他座位的「N馬」是伯樂賣馬對白；同名下還有第三族（停用 N召／N哥8 的清理觸發）。3P 多一支使索引錯位。"}
+  - {key: "X馬|3|T2260|整支|absent", verdict: wontfix, reason: "職業專屬＋同名不同族：T2260-T2264 是王大小姐教「回馬槍」的技能鏈（3P 槍客專屬，區(145,112)-(146,113)：王大小姐：學槍走得這麼快還真少見，讓我帶你走進槍化吧。）。X馬 族真正的六座位本體是伯樂寶馬 T3817-T3852「N馬/N馬2/N馬3/N馬4」（區(88,179)-(90,181)，六座位齊）。"}
+  - {key: "X馬|3|T2260|整支|enabled/looping", verdict: wontfix, reason: "同上：T2260「3馬」是回馬槍支線入口（4 條件、由 T2223「3槍合4」E#7 啟動，en=0 loop=0）； 1/2/4/5/6馬（T3817 等）是伯樂的 en=1 loop=1 常駐台詞，由 N馬2 停用。"}
+  - {key: "X馬|3|T2260|整支|struct", verdict: wontfix, reason: "同名不同族：3P 的「3馬」「3馬2」「3馬4」是王大小姐傳授回馬槍的教學鏈，其他座位的「N馬」是伯樂賣馬對白；同名下還有第三族（停用 N召／N哥8 的清理觸發）。3P 多一支使索引錯位。"}
+  - {key: "X馬|3|T3837|→X召|edge_missing", verdict: wontfix, reason: "索引位移：座位3 多一條 NPC 鏈 T2260「3馬」，使 T3837（真正對應他座 #0 的伯樂支）被拿去和他座 #1（T4210–4215 系列）比。同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3837–3840 與 T4212 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X馬|3|T3837|→X哥8|edge_missing", verdict: wontfix, reason: "索引位移：座位3 多一條 NPC 鏈 T2260「3馬」，使 T3837（真正對應他座 #0 的伯樂支）被拿去和他座 #1（T4210–4215 系列）比。同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3837–3840 與 T4212 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。"}
+  - {key: "X馬|3|T3837|整支|struct", verdict: wontfix, reason: "同名不同族：3P 的「3馬」「3馬2」「3馬4」是王大小姐傳授回馬槍的教學鏈，其他座位的「N馬」是伯樂賣馬對白；同名下還有第三族（停用 N召／N哥8 的清理觸發）。3P 多一支使索引錯位。"}
+  - {key: "X馬|3|TNone|組|count", verdict: wontfix, reason: "同名不同族＋索引位移：T2260–2264「3馬…3馬5」是原作的 NPC／野怪事件鏈（4c4e→2c2e→3c2e→2c8e→2c1e 的固定模板，首字的數字是 NPC 編號不是座位），與六座位族 T3837–3840、T4212 的伯樂寶馬族 無關。seat_pattern 把它當成該座位多出來的一支，主迴圈按索引配對後，本條邊比較的兩支根本不是同一功能。（count 是整組支數統計，不指單支；此差異不代表功能缺漏。）"}
+  - {key: "X馬召|6|T3958|C#0|uo", verdict: fixed, reason: "spec 已改 C#0 的 unit_object（8→45117）；原裁決：**建議修：** {trigger_id: 3958, name: 6馬召, kind: condition, index: 0, field: unit_ob"}
+  - {key: "X魔|6|T2931|E#1|qty", verdict: pending, reason: "**建議修：**「N魔」最後一擊獎勵：1P–5P 全是黃金負進貢 -600，6P 是 -330，且六座位的訊息文字完全相同（「得到了 800 兩銀」）—— 6P 沒有跟著改訊息，屬單點抄錯（對照 X偏/X六/X武 都是數值＋訊息一起改）。trigger_fixes 條目：{trigger_id: 2931, name: '6魔', kind: effect, index: 1, field: quantity, old: -330, new: -600, reason: '與其他五座位一致；六座位訊息皆為同一句'}。附帶提醒：這一族的訊息寫 800 而效果是 600，六座位皆然，是另一個層級的原作瑕疵，不在本條修法內。"}
+  - {key: "X黃2|3|T4055|整支|struct", verdict: wontfix, reason: "差異只是多產生一個 Gaia（sp=0）的九節鞭標記物件，不影響玩家獲得的物品與資源。（3P 另有一句對白文字不同，不影響交易。）"}
+  - {key: "X黃|1|T4050|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
+  - {key: "X黃|2|T4052|C#0|timer", verdict: pending, reason: "**需裁決：**六支「N黃」是金元寶商人的招攬對白（同 NPC、同區域、同台詞），只有 2P 週期 5 秒、其餘 6 秒。（另注意 1P 的 C#0/C#1 是相反順序，所以 P1 那格顯示的是 OBJECTS_IN_AREA，不影響語意。）純對白節奏，機制無影響。若要統一：{trigger_id: 4052, name: '2黃', kind: condition, index: 0, field: timer, old: 5, new: 6}"}

@@ -44,3 +44,20 @@ def test_merge_pending_adds_new_keys_only():
 def test_duplicate_keys_collapse():
     cls = L.classify([('a', 1), ('a', 2)], {})
     assert len(cls['new']) == 1
+
+
+def test_roundtrip_with_del_and_control_chars(tmp_path):
+    """原作觸發名含 DEL（\x7f少林寺）：原樣寫進 YAML 會讓整份檔案讀不回來。"""
+    p = tmp_path / 'l.yaml'
+    key = '~首  C1|2|T5294|E#0|sp'
+    reason = '原名 "\x7f少林寺" 的訊息\t含控制字元'
+    L.save(p, {key: {'verdict': 'wontfix', 'reason': reason}})
+    assert '\x7f' not in p.read_text(encoding='utf-8')       # 檔案裡必須是跳脫形式
+    got = L.load(p)
+    assert got[key]['verdict'] == 'wontfix' and '\x7f少林寺' in got[key]['reason']
+
+
+def test_load_tolerates_legacy_raw_del(tmp_path):
+    p = tmp_path / 'l.yaml'
+    p.write_text('entries:\n  - {key: "k", verdict: wontfix, reason: "壞\x7f檔"}\n', encoding='utf-8')
+    assert L.load(p)['k']['reason'] == '壞\x7f檔'

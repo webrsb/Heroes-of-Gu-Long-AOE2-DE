@@ -21,13 +21,32 @@ from pathlib import Path
 VERDICTS = ('fixed', 'wontfix', 'pending')
 
 
+def _esc(s):
+    """雙引號 YAML 純量的跳脫。控制字元／DEL 必須寫成 \\xHH——原作觸發名含 DEL（如 `\\x7f少林寺`），
+    原樣寫進 YAML 會讓整份檔案讀不回來（2026-09-01 踩過；merge_spec.yaml 也有同款教訓）。"""
+    out = []
+    for ch in str(s):
+        if ch == '\\':
+            out.append('\\\\')
+        elif ch == '"':
+            out.append("'")
+        elif ord(ch) < 0x20 or ord(ch) == 0x7f:
+            out.append(f'\\x{ord(ch):02X}')
+        else:
+            out.append(ch)
+    return ''.join(out)
+
+
 def load(path):
     """→ {key: {'verdict': str, 'reason': str}}；檔案不存在＝空帳本。"""
     p = Path(path)
     if not p.exists():
         return {}
     import yaml
-    raw = yaml.safe_load(p.read_text(encoding='utf-8')) or {}
+    text = p.read_text(encoding='utf-8')
+    if '\x7f' in text:                      # 舊檔可能有原樣寫入的 DEL，容錯轉成跳脫再解析
+        text = text.replace('\x7f', '\\x7F')
+    raw = yaml.safe_load(text) or {}
     out = {}
     for e in raw.get('entries') or []:
         v = e.get('verdict', 'pending')
@@ -41,8 +60,8 @@ def save(path, entries, header=''):
     lines = [f'# {header}' if header else '# 稽核裁決帳本（見 analysis/ledger.py）', 'entries:']
     for key in sorted(entries):
         e = entries[key]
-        reason = str(e.get('reason', '')).replace('"', "'")
-        lines.append(f'  - {{key: "{key}", verdict: {e.get("verdict", "pending")}, reason: "{reason}"}}')
+        lines.append(f'  - {{key: "{_esc(key)}", verdict: {e.get("verdict", "pending")}, '
+                     f'reason: "{_esc(e.get("reason", ""))}"}}')
     Path(path).write_text('\n'.join(lines) + '\n', encoding='utf-8')
 
 

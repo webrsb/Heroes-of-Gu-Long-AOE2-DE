@@ -61,3 +61,18 @@ def test_merge_never_downgrades_agent_wontfix(tmp_path):
     save(vf, {'X船|2|T3782|E#0|sp': {'verdict': 'wontfix', 'reason': '刻意跨座位'}})
     new, _ = merge(led, [vf], SPEC)
     assert new['X船|2|T3782|E#0|sp']['verdict'] == 'wontfix'
+
+
+def test_spec_covers_edge_findings_by_effect_type_or_trigger_id():
+    """edge_pol/edge_missing 的位置是目標樣式（→X教頭5）不是 E#n，要另一條比對規則。"""
+    spec = SPEC + [
+        {'trigger_id': 5365, 'name': "4頭暈起", 'kind': 'effect', 'index': 3, 'field': 'trigger_id',
+         'old': 5365, 'new': 5364, 'reason': '啟動自己'},
+        {'trigger_id': 999, 'name': 'x', 'kind': 'effect_add',
+         'effect': {'type': 'deactivate_trigger', 'trigger_id': 1}, 'reason': '補邊'},
+    ]
+    idx = spec_index(spec)
+    assert spec_covers('X頭暈起|4|T5365|→X頭暈起|edge_pol', idx)[0]      # 指錯目標
+    assert spec_covers('X教頭4|2|T199|→X教頭5|edge_pol', idx)[0]        # 極性抄反（effect_type）
+    assert spec_covers('X某|1|T999|→X某2|edge_missing', idx)[0]         # effect_add 補邊
+    assert not spec_covers('X某|1|T4713|→X某2|edge_pol', idx)[0]        # 該支只改過整支旗標，不算

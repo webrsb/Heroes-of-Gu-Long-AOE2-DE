@@ -1,0 +1,201 @@
+# 六座位對稱稽核裁決 —— enabled/looping・edge_pol・type 三類共 66 條
+# 基底：F:/aoe2de/src/origin/古龍921_無法無天.aoe2scenario（唯讀稽核，未動 merge_spec / 未 build）
+entries:
+  - key: "$南宮尾葉N|1|T5200|整支|enabled/looping"
+    verdict: wontfix
+    reason: "配對錯位：座位 1 的真正對應支是 T5199「南宮尾葉」（en=1 loop=0，與 5204/5209/5214/5219/5224 一致）。 T5200「南宮尾葉1」是子觸發，同族還有 南宮尾葉111/1111/11111（T5201–5203，全部 en=0 loop=0）， 由 T5199 E#1 啟動。尾數樣式規則把「1」當成座位號才誤配。"
+  - key: "$墓3~N|1|T5149|整支|enabled/looping"
+    verdict: wontfix
+    reason: "不是六座位家族，而是同一個 P3 提示的三件套：T5149「墓3~1」是訊息本體（周賓：你還沒有資格拿酒給我喝）， T5150「墓3~2」進區 ACT 它、T5151「墓3~3」離區 DEACT 它。訊息本體出廠停用（en=0 loop=0）正是設計， 1/2/3 三支旗標本來就該不同。"
+  - key: "$女N|5|T5595|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：T2872–2874「女2/女3/女4」是 Gaia(sp=7) 的地圖計數器觸發（在 (233,231)/(234,231) 增刪 720）， 多數值 (1,1) 由它們投出；T5595「女5」與 T5596「女6」才是同一族（客棧伙計台詞），兩支 en=0 loop=1 完全一致，且分別由 T5475「5當僧」E#11、T5477「6當僧」E#10 啟動。"
+  - key: "$女N|6|T5596|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同上：與 T5595「女5」成對且旗標完全相同（en=0 loop=1），由 T5477「6當僧」E#10 啟動； 多數值來自不同族的 女2/女3/女4（Gaia 計數器）。"
+  - key: "$完全教戰守策N|3|T4965|整支|enabled/looping"
+    verdict: pending
+    reason: "**建議修：** 完全教戰守策1–6（T4963–4968）是「禁止玩家蓋建築」的常駐清除規則：無條件、loop=1、 六支各以 REMOVE_OBJECT(type15) object_group=3(建築)/30(牆) 掃該座位全圖。五座位 en=1，只有 3P 的 T4965 en=0 ＝只有 P3 能蓋建築牆體，破壞規則對稱。無任何觸發啟停這六支，所以只能靠出廠旗標。 trigger_fixes: {trigger_id: 4965, name: 完全教戰守策3, kind: trigger, field: enabled, old: 0, new: 1, reason: 「不得蓋建築」常駐清除規則其餘五座位開局啟用，3P 整支關閉＝只有 3P 能蓋}。 註：merge_spec.params.trigger_fixes 已存在同條。"
+  - key: "$白N|2|T1811|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：座位 2 有兩支「白2」，T1811 是白雲城地圖初始化（命名葉孤城／衙門／客棧／礦場、 設 30900 血與 1245303 攻、侍衛 245 血 16 攻），0 條件 14 效果；1/3/4/5/6白 是「你已離開白雲城」提示。 初始化觸發 en=1 loop=0（開局跑一次）正確，且它同時被 absent 規則標為「僅座位2有」。"
+  - key: "$金獅2~N|1|T5137|整支|enabled/looping"
+    verdict: wontfix
+    reason: "與 墓3~ 同構：T5137「金獅2~1」是訊息本體（金獅：你還沒有資格跟我挑戰），出廠停用； T5138「金獅2~2」進區 ACT、T5139「金獅2~3」離區 DEACT。三支旗標本就不同，不是座位複製。"
+  - key: "$魂移N|5|T5306|整支|enabled/looping"
+    verdict: pending
+    reason: "**建議修：** 魂移1–6（T5302–5307）條件都是「英雄被摧毀」，出廠 en=0 loop=1，由 馬1–馬6（T5308–5313）啟動 ＝取得坐騎後才有魂移。只有 T5306 en=1 loop=0：P5 開局即武裝，拳客一死就會執行 E5–E16 停掉六座位的 石2/石3 與 拳，並 TASK 馬騎 ref 26138（此時坐騎尚未存在），且 loop=0 只能用一次。 trigger_fixes（兩條）: {trigger_id: 5306, name: 魂移5, kind: trigger, field: enabled, old: 1, new: 0, reason: 魂移1–6 皆出廠停用、由 馬N 啟動} / {trigger_id: 5306, name: 魂移5, kind: trigger, field: looping, old: 0, new: 1, reason: 同上}。註：merge_spec 已存在同兩條。"
+  - key: "C2|2|T4834|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：T4707「刀2」是區域檢查、T2054「槍2」/T2055「棍2」是回血迴圈， T4834「劍2」則是「你已離開香城」提示，由 T4836「劍222」ACT、T4837「劍2222」DEACT， 出廠 en=0 loop=0 與同類的 白1/白3/1金2 等離場提示完全一致。"
+  - key: "C客回血|1|T4773|整支|enabled/looping"
+    verdict: wontfix
+    reason: "只有 1/3/6 三座位有此族且結構本就不同：3/6 版多一條 SEND_CHAT 且由「N回血術得」回頭停用自己， 所以需要 loop=1；1 版沒有回收機制（E#0 直接啟動 T4774「1回血術迴圈」），loop=0 讓它自然一次性。 en=0 三座位一致，皆由 T5316/T5318/T5321 啟動。兩取一的「多數」只有兩票，不足以定案。"
+  - key: "X 100|6|T3523|→X神兵|edge_pol"
+    verdict: wontfix
+    reason: "座位 6 的神兵族結構本就不同：1–5 有「N神兵（等級不夠警告，en=1 loop=1）」＋「N神兵1」， N 100 的作法是 ACT N神兵1／DEACT N神兵；座位 6 沒有 6神兵1，T4750「6神兵」被改寫成等級100 的閘門 （en=0，E#0 直接 ACT T4751「6神兵2」），所以 T3523「6 100」E#4 用 ACTIVATE 是與該座位設計自洽的正確極性。 （P6 因此少了「你等級不夠」警告，屬 absent 類，不在本欄位。）"
+  - key: "X 9|1|T3300|→X 6-10Lv|edge_pol"
+    verdict: pending
+    reason: "**建議修：** 等級 6/7/8/9/10 的每一支「N Lv」都以 ACTIVATE 啟動「N 6-10Lv」領取該級加成 （+5 血、+8~10 攻、−2 技能點）；查 T3296「1 6-10Lv」的啟停來源可見 1 6/1 7/1 8/1 10 皆 ACT， 唯獨 T3300「1 9」E#0 抄成 DEACTIVATE → P1 升到 9 級不但沒拿到加成，還把該級開關關掉。 trigger_fixes: {trigger_id: 3300, name: 1 9, kind: effect, index: 0, field: effect_type, old: 9, new: 8, reason: 1P 升到 9 級應啟動 6-10Lv 加成（其餘座位 ACT），抄成 DEACT}。註：merge_spec 已存在同條。"
+  - key: "XC3|4|T855|整支|enabled/looping"
+    verdict: wontfix
+    reason: "配對錯位：T855「4棍3」屬 4棍/4棍2/4棍3/4棍4 的棍法家傳藝鏈（由 T853「4棍」E#2 啟動， 條件是 TIMER12＋技能點8＋站 (146,29)-(150,33)），而 1刀3/2劍3/3槍3/5拳3/6箭3（T2062–2072） 是教頭4 啟動的加攻迴圈。座位 4 在「XC3」樣式下共 5 支，索引配對把不同族湊在一起。"
+  - key: "XC92|5|T2289|→XC92|edge_pol"
+    verdict: pending
+    reason: "**建議修：** 1刀92/2劍92/3槍92/4棍92 末尾 E#5 都是 DEACTIVATE 自己（一次性領取）， T2289「5拳92」抄成 ACTIVATE 自己 → TIMER 5 秒的一次性加攻變成每 5 秒無限疊加（+69 攻／class240）。 trigger_fixes: {trigger_id: 2289, name: 5拳92, kind: effect, index: 5, field: effect_type, old: 8, new: 9, reason: 一次性觸發末尾應停用自己，抄成 ACT 自己→每 5 秒重跑疊加攻擊}。註：merge_spec 已存在同條。"
+  - key: "XC92|6|T2291|整支|enabled/looping"
+    verdict: wontfix
+    reason: "loop=1 但 E#2 就是 DEACTIVATE 自己，行為與 1–5 的 loop=0 等效（同拍自停，不會重跑）。 en=0 與其他座位一致，由 T2290「6箭9」E#1 啟動。"
+  - key: "XC9|6|T2290|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同上：T2290「6箭9」loop=1 但 E#2 DEACTIVATE 自己，與 1–5 的 loop=0＋E#5 自停等效； en=0 一致，由 T2278「6唐4」E#4 與 T2291「6箭92」E#1 啟動。"
+  - key: "XC|4|T853|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：1刀/2劍/3槍/5拳/6暗（T822/835/848/874/887）是 en=1 loop=1 的 NPC 閒聊迴圈， 由「N刀刀／N劍劍…」停用；T853「4棍」是棍法家傳藝（多一條 C2 計數條件、E#1/E#2 啟動 4棍2/4棍3）， 由 T540「4教頭4」E#5 啟動，出廠停用正確。"
+  - key: "X刀1|2|T4710|整支|enabled/looping"
+    verdict: wontfix
+    reason: "loop 在此鏈路無語意差：2/3/4/5刀1 都由「N刀3」E#3 明確停用、由「N刀4」E#5 重新啟動， T4710 的 loop=0 只是在同一拍提早自停，之後同樣由 T4713「2刀4」E#5 復活。en=1 與其他三座位一致。"
+  - key: "X刀3|6|T4726|整支|enabled/looping"
+    verdict: wontfix
+    reason: "座位 6 的神兵落月弓被改寫成 TIMER 7 的一次性爆發（自付 DAMAGE 4000×2，E#6 自我停用）， 而 2/3/4/5刀3 是「裝備／卸下」切換（含 N失血、N刀2）。結構本就不同， loop=0 搭配 E#6 自停與 loop=1 搭配 E#4 自停等效。en=0 一致。"
+  - key: "X刀4|6|T4727|整支|enabled/looping"
+    verdict: pending
+    reason: "**需裁決：** loop 旗標本身無害（T4726/T4727 都以最後一個效果自我停用，與 2/3/4/5 的 loop=1 等效）； 真正的問題是 **T4727「6刀4」全檔沒有任何 ACTIVATE 指向它**（只有它自己 E#4 停用自己）， 而 2/3/4/5刀4 是由 N刀2 E#0 啟動的。座位 6 的神兵落月弓被改寫成「6神兵2 → ACT 6刀3（TIMER 7 一次性爆發， 自付 4000 傷害）」，沒有 6刀2、也沒有裝備／卸下切換。所以「6刀4（卸下落月弓）」到底是刻意廢棄的殘留、 還是漏接的死碼，需要使用者以遊戲體驗判定：若要救活，需在 6刀3 加 ACTIVATE→4727（effect_add）， 而非改 loop。"
+  - key: "X南僧|4|T2035|C#0|type"
+    verdict: pending
+    reason: "**建議修：** 1/2/3/5南僧 的 C#0 都是 OBJECTS_IN_AREA(type5) sp=N 物件=840 qty=1 區(234,179)-(234,179) ——那是計數格上的旗標物件；T2035「4南僧」抄成 BRING_OBJECT_TO_AREA(type1) unit=502(4P棍本體) 到同一格 ＝要英雄走到計數欄那一格，永遠不成立。後果：T5473「4當僧」全檔唯一啟動來源就是 T2035 E#0， 所以 P4 拿不到少林大師支線，連帶 T5472「4大師守候」（由 4當僧 E#2 停用）永遠關不掉、無限重播提示。 trigger_fixes（四條，型別＋隨附欄位）: {trigger_id: 2035, name: 4南僧, kind: condition, index: 0, field: condition_type, old: 1, new: 5, reason: 抄成 BRING 英雄到計數格，永不成立} / 同 index 的 {field: source_player, old: -1, new: 4} / {field: object_list, old: -1, new: 840} / {field: quantity, old: -1, new: 1}；並把 unit_object 由 502 還原為 -1。"
+  - key: "X南僧|4|T2035|整支|enabled/looping"
+    verdict: pending
+    reason: "**建議修：** 1/2/3/5/6南僧 都是 en=0，由「N木」啟動（1木 E#4、2木 E#4、3木 E#4、5木 E#4、6木 E#1 皆 ACTIVATE→N南僧）；T2035 是唯一 en=1 的，而 T1936「4木」E#4 啟動的是 T1935「4端2」、漏掉 4南僧 ——出廠啟用只是掩蓋漏啟動。**必須與上一條 C#0 修法一起做，而且先補啟動再改旗標**，否則單改 en=0 會讓 4當僧 徹底斷線。trigger_fixes（兩條）: {trigger_id: 1936, name: 4木, kind: effect_add, index: 5, field: ACTIVATE_TRIGGER→2035, reason: 4木 漏抄「啟動 4南僧」（1/2/3/5/6木 皆有）} / {trigger_id: 2035, name: 4南僧, kind: trigger, field: enabled, old: 1, new: 0, reason: 南僧六支皆出廠停用、由 N木 啟動}。"
+  - key: "X南僧|6|T2037|C#0|type"
+    verdict: wontfix
+    reason: "與 T2035 同一處抄錯（BRING 本體到計數格 (234,179)），但座位 6 功能未失： T5477「6當僧」有四個啟動來源——T816「6大師」E#7、T1943「6端2」E#12、T2037 E#0、T4625「6迪2」E#13（en=1）， 其中 6迪2 是常駐可達路徑。且座位 6 的端木林支線刻意改寫（T1944「6木」訊息為 「你不該找到我,你或許去少林會有所收穫！」，且不啟動 6木2／6端2），6南僧 本就是殘留。 若之後為了對稱想一併修，修法同 T2035 那條。"
+  - key: "X司2|1|T4276|整支|enabled/looping"
+    verdict: wontfix
+    reason: "loop=1 但 E#3 DEACTIVATE 自己，與 2–6司2 的 loop=0 等效；en=1 與所有座位一致， 且六支都只有「自己停用自己」一個啟停來源。"
+  - key: "X大師守候|5|T5474|整支|enabled/looping"
+    verdict: pending
+    reason: "**建議修：** 1/2/3/4/6大師守候 全是 en=1 loop=1（英雄站在 (129,48)-(131,50) 且 TIMER 16 就重播 「大師：看來這位施主挺有耐心的…」提示），由 N當僧 停用。T5474「5大師守候」en=0 loop=0 且全檔沒有任何 ACTIVATE 指向它（只有 5當僧 E#1 停用它）→ P5 永遠看不到少林大師的引導提示。 trigger_fixes（兩條）: {trigger_id: 5474, name: 5大師守候, kind: trigger, field: enabled, old: 0, new: 1, reason: 其餘五座位開局啟用循環，5P 整支關閉且無人啟動} / 同 trigger {field: looping, old: 0, new: 1, reason: 同上}。註：merge_spec 已存在同兩條（name 記為「觸發事件 拳僧」）。"
+  - key: "X教頭2|2|T197|整支|enabled/looping"
+    verdict: pending
+    reason: "**建議修：** 1/3/4/5/6教頭2 都是 en=0 loop=1——「教頭：你沒有足夠的技能點數。」＋TASK_OBJECT 把玩家 推離 (91,100)-(93,102)，每 14 秒重播直到 N教頭3 停用它。T197「2教頭2」loop=0 ＝ P2 只被提示／推開一次， 之後站在教頭格上不再有任何回饋。啟停來源與其他座位相同（2教頭 啟動、2教頭3 停用），差別只在 loop。 trigger_fixes: {trigger_id: 197, name: 2教頭2, kind: trigger, field: looping, old: 0, new: 1, reason: 「技能點不足」提示其餘座位每 14 秒循環，2P 只提示一次}。註：merge_spec 已存在同條。"
+  - key: "X教頭4|2|T199|→X教頭5|edge_pol"
+    verdict: pending
+    reason: "**建議修：** T195/T207/T211/T215（1/4/5/6教頭4）E#3 都是 ACTIVATE→N教頭5，T199「2教頭4」抄成 DEACTIVATE→T217「2教頭5」→ P2 學會御劍後「好好練習」後續鏈不啟動。 trigger_fixes: {trigger_id: 199, name: 2教頭4, kind: effect, index: 3, field: effect_type, old: 9, new: 8, reason: 學會御劍後應啟動 2教頭5}。註：merge_spec 已存在同條（本帳本條目應可隨之結案）。"
+  - key: "X教頭4|3|T203|→X教頭5|edge_pol"
+    verdict: pending
+    reason: "**建議修：** 同上（3P）。T203「3教頭4」E#3 DEACTIVATE→T218「3教頭5」，應為 ACTIVATE。 trigger_fixes: {trigger_id: 203, name: 3教頭4, kind: effect, index: 3, field: effect_type, old: 9, new: 8, reason: 學會御槍後應啟動 3教頭5}。註：merge_spec 已存在同條。"
+  - key: "X木2|6|T1945|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：1–5木2 是「英雄領路端木林」（TASK 本體到 ref 37096、幫 30315 回血、把別座位單位趕開）； T1945「6木2」內容完全不同（TIMER3、清 P4 建物、指派 Gaia 73/559 到定點），是開場地圖整備。 它沒有任何 ACTIVATE 來源（只有 6端2／修端木6 停用它），所以必須出廠 en=1 才會跑一次。"
+  - key: "X林4|6|T1188|→X林|edge_pol"
+    verdict: pending
+    reason: "**建議修：** 1/2/3/4/5林4 都是「ACTIVATE N林2 ＋ DEACTIVATE N林」；T1188「6林4」兩個效果都是 ACTIVATE（E#0→6林2、E#1→6林），把該關掉的 T1185「6林」又打開。 trigger_fixes: {trigger_id: 1188, name: 6林4, kind: effect, index: 1, field: effect_type, old: 8, new: 9, reason: 6P 進區應停用 6林（其餘座位 DEACT），抄成 ACT 使 6林 不停}。註：merge_spec 已存在同條。"
+  - key: "X毒3|6|T957|→X毒2|edge_pol"
+    verdict: wontfix
+    reason: "配對錯位：座位 6 有兩支「6毒3」——T957 屬 6毒/6毒2/6毒3/6毒4/6毒5/6毒6（暗殺者教毒鏢支線）， T4484 才是與 1–5毒3（T4479–4483「中毒狀態」）同族的那支。索引 k=0 挑到 T957 才產生極性差。"
+  - key: "X毒3|6|T957|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同上配對錯位：T957 是毒鏢支線的第三段（由 T955「6毒」E#2 啟動，en=0 loop=0）， 與 1–5毒3（en=1 loop=0 的中毒狀態）不同族；真對應支是 T4484（en=1 loop=0，與多數一致）。"
+  - key: "X毒|6|T955|整支|enabled/looping"
+    verdict: wontfix
+    reason: "配對錯位：T955「6毒」是暗殺者教毒鏢的入口（3 條件、由 T952「6無4」E#5 啟動、en=0 loop=0）， 與 1–5毒（T4467–4471「中毒狀態」，en=1 loop=0）不同族；座位 6 的真對應支是 T4472「6毒」（en=1 loop=0）。"
+  - key: "X民團死|3|T23|整支|enabled/looping"
+    verdict: pending
+    reason: "**建議修：** 1/2/4/5/6民團死 都是 en=1 loop=1，配合 en=1 loop=1 的「N打民團2」形成可反覆開關的 進區/出區配對（打民團 被 打民團2 啟動、被 民團死＋民走1~3 停用）。T23「3民團死」loop=0 只能生效一次， 之後 T11「3打民團2」再把 T10「3打民團」打開就關不掉了。 trigger_fixes: {trigger_id: 23, name: 3民團死, kind: trigger, field: looping, old: 0, new: 1, reason: 民團出口區其餘座位循環，3P 只生效一次}。註：merge_spec 已存在同條。"
+  - key: "X漢|4|T1440|整支|enabled/looping"
+    verdict: pending
+    reason: "**建議修：** 1/2/3/5/6漢 全是 en=1 loop=1（站 (213,14)-(215,16) ＋TIMER16 重播羅漢台詞）， 由 N坐 停用。T1440「4漢」en=0 loop=0 且全檔無人啟動（只有 T1446「4坐」E#0 停用它）→ P4 永遠聽不到羅漢引導。 trigger_fixes（兩條）: {trigger_id: 1440, name: 4漢, kind: trigger, field: enabled, old: 0, new: 1, reason: 羅漢對話其餘座位開局啟用循環，4P 整支關閉} / 同 trigger {field: looping, old: 0, new: 1}。 註：merge_spec 已存在同兩條。"
+  - key: "X狂2|1|T896|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：T896「1狂2」屬 1狂/1狂2/1狂3/1狂4 的刀客傳藝鏈（TIMER14＋技能點提示＋TASK 推開， 由 T895「1狂」E#1 啟動、T897「1狂3」E#0 停用）；2–6狂2（T3138–3146）是狂夜叉區域的 en=1 loop=1 進區觸發。座位 1 在此樣式下有 2 支，索引配對挑錯。"
+  - key: "X狂3|1|T897|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同上：T897「1狂3」是刀客傳藝鏈第三段（TIMER12＋技能點8＋站位，由 T895「1狂」E#2 啟動）， 與 2–6狂3（T3148–3152，狂夜叉區域 en=1 loop=1）不同族。"
+  - key: "X狂死2|6|T3164|→X狂|edge_pol"
+    verdict: pending
+    reason: "**建議修：** 1–5狂死2（T3159–3163）E#0 都是 DEACTIVATE→N狂；T3164「6狂死2」抄成 ACTIVATE→T3145「6狂」， 離開狂夜叉區反而把擊殺獎勵觸發打開。 trigger_fixes: {trigger_id: 3164, name: 6狂死2, kind: effect, index: 0, field: effect_type, old: 8, new: 9, reason: 狂 出口區應停用 6狂}。註：merge_spec 已存在同條。"
+  - key: "X狂死7|2|T3190|→X狂|edge_pol"
+    verdict: pending
+    reason: "**建議修：** 同上（2P）。T3190「2狂死7」E#0 ACTIVATE→T3137「2狂」，1/3/4/5/6 皆 DEACTIVATE。 trigger_fixes: {trigger_id: 3190, name: 2狂死7, kind: effect, index: 0, field: effect_type, old: 8, new: 9, reason: 同 6狂死2}。註：merge_spec 已存在同條。"
+  - key: "X珠4|4|T3611|整支|enabled/looping"
+    verdict: pending
+    reason: "**建議修：** 1/2/3/6珠4 都是 en=1 loop=1（進 (133,200)-(135,200) 就 DEACT N珠、ACT N珠2）； T3611「4珠4」en=0 loop=0 且全檔無人啟動 → P4 的珠區開關永遠不動，4珠2 起不來、4珠 關不掉。 trigger_fixes（兩條）: {trigger_id: 3611, name: 4珠4, kind: trigger, field: enabled, old: 0, new: 1, reason: 珠區啟停觸發其餘座位開局啟用循環，4P 整支關閉} / 同 trigger {field: looping, old: 0, new: 1}。 註：merge_spec 已存在同兩條。"
+  - key: "X神兵|6|T4750|整支|enabled/looping"
+    verdict: wontfix
+    reason: "與 X 100|6 同一件事：1–5神兵是 en=1 loop=1 的「你等級不夠 去了也是送死」常駐警告， 由 N 100 停用；T4750「6神兵」被改寫成等級100 閘門（少一條 TIMER 條件，E#0 直接 ACT T4751「6神兵2」）， 由 T3523「6 100」E#4 啟動——有明確啟動來源，en=0 是正確的。"
+  - key: "X船2|1|T3703|→X船3|edge_pol"
+    verdict: wontfix
+    reason: "配對錯位：T3703「1船2」的真對應是 T3708「2船2」等（第10層武功組），它們對「N船3」都是 ACTIVATE，與 T3703 E#0 一致；報告比對的 T3783「2船2」屬另一組（船夫：走吧！窮人！）， 那一組才是 DEACTIVATE→N船3。"
+  - key: "X船3|1|T3687|整支|enabled/looping"
+    verdict: wontfix
+    reason: "T3687「1船3」屬座位 1 獨有的 T3685–3690 組（見 X船|1|T3685），無對照座位可比。"
+  - key: "X船3|1|T3704|整支|enabled/looping"
+    verdict: wontfix
+    reason: "配對錯位：T3704「1船3」（0 條件、單一 REMOVE_OBJECT）的真對應是 T3709「2船3」， 兩者都是 en=0 loop=1，完全相同；報告比對的是 T3752 那一組（en=0 loop=0）。"
+  - key: "X船4|1|T3688|整支|enabled/looping"
+    verdict: wontfix
+    reason: "T3688「1船4」屬座位 1 獨有的 T3685–3690 組，無對照座位可比。"
+  - key: "X船4|1|T3705|整支|enabled/looping"
+    verdict: wontfix
+    reason: "配對錯位：T3705「1船4」的真對應是 T3710「2船4」（4 條件、ACT N船5）， 兩者都是 en=0 loop=1；報告比對的是 T3753 那一組（en=1 loop=1）。"
+  - key: "X船5|1|T3689|整支|enabled/looping"
+    verdict: wontfix
+    reason: "T3689「1船5」屬座位 1 獨有的 T3685–3690 組，無對照座位可比。"
+  - key: "X船5|1|T3706|整支|enabled/looping"
+    verdict: wontfix
+    reason: "配對錯位：T3706「1船5」（毀樁之舞範圍傷害、E#2 自停）的真對應是 T3711「2船5」， 兩者都是 en=0 loop=0；報告比對的是 T3754 那一組（en=1 loop=1）。"
+  - key: "X船|1|T3685|整支|enabled/looping"
+    verdict: wontfix
+    reason: "船族在座位 1 有四組（T3685–3690、T3702–3706、T3746–3750、T3776–3781），其他座位只有三組， 索引配對整組錯開。T3685–3690 這一組（(68,231)-(78,239) 碼頭、16 等級門檻）**只有座位 1 有**， 沒有任何座位可比對，旗標少數派無意義。座位缺席本身屬 absent 類，不在本欄位。"
+  - key: "X船|1|T3702|整支|enabled/looping"
+    verdict: wontfix
+    reason: "配對錯位：T3702「1船」的真對應是 T3707/3712/3717/3722/3727（14 條計數條件＋TIMER10 的第10層武功門檻）， 五支全是 en=1 loop=0，與 T3702 完全相同。報告拿去比的是 T3751 那一組（金鵬島船夫，en=0 loop=0）。"
+  - key: "X血2|6|T1292|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：1–5血2 是「840 物件出現在 (129,48)-(131,50) 就移除自己單位」（en=1 loop=1，由 N木 停用）； T1292「6血2」是 0 條件、12 個 REMOVE_OBJECT 的計數區清場（(209,233)-(227,232) 一帶）， 沒有任何啟停來源，en=1 loop=0 開局跑一次正是它的用法。"
+  - key: "X谷2|6|T4402|整支|enabled/looping"
+    verdict: wontfix
+    reason: "座位 6 刻意把「谷」做成等級100 解鎖：T3523「6 100」E#15 ACTIVATE→T4402， 且 6谷2 的回血量與 1–5 相同（-1000）但本體版 6谷 被加大到 -1000（1–5 是 -19）。 有明確啟動來源，en=0 正確。"
+  - key: "X谷|6|T4401|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同上：T4401「6谷」由 T3523「6 100」E#14 ACTIVATE，回血量也被特別改成 -1000（1–5 為 -19）， 是座位 6 的等級100 專屬強化，en=0 出廠停用正確。"
+  - key: "X賓|1|T4429|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：2–6賓（T4144–4148）是「賓周幫弟子：只有學刀的才可以進去。」常駐提示（en=1 loop=1， 由 T4149「1賓死」停用）；T4429「1賓」是江湖閱歷加點觸發（ACCUMULATE attr44＋TIMER2 → ACT T7「1升級」）， 由 T4430「1賓2」ACT、T4431「1賓3」DEACT，出廠停用正確。座位 1 在此樣式下另有一支才是真對應。"
+  - key: "X轅2|1|T1852|C#0|type"
+    verdict: pending
+    reason: "**需裁決：** 2–6轅2 的 C#0 是 BRING_OBJECT_TO_AREA(type1) unit=本體 區(234,63)-(239,70)； T1852「1轅2」是 OBJECTS_IN_AREA(type5) sp=1 qty=1 區(234,60)-(239,69)。兩者都可運作 ——該區域確實走得到（T1851「1轅」與 T1857「2轅」的 C1 都是 BRING 本體到同一塊 (234,63)-(239,71)）， 差別在 1P 版比較寬鬆：只要 P1 有「任何」單位在該區就成立（含馬騎 26109），2–6P 則必須是英雄本體 ref。 後果是 P1 騎馬進場也會重新啟動 1轅／回血鐵豬王計數，其餘座位不會。是要統一成 BRING＋本體 ref， 還是承認 1P 這種寬鬆寫法（甚至反過來對其他座位比較友善），屬設計取捨，請使用者裁示。"
+  - key: "X道4|3|T277|E#9|type"
+    verdict: pending
+    reason: "**建議修：** 1/2/4/5/6道4 的 E#6–E#9 是「本體+血、本體+攻、馬騎+血、馬騎+攻」四件套； T277「3道4」E#9 抄成 CHANGE_OBJECT_HP(27) sel=[26136]，與 E#8 完全重複 → P3 的馬騎槍俠拿不到幸運符的 +10 攻。 trigger_fixes（三條）: {trigger_id: 277, name: 3道4, kind: effect, index: 9, field: effect_type, old: 27, new: 28} / 同 effect {field: armour_attack_quantity, old: null, new: 10} / {field: armour_attack_class, old: null, new: 0}（qty 已是 10＝0×65536+10，不必動）。 註：merge_spec 已存在同三條。"
+  - key: "X金2|5|T2271|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：1/2/3/4/6金2 是「你已離開金鵬島」提示（T3621/3625/3629/3633/3641，en=0 loop=0）； T2271「5金2」屬陸小鳳金絲綿拳支線（TIMER14＋技能點不足提示＋TASK 推開）， 由 T2270「5金」E#1 啟動、T2272「5金3」E#1 停用。座位 5 在此樣式下有 2 支，索引配對挑錯。"
+  - key: "X金3|5|T2272|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同上：T2272「5金3」是金絲綿拳支線的門檻判定（TIMER12＋技能點80＋站位 → ACT 5金4）， 由 T2270「5金」E#2 啟動；1/2/3/4/6金3 是金鵬島進出區的 en=1 loop=1 開關。"
+  - key: "X金4|5|T2273|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同上：T2273「5金4」是「陸小鳳：你已學會了金絲綿拳。」發獎（進貢10、改名、ACT 5拳9）， 由 T2272「5金3」E#0 啟動；1/2/3/4/6金4 是金鵬島區域開關。"
+  - key: "X金|5|T2270|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：T2270「5金」是陸小鳳支線入口（4 條件、由 T2233「5剛4」E#6 啟動，en=0 loop=0）； 索引 k=0 拿去比的 1/2/3/4/6金（T2357–2362）是「老4」啟動的每 3 秒回血迴圈。"
+  - key: "X金|5|T2361|整支|enabled/looping"
+    verdict: wontfix
+    reason: "配對錯位：T2361「5金」的真對應是 T2357/2358/2359/2360/2362（老4 啟動的每 3 秒回血迴圈）， 五支全是 en=0 loop=1，與 T2361 完全相同。報告在 k=1 拿去比的是金鵬島族（T3620 等，en=0 loop=0）。"
+  - key: "X針5|2|T1632|整支|enabled/looping"
+    verdict: pending
+    reason: "**建議修：** 1/3/4/5/6針5 都是 en=0 loop=1，由 N針4 E#2 啟動、由 N狂6/N氣6/… 停用。 T1632「2針5」en=1 loop=0：P2 從開局就會聽到明醫「待我多認識你一點，我才教你啞穴。」（前置尚未完成）， 而且只播一次，之後 2針4 再啟動也無效。 trigger_fixes（兩條）: {trigger_id: 1632, name: 2針5, kind: trigger, field: enabled, old: 1, new: 0, reason: 其餘座位由前置啟動} / 同 trigger {field: looping, old: 0, new: 1}。註：merge_spec 已存在同兩條。"
+  - key: "X頭暈起|4|T5365|→X頭暈起|edge_pol"
+    verdict: pending
+    reason: "**建議修：** 1/2/3/5/6頭暈起 的 E#3 都是 ACTIVATE→N頭暈（T5359/5360/5362/5366/5368）， T5365「4頭暈起」E#3 卻指回自己（ACTIVATE→T5365），漏抄成 T5364「4頭暈」。 結果：P4 上船後只吃到 65780(class1 +244) 的暈船減益，卻永遠不會進入 4頭暈 的解除／後續流程， 同拍 E#4 又停用自己，等於減益卡死。 trigger_fixes: {trigger_id: 5365, name: 4頭暈起, kind: effect, index: 3, field: trigger_id, old: 5365, new: 5364, reason: 應啟動 T5364「4頭暈」，抄成自己}。"
+  - key: "X馬2|3|T2261|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同名不同族：1/2/4/5/6馬2 是伯樂送馬（BRING 本體到 (88,179)-(90,181)＋8 個計數物件，en=1 loop=0）； T2261「3馬2」屬王大小姐回馬槍支線（技能點不足提示＋TASK 推開）， 由 T2260「3馬」E#1 啟動、T2262「3馬3」E#0 停用。座位 3 在此樣式下有 2 支。"
+  - key: "X馬4|3|T2263|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同上：T2263「3馬4」是「王大小姐：你已學會了回馬槍。」發獎（進貢10、改名、ACT 3槍9、+420 血）， 由 T2262「3馬3」E#1 啟動；1/2/4/5/6馬4 是伯樂的常駐台詞（en=0 loop=1）。"
+  - key: "X馬|3|T2260|整支|enabled/looping"
+    verdict: wontfix
+    reason: "同上：T2260「3馬」是回馬槍支線入口（4 條件、由 T2223「3槍合4」E#7 啟動，en=0 loop=0）； 1/2/4/5/6馬（T3817 等）是伯樂的 en=1 loop=1 常駐台詞，由 N馬2 停用。"
