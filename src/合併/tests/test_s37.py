@@ -212,3 +212,26 @@ def test_build_part_unknown_field_raises(f):
     from steps.s37_trigfix import _build_part
     with pytest.raises(BuildError):
         _build_part(_Cond(), {'type': 'object_hp', 'unit_object': 2, '亂打的欄位': 9}, 'tag')
+
+
+def test_build_part_rejects_phantom_player_field():
+    """parser 預設塞的玩家欄（實測 object_hp 預設 sp=1）會讓 s39 盤點誤判 cross → 擋在建置期。"""
+    from steps.s37_trigfix import _build_part
+    with pytest.raises(BuildError) as ei:
+        _build_part(_Cond(), {'type': 'object_hp', 'unit_object': 2, 'quantity': 100}, 'tag')
+    assert 'source_player' in str(ei.value)
+
+
+def test_build_part_allows_explicit_neutral_player_field():
+    from steps.s37_trigfix import _build_part
+    obj = _build_part(_Cond(), {'type': 'object_hp', 'unit_object': 2, 'quantity': 100,
+                                'source_player': -1}, 'tag')
+    assert obj.source_player == -1
+
+
+def test_trigger_add_ignores_key_declaration(f):
+    tm = f.tm([])
+    apply_fix(tm, {'kind': 'trigger_add', 'name': 'X', 'key': 'seat',
+                   'conditions': [{'type': 'timer', 'timer': 3}], 'reason': 'r'})
+    t = tm.triggers[-1]
+    assert t.name == 'X' and t.new_condition.calls == [('timer', {'timer': 3})]

@@ -73,7 +73,7 @@ def apply_fix(tm, entry) -> Change:
                   entry.get('reason', ''))
 
 
-def _build_part(factory, spec, tag):
+def _build_part(factory, spec, tag, player_fields=('source_player',)):
     """依 spec 建一個條件／效果。parser 方法簽名沒有的欄位（如 object_hp 的 source_player）
     在建立後直接寫入——parser 對這類欄位會塞預設值（實測 object_hp 預設 sp=1），
     留著會讓 s39 盤點誤判成跨職業（cross）而不生座位變體。欄位不存在即 BuildError。"""
@@ -91,6 +91,17 @@ def _build_part(factory, spec, tag):
         if not hasattr(obj, k):
             raise BuildError(f'缺裁決：{tag} 欄位 {k} 不存在於 {spec["type"]}，請重查')
         setattr(obj, k, v)
+    # 幽靈玩家欄防呆（2026-08-31 教訓）。只檢查 revive_inventory 實際會讀的欄位：
+    # 條件讀 source_player、效果讀 source_player 與 target_player；條件的 target_player 不影響分類。
+    for fld in player_fields:
+        if fld in spec:
+            continue
+        v = getattr(obj, fld, -1)
+        if v is not None and 1 <= v <= 6:
+            raise BuildError(
+                f'缺裁決：{tag} 的 {spec["type"]} 沒指定 {fld}，但 parser 預設塞了 {fld}={v}。'
+                f'留著會讓 s39 盤點把它算成「碰到玩家 {v}」→ 誤判跨職業 cross、不生座位變體、'
+                f'啟停邊也不重指（實例：object_hp 預設 sp=1）。請在 spec 明確寫 {fld}（中性用 -1）')
     return obj
 
 
@@ -114,7 +125,7 @@ def _add_trigger(tm, entry) -> Change:
         spec = dict(e)
         if 'trigger_name' in spec:
             spec['trigger_id'] = _resolve_by_name(tm, spec.pop('trigger_name'), tag).trigger_id
-        _build_part(t.new_effect, spec, tag)
+        _build_part(t.new_effect, spec, tag, player_fields=('source_player', 'target_player'))
     summary = f'{len(entry.get("conditions") or [])}條件/{len(entry.get("effects") or [])}效果'
     return Change('s37', 'trigger_add', entry.get('name', ''), 'trigger', '', f'T{t.trigger_id} {summary}',
                   entry.get('reason', ''))
