@@ -53,6 +53,16 @@ python src/新負血劍譜/fix_attack.py [--dry-run]              # 修 473 個�
 
 寫檔前務必設定 `trigger_manager.legacy_execution_order = True`，否則 DE 會重排觸發執行順序。
 
+**合併管線的靜態關卡（2026-08-31 起）**：`src/合併/build.py` 末端有兩道，任一失敗即中止、不出檔：
+- `s90 終檢`：全檔通用不變量（攻擊力編碼／trigger_id 超界／dangling ref／觸發數對帳／空效果殼）。
+- `s91 結構不變量`：**本次施工的結構契約**。`merge_spec.yaml` 每個 `kind: trigger_add` 都必須宣告
+  `key: seat|class|global`（座位鍵／職業鍵-shared／全域），s91 拿實際變體數對帳（seat 5、其餘 0）；
+  另檢查「帶座位的觸發啟停邊必須指同座位那支」、「同 tick 攔截順序（id 較小才攔得住零條件目標）」、
+  「傳送／任務目的格不得落在傳送來源區內」，以及各功能的特徵斷言（`analysis/ferry_check.py`）。
+  報告項（不擋建置）寫在 `logs/91_結構不變量.tsv`：我方新增格子落在原作玩家區域條件內（A）、
+  基底既有的攔截形狀（O）、Change HP 超 int16（H）、座位覆蓋不齊（S）。
+  新增功能時「S新增」那類要自己看——座位沒補齊是最常見的漏。
+
 ## 架構重點（跨檔案才看得懂的部分）
 
 - **AoE2ScenarioParser 讀不了 AoC `.scx`**。流程必是：Big5 `.scx` → AocScenarioTranslator 轉 utf8 →
