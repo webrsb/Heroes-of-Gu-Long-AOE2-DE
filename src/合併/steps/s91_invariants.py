@@ -52,8 +52,9 @@ class InvariantStep(Step):
         if not reports:
             return '結構不變量：閘門全過，無待複核項。'
         import collections, re
-        tally = collections.Counter((re.match(r'S新增|S編輯|[KEOGH]', r) or [''])[0] for r in reports)
-        legend = {'O': '基底既有的同 tick 攔截形狀（原作風格，多為無害狀態機）',
+        tally = collections.Counter((re.match(r'S新增|S編輯|[AKEOGH]', r) or [''])[0] for r in reports)
+        legend = {'A': '我方新增的格子落在原作的玩家區域條件內（廣場洗頻型，刻意重疊也會列出）',
+                  'O': '基底既有的同 tick 攔截形狀（原作風格，多為無害狀態機）',
                   'H': 'Change HP 超過 int16 天花板 32767（負血技巧刻意用時屬預期）',
                   'S新增': 'spec 新增觸發的座位覆蓋不齊',
                   'S編輯': 'spec 編輯基底時只改了部分座位（單座位修正很常見）'}

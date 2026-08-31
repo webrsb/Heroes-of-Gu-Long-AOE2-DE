@@ -190,6 +190,62 @@ def check_teleport_loops(triggers):
     return out
 
 
+CREATE, OBJ_IN_AREA = 11, 5
+
+
+def spec_tiles(triggers, added):
+    """spec 新增觸發引進地圖的格子：CREATE_OBJECT 放物件的位置、傳送／任務的目的格。
+    回傳 {(x, y): 說明}——這些是「我方新增的靜態存在」，最容易踩到原作的區域對話觸發。"""
+    own = own_trigger_ids(triggers, added)
+    tiles = {}
+    for t in triggers:
+        if t.trigger_id not in own:
+            continue
+        for i, e in enumerate(t.effects):
+            et = int(_g(e, 'effect_type', 0))
+            if et == CREATE:
+                xy = (_g(e, 'location_x'), _g(e, 'location_y'))
+                what = f'T{t.trigger_id}「{t.name}」E#{i} 放物件'
+            elif et in (TELEPORT, TASK):
+                xy = (_g(e, 'location_x'), _g(e, 'location_y'))
+                what = f'T{t.trigger_id}「{t.name}」E#{i} {"傳送" if et == TELEPORT else "任務"}目的'
+            else:
+                continue
+            if xy[0] != -1:
+                tiles.setdefault(xy, what)
+    return tiles
+
+
+def report_area_overlap(triggers, added, max_side=40):
+    """我方新增的格子若落在別人「玩家相關區域條件」內 → 列出複核。
+    2026-08-30 廣場洗頻的教訓：s38 放的顯示器落在 `白雲X1` 的對話區內，每 16 秒洗一句永不停。
+    刻意重疊（如渡船進入旗就在付費區內）也會列出，由人判斷——故為報告不是閘門。"""
+    tiles = spec_tiles(triggers, added)
+    own = own_trigger_ids(triggers, added)
+    seen, out = set(), []
+    for t in triggers:
+        if t.trigger_id in own:
+            continue
+        for i, c in enumerate(t.conditions):
+            if int(_g(c, 'condition_type', 0)) != OBJ_IN_AREA:
+                continue
+            sp = _g(c, 'source_player')
+            if not 1 <= sp <= 6:
+                continue
+            a = _areas(c)
+            if not a or a[2] - a[0] > max_side or a[3] - a[1] > max_side:
+                continue
+            for (x, y), what in tiles.items():
+                if a[0] <= x <= a[2] and a[1] <= y <= a[3]:
+                    base = (t.name or '').split('◇')[0]
+                    if (x, y, base, i) in seen:
+                        continue                     # 同一支的座位變體只報一次
+                    seen.add((x, y, base, i))
+                    out.append(f'A 我方格 ({x},{y})［{what}］落在「{t.name}」C#{i} 的玩家區域條件 '
+                               f'({a[0]},{a[1]})-({a[2]},{a[3]}) sp={sp} 內')
+    return out
+
+
 def report_seat_coverage(entries, kinds=None, tag='S'):
     """spec 條目按「名稱去掉開頭座位數字」分組，覆蓋不齊者列出。
     kinds 可限定條目種類（如只看 trigger_add；基底編輯的單座位修正很常見、屬預期）。"""
@@ -224,7 +280,8 @@ def audit_all(triggers, spec_entries, allow_block_order=()):
                   + check_variant_edges(triggers, added)
                   + check_block_order(triggers, allow=allow_block_order, own_tids=own)
                   + check_teleport_loops(triggers))
-    reports = (report_block_order(triggers, allow=allow_block_order, own_tids=own)
+    reports = (report_area_overlap(triggers, added)
+               + report_block_order(triggers, allow=allow_block_order, own_tids=own)
                + report_seat_coverage(spec_entries, kinds=('trigger_add',), tag='S新增')
                + report_seat_coverage(spec_entries, kinds=('effect', 'condition', 'trigger',
                                                            'effect_add', 'condition_add'), tag='S編輯')

@@ -148,3 +148,27 @@ def test_own_trigger_ids_covers_s39_copies(f):
     c = f.trig(name='別人')
     ids = A.own_trigger_ids([a, b, c], {'3船費東': {}})
     assert ids == {a.trigger_id, b.trigger_id}
+
+
+def test_spec_tiles_collects_created_and_destination_tiles(f):
+    t = f.trig(name='船旗初始化', effects=[f.eff_create(sp=0, olu=600, x=79, y=233)])
+    t2 = f.trig(name='1船入西', effects=[f.eff_teleport(sp=1, area=(79, 233, 79, 233), x=81, y=232)])
+    tiles = A.spec_tiles([t, t2], {'船旗初始化': {}, '1船入西': {}})
+    assert tiles.keys() == {(79, 233), (81, 232)}
+
+
+def test_report_area_overlap_flags_dialogue_area(f):
+    """廣場洗頻型：我方放的物件落在原作的玩家區域對話條件內。"""
+    mine = f.trig(name='船旗初始化', effects=[f.eff_create(sp=0, olu=600, x=80, y=111)])
+    npc = f.trig(name='白雲1', conds=[f.cond_area(sp=1, area=(79, 109, 82, 112))])
+    r = A.report_area_overlap([mine, npc], {'船旗初始化': {}})
+    assert len(r) == 1 and '(80,111)' in r[0] and '白雲1' in r[0]
+    # 全圖級大區域不算（否則每支世界觸發都中）
+    npc.conditions = [f.cond_area(sp=1, area=(0, 0, 239, 239))]
+    assert A.report_area_overlap([mine, npc], {'船旗初始化': {}}) == []
+
+
+def test_report_area_overlap_ignores_own_triggers(f):
+    mine = f.trig(name='1船入西', conds=[f.cond_area(sp=1, area=(70, 230, 85, 239))],
+                  effects=[f.eff_teleport(sp=1, area=(79, 233, 79, 233), x=81, y=232)])
+    assert A.report_area_overlap([mine], {'1船入西': {}}) == []
