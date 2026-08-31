@@ -443,20 +443,19 @@ params:
       name: 1船暈東
       enabled: 0
       looping: 0
-      reason: 渡船東座位1：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船東座位1：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 0, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      - {type: bring_object_to_area, unit_object: 0, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226}
       effects:
       - {type: activate_trigger, trigger_id: 5358}
     - kind: trigger_add
       name: 1船入東
       enabled: 0
       looping: 1
-      reason: 渡船東座位1：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      reason: 渡船東座位1：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 1, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228, location_x: 110, location_y: 226}
+      - {type: teleport_object, source_player: 1, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 1船免東
       enabled: 0
@@ -479,50 +478,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 1船暈東}
       - {type: deactivate_trigger, trigger_name: 1船免東}
     - kind: trigger_add
-      name: 1船出東
-      enabled: 1
-      looping: 1
-      reason: 渡船東座位1：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
-      effects:
-      - {type: teleport_object, source_player: 1, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
-    - kind: trigger_add
       name: 1船清入東
       enabled: 1
       looping: 1
-      reason: 渡船東座位1：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      reason: 渡船東座位1：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 1, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+      - {type: task_object, source_player: 1, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
-      name: 1船清出東
+      name: 1船出東
       enabled: 1
       looping: 1
-      reason: 渡船東座位1：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      reason: 渡船東座位1：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 1, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+      - {type: teleport_object, source_player: 1, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 112, location_y: 228}
+      - {type: task_object, source_player: 1, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 2船暈東
       enabled: 0
       looping: 0
-      reason: 渡船東座位2：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船東座位2：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 1, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      - {type: bring_object_to_area, unit_object: 1, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226}
       effects:
       - {type: activate_trigger, trigger_id: 5361}
     - kind: trigger_add
       name: 2船入東
       enabled: 0
       looping: 1
-      reason: 渡船東座位2：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      reason: 渡船東座位2：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 2, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228, location_x: 110, location_y: 226}
+      - {type: teleport_object, source_player: 2, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 2船免東
       enabled: 0
@@ -545,50 +533,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 2船暈東}
       - {type: deactivate_trigger, trigger_name: 2船免東}
     - kind: trigger_add
-      name: 2船出東
-      enabled: 1
-      looping: 1
-      reason: 渡船東座位2：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
-      effects:
-      - {type: teleport_object, source_player: 2, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
-    - kind: trigger_add
       name: 2船清入東
       enabled: 1
       looping: 1
-      reason: 渡船東座位2：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      reason: 渡船東座位2：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 2, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+      - {type: task_object, source_player: 2, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
-      name: 2船清出東
+      name: 2船出東
       enabled: 1
       looping: 1
-      reason: 渡船東座位2：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      reason: 渡船東座位2：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 2, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+      - {type: teleport_object, source_player: 2, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 112, location_y: 228}
+      - {type: task_object, source_player: 2, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 3船暈東
       enabled: 0
       looping: 0
-      reason: 渡船東座位3：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船東座位3：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 2, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      - {type: bring_object_to_area, unit_object: 2, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226}
       effects:
       - {type: activate_trigger, trigger_id: 5363}
     - kind: trigger_add
       name: 3船入東
       enabled: 0
       looping: 1
-      reason: 渡船東座位3：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      reason: 渡船東座位3：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 3, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228, location_x: 110, location_y: 226}
+      - {type: teleport_object, source_player: 3, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 3船免東
       enabled: 0
@@ -611,50 +588,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 3船暈東}
       - {type: deactivate_trigger, trigger_name: 3船免東}
     - kind: trigger_add
-      name: 3船出東
-      enabled: 1
-      looping: 1
-      reason: 渡船東座位3：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
-      effects:
-      - {type: teleport_object, source_player: 3, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
-    - kind: trigger_add
       name: 3船清入東
       enabled: 1
       looping: 1
-      reason: 渡船東座位3：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      reason: 渡船東座位3：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 3, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+      - {type: task_object, source_player: 3, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
-      name: 3船清出東
+      name: 3船出東
       enabled: 1
       looping: 1
-      reason: 渡船東座位3：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      reason: 渡船東座位3：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 3, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+      - {type: teleport_object, source_player: 3, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 112, location_y: 228}
+      - {type: task_object, source_player: 3, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 4船暈東
       enabled: 0
       looping: 0
-      reason: 渡船東座位4：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船東座位4：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 502, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      - {type: bring_object_to_area, unit_object: 502, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226}
       effects:
       - {type: activate_trigger, trigger_id: 5365}
     - kind: trigger_add
       name: 4船入東
       enabled: 0
       looping: 1
-      reason: 渡船東座位4：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      reason: 渡船東座位4：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 4, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228, location_x: 110, location_y: 226}
+      - {type: teleport_object, source_player: 4, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 4船免東
       enabled: 0
@@ -677,50 +643,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 4船暈東}
       - {type: deactivate_trigger, trigger_name: 4船免東}
     - kind: trigger_add
-      name: 4船出東
-      enabled: 1
-      looping: 1
-      reason: 渡船東座位4：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
-      effects:
-      - {type: teleport_object, source_player: 4, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
-    - kind: trigger_add
       name: 4船清入東
       enabled: 1
       looping: 1
-      reason: 渡船東座位4：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      reason: 渡船東座位4：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 4, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+      - {type: task_object, source_player: 4, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
-      name: 4船清出東
+      name: 4船出東
       enabled: 1
       looping: 1
-      reason: 渡船東座位4：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      reason: 渡船東座位4：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 4, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+      - {type: teleport_object, source_player: 4, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 112, location_y: 228}
+      - {type: task_object, source_player: 4, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 5船暈東
       enabled: 0
       looping: 0
-      reason: 渡船東座位5：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船東座位5：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 7, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      - {type: bring_object_to_area, unit_object: 7, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226}
       effects:
       - {type: activate_trigger, trigger_id: 5367}
     - kind: trigger_add
       name: 5船入東
       enabled: 0
       looping: 1
-      reason: 渡船東座位5：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      reason: 渡船東座位5：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 5, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228, location_x: 110, location_y: 226}
+      - {type: teleport_object, source_player: 5, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 5船免東
       enabled: 0
@@ -743,50 +698,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 5船暈東}
       - {type: deactivate_trigger, trigger_name: 5船免東}
     - kind: trigger_add
-      name: 5船出東
-      enabled: 1
-      looping: 1
-      reason: 渡船東座位5：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
-      effects:
-      - {type: teleport_object, source_player: 5, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
-    - kind: trigger_add
       name: 5船清入東
       enabled: 1
       looping: 1
-      reason: 渡船東座位5：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      reason: 渡船東座位5：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 5, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+      - {type: task_object, source_player: 5, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
-      name: 5船清出東
+      name: 5船出東
       enabled: 1
       looping: 1
-      reason: 渡船東座位5：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      reason: 渡船東座位5：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 5, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+      - {type: teleport_object, source_player: 5, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 112, location_y: 228}
+      - {type: task_object, source_player: 5, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 6船暈東
       enabled: 0
       looping: 0
-      reason: 渡船東座位6：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船東座位6：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 45117, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      - {type: bring_object_to_area, unit_object: 45117, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226}
       effects:
       - {type: activate_trigger, trigger_id: 5369}
     - kind: trigger_add
       name: 6船入東
       enabled: 0
       looping: 1
-      reason: 渡船東座位6：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228}
+      reason: 渡船東座位6：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 6, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 228, location_x: 110, location_y: 226}
+      - {type: teleport_object, source_player: 6, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 6船免東
       enabled: 0
@@ -809,50 +753,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 6船暈東}
       - {type: deactivate_trigger, trigger_name: 6船免東}
     - kind: trigger_add
-      name: 6船出東
-      enabled: 1
-      looping: 1
-      reason: 渡船東座位6：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228}
-      effects:
-      - {type: teleport_object, source_player: 6, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 116, location_y: 232}
-    - kind: trigger_add
       name: 6船清入東
       enabled: 1
       looping: 1
-      reason: 渡船東座位6：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226}
+      reason: 渡船東座位6：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 6, area_x1: 110, area_y1: 226, area_x2: 110, area_y2: 226, location_x: 110, location_y: 225}
+      - {type: task_object, source_player: 6, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
-      name: 6船清出東
+      name: 6船出東
       enabled: 1
       looping: 1
-      reason: 渡船東座位6：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232}
+      reason: 渡船東座位6：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 6, area_x1: 116, area_y1: 232, area_x2: 116, area_y2: 232, location_x: 116, location_y: 234}
+      - {type: teleport_object, source_player: 6, area_x1: 110, area_y1: 228, area_x2: 110, area_y2: 228, location_x: 112, location_y: 228}
+      - {type: task_object, source_player: 6, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 1船暈西
       enabled: 0
       looping: 0
-      reason: 渡船西座位1：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船西座位1：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 0, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      - {type: bring_object_to_area, unit_object: 0, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
       effects:
       - {type: activate_trigger, trigger_id: 5358}
     - kind: trigger_add
       name: 1船入西
       enabled: 0
       looping: 1
-      reason: 渡船西座位1：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      reason: 渡船西座位1：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234, location_x: 81, location_y: 233}
+      - {type: teleport_object, source_player: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 1船免西
       enabled: 0
@@ -875,50 +808,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 1船暈西}
       - {type: deactivate_trigger, trigger_name: 1船免西}
     - kind: trigger_add
-      name: 1船出西
-      enabled: 1
-      looping: 1
-      reason: 渡船西座位1：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
-      effects:
-      - {type: teleport_object, source_player: 1, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
-    - kind: trigger_add
       name: 1船清入西
       enabled: 1
       looping: 1
-      reason: 渡船西座位1：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      reason: 渡船西座位1：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 1, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+      - {type: task_object, source_player: 1, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
-      name: 1船清出西
+      name: 1船出西
       enabled: 1
       looping: 1
-      reason: 渡船西座位1：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      reason: 渡船西座位1：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 1, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
+      - {type: teleport_object, source_player: 1, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 79, location_y: 235}
+      - {type: task_object, source_player: 1, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 2船暈西
       enabled: 0
       looping: 0
-      reason: 渡船西座位2：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船西座位2：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      - {type: bring_object_to_area, unit_object: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
       effects:
       - {type: activate_trigger, trigger_id: 5361}
     - kind: trigger_add
       name: 2船入西
       enabled: 0
       looping: 1
-      reason: 渡船西座位2：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      reason: 渡船西座位2：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234, location_x: 81, location_y: 233}
+      - {type: teleport_object, source_player: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 2船免西
       enabled: 0
@@ -941,50 +863,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 2船暈西}
       - {type: deactivate_trigger, trigger_name: 2船免西}
     - kind: trigger_add
-      name: 2船出西
-      enabled: 1
-      looping: 1
-      reason: 渡船西座位2：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
-      effects:
-      - {type: teleport_object, source_player: 2, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
-    - kind: trigger_add
       name: 2船清入西
       enabled: 1
       looping: 1
-      reason: 渡船西座位2：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      reason: 渡船西座位2：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 2, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+      - {type: task_object, source_player: 2, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
-      name: 2船清出西
+      name: 2船出西
       enabled: 1
       looping: 1
-      reason: 渡船西座位2：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      reason: 渡船西座位2：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 2, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
+      - {type: teleport_object, source_player: 2, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 79, location_y: 235}
+      - {type: task_object, source_player: 2, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 3船暈西
       enabled: 0
       looping: 0
-      reason: 渡船西座位3：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船西座位3：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      - {type: bring_object_to_area, unit_object: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
       effects:
       - {type: activate_trigger, trigger_id: 5363}
     - kind: trigger_add
       name: 3船入西
       enabled: 0
       looping: 1
-      reason: 渡船西座位3：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      reason: 渡船西座位3：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 3, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234, location_x: 81, location_y: 233}
+      - {type: teleport_object, source_player: 3, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 3船免西
       enabled: 0
@@ -1007,50 +918,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 3船暈西}
       - {type: deactivate_trigger, trigger_name: 3船免西}
     - kind: trigger_add
-      name: 3船出西
-      enabled: 1
-      looping: 1
-      reason: 渡船西座位3：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
-      effects:
-      - {type: teleport_object, source_player: 3, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
-    - kind: trigger_add
       name: 3船清入西
       enabled: 1
       looping: 1
-      reason: 渡船西座位3：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      reason: 渡船西座位3：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 3, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+      - {type: task_object, source_player: 3, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
-      name: 3船清出西
+      name: 3船出西
       enabled: 1
       looping: 1
-      reason: 渡船西座位3：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      reason: 渡船西座位3：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 3, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
+      - {type: teleport_object, source_player: 3, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 79, location_y: 235}
+      - {type: task_object, source_player: 3, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 4船暈西
       enabled: 0
       looping: 0
-      reason: 渡船西座位4：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船西座位4：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 502, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      - {type: bring_object_to_area, unit_object: 502, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
       effects:
       - {type: activate_trigger, trigger_id: 5365}
     - kind: trigger_add
       name: 4船入西
       enabled: 0
       looping: 1
-      reason: 渡船西座位4：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      reason: 渡船西座位4：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 4, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234, location_x: 81, location_y: 233}
+      - {type: teleport_object, source_player: 4, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 4船免西
       enabled: 0
@@ -1073,50 +973,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 4船暈西}
       - {type: deactivate_trigger, trigger_name: 4船免西}
     - kind: trigger_add
-      name: 4船出西
-      enabled: 1
-      looping: 1
-      reason: 渡船西座位4：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
-      effects:
-      - {type: teleport_object, source_player: 4, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
-    - kind: trigger_add
       name: 4船清入西
       enabled: 1
       looping: 1
-      reason: 渡船西座位4：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      reason: 渡船西座位4：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 4, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+      - {type: task_object, source_player: 4, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
-      name: 4船清出西
+      name: 4船出西
       enabled: 1
       looping: 1
-      reason: 渡船西座位4：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      reason: 渡船西座位4：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 4, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
+      - {type: teleport_object, source_player: 4, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 79, location_y: 235}
+      - {type: task_object, source_player: 4, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 5船暈西
       enabled: 0
       looping: 0
-      reason: 渡船西座位5：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船西座位5：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 7, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      - {type: bring_object_to_area, unit_object: 7, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
       effects:
       - {type: activate_trigger, trigger_id: 5367}
     - kind: trigger_add
       name: 5船入西
       enabled: 0
       looping: 1
-      reason: 渡船西座位5：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      reason: 渡船西座位5：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 5, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234, location_x: 81, location_y: 233}
+      - {type: teleport_object, source_player: 5, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 5船免西
       enabled: 0
@@ -1139,50 +1028,39 @@ params:
       - {type: deactivate_trigger, trigger_name: 5船暈西}
       - {type: deactivate_trigger, trigger_name: 5船免西}
     - kind: trigger_add
-      name: 5船出西
-      enabled: 1
-      looping: 1
-      reason: 渡船西座位5：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
-      effects:
-      - {type: teleport_object, source_player: 5, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
-    - kind: trigger_add
       name: 5船清入西
       enabled: 1
       looping: 1
-      reason: 渡船西座位5：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      reason: 渡船西座位5：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 5, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+      - {type: task_object, source_player: 5, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
-      name: 5船清出西
+      name: 5船出西
       enabled: 1
       looping: 1
-      reason: 渡船西座位5：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      reason: 渡船西座位5：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 5, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
+      - {type: teleport_object, source_player: 5, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 79, location_y: 235}
+      - {type: task_object, source_player: 5, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 6船暈西
       enabled: 0
       looping: 0
-      reason: 渡船西座位6：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+      reason: 渡船西座位6：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
       conditions:
-      - {type: bring_object_to_area, unit_object: 45117, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      - {type: bring_object_to_area, unit_object: 45117, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233}
       effects:
       - {type: activate_trigger, trigger_id: 5369}
     - kind: trigger_add
       name: 6船入西
       enabled: 0
       looping: 1
-      reason: 渡船西座位6：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234}
+      reason: 渡船西座位6：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+      conditions: []
       effects:
-      - {type: teleport_object, source_player: 6, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 234, location_x: 81, location_y: 233}
+      - {type: teleport_object, source_player: 6, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 6船免西
       enabled: 0
@@ -1205,32 +1083,22 @@ params:
       - {type: deactivate_trigger, trigger_name: 6船暈西}
       - {type: deactivate_trigger, trigger_name: 6船免西}
     - kind: trigger_add
-      name: 6船出西
-      enabled: 1
-      looping: 1
-      reason: 渡船西座位6：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235}
-      effects:
-      - {type: teleport_object, source_player: 6, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 75, location_y: 234}
-    - kind: trigger_add
       name: 6船清入西
       enabled: 1
       looping: 1
-      reason: 渡船西座位6：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233}
+      reason: 渡船西座位6：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+      conditions: []
       effects:
-      - {type: task_object, source_player: 6, area_x1: 81, area_y1: 233, area_x2: 81, area_y2: 233, location_x: 81, location_y: 232}
+      - {type: task_object, source_player: 6, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
-      name: 6船清出西
+      name: 6船出西
       enabled: 1
       looping: 1
-      reason: 渡船西座位6：牆外落點被壓住→叫走
-      conditions:
-      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234}
+      reason: 渡船西座位6：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+      conditions: []
       effects:
-      - {type: task_object, source_player: 6, area_x1: 75, area_y1: 234, area_x2: 75, area_y2: 234, location_x: 79, location_y: 235}
+      - {type: teleport_object, source_player: 6, area_x1: 81, area_y1: 235, area_x2: 81, area_y2: 235, location_x: 79, location_y: 235}
+      - {type: task_object, source_player: 6, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 船卸東
       enabled: 0
@@ -1240,7 +1108,7 @@ params:
       - {type: timer, timer: 8}
       - {type: objects_in_area, quantity: 1, source_player: 8, object_list: 545, area_x1: 107, area_y1: 225, area_x2: 109, area_y2: 229}
       effects:
-      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 107, area_y1: 225, area_x2: 109, area_y2: 229, location_x: 110, location_y: 226}
+      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 107, area_y1: 225, area_x2: 109, area_y2: 229, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 船卸西
       enabled: 0
@@ -1250,16 +1118,16 @@ params:
       - {type: timer, timer: 8}
       - {type: objects_in_area, quantity: 1, source_player: 8, object_list: 545, area_x1: 82, area_y1: 233, area_x2: 84, area_y2: 235}
       effects:
-      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 82, area_y1: 233, area_x2: 84, area_y2: 235, location_x: 81, location_y: 233}
+      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 82, area_y1: 233, area_x2: 84, area_y2: 235, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 船旗初始化
       enabled: 1
       looping: 0
-      reason: 渡船：兩碼頭牆外／牆內 Gaia 旗（FLAG_A 600）
+      reason: 渡船：兩碼頭進入點／出來點 Gaia 旗（FLAG_A 600）
       conditions:
       - {type: timer, timer: 0}
       effects:
-      - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 112, location_y: 227}
+      - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 112, location_y: 226}
       - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 110, location_y: 228}
       - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 79, location_y: 233}
       - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 81, location_y: 235}
@@ -1288,7 +1156,7 @@ params:
     - trigger_id: 3750
       name: 1船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3755, name: 2船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - {trigger_id: 3755, name: 2船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
@@ -1315,7 +1183,7 @@ params:
     - trigger_id: 3755
       name: 2船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 2, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 2, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3760, name: 3船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - {trigger_id: 3760, name: 3船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
@@ -1342,7 +1210,7 @@ params:
     - trigger_id: 3760
       name: 3船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3765, name: 4船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - {trigger_id: 3765, name: 4船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
@@ -1369,7 +1237,7 @@ params:
     - trigger_id: 3765
       name: 4船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 4, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 4, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3770, name: 5船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - {trigger_id: 3770, name: 5船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
@@ -1396,7 +1264,7 @@ params:
     - trigger_id: 3770
       name: 5船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3775, name: 6船6, kind: effect, index: 1, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - {trigger_id: 3775, name: 6船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
@@ -1423,7 +1291,7 @@ params:
     - trigger_id: 3775
       name: 6船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 6, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 6, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3781, name: 1船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - trigger_id: 3781
@@ -1449,7 +1317,7 @@ params:
     - trigger_id: 3781
       name: 1船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 1, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3787, name: 2船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - trigger_id: 3787
@@ -1475,7 +1343,7 @@ params:
     - trigger_id: 3787
       name: 2船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 2, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 2, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3793, name: 3船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - trigger_id: 3793
@@ -1501,7 +1369,7 @@ params:
     - trigger_id: 3793
       name: 3船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 3, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3799, name: 4船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - trigger_id: 3799
@@ -1527,7 +1395,7 @@ params:
     - trigger_id: 3799
       name: 4船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 4, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 4, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3805, name: 5船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - trigger_id: 3805
@@ -1553,7 +1421,7 @@ params:
     - trigger_id: 3805
       name: 5船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 5, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3811, name: 6船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - trigger_id: 3811
@@ -1579,7 +1447,7 @@ params:
     - trigger_id: 3811
       name: 6船6
       kind: effect_add
-      effect: {type: send_chat, source_player: 6, message: <ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸}
+      effect: {type: send_chat, source_player: 6, message: <ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸}
       reason: 買票提示，僅買票座位可見
     - {trigger_id: 3760, name: 3船6, kind: effect, index: 3, field: message, old: <GREEN>失去了　2000　兩銀, new: <GREEN>失去精力        100000, reason: 東碼頭扣的是精力，其餘五座位皆「失去精力 100000」，3P 抄錯}
     - trigger_id: 3732

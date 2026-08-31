@@ -8,7 +8,11 @@ sys.path.insert(0, __file__.rsplit('tools', 1)[0])
 from core.scenario_io import load
 
 SEATS, PIERS = range(1, 7), ('東', '西')
-KINDS = ('船入', '船暈', '船窗止', '船出', '船清入', '船清出', '船免')
+KINDS = ('船入', '船暈', '船窗止', '船出', '船清入', '船免')
+POINTS = {'東': dict(enter=(112, 226), land_in=(110, 225), move_in=(110, 227),
+                    in_flag=(110, 228), land_out=(112, 228), move_out=(114, 228)),
+          '西': dict(enter=(79, 233), land_in=(81, 232), move_in=(81, 234),
+                    in_flag=(81, 235), land_out=(79, 235), move_out=(77, 235))}
 
 
 def main(path):
@@ -48,16 +52,39 @@ def main(path):
               f'T{tid}「{t.name}」不直接啟動 X頭暈起')
         check(sum(1 for e in t.effects if int(e.effect_type) == 8) == 4, f'T{tid}「{t.name}」啟動 4 支（入/窗止/暈/免）')
         check(any(int(e.effect_type) == 3 and '三分鐘' in (e.message or '') for e in t.effects), f'T{tid}「{t.name}」有買票提示')
-    ENTER = {'東': (112, 226, 112, 228), '西': (79, 233, 79, 234)}
+    def area_of(o):
+        return (o.area_x1, o.area_y1, o.area_x2, o.area_y2)
+    # s39 把所有矩陣觸發的 enabled 一律設 0、改由選角啟動清單打開 → 查 enabled 是假陽性，改查有啟動邊指向
+    activated = {e.trigger_id for t in tm.triggers for e in t.effects if int(e.effect_type) == 8}
     for p in PIERS:
+        pt = POINTS[p]
         for s in SEATS:
-            for kind in ('船入', '船暈'):
-                t = by_name[f'{s}{kind}{p}'][0]
-                c = t.conditions[0]
-                got = (c.area_x1, c.area_y1, c.area_x2, c.area_y2)
-                check(got == ENTER[p], f'{s}{kind}{p} 進場感應區＝貼牆整排 {ENTER[p]} → 得 {got}')
             t = by_name[f'{s}船入{p}'][0]
-            check(len(t.conditions) == 1, f'{s}船入{p} 無閱歷門檻（靜默失敗源）→ 得 {len(t.conditions)} 條件')
+            e = t.effects[0]
+            check(not t.conditions and int(e.effect_type) == 35 and area_of(e) == pt['enter'] * 2
+                  and (e.location_x, e.location_y) == pt['land_in'],
+                  f'{s}船入{p} 零條件、{pt["enter"]}→{pt["land_in"]}')
+            t = by_name[f'{s}船暈{p}'][0]
+            check(area_of(t.conditions[0]) == pt['enter'] * 2, f'{s}船暈{p} 條件在進入點 {pt["enter"]}')
+            t = by_name[f'{s}船清入{p}'][0]
+            e = t.effects[0]
+            check(not t.conditions and t.trigger_id in activated and int(e.effect_type) == 12
+                  and area_of(e) == pt['land_in'] * 2 and (e.location_x, e.location_y) == pt['move_in'],
+                  f'{s}船清入{p} 選角啟用、{pt["land_in"]}→{pt["move_in"]}')
+            t = by_name[f'{s}船出{p}'][0]
+            tp, tk = t.effects[0], t.effects[1]
+            check(not t.conditions and t.trigger_id in activated and int(tp.effect_type) == 35
+                  and area_of(tp) == pt['in_flag'] * 2 and (tp.location_x, tp.location_y) == pt['land_out']
+                  and int(tk.effect_type) == 12 and area_of(tk) == pt['land_out'] * 2
+                  and (tk.location_x, tk.location_y) == pt['move_out'],
+                  f'{s}船出{p} 選角啟用、{pt["in_flag"]}→{pt["land_out"]}→任務{pt["move_out"]}')
+        t = by_name[f'船卸{p}'][0]
+        check((t.effects[0].location_x, t.effects[0].location_y) == pt['land_in'],
+              f'船卸{p} 卸到內落點 {pt["land_in"]}')
+    t = by_name['船旗初始化'][0]
+    got = {(e.location_x, e.location_y) for e in t.effects}
+    want = {POINTS[p][k] for p in PIERS for k in ('enter', 'in_flag')}
+    check(got == want, f'船旗＝進入點與出來點 {sorted(want)} → 得 {sorted(got)}')
     for tid in (3748, 3753, 3758, 3763, 3768, 3773, 3779, 3785, 3791, 3797, 3803, 3809):
         t = tm.triggers[tid]
         check(not any(int(e.effect_type) == 15 for e in t.effects), f'T{tid}「{t.name}」REMOVE 已清')

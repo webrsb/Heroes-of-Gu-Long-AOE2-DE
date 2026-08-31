@@ -116,176 +116,164 @@ s37	effect_field	T3983「2缺2」E#0	message	<ORANGE>商人南宮缺：是我�
 s37	effect_field	T3986「3缺2」E#0	message	<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖	<ORANGE>商人南宮缺：是我的卷軸，感謝少俠！為表誠意，送你任督圖	去開頭 DEL
 s37	effect_field	T3991「5缺」E#0	message	<ORANGE>商人南宮缺：我的武林秘笈給強盜搶了，你可替我取回嗎？	<ORANGE>商人南宮缺：我的武林秘笈給強盜搶了，你可替我取回嗎？	去開頭 DEL
 s37	effect_field	T794「2武」E#4	message	<GREEN>得到了　技能點數　2	<GREEN>得到了　技能點數　2	去中間 DEL（顯示為空框）
-s37	trigger_add	1船暈東	trigger		T5602 1條件/1效果	渡船東座位1：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	1船入東	trigger		T5603 1條件/1效果	渡船東座位1：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	1船暈東	trigger		T5602 1條件/1效果	渡船東座位1：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	1船入東	trigger		T5603 0條件/1效果	渡船東座位1：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
 s37	trigger_add	1船免東	trigger		T5604 0條件/3效果	渡船東座位1：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
 s37	trigger_add	1船窗止東	trigger		T5605 1條件/3效果	渡船東座位1：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	1船出東	trigger		T5606 1條件/1效果	渡船東座位1：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	1船清入東	trigger		T5607 1條件/1效果	渡船東座位1：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	1船清出東	trigger		T5608 1條件/1效果	渡船東座位1：牆外落點被壓住→叫走
-s37	trigger_add	2船暈東	trigger		T5609 1條件/1效果	渡船東座位2：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	2船入東	trigger		T5610 1條件/1效果	渡船東座位2：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	2船免東	trigger		T5611 0條件/3效果	渡船東座位2：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	2船窗止東	trigger		T5612 1條件/3效果	渡船東座位2：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	2船出東	trigger		T5613 1條件/1效果	渡船東座位2：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	2船清入東	trigger		T5614 1條件/1效果	渡船東座位2：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	2船清出東	trigger		T5615 1條件/1效果	渡船東座位2：牆外落點被壓住→叫走
-s37	trigger_add	3船暈東	trigger		T5616 1條件/1效果	渡船東座位3：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	3船入東	trigger		T5617 1條件/1效果	渡船東座位3：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	3船免東	trigger		T5618 0條件/3效果	渡船東座位3：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	3船窗止東	trigger		T5619 1條件/3效果	渡船東座位3：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	3船出東	trigger		T5620 1條件/1效果	渡船東座位3：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	3船清入東	trigger		T5621 1條件/1效果	渡船東座位3：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	3船清出東	trigger		T5622 1條件/1效果	渡船東座位3：牆外落點被壓住→叫走
-s37	trigger_add	4船暈東	trigger		T5623 1條件/1效果	渡船東座位4：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	4船入東	trigger		T5624 1條件/1效果	渡船東座位4：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	4船免東	trigger		T5625 0條件/3效果	渡船東座位4：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	4船窗止東	trigger		T5626 1條件/3效果	渡船東座位4：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	4船出東	trigger		T5627 1條件/1效果	渡船東座位4：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	4船清入東	trigger		T5628 1條件/1效果	渡船東座位4：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	4船清出東	trigger		T5629 1條件/1效果	渡船東座位4：牆外落點被壓住→叫走
-s37	trigger_add	5船暈東	trigger		T5630 1條件/1效果	渡船東座位5：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	5船入東	trigger		T5631 1條件/1效果	渡船東座位5：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	5船免東	trigger		T5632 0條件/3效果	渡船東座位5：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	5船窗止東	trigger		T5633 1條件/3效果	渡船東座位5：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	5船出東	trigger		T5634 1條件/1效果	渡船東座位5：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	5船清入東	trigger		T5635 1條件/1效果	渡船東座位5：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	5船清出東	trigger		T5636 1條件/1效果	渡船東座位5：牆外落點被壓住→叫走
-s37	trigger_add	6船暈東	trigger		T5637 1條件/1效果	渡船東座位6：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	6船入東	trigger		T5638 1條件/1效果	渡船東座位6：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	6船免東	trigger		T5639 0條件/3效果	渡船東座位6：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	6船窗止東	trigger		T5640 1條件/3效果	渡船東座位6：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	6船出東	trigger		T5641 1條件/1效果	渡船東座位6：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	6船清入東	trigger		T5642 1條件/1效果	渡船東座位6：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	6船清出東	trigger		T5643 1條件/1效果	渡船東座位6：牆外落點被壓住→叫走
-s37	trigger_add	1船暈西	trigger		T5644 1條件/1效果	渡船西座位1：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	1船入西	trigger		T5645 1條件/1效果	渡船西座位1：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	1船免西	trigger		T5646 0條件/3效果	渡船西座位1：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	1船窗止西	trigger		T5647 1條件/3效果	渡船西座位1：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	1船出西	trigger		T5648 1條件/1效果	渡船西座位1：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	1船清入西	trigger		T5649 1條件/1效果	渡船西座位1：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	1船清出西	trigger		T5650 1條件/1效果	渡船西座位1：牆外落點被壓住→叫走
-s37	trigger_add	2船暈西	trigger		T5651 1條件/1效果	渡船西座位2：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	2船入西	trigger		T5652 1條件/1效果	渡船西座位2：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	2船免西	trigger		T5653 0條件/3效果	渡船西座位2：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	2船窗止西	trigger		T5654 1條件/3效果	渡船西座位2：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	2船出西	trigger		T5655 1條件/1效果	渡船西座位2：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	2船清入西	trigger		T5656 1條件/1效果	渡船西座位2：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	2船清出西	trigger		T5657 1條件/1效果	渡船西座位2：牆外落點被壓住→叫走
-s37	trigger_add	3船暈西	trigger		T5658 1條件/1效果	渡船西座位3：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	3船入西	trigger		T5659 1條件/1效果	渡船西座位3：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	3船免西	trigger		T5660 0條件/3效果	渡船西座位3：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	3船窗止西	trigger		T5661 1條件/3效果	渡船西座位3：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	3船出西	trigger		T5662 1條件/1效果	渡船西座位3：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	3船清入西	trigger		T5663 1條件/1效果	渡船西座位3：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	3船清出西	trigger		T5664 1條件/1效果	渡船西座位3：牆外落點被壓住→叫走
-s37	trigger_add	4船暈西	trigger		T5665 1條件/1效果	渡船西座位4：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	4船入西	trigger		T5666 1條件/1效果	渡船西座位4：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	4船免西	trigger		T5667 0條件/3效果	渡船西座位4：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	4船窗止西	trigger		T5668 1條件/3效果	渡船西座位4：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	4船出西	trigger		T5669 1條件/1效果	渡船西座位4：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	4船清入西	trigger		T5670 1條件/1效果	渡船西座位4：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	4船清出西	trigger		T5671 1條件/1效果	渡船西座位4：牆外落點被壓住→叫走
-s37	trigger_add	5船暈西	trigger		T5672 1條件/1效果	渡船西座位5：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	5船入西	trigger		T5673 1條件/1效果	渡船西座位5：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	5船免西	trigger		T5674 0條件/3效果	渡船西座位5：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	5船窗止西	trigger		T5675 1條件/3效果	渡船西座位5：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	5船出西	trigger		T5676 1條件/1效果	渡船西座位5：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	5船清入西	trigger		T5677 1條件/1效果	渡船西座位5：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	5船清出西	trigger		T5678 1條件/1效果	渡船西座位5：牆外落點被壓住→叫走
-s37	trigger_add	6船暈西	trigger		T5679 1條件/1效果	渡船西座位6：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈
-s37	trigger_add	6船入西	trigger		T5680 1條件/1效果	渡船西座位6：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗
-s37	trigger_add	6船免西	trigger		T5681 0條件/3效果	渡船西座位6：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
-s37	trigger_add	6船窗止西	trigger		T5682 1條件/3效果	渡船西座位6：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
-s37	trigger_add	6船出西	trigger		T5683 1條件/1效果	渡船西座位6：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）
-s37	trigger_add	6船清入西	trigger		T5684 1條件/1效果	渡船西座位6：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）
-s37	trigger_add	6船清出西	trigger		T5685 1條件/1效果	渡船西座位6：牆外落點被壓住→叫走
-s37	trigger_add	船卸東	trigger		T5686 2條件/1效果	渡船東：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
-s37	trigger_add	船卸西	trigger		T5687 2條件/1效果	渡船西：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
-s37	trigger_add	船旗初始化	trigger		T5688 1條件/4效果	渡船：兩碼頭牆外／牆內 Gaia 旗（FLAG_A 600）
+s37	trigger_add	1船清入東	trigger		T5606 0條件/1效果	渡船東座位1：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	1船出東	trigger		T5607 0條件/2效果	渡船東座位1：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	2船暈東	trigger		T5608 1條件/1效果	渡船東座位2：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	2船入東	trigger		T5609 0條件/1效果	渡船東座位2：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	2船免東	trigger		T5610 0條件/3效果	渡船東座位2：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	2船窗止東	trigger		T5611 1條件/3效果	渡船東座位2：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	2船清入東	trigger		T5612 0條件/1效果	渡船東座位2：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	2船出東	trigger		T5613 0條件/2效果	渡船東座位2：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	3船暈東	trigger		T5614 1條件/1效果	渡船東座位3：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	3船入東	trigger		T5615 0條件/1效果	渡船東座位3：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	3船免東	trigger		T5616 0條件/3效果	渡船東座位3：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	3船窗止東	trigger		T5617 1條件/3效果	渡船東座位3：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	3船清入東	trigger		T5618 0條件/1效果	渡船東座位3：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	3船出東	trigger		T5619 0條件/2效果	渡船東座位3：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	4船暈東	trigger		T5620 1條件/1效果	渡船東座位4：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	4船入東	trigger		T5621 0條件/1效果	渡船東座位4：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	4船免東	trigger		T5622 0條件/3效果	渡船東座位4：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	4船窗止東	trigger		T5623 1條件/3效果	渡船東座位4：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	4船清入東	trigger		T5624 0條件/1效果	渡船東座位4：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	4船出東	trigger		T5625 0條件/2效果	渡船東座位4：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	5船暈東	trigger		T5626 1條件/1效果	渡船東座位5：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	5船入東	trigger		T5627 0條件/1效果	渡船東座位5：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	5船免東	trigger		T5628 0條件/3效果	渡船東座位5：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	5船窗止東	trigger		T5629 1條件/3效果	渡船東座位5：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	5船清入東	trigger		T5630 0條件/1效果	渡船東座位5：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	5船出東	trigger		T5631 0條件/2效果	渡船東座位5：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	6船暈東	trigger		T5632 1條件/1效果	渡船東座位6：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	6船入東	trigger		T5633 0條件/1效果	渡船東座位6：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	6船免東	trigger		T5634 0條件/3效果	渡船東座位6：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	6船窗止東	trigger		T5635 1條件/3效果	渡船東座位6：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	6船清入東	trigger		T5636 0條件/1效果	渡船東座位6：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	6船出東	trigger		T5637 0條件/2效果	渡船東座位6：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	1船暈西	trigger		T5638 1條件/1效果	渡船西座位1：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	1船入西	trigger		T5639 0條件/1效果	渡船西座位1：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	1船免西	trigger		T5640 0條件/3效果	渡船西座位1：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	1船窗止西	trigger		T5641 1條件/3效果	渡船西座位1：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	1船清入西	trigger		T5642 0條件/1效果	渡船西座位1：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	1船出西	trigger		T5643 0條件/2效果	渡船西座位1：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	2船暈西	trigger		T5644 1條件/1效果	渡船西座位2：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	2船入西	trigger		T5645 0條件/1效果	渡船西座位2：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	2船免西	trigger		T5646 0條件/3效果	渡船西座位2：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	2船窗止西	trigger		T5647 1條件/3效果	渡船西座位2：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	2船清入西	trigger		T5648 0條件/1效果	渡船西座位2：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	2船出西	trigger		T5649 0條件/2效果	渡船西座位2：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	3船暈西	trigger		T5650 1條件/1效果	渡船西座位3：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	3船入西	trigger		T5651 0條件/1效果	渡船西座位3：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	3船免西	trigger		T5652 0條件/3效果	渡船西座位3：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	3船窗止西	trigger		T5653 1條件/3效果	渡船西座位3：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	3船清入西	trigger		T5654 0條件/1效果	渡船西座位3：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	3船出西	trigger		T5655 0條件/2效果	渡船西座位3：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	4船暈西	trigger		T5656 1條件/1效果	渡船西座位4：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	4船入西	trigger		T5657 0條件/1效果	渡船西座位4：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	4船免西	trigger		T5658 0條件/3效果	渡船西座位4：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	4船窗止西	trigger		T5659 1條件/3效果	渡船西座位4：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	4船清入西	trigger		T5660 0條件/1效果	渡船西座位4：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	4船出西	trigger		T5661 0條件/2效果	渡船西座位4：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	5船暈西	trigger		T5662 1條件/1效果	渡船西座位5：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	5船入西	trigger		T5663 0條件/1效果	渡船西座位5：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	5船免西	trigger		T5664 0條件/3效果	渡船西座位5：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	5船窗止西	trigger		T5665 1條件/3效果	渡船西座位5：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	5船清入西	trigger		T5666 0條件/1效果	渡船西座位5：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	5船出西	trigger		T5667 0條件/2效果	渡船西座位5：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	6船暈西	trigger		T5668 1條件/1效果	渡船西座位6：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
+s37	trigger_add	6船入西	trigger		T5669 0條件/1效果	渡船西座位6：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
+s37	trigger_add	6船免西	trigger		T5670 0條件/3效果	渡船西座位6：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
+s37	trigger_add	6船窗止西	trigger		T5671 1條件/3效果	渡船西座位6：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
+s37	trigger_add	6船清入西	trigger		T5672 0條件/1效果	渡船西座位6：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
+s37	trigger_add	6船出西	trigger		T5673 0條件/2效果	渡船西座位6：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
+s37	trigger_add	船卸東	trigger		T5674 2條件/1效果	渡船東：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
+s37	trigger_add	船卸西	trigger		T5675 2條件/1效果	渡船西：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
+s37	trigger_add	船旗初始化	trigger		T5676 1條件/4效果	渡船：兩碼頭進入點／出來點 Gaia 旗（FLAG_A 600）
 s37	effect_field	T3750「1船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
 s37	effect_field	T3750「1船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
 s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5603「1船入東」	買票開售票窗
 s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5605「1船窗止東」	買票開售票窗
 s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5602「1船暈東」	買票開售票窗
 s37	effect_add	T3750「1船6」effect_add	activate_trigger		→T5604「1船免東」	買票開售票窗
-s37	effect_add	T3750「1船6」effect_add	send_chat		sp1「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3750「1船6」effect_add	send_chat		sp1「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3755「2船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
 s37	effect_field	T3755「2船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5610「2船入東」	買票開售票窗
-s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5612「2船窗止東」	買票開售票窗
-s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5609「2船暈東」	買票開售票窗
-s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5611「2船免東」	買票開售票窗
-s37	effect_add	T3755「2船6」effect_add	send_chat		sp2「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5609「2船入東」	買票開售票窗
+s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5611「2船窗止東」	買票開售票窗
+s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5608「2船暈東」	買票開售票窗
+s37	effect_add	T3755「2船6」effect_add	activate_trigger		→T5610「2船免東」	買票開售票窗
+s37	effect_add	T3755「2船6」effect_add	send_chat		sp2「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3760「3船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
 s37	effect_field	T3760「3船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5617「3船入東」	買票開售票窗
-s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5619「3船窗止東」	買票開售票窗
-s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5616「3船暈東」	買票開售票窗
-s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5618「3船免東」	買票開售票窗
-s37	effect_add	T3760「3船6」effect_add	send_chat		sp3「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5615「3船入東」	買票開售票窗
+s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5617「3船窗止東」	買票開售票窗
+s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5614「3船暈東」	買票開售票窗
+s37	effect_add	T3760「3船6」effect_add	activate_trigger		→T5616「3船免東」	買票開售票窗
+s37	effect_add	T3760「3船6」effect_add	send_chat		sp3「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3765「4船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
 s37	effect_field	T3765「4船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5624「4船入東」	買票開售票窗
-s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5626「4船窗止東」	買票開售票窗
-s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5623「4船暈東」	買票開售票窗
-s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5625「4船免東」	買票開售票窗
-s37	effect_add	T3765「4船6」effect_add	send_chat		sp4「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5621「4船入東」	買票開售票窗
+s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5623「4船窗止東」	買票開售票窗
+s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5620「4船暈東」	買票開售票窗
+s37	effect_add	T3765「4船6」effect_add	activate_trigger		→T5622「4船免東」	買票開售票窗
+s37	effect_add	T3765「4船6」effect_add	send_chat		sp4「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3770「5船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
 s37	effect_field	T3770「5船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5631「5船入東」	買票開售票窗
-s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5633「5船窗止東」	買票開售票窗
-s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5630「5船暈東」	買票開售票窗
-s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5632「5船免東」	買票開售票窗
-s37	effect_add	T3770「5船6」effect_add	send_chat		sp5「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5627「5船入東」	買票開售票窗
+s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5629「5船窗止東」	買票開售票窗
+s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5626「5船暈東」	買票開售票窗
+s37	effect_add	T3770「5船6」effect_add	activate_trigger		→T5628「5船免東」	買票開售票窗
+s37	effect_add	T3770「5船6」effect_add	send_chat		sp5「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3775「6船6」E#1	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
 s37	effect_field	T3775「6船6」E#4	effect_type	8	0	頭暈改由英雄踩牆外旗觸發（X船暈）
-s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5638「6船入東」	買票開售票窗
-s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5640「6船窗止東」	買票開售票窗
-s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5637「6船暈東」	買票開售票窗
-s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5639「6船免東」	買票開售票窗
-s37	effect_add	T3775「6船6」effect_add	send_chat		sp6「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5633「6船入東」	買票開售票窗
+s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5635「6船窗止東」	買票開售票窗
+s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5632「6船暈東」	買票開售票窗
+s37	effect_add	T3775「6船6」effect_add	activate_trigger		→T5634「6船免東」	買票開售票窗
+s37	effect_add	T3775「6船6」effect_add	send_chat		sp6「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3781「1船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5645「1船入西」	買票開售票窗
-s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5647「1船窗止西」	買票開售票窗
-s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5644「1船暈西」	買票開售票窗
-s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5646「1船免西」	買票開售票窗
-s37	effect_add	T3781「1船6」effect_add	send_chat		sp1「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5639「1船入西」	買票開售票窗
+s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5641「1船窗止西」	買票開售票窗
+s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5638「1船暈西」	買票開售票窗
+s37	effect_add	T3781「1船6」effect_add	activate_trigger		→T5640「1船免西」	買票開售票窗
+s37	effect_add	T3781「1船6」effect_add	send_chat		sp1「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3787「2船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_add	T3787「2船6」effect_add	activate_trigger		→T5652「2船入西」	買票開售票窗
-s37	effect_add	T3787「2船6」effect_add	activate_trigger		→T5654「2船窗止西」	買票開售票窗
-s37	effect_add	T3787「2船6」effect_add	activate_trigger		→T5651「2船暈西」	買票開售票窗
-s37	effect_add	T3787「2船6」effect_add	activate_trigger		→T5653「2船免西」	買票開售票窗
-s37	effect_add	T3787「2船6」effect_add	send_chat		sp2「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3787「2船6」effect_add	activate_trigger		→T5645「2船入西」	買票開售票窗
+s37	effect_add	T3787「2船6」effect_add	activate_trigger		→T5647「2船窗止西」	買票開售票窗
+s37	effect_add	T3787「2船6」effect_add	activate_trigger		→T5644「2船暈西」	買票開售票窗
+s37	effect_add	T3787「2船6」effect_add	activate_trigger		→T5646「2船免西」	買票開售票窗
+s37	effect_add	T3787「2船6」effect_add	send_chat		sp2「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3793「3船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_add	T3793「3船6」effect_add	activate_trigger		→T5659「3船入西」	買票開售票窗
-s37	effect_add	T3793「3船6」effect_add	activate_trigger		→T5661「3船窗止西」	買票開售票窗
-s37	effect_add	T3793「3船6」effect_add	activate_trigger		→T5658「3船暈西」	買票開售票窗
-s37	effect_add	T3793「3船6」effect_add	activate_trigger		→T5660「3船免西」	買票開售票窗
-s37	effect_add	T3793「3船6」effect_add	send_chat		sp3「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3793「3船6」effect_add	activate_trigger		→T5651「3船入西」	買票開售票窗
+s37	effect_add	T3793「3船6」effect_add	activate_trigger		→T5653「3船窗止西」	買票開售票窗
+s37	effect_add	T3793「3船6」effect_add	activate_trigger		→T5650「3船暈西」	買票開售票窗
+s37	effect_add	T3793「3船6」effect_add	activate_trigger		→T5652「3船免西」	買票開售票窗
+s37	effect_add	T3793「3船6」effect_add	send_chat		sp3「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3799「4船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_add	T3799「4船6」effect_add	activate_trigger		→T5666「4船入西」	買票開售票窗
-s37	effect_add	T3799「4船6」effect_add	activate_trigger		→T5668「4船窗止西」	買票開售票窗
-s37	effect_add	T3799「4船6」effect_add	activate_trigger		→T5665「4船暈西」	買票開售票窗
-s37	effect_add	T3799「4船6」effect_add	activate_trigger		→T5667「4船免西」	買票開售票窗
-s37	effect_add	T3799「4船6」effect_add	send_chat		sp4「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3799「4船6」effect_add	activate_trigger		→T5657「4船入西」	買票開售票窗
+s37	effect_add	T3799「4船6」effect_add	activate_trigger		→T5659「4船窗止西」	買票開售票窗
+s37	effect_add	T3799「4船6」effect_add	activate_trigger		→T5656「4船暈西」	買票開售票窗
+s37	effect_add	T3799「4船6」effect_add	activate_trigger		→T5658「4船免西」	買票開售票窗
+s37	effect_add	T3799「4船6」effect_add	send_chat		sp4「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3805「5船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_add	T3805「5船6」effect_add	activate_trigger		→T5673「5船入西」	買票開售票窗
-s37	effect_add	T3805「5船6」effect_add	activate_trigger		→T5675「5船窗止西」	買票開售票窗
-s37	effect_add	T3805「5船6」effect_add	activate_trigger		→T5672「5船暈西」	買票開售票窗
-s37	effect_add	T3805「5船6」effect_add	activate_trigger		→T5674「5船免西」	買票開售票窗
-s37	effect_add	T3805「5船6」effect_add	send_chat		sp5「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3805「5船6」effect_add	activate_trigger		→T5663「5船入西」	買票開售票窗
+s37	effect_add	T3805「5船6」effect_add	activate_trigger		→T5665「5船窗止西」	買票開售票窗
+s37	effect_add	T3805「5船6」effect_add	activate_trigger		→T5662「5船暈西」	買票開售票窗
+s37	effect_add	T3805「5船6」effect_add	activate_trigger		→T5664「5船免西」	買票開售票窗
+s37	effect_add	T3805「5船6」effect_add	send_chat		sp5「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3811「6船6」E#2	effect_type	11	0	票（地圖顯示器）機制移除，牆改由傳送進出
-s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5680「6船入西」	買票開售票窗
-s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5682「6船窗止西」	買票開售票窗
-s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5679「6船暈西」	買票開售票窗
-s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5681「6船免西」	買票開售票窗
-s37	effect_add	T3811「6船6」effect_add	send_chat		sp6「<ORANGE>買票後三分鐘內走到旗子那」	買票提示，僅買票座位可見
+s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5669「6船入西」	買票開售票窗
+s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5671「6船窗止西」	買票開售票窗
+s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5668「6船暈西」	買票開售票窗
+s37	effect_add	T3811「6船6」effect_add	activate_trigger		→T5670「6船免西」	買票開售票窗
+s37	effect_add	T3811「6船6」effect_add	send_chat		sp6「<ORANGE>買票後三分鐘內踩旗子那一」	買票提示，僅買票座位可見
 s37	effect_field	T3760「3船6」E#3	message	<GREEN>失去了　2000　兩銀	<GREEN>失去精力        100000	東碼頭扣的是精力，其餘五座位皆「失去精力 100000」，3P 抄錯
-s37	effect_add	T3732「船」effect_add	activate_trigger		→T5686「船卸東」	派船時武裝一次性卸貨
-s37	effect_add	T3732「船」effect_add	activate_trigger		→T5687「船卸西」	派船時武裝一次性卸貨
-s37	effect_add	T3733「船2」effect_add	activate_trigger		→T5686「船卸東」	派船時武裝一次性卸貨
-s37	effect_add	T3733「船2」effect_add	activate_trigger		→T5687「船卸西」	派船時武裝一次性卸貨
+s37	effect_add	T3732「船」effect_add	activate_trigger		→T5674「船卸東」	派船時武裝一次性卸貨
+s37	effect_add	T3732「船」effect_add	activate_trigger		→T5675「船卸西」	派船時武裝一次性卸貨
+s37	effect_add	T3733「船2」effect_add	activate_trigger		→T5674「船卸東」	派船時武裝一次性卸貨
+s37	effect_add	T3733「船2」effect_add	activate_trigger		→T5675「船卸西」	派船時武裝一次性卸貨
 s37	effect_field	T3748「1船4」E#1	effect_type	15	0	票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄
 s37	effect_field	T3753「2船4」E#1	effect_type	15	0	票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄
 s37	effect_field	T3758「3船4」E#1	effect_type	15	0	票已不存在；此移除唯一可能刪到的是船上駐軍中的英雄

@@ -7,7 +7,12 @@ from tools import gen_ferry_spec as g
 
 SEATS = range(1, 7)
 PIERS = ('東', '西')
-KINDS = ('船入', '船暈', '船窗止', '船出', '船清入', '船清出', '船免')
+KINDS = ('船入', '船暈', '船窗止', '船出', '船清入', '船免')
+# 六點座標＝使用者 SPIIKE傳點位置 擺設對應（進入/內落/內移/出來/外落/外移）
+POINTS = {'東': dict(enter=(112, 226), land_in=(110, 225), move_in=(110, 227),
+                    in_flag=(110, 228), land_out=(112, 228), move_out=(114, 228)),
+          '西': dict(enter=(79, 233), land_in=(81, 232), move_in=(81, 234),
+                    in_flag=(81, 235), land_out=(79, 235), move_out=(77, 235))}
 X6 = {'東': {1: 3750, 2: 3755, 3: 3760, 4: 3765, 5: 3770, 6: 3775},
       '西': {1: 3781, 2: 3787, 3: 3793, 4: 3799, 5: 3805, 6: 3811}}
 X4 = {'東': ({1: 3748, 2: 3753, 3: 3758, 4: 3763, 5: 3768, 6: 3773}, 1),
@@ -23,7 +28,7 @@ def _adds(entries):
 def _check_block(entries):
     adds = _adds(entries)
     names = [a['name'] for a in adds]
-    assert len(names) == len(set(names)) == 87
+    assert len(names) == len(set(names)) == 75
     for s in SEATS:
         for p in PIERS:
             for k in KINDS:
@@ -74,8 +79,6 @@ def _check_block(entries):
         if a['name'].startswith('船卸'):
             assert a['enabled'] == 0 and a['looping'] == 0
             assert [c['type'] for c in a['conditions']] == ['timer', 'objects_in_area'] and a['conditions'][0]['timer'] == 8
-        if '船入' in a['name']:
-            assert [c['type'] for c in a['conditions']] == ['objects_in_area']     # 不再設閱歷門檻（靜默失敗）
         if '船免' in a['name']:
             assert a['enabled'] == 0 and a['looping'] == 1 and a['conditions'] == []
             assert [e['type'] for e in a['effects']] == ['deactivate_trigger'] * 3
@@ -91,22 +94,41 @@ def _check_block(entries):
     for tid in (3674, 3676, 3678, 3680, 3682, 3684):
         assert any(e.get('trigger_id') == tid and e.get('kind') == 'trigger' and e.get('field') == 'enabled'
                    and e.get('old') == 1 and e.get('new') == 0 for e in entries), tid
-    for a in adds:
-        if '船清出西' in a['name']:
-            eff = a['effects'][0]
-            assert (eff['location_x'], eff['location_y']) == (79, 235), a['name']
-    # 進場感應區＝貼牆整排（非單一旗格），且入／暈同區；西不得含出港清場格 (79,235)
-    ENTER = {'東': (112, 226, 112, 228), '西': (79, 233, 79, 234)}
+    # 六點接線（使用者擺設）：入＝零條件、進入點→內落點；清入＝內落點→內移動；出＝內旗→外落點＋外落點→外移動
+    def area_of(d):
+        return (d['area_x1'], d['area_y1'], d['area_x2'], d['area_y2'])
     for s in SEATS:
         for p in PIERS:
-            for kind in ('船入', '船暈'):
-                a = next(x for x in adds if x['name'] == f'{s}{kind}{p}')
-                c = a['conditions'][0]
-                got = (c['area_x1'], c['area_y1'], c['area_x2'], c['area_y2'])
-                assert got == ENTER[p], (a['name'], got)
+            pt = POINTS[p]
+            enter, land_in = pt['enter'], pt['land_in']
             a = next(x for x in adds if x['name'] == f'{s}船入{p}')
+            assert a['conditions'] == [] and a['enabled'] == 0 and a['looping'] == 1, a['name']
             e = a['effects'][0]
-            assert (e['area_x1'], e['area_y1'], e['area_x2'], e['area_y2']) == ENTER[p]
+            assert e['type'] == 'teleport_object' and area_of(e) == enter * 2 \
+                and (e['location_x'], e['location_y']) == land_in, a['name']
+            a = next(x for x in adds if x['name'] == f'{s}船暈{p}')
+            assert area_of(a['conditions'][0]) == enter * 2, a['name']
+            a = next(x for x in adds if x['name'] == f'{s}船清入{p}')
+            assert a['conditions'] == [] and a['enabled'] == 1 and a['looping'] == 1, a['name']
+            e = a['effects'][0]
+            assert e['type'] == 'task_object' and area_of(e) == land_in * 2 \
+                and (e['location_x'], e['location_y']) == pt['move_in'], a['name']
+            a = next(x for x in adds if x['name'] == f'{s}船出{p}')
+            assert a['conditions'] == [] and a['enabled'] == 1 and a['looping'] == 1, a['name']
+            tp, tk = a['effects']
+            assert tp['type'] == 'teleport_object' and area_of(tp) == pt['in_flag'] * 2 \
+                and (tp['location_x'], tp['location_y']) == pt['land_out'], a['name']
+            assert tk['type'] == 'task_object' and area_of(tk) == pt['land_out'] * 2 \
+                and (tk['location_x'], tk['location_y']) == pt['move_out'], a['name']
+    # 船卸落點＝內落點；旗子＝進入點與出來點
+    for a in adds:
+        if a['name'].startswith('船卸'):
+            p = a['name'][-1]
+            e = a['effects'][0]
+            assert (e['location_x'], e['location_y']) == POINTS[p]['land_in'], a['name']
+    flags = next(x for x in adds if x['name'] == '船旗初始化')
+    got = {(e['location_x'], e['location_y']) for e in flags['effects']}
+    assert got == {POINTS[p][k] for p in PIERS for k in ('enter', 'in_flag')}, got
     # 暈在入之前（同 tick 競態）
     for s in SEATS:
         for p in PIERS:

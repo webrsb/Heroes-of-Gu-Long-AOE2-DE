@@ -17,15 +17,15 @@ GRASS = [(3734, '1草'), (3735, '1草2.'), (3736, '2草'), (3737, '2草2'), (373
          (3740, '4草'), (3741, '4草2'), (3742, '5草'), (3743, '5草2'), (3744, '6草'), (3745, '6草2')]
 FLAG_A, TRANSPORT = 600, 545
 PIER = {
-    # enter＝進場感應區（貼牆那一排，含旗格）。2026-08-31 驗收：只認單一旗格時右鍵點旗子只會停在旗子旁邊，
-    # 永遠踩不到 → 擴成貼牆整排；西刻意排除 (79,235)（出港清場格），否則出港者會被叫回來又被吸進去。
-    '東': dict(out_flag=(112, 227), enter=(112, 226, 112, 228),
-              in_land=(110, 226), in_clear=(110, 225), in_flag=(110, 228),
-              out_land=(116, 232), out_clear=(116, 234), dock=(107, 225, 109, 229)),
-    '西': dict(out_flag=(79, 233), enter=(79, 233, 79, 234),
-              in_land=(81, 233), in_clear=(81, 232), in_flag=(81, 235),
-              out_land=(75, 234), out_clear=(79, 235), dock=(82, 233, 84, 235)),
-              # out_clear (79,235)＝使用者 2026-08-31 指定（外旗南 2 格），舊值 (73,234) 堵住走進碼頭的動線
+    # 六個點全部照使用者 2026-08-31 的擺設檔 SPIIKE傳點位置（觸發 in/out）等比對應到本體：
+    # 進入＝外旗那一格（牆的一端）；內落點繞過牆角（不是旗子旁邊，才不會原地反覆傳）；內移動＝牆內中段；
+    # 出來＝內旗（牆的另一端）；外落點＝牆外另一端；外移動＝再往外。全部格子已驗 terrain 可走、無物件。
+    '東': dict(enter=(112, 226), land_in=(110, 225), move_in=(110, 227),
+              in_flag=(110, 228), land_out=(112, 228), move_out=(114, 228),
+              dock=(107, 225, 109, 229)),
+    '西': dict(enter=(79, 233), land_in=(81, 232), move_in=(81, 234),
+              in_flag=(81, 235), land_out=(79, 235), move_out=(77, 235),
+              dock=(82, 233, 84, 235)),
 }
 # 等級門檻推人觸發（基底條件方向寫反：閱歷 ≥1159 → 罵不夠 16 級＋推走，石頭越多越被騷擾）。
 # 修法：C1 加 inverted=1 → <1159 才推；東解除器（≥1160 關推人，兼每 5 秒洗「你以符合等級條件」）失去存在意義，停用。
@@ -38,7 +38,7 @@ BUY_CHAIN = {'東': {1: (3746, 3747, 3750), 2: (3751, 3752, 3755), 3: (3756, 375
                     4: (3761, 3762, 3765), 5: (3766, 3767, 3770), 6: (3771, 3772, 3775)},
              '西': {1: (3776, 3778, 3781), 2: (3782, 3784, 3787), 3: (3788, 3790, 3793),
                     4: (3794, 3796, 3799), 5: (3800, 3802, 3805), 6: (3806, 3808, 3811)}}
-HINT = '<ORANGE>買票後三分鐘內走到旗子那排貼乾草堆的格子即可進入登船處；牆內踩旗可回岸'
+HINT = '<ORANGE>買票後三分鐘內踩旗子那一格即可進入登船處；牆內踩旗可回岸'
 
 
 def _tile(xy):
@@ -61,15 +61,16 @@ def seat_triggers(s, p):
     return [
         # 暈必須排在入之前：同 tick 內入先執行會把英雄傳走，暈就看不到旗格上的英雄（legacy 順序＝id 順序）
         _add(f'{s}船暈{p}', 0, 0,
-             [dict(type='bring_object_to_area', unit_object=HERO_REF[s], **_rect(c['enter']))],
+             [dict(type='bring_object_to_area', unit_object=HERO_REF[s], **_tile(c['enter']))],
              [dict(type='activate_trigger', trigger_id=DIZZY[s])],
-             f'{tag}：英雄進貼牆感應區（窗開）→ 啟動 X頭暈起；取代原作付費即暈'),
+             f'{tag}：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈'),
         _add(f'{s}船入{p}', 0, 1,
-             [dict(type='objects_in_area', quantity=1, source_player=s, **_rect(c['enter']))],
-             [dict(type='teleport_object', source_player=s, **_rect(c['enter']),
-                   location_x=c['in_land'][0], location_y=c['in_land'][1])],
-             f'{tag}：售票窗內走進貼牆感應區→傳一隻進牆內落點。不設閱歷門檻：門檻由 X草／1船 推人觸發'
-             f'（已反相成 <1159 才推）在到船夫之前擋下，加在這裡只會變成無提示的靜默失敗'),
+             [],
+             [dict(type='teleport_object', source_player=s, **_tile(c['enter']),
+                   location_x=c['land_in'][0], location_y=c['land_in'][1])],
+             f'{tag}：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：'
+             f'區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的'
+             f'X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗'),
         _add(f'{s}船免{p}', 0, 1,
              [],
              [dict(type='deactivate_trigger', trigger_id=BUY_CHAIN[p][s][0]),
@@ -83,21 +84,20 @@ def seat_triggers(s, p):
               dict(type='deactivate_trigger', trigger_name=f'{s}船暈{p}'),
               dict(type='deactivate_trigger', trigger_name=f'{s}船免{p}')],
              f'{tag}：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）'),
-        _add(f'{s}船出{p}', 1, 1,
-             [dict(type='objects_in_area', quantity=1, source_player=s, **_tile(c['in_flag']))],
-             [dict(type='teleport_object', source_player=s, **_tile(c['in_flag']),
-                   location_x=c['out_land'][0], location_y=c['out_land'][1])],
-             f'{tag}：踩牆內旗→傳一隻到牆外落點（抵達者／後悔者）'),
         _add(f'{s}船清入{p}', 1, 1,
-             [dict(type='objects_in_area', quantity=1, source_player=s, **_tile(c['in_land']))],
-             [dict(type='task_object', source_player=s, **_tile(c['in_land']),
-                   location_x=c['in_clear'][0], location_y=c['in_clear'][1])],
-             f'{tag}：牆內落點被壓住→叫走到北端死巷（傳送迴圈重試）'),
-        _add(f'{s}船清出{p}', 1, 1,
-             [dict(type='objects_in_area', quantity=1, source_player=s, **_tile(c['out_land']))],
-             [dict(type='task_object', source_player=s, **_tile(c['out_land']),
-                   location_x=c['out_clear'][0], location_y=c['out_clear'][1])],
-             f'{tag}：牆外落點被壓住→叫走'),
+             [],
+             [dict(type='task_object', source_player=s, **_tile(c['land_in']),
+                   location_x=c['move_in'][0], location_y=c['move_in'][1])],
+             f'{tag}：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，'
+             f'而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住'),
+        _add(f'{s}船出{p}', 1, 1,
+             [],
+             [dict(type='teleport_object', source_player=s, **_tile(c['in_flag']),
+                   location_x=c['land_out'][0], location_y=c['land_out'][1]),
+              dict(type='task_object', source_player=s, **_tile(c['land_out']),
+                   location_x=c['move_out'][0], location_y=c['move_out'][1])],
+             f'{tag}：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點'
+             f'（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）'),
     ]
 
 
@@ -109,14 +109,14 @@ def global_triggers():
                         [dict(type='timer', timer=8),
                          dict(type='objects_in_area', quantity=1, source_player=8, object_list=TRANSPORT, **_rect(c['dock']))],
                         [dict(type='unload', source_player=8, object_list_unit_id=TRANSPORT, **_rect(c['dock']),
-                              location_x=c['in_land'][0], location_y=c['in_land'][1])],
+                              location_x=c['land_in'][0], location_y=c['land_in'][1])],
                         f'渡船{p}：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次'
                         f'（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）'))
     flags = [dict(type='create_object', source_player=0, object_list_unit_id=FLAG_A,
                   location_x=PIER[p][k][0], location_y=PIER[p][k][1])
-             for p in PIER for k in ('out_flag', 'in_flag')]
+             for p in PIER for k in ('enter', 'in_flag')]
     out.append(_add('船旗初始化', 1, 0, [dict(type='timer', timer=0)], flags,
-                    '渡船：兩碼頭牆外／牆內 Gaia 旗（FLAG_A 600）'))
+                    '渡船：兩碼頭進入點／出來點 Gaia 旗（FLAG_A 600）'))
     return out
 
 
