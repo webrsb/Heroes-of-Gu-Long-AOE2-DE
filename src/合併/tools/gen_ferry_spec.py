@@ -135,7 +135,11 @@ def global_triggers():
     # 而 OBJECTS_IN_AREA 只要任一隻己方單位在區內就成立，帶寵物／馬走近時報價→確認→扣費會在同一 tick 串完。
     for s in range(1, 7):
         out.append(_add(f'{s}船血東', 0, 0,
-                        [dict(type='object_hp', unit_object=HERO_REF[s], quantity=EAST_FARE, comparison=LE)],
+                        # source_player 一定要壓成 -1：parser 對 object_hp 預設塞 sp=1，
+                        # s39 盤點會把「玩家 1 ＋ 職業 s 英雄 ref」當跨職業（cross）→ 不生座位變體、
+                        # X船6 變體的啟動邊也不重指 → 封鎖器拆到原支、實際扣費的變體照跑（2026-08-31 實測仍死）
+                        [dict(type='object_hp', unit_object=HERO_REF[s], quantity=EAST_FARE,
+                              comparison=LE, source_player=-1)],
                         [dict(type='send_chat', source_player=s,
                               message='<ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。'),
                          ],

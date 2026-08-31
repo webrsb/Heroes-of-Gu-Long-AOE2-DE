@@ -186,3 +186,29 @@ def test_effect_add_target_name_must_hit_exactly_one(f):
     with pytest.raises(BuildError):
         apply_fix(f.tm([a, b]), {'kind': 'effect_add', 'target_name': '重名',
                                  'effect': {'type': 'send_chat', 'source_player': 1, 'message': 'x'}})
+
+
+class _Cond:                      # 有明確簽名的假條件工廠（測簽名外欄位的事後寫入）
+    def __init__(self):
+        self.made = []
+
+    def object_hp(self, quantity=None, unit_object=None, comparison=None):
+        from types import SimpleNamespace as NS
+        obj = NS(quantity=quantity, unit_object=unit_object, comparison=comparison, source_player=1)
+        self.made.append(obj)
+        return obj
+
+
+def test_build_part_sets_fields_outside_parser_signature(f):
+    from steps.s37_trigfix import _build_part
+    fac = _Cond()
+    obj = _build_part(fac, {'type': 'object_hp', 'unit_object': 2, 'quantity': 100000,
+                            'comparison': 3, 'source_player': -1}, 'tag')
+    assert obj.unit_object == 2 and obj.quantity == 100000 and obj.comparison == 3
+    assert obj.source_player == -1          # parser 預設 1，spec 覆寫成 -1
+
+
+def test_build_part_unknown_field_raises(f):
+    from steps.s37_trigfix import _build_part
+    with pytest.raises(BuildError):
+        _build_part(_Cond(), {'type': 'object_hp', 'unit_object': 2, '亂打的欄位': 9}, 'tag')

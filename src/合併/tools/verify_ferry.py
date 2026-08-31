@@ -130,6 +130,22 @@ def main(path):
             ok = ok and any(int(e.effect_type) == 9 and e.trigger_id == fee[0].trigger_id for e in blk[0].effects)
             ok = ok and any(int(e.effect_type) == 24 and e.quantity == 100000 for e in fee[0].effects)
         check(ok, f'{s}船血東(小id) HP≤100000→拆 {s}船費東(大id)，兩支由 T{X6E[s]} 武裝、扣費在費東')
+        check(blk and int(blk[0].conditions[0].source_player or 0) == -1,
+              f'{s}船血東 條件 sp=-1（避免被盤點成 cross 而不生變體）')
+        # 每個座位變體都要成對存在，且該座位的 X船6 變體必須指向同座位的血東／費東
+        for slot in SEATS:
+            b = by_name.get(f'{s}船血東◇位{slot}' if slot != s else f'{s}船血東', [])
+            f_ = by_name.get(f'{s}船費東◇位{slot}' if slot != s else f'{s}船費東', [])
+            x6 = [t for t in by_name.get(f'{s}船6◇位{slot}' if slot != s else f'{s}船6', [])
+                  if any(int(c.condition_type) == 5 and (c.area_x1, c.area_y1) == (112, 226)
+                         for c in t.conditions)]
+            ok2 = len(b) == 1 and len(f_) == 1 and len(x6) == 1 \
+                and b[0].trigger_id < f_[0].trigger_id
+            if ok2:
+                acts = {e.trigger_id for e in x6[0].effects if int(e.effect_type) == 8}
+                ok2 = acts == {b[0].trigger_id, f_[0].trigger_id} \
+                    and any(int(e.effect_type) == 9 and e.trigger_id == f_[0].trigger_id for e in b[0].effects)
+            check(ok2, f'{s}船血東/費東 座位{slot} 變體成對、id 有序、X船6 變體指同座位')
         t = tm.triggers[X6E[s]]
         check(not any(int(e.effect_type) == 24 for e in t.effects),
               f'T{X6E[s]}「{t.name}」原扣費效果已中和（改由費東執行）')

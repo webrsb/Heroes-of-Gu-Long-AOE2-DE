@@ -73,6 +73,27 @@ def apply_fix(tm, entry) -> Change:
                   entry.get('reason', ''))
 
 
+def _build_part(factory, spec, tag):
+    """依 spec 建一個條件／效果。parser 方法簽名沒有的欄位（如 object_hp 的 source_player）
+    在建立後直接寫入——parser 對這類欄位會塞預設值（實測 object_hp 預設 sp=1），
+    留著會讓 s39 盤點誤判成跨職業（cross）而不生座位變體。欄位不存在即 BuildError。"""
+    import inspect
+    kw = {k: v for k, v in spec.items() if k != 'type'}
+    meth = getattr(factory, spec['type'], None)
+    if meth is None:
+        raise BuildError(f'缺裁決：{tag} parser 沒有 {spec["type"]} 這個方法，請重查')
+    sig = inspect.signature(meth)
+    if any(p.kind == p.VAR_KEYWORD for p in sig.parameters.values()):
+        return meth(**kw)                      # 測試假件（Recorder）：全部照傳
+    extra = {k: kw.pop(k) for k in list(kw) if k not in sig.parameters}
+    obj = meth(**kw)
+    for k, v in extra.items():
+        if not hasattr(obj, k):
+            raise BuildError(f'缺裁決：{tag} 欄位 {k} 不存在於 {spec["type"]}，請重查')
+        setattr(obj, k, v)
+    return obj
+
+
 def _resolve_by_name(tm, name, tag):
     """以觸發名找恰一支目標（新觸發的 id 在寫 spec 時不存在，只能以名指）。"""
     hits = [t for t in tm.triggers if (t.name or '') == name]
@@ -86,15 +107,14 @@ def _add_trigger(tm, entry) -> Change:
     效果可用 trigger_name 取代 trigger_id（施作時解析）。kind 記為 trigger_add，供 s90 觸發數對帳。"""
     t = tm.add_trigger(entry.get('name', ''), enabled=bool(entry.get('enabled', 1)),
                        looping=bool(entry.get('looping', 0)))
+    tag = f'trigger_add「{entry.get("name", "")}」'
     for c in entry.get('conditions') or []:
-        kw = {k: v for k, v in c.items() if k != 'type'}
-        getattr(t.new_condition, c['type'])(**kw)
+        _build_part(t.new_condition, c, tag)
     for e in entry.get('effects') or []:
-        kw = {k: v for k, v in e.items() if k != 'type'}
-        if 'trigger_name' in kw:
-            kw['trigger_id'] = _resolve_by_name(tm, kw.pop('trigger_name'),
-                                                f'trigger_add「{entry.get("name", "")}」').trigger_id
-        getattr(t.new_effect, e['type'])(**kw)
+        spec = dict(e)
+        if 'trigger_name' in spec:
+            spec['trigger_id'] = _resolve_by_name(tm, spec.pop('trigger_name'), tag).trigger_id
+        _build_part(t.new_effect, spec, tag)
     summary = f'{len(entry.get("conditions") or [])}條件/{len(entry.get("effects") or [])}效果'
     return Change('s37', 'trigger_add', entry.get('name', ''), 'trigger', '', f'T{t.trigger_id} {summary}',
                   entry.get('reason', ''))

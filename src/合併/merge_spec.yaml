@@ -1137,7 +1137,7 @@ params:
       looping: 0
       reason: 東碼頭精力不足封鎖座位 1（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
-      - {type: object_hp, unit_object: 0, quantity: 100000, comparison: 3}
+      - {type: object_hp, unit_object: 0, quantity: 100000, comparison: 3, source_player: -1}
       effects:
       - {type: send_chat, source_player: 1, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
@@ -1163,7 +1163,7 @@ params:
       looping: 0
       reason: 東碼頭精力不足封鎖座位 2（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
-      - {type: object_hp, unit_object: 1, quantity: 100000, comparison: 3}
+      - {type: object_hp, unit_object: 1, quantity: 100000, comparison: 3, source_player: -1}
       effects:
       - {type: send_chat, source_player: 2, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
@@ -1189,7 +1189,7 @@ params:
       looping: 0
       reason: 東碼頭精力不足封鎖座位 3（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
-      - {type: object_hp, unit_object: 2, quantity: 100000, comparison: 3}
+      - {type: object_hp, unit_object: 2, quantity: 100000, comparison: 3, source_player: -1}
       effects:
       - {type: send_chat, source_player: 3, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
@@ -1215,7 +1215,7 @@ params:
       looping: 0
       reason: 東碼頭精力不足封鎖座位 4（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
-      - {type: object_hp, unit_object: 502, quantity: 100000, comparison: 3}
+      - {type: object_hp, unit_object: 502, quantity: 100000, comparison: 3, source_player: -1}
       effects:
       - {type: send_chat, source_player: 4, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
@@ -1241,7 +1241,7 @@ params:
       looping: 0
       reason: 東碼頭精力不足封鎖座位 5（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
-      - {type: object_hp, unit_object: 7, quantity: 100000, comparison: 3}
+      - {type: object_hp, unit_object: 7, quantity: 100000, comparison: 3, source_player: -1}
       effects:
       - {type: send_chat, source_player: 5, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
@@ -1267,7 +1267,7 @@ params:
       looping: 0
       reason: 東碼頭精力不足封鎖座位 6（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
       conditions:
-      - {type: object_hp, unit_object: 45117, quantity: 100000, comparison: 3}
+      - {type: object_hp, unit_object: 45117, quantity: 100000, comparison: 3, source_player: -1}
       effects:
       - {type: send_chat, source_player: 6, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
