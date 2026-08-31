@@ -1108,7 +1108,7 @@ params:
       - {type: timer, timer: 8}
       - {type: objects_in_area, quantity: 1, source_player: 8, object_list: 545, area_x1: 107, area_y1: 225, area_x2: 109, area_y2: 229}
       effects:
-      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 107, area_y1: 225, area_x2: 109, area_y2: 229, location_x: 110, location_y: 225}
+      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 107, area_y1: 225, area_x2: 109, area_y2: 229, location_x: 109, location_y: 225}
     - kind: trigger_add
       name: 船卸西
       enabled: 0
@@ -1118,7 +1118,7 @@ params:
       - {type: timer, timer: 8}
       - {type: objects_in_area, quantity: 1, source_player: 8, object_list: 545, area_x1: 82, area_y1: 233, area_x2: 84, area_y2: 235}
       effects:
-      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 82, area_y1: 233, area_x2: 84, area_y2: 235, location_x: 81, location_y: 232}
+      - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 82, area_y1: 233, area_x2: 84, area_y2: 235, location_x: 82, location_y: 232}
     - kind: trigger_add
       name: 船旗初始化
       enabled: 1
@@ -1131,6 +1131,61 @@ params:
       - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 110, location_y: 228}
       - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 79, location_y: 233}
       - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 81, location_y: 235}
+    - kind: trigger_add
+      name: 2船級西
+      enabled: 1
+      looping: 1
+      reason: 西碼頭等級門檻座位 2：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 2, area_x1: 68, area_y1: 231, area_x2: 78, area_y2: 239}
+      - {type: accumulate_attribute, source_player: 2, quantity: 1159, attribute: 2, inverted: 1}
+      effects:
+      - {type: send_chat, source_player: 2, message: '<ORANGE>對不起你等極不夠資格搭這艘船,需要16等級以上'}
+      - {type: task_object, source_player: 2, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
+    - kind: trigger_add
+      name: 3船級西
+      enabled: 1
+      looping: 1
+      reason: 西碼頭等級門檻座位 3：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 3, area_x1: 68, area_y1: 231, area_x2: 78, area_y2: 239}
+      - {type: accumulate_attribute, source_player: 3, quantity: 1159, attribute: 2, inverted: 1}
+      effects:
+      - {type: send_chat, source_player: 3, message: '<ORANGE>對不起你等極不夠資格搭這艘船,需要16等級以上'}
+      - {type: task_object, source_player: 3, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
+    - kind: trigger_add
+      name: 4船級西
+      enabled: 1
+      looping: 1
+      reason: 西碼頭等級門檻座位 4：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 4, area_x1: 68, area_y1: 231, area_x2: 78, area_y2: 239}
+      - {type: accumulate_attribute, source_player: 4, quantity: 1159, attribute: 2, inverted: 1}
+      effects:
+      - {type: send_chat, source_player: 4, message: '<ORANGE>對不起你等極不夠資格搭這艘船,需要16等級以上'}
+      - {type: task_object, source_player: 4, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
+    - kind: trigger_add
+      name: 5船級西
+      enabled: 1
+      looping: 1
+      reason: 西碼頭等級門檻座位 5：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 5, area_x1: 68, area_y1: 231, area_x2: 78, area_y2: 239}
+      - {type: accumulate_attribute, source_player: 5, quantity: 1159, attribute: 2, inverted: 1}
+      effects:
+      - {type: send_chat, source_player: 5, message: '<ORANGE>對不起你等極不夠資格搭這艘船,需要16等級以上'}
+      - {type: task_object, source_player: 5, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
+    - kind: trigger_add
+      name: 6船級西
+      enabled: 1
+      looping: 1
+      reason: 西碼頭等級門檻座位 6：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
+      conditions:
+      - {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 68, area_y1: 231, area_x2: 78, area_y2: 239}
+      - {type: accumulate_attribute, source_player: 6, quantity: 1159, attribute: 2, inverted: 1}
+      effects:
+      - {type: send_chat, source_player: 6, message: '<ORANGE>對不起你等極不夠資格搭這艘船,需要16等級以上'}
+      - {type: task_object, source_player: 6, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
     - {trigger_id: 3750, name: 1船6, kind: effect, index: 2, field: effect_type, old: 11, new: 0, reason: 票（地圖顯示器）機制移除，牆改由傳送進出}
     - {trigger_id: 3750, name: 1船6, kind: effect, index: 4, field: effect_type, old: 8, new: 0, reason: 頭暈改由英雄踩牆外旗觸發（X船暈）}
     - trigger_id: 3750

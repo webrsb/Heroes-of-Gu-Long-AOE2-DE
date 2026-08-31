@@ -13,6 +13,7 @@ POINTS = {'東': dict(enter=(112, 226), land_in=(110, 225), move_in=(110, 227),
                     in_flag=(110, 228), land_out=(112, 228), move_out=(114, 228)),
           '西': dict(enter=(79, 233), land_in=(81, 232), move_in=(81, 234),
                     in_flag=(81, 235), land_out=(79, 235), move_out=(77, 235))}
+DOCK_OUT = {'東': (109, 225), '西': (82, 232)}
 
 
 def main(path):
@@ -79,8 +80,8 @@ def main(path):
                   and (tk.location_x, tk.location_y) == pt['move_out'],
                   f'{s}船出{p} 選角啟用、{pt["in_flag"]}→{pt["land_out"]}→任務{pt["move_out"]}')
         t = by_name[f'船卸{p}'][0]
-        check((t.effects[0].location_x, t.effects[0].location_y) == pt['land_in'],
-              f'船卸{p} 卸到內落點 {pt["land_in"]}')
+        check((t.effects[0].location_x, t.effects[0].location_y) == DOCK_OUT[p],
+              f'船卸{p} 卸到卸貨落點 {DOCK_OUT[p]}（避開出來旗）')
     t = by_name['船旗初始化'][0]
     got = {(e.location_x, e.location_y) for e in t.effects}
     want = {POINTS[p][k] for p in PIERS for k in ('enter', 'in_flag')}
@@ -107,6 +108,12 @@ def main(path):
     for tid in (3673, 3675, 3677, 3679, 3681, 3683, 3685):
         t = tm.triggers[tid]
         check(int(t.conditions[1].inverted or 0) == 1, f'T{tid}「{t.name}」等級門檻已反相（<1159 才推）')
+    for s in range(2, 7):                    # 西碼頭 2–6 座位補的等級門檻（基底缺）
+        got = by_name.get(f'{s}船級西', [])
+        variants = [x for slot in SEATS if slot != s for x in by_name.get(f'{s}船級西◇位{slot}', [])]
+        ok = len(got) == 1 and len(variants) == 5 and int(got[0].conditions[1].inverted or 0) == 1 \
+            and got[0].conditions[1].quantity == 1159
+        check(ok, f'{s}船級西 原支1/變體5、反相、1159 → 得 {len(got)}/{len(variants)}')
     # 東解除器（qty=1160 的 X草2 系）：本體與變體皆不得有任何啟動邊指入（s37 停用→不進 enable_lists）
     def _is_gate_clear(t):
         return (t.name or '').split('◇')[0].endswith('草2') \

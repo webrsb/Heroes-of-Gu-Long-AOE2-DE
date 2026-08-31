@@ -28,7 +28,7 @@ def _adds(entries):
 def _check_block(entries):
     adds = _adds(entries)
     names = [a['name'] for a in adds]
-    assert len(names) == len(set(names)) == 75
+    assert len(names) == len(set(names)) == 80        # 72 座位×碼頭 ＋ 船卸×2 ＋ 船旗 ＋ 西等級門檻 2–6
     for s in SEATS:
         for p in PIERS:
             for k in KINDS:
@@ -120,12 +120,23 @@ def _check_block(entries):
                 and (tp['location_x'], tp['location_y']) == pt['land_out'], a['name']
             assert tk['type'] == 'task_object' and area_of(tk) == pt['land_out'] * 2 \
                 and (tk['location_x'], tk['location_y']) == pt['move_out'], a['name']
-    # 船卸落點＝內落點；旗子＝進入點與出來點
+    # 船卸落點＝卸貨落點（比內落點再挪一格，避免一到岸就踩到出來旗）；旗子＝進入點與出來點
+    DOCK_OUT = {'東': (109, 225), '西': (82, 232)}
     for a in adds:
         if a['name'].startswith('船卸'):
             p = a['name'][-1]
             e = a['effects'][0]
-            assert (e['location_x'], e['location_y']) == POINTS[p]['land_in'], a['name']
+            assert (e['location_x'], e['location_y']) == DOCK_OUT[p], a['name']
+    # 西碼頭等級門檻：基底只有座位 1，補 2–6（反相＝<1159 才推）
+    for s in range(2, 7):
+        a = next(x for x in adds if x['name'] == f'{s}船級西')
+        assert a['enabled'] == 1 and a['looping'] == 1
+        c0, c1 = a['conditions']
+        assert c0['type'] == 'objects_in_area' and c0['source_player'] == s
+        assert c1['type'] == 'accumulate_attribute' and c1['quantity'] == 1159 \
+            and c1['attribute'] == 2 and c1['inverted'] == 1
+        assert [e['type'] for e in a['effects']] == ['send_chat', 'task_object']
+        assert a['effects'][0]['source_player'] == s and '16等級' in a['effects'][0]['message']
     flags = next(x for x in adds if x['name'] == '船旗初始化')
     got = {(e['location_x'], e['location_y']) for e in flags['effects']}
     assert got == {POINTS[p][k] for p in PIERS for k in ('enter', 'in_flag')}, got

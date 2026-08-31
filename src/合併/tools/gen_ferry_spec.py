@@ -20,18 +20,26 @@ PIER = {
     # 六個點全部照使用者 2026-08-31 的擺設檔 SPIIKE傳點位置（觸發 in/out）等比對應到本體：
     # 進入＝外旗那一格（牆的一端）；內落點繞過牆角（不是旗子旁邊，才不會原地反覆傳）；內移動＝牆內中段；
     # 出來＝內旗（牆的另一端）；外落點＝牆外另一端；外移動＝再往外。全部格子已驗 terrain 可走、無物件。
+    # dock_out＝UNLOAD 卸貨落點，比 land_in 再往離牆／離出來旗的方向挪一格
+    # （2026-08-31 使用者實測：卸在 land_in 會一到岸就踩到出來點的旗被彈回去）
     '東': dict(enter=(112, 226), land_in=(110, 225), move_in=(110, 227),
               in_flag=(110, 228), land_out=(112, 228), move_out=(114, 228),
-              dock=(107, 225, 109, 229)),
+              dock_out=(109, 225), dock=(107, 225, 109, 229)),
     '西': dict(enter=(79, 233), land_in=(81, 232), move_in=(81, 234),
               in_flag=(81, 235), land_out=(79, 235), move_out=(77, 235),
-              dock=(82, 233, 84, 235)),
+              dock_out=(82, 232), dock=(82, 233, 84, 235)),
 }
+# 西碼頭等級門檻：基底只有座位 1（1船 T3685），2–6 座位從來沒有 → 照 T3685 鏡像補五支（條件已反相：<1159 才推）
+WEST_GATE_COND = (68, 231, 78, 239)     # 偵測區（同 T3685）
+WEST_GATE_TASK = (72, 230, 82, 239)     # 推人區（同 T3685）
+WEST_GATE_TO = (73, 226)                # 推到（同 T3685）
+GATE_MSG = '<ORANGE>對不起你等極不夠資格搭這艘船,需要16等級以上'
 # 等級門檻推人觸發（基底條件方向寫反：閱歷 ≥1159 → 罵不夠 16 級＋推走，石頭越多越被騷擾）。
 # 修法：C1 加 inverted=1 → <1159 才推；東解除器（≥1160 關推人，兼每 5 秒洗「你以符合等級條件」）失去存在意義，停用。
 # 西解除器 T3686 出廠 enabled=0 且武裝它的中繼被無法無天 ID 位移毀掉，不動。
 GATE_PUSH = {3673: '1草', 3675: '2草', 3677: '3草', 3679: '4草', 3681: '5草', 3683: '6草', 3685: '1船'}
 GATE_CLEAR = {3674: '1草2', 3676: '2草2', 3678: '3草2', 3680: '4草2', 3682: '5草2', 3684: '6草2'}
+LEVEL_XP, XP_ATTR = 1160, 2                          # 16 級門檻：閱歷（石頭）；推人條件用 1159
 SHUTTLE = {3732: '船', 3733: '船2'}                 # 班次觸發（派船時武裝一次性卸貨）
 # 報價鏈（X船→X船3→X船6）基底 id：售票窗開著時由 X船免 每輪壓停用＝窗內重複進場免費（2026-08-31 使用者裁決）
 BUY_CHAIN = {'東': {1: (3746, 3747, 3750), 2: (3751, 3752, 3755), 3: (3756, 3757, 3760),
@@ -109,7 +117,7 @@ def global_triggers():
                         [dict(type='timer', timer=8),
                          dict(type='objects_in_area', quantity=1, source_player=8, object_list=TRANSPORT, **_rect(c['dock']))],
                         [dict(type='unload', source_player=8, object_list_unit_id=TRANSPORT, **_rect(c['dock']),
-                              location_x=c['land_in'][0], location_y=c['land_in'][1])],
+                              location_x=c['dock_out'][0], location_y=c['dock_out'][1])],
                         f'渡船{p}：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次'
                         f'（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）'))
     flags = [dict(type='create_object', source_player=0, object_list_unit_id=FLAG_A,
@@ -117,6 +125,16 @@ def global_triggers():
              for p in PIER for k in ('enter', 'in_flag')]
     out.append(_add('船旗初始化', 1, 0, [dict(type='timer', timer=0)], flags,
                     '渡船：兩碼頭進入點／出來點 Gaia 旗（FLAG_A 600）'))
+    for s in range(2, 7):
+        out.append(_add(f'{s}船級西', 1, 1,
+                        [dict(type='objects_in_area', quantity=1, source_player=s, **_rect(WEST_GATE_COND)),
+                         dict(type='accumulate_attribute', source_player=s, quantity=LEVEL_XP - 1,
+                              attribute=XP_ATTR, inverted=1)],
+                        [dict(type='send_chat', source_player=s, message=GATE_MSG),
+                         dict(type='task_object', source_player=s, **_rect(WEST_GATE_TASK),
+                              location_x=WEST_GATE_TO[0], location_y=WEST_GATE_TO[1])],
+                        f'西碼頭等級門檻座位 {s}：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查'
+                        f'（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推'))
     return out
 
 
