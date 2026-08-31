@@ -23,6 +23,7 @@ import re
 ACT, DEACT, TELEPORT, TASK, CHANGE_HP = 8, 9, 35, 12, 27
 INT16_MAX = 32767
 VAR = re.compile(r'^(.*)◇位([1-6])$')
+ACT_SRC = re.compile(r'^啟動(\d)位([1-6])')      # s39 選角派發器：座位＝「位」那個數字
 KEYS = ('seat', 'class', 'global')
 DIGITS = set('123456')          # 不可寫成 `x in '123456'`：空字串是任何字串的子串（無名觸發會誤判）
 
@@ -44,12 +45,24 @@ def spec_added(entries):
     return {e['name']: e for e in entries if e.get('kind') == 'trigger_add' and e.get('name')}
 
 
-def _holder_slot(name):
-    """這支觸發屬於哪個座位：`◇位s` 優先，其次開頭數字（座位鍵命名慣例）。"""
+def _holder_slot(name, declared=None):
+    """這支觸發屬於哪個座位：`◇位s` 優先 → spec 宣告的 `seat:` → 名稱推斷。
+
+    名稱推斷一律走 `audit_variants.seat_of_name`（開頭數字或字尾數字），不要自己再寫一套：
+    2026-08-31 教訓——本模組原本只認開頭數字，`銀兩護欄5`（座位在字尾）就推成 None，
+    使「邊必須指同座位」的閘門對它靜默失效，當它是目標時還會產生假違規。
+    """
     m = VAR.match(name or '')
     if m:
         return int(m.group(2))
-    return int(name[0]) if (name or '')[:1] in DIGITS else None
+    if declared is not None:
+        return int(declared)
+    nm = (name or '').split('◇命')[0]        # 逐命副本：座位看本名（尾綴的命號不是座位）
+    m = ACT_SRC.match(nm)
+    if m:
+        return int(m.group(2))               # 選角派發器「啟動c位s#n」：座位是「位」那個數字，不是尾綴 #n
+    from analysis.audit_variants import seat_of_name
+    return seat_of_name(nm)
 
 
 def check_key_contracts(triggers, added):
@@ -63,6 +76,10 @@ def check_key_contracts(triggers, added):
         base = by.get(name, [])
         if len(base) != 1:
             out.append(f'K「{name}」原支應恰 1 支，實得 {len(base)}')
+            continue
+        if key == 'seat' and _holder_slot(name, entry.get('seat')) is None:
+            out.append(f'K「{name}」宣告 key=seat 但名稱推不出座位（開頭或字尾數字皆無）→ '
+                       f'請在 spec 補 `seat: N`，否則「邊必須指同座位」的閘門會靜默略過它')
             continue
         n_var = sum(len(by.get(f'{name}◇位{s}', [])) for s in range(1, 7))
         want = 5 if key == 'seat' else 0
@@ -81,7 +98,9 @@ def check_variant_edges(triggers, added):
     seat_names = [n for n, e in added.items() if e.get('key') == 'seat']
     tid2 = {}
     for n in seat_names:
-        s0 = _holder_slot(n)
+        s0 = _holder_slot(n, added[n].get('seat'))
+        if s0 is None:
+            continue                       # 推不出座位者由 check_key_contracts 報，這裡不製造假違規
         for t in by.get(n, []):
             tid2[t.trigger_id] = (n, s0)
         for slot in range(1, 7):

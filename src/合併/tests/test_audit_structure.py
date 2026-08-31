@@ -172,3 +172,39 @@ def test_report_area_overlap_ignores_own_triggers(f):
     mine = f.trig(name='1船入西', conds=[f.cond_area(sp=1, area=(70, 230, 85, 239))],
                   effects=[f.eff_teleport(sp=1, area=(79, 233, 79, 233), x=81, y=232)])
     assert A.report_area_overlap([mine], {'1船入西': {}}) == []
+
+
+def test_seat_inferred_from_trailing_digit(f):
+    """銀兩護欄5：座位在字尾。統一走 audit_variants.seat_of_name，別再自寫一套（2026-08-31 教訓）。"""
+    assert A._holder_slot('銀兩護欄5') == 5
+    assert A._holder_slot('3船血東') == 3
+    assert A._holder_slot('銀兩護欄5◇位2') == 2
+    assert A._holder_slot('船旗初始化') is None
+    assert A._holder_slot('船旗初始化', declared=4) == 4
+
+
+def test_key_seat_without_inferable_slot_is_violation(f):
+    t = f.trig(name='看不出座位的東西')
+    v = A.check_key_contracts([t] + [f.trig(name=f'看不出座位的東西◇位{s}') for s in range(1, 6)],
+                              {'看不出座位的東西': {'key': 'seat'}})
+    assert len(v) == 1 and 'seat: N' in v[0]
+    # 宣告 seat 後就過
+    assert A.check_key_contracts([t] + [f.trig(name=f'看不出座位的東西◇位{s}') for s in (1, 2, 3, 4, 5)],
+                                 {'看不出座位的東西': {'key': 'seat', 'seat': 6}}) == []
+
+
+def test_trailing_digit_holder_edges_are_checked(f):
+    """先前的洞：來源名稱座位在字尾時，E 閘門整支略過。"""
+    tgt = f.trig(name='3船血東')
+    tgt1 = f.trig(name='3船血東◇位1')
+    holder = f.trig(name='銀兩護欄1', effects=[f.eff_activate(tgt.trigger_id)])
+    added = {'3船血東': {'key': 'seat'}}
+    v = A.check_variant_edges([tgt, tgt1, holder], added)
+    assert len(v) == 1 and '銀兩護欄1' in v[0]
+
+
+def test_seat_inference_handles_s39_generated_shapes(f):
+    """s39 的命名形狀：選角派發器「啟動c位s#n」座位＝位s（不是尾綴 #n）；逐命副本看本名。"""
+    assert A._holder_slot('啟動1位1#2') == 1
+    assert A._holder_slot('啟動6位3') == 3
+    assert A._holder_slot('3船血東◇命2') == 3
