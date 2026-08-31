@@ -54,6 +54,49 @@ def _cls(s, seat):
     return s
 
 
+def shape_of(t):
+    """座位無關的形狀鍵＝條件型別序列＋效果型別序列。
+    **刻意不含區域座標**：原作各座位的區域本來就手抖差幾格，含進去會把合法家族拆散
+    （實測：含區域 331 條、不含 66 條）。"""
+    return (tuple(int(getattr(c, 'condition_type', 0) or 0) for c in t.conditions),
+            tuple(int(getattr(e, 'effect_type', 0) or 0) for e in t.effects))
+
+
+def absent_seats(groups, min_span=5):
+    """規則 D「族內座位缺席」——抓原作「只有 P1 有、其他 P 忘了」。
+
+    對每個名稱樣式：若樣式本身跨 ≥min_span 座位（排除職業專屬技能如 X狂／X梨），
+    且各座位支數不齊（支數相同＝只是形狀差異，交給 C 類 struct 規則），
+    則逐支檢查其形狀在別的座位是否存在；完全找不到＝該功能只有這些座位有。
+
+    為什麼不是既有的「組 count」規則就夠：count 只報數字差、不指名，而且主迴圈
+    `for k in range(min(counts.values()))` 會讓多出來的那支**永遠不進比對**（全檔 101 支）。
+    """
+    out = []
+    for pat, seats in sorted(groups.items()):
+        if len(seats) < min_span:
+            continue
+        counts = {s: len(v) for s, v in seats.items()}
+        if len(set(counts.values())) == 1:
+            continue
+        for s in sorted(seats):
+            for t in seats[s]:
+                sh = shape_of(t)
+                others = sorted(s2 for s2, ts2 in seats.items()
+                                if s2 != s and any(shape_of(x) == sh for x in ts2))
+                if not others:
+                    out.append(Finding('HIGH', pat, 0, s, t.trigger_id, t.name, '整支', 'absent',
+                                       f'{len(sh[0])}條/{len(sh[1])}效 僅座位 '
+                                       f'{sorted(x for x in seats if any(shape_of(y) == sh for y in seats[x]))} 有',
+                                       f'各座位支數 {sorted(counts.items())}'))
+    return out
+
+
+def finding_key(r):
+    """帳本鍵：跑在基底原檔上，tid 穩定；樣式＋座位＋tid＋欄位＋位置足以唯一識別。"""
+    return f'{r.pattern}|{r.seat}|T{r.tid}|{r.where}|{r.field}'
+
+
 def majority(vals):
     cnt = collections.Counter(repr(v) for v in vals.values())
     top, n = cnt.most_common(1)[0]
@@ -264,6 +307,7 @@ def audit(triggers, hero=None):
                                     bag(normed[s], part, f) == bag(normed[top_seat], part, f):
                                 continue                       # 只是順序對調
                             F(Finding(SEV[f], pat, k, s, row[s].trigger_id, row[s].name, f'{tag}#{i}', f, v, top))
+    findings += absent_seats(groups)              # D 族內座位缺席（形狀配對，不受主迴圈索引配對限制）
     order = {'HIGH': 0, 'MED': 1, 'LOW': 2}
     findings.sort(key=lambda r: (order[r.sev], r.pattern, r.occ, r.seat))
     for r in findings:
@@ -271,26 +315,51 @@ def audit(triggers, hero=None):
     return findings, stats
 
 
-def render_md(path, findings, stats, type_names=None):
+def render_md(path, findings, stats, type_names=None, ledger=None):
     tn = type_names or (lambda kind, v: str(v))
+    led = ledger or {}
+    cls = None
+    if led is not None:
+        from analysis.ledger import classify, summary
+        cls = classify([(finding_key(r), r) for r in findings if r.sev != 'LOW'], led)
     lines = [f'# 六座位對稱稽核 — {path}', '',
              f'座位樣式 {stats["groups"]} 組（≥3 座位）；孿生逐欄比對 {stats["twin_groups"]} 次；'
              f'結構各異略過 {stats["struct_skipped"]} 次；'
              f'HIGH {stats["HIGH"]}、MED {stats["MED"]}、LOW {stats["LOW"]}（LOW 不列）', '',
-             '規則：A 外座位引用多於多數；B 對同一目標的啟/停極性少數派；C 結構孿生逐欄少數派。'
-             'HIGH＝疑似錯家/抄反/漏改，需人工裁決入 merge_spec.trigger_fixes。', '',
-             '| 嚴重 | 樣式 | 第n支 | 座位 | 觸發 | 位置 | 欄位 | 此座位值 | 多數值 |',
-             '|---|---|---|---|---|---|---|---|---|']
+             '規則：A 外座位引用多於多數；B 對同一目標的啟/停極性少數派；C 結構孿生逐欄少數派；'
+             'D 族內座位缺席（形狀在其他座位找不到＝「只有 P1 有、其他 P 忘了」）。'
+             'HIGH＝疑似錯家/抄反/漏改，需人工裁決入 merge_spec.trigger_fixes。', '']
+    if cls is not None:
+        from analysis.ledger import summary
+        lines += [f'**裁決帳本**：{summary(cls)}', '']
+        if cls['gone']:
+            lines += ['消失的條目（帳本有、本次沒報——可能是前提被改壞）：'] + \
+                     [f'- `{k}`（原裁決 {r["verdict"]}：{r["reason"]}）' for k, r in sorted(cls['gone'])] + ['']
+    lines += ['| 裁決 | 嚴重 | 樣式 | 第n支 | 座位 | 觸發 | 位置 | 欄位 | 此座位值 | 多數值 |',
+              '|---|---|---|---|---|---|---|---|---|---|']
     for r in findings:
         if r.sev == 'LOW':
             continue
+        rec = led.get(finding_key(r))
+        verdict = '新增' if rec is None else {'pending': '待裁決', 'fixed': '已修', 'wontfix': '不修'}[rec['verdict']]
         v, m = r.value, r.majority
         if r.field == 'type':
             kind = 'cond' if r.where.startswith('C') else 'eff'
             v, m = tn(kind, v), tn(kind, m)
-        lines.append(f'| {r.sev} | {r.pattern} | {r.occ + 1} | {r.seat}P | T{r.tid}「{r.name}」 | {r.where} | '
-                     f'{r.field} | `{v}` | `{m}` |')
+        lines.append(f'| {verdict} | {r.sev} | {r.pattern} | {r.occ + 1} | {r.seat}P | T{r.tid}「{r.name}」 | '
+                     f'{r.where} | {r.field} | `{v}` | `{m}` |')
     return '\n'.join(lines) + '\n'
+
+
+def parse_argv(argv):
+    """位置參數與旗標分開。2026-08-31 教訓：`--record` 曾被當成第三個位置參數（spec 路徑），
+    那一輪 renames 整批沒套用 → 帳本用舊名稱建檔，下次跑就報一堆假的「新增／消失」。"""
+    pos = [a for a in argv if not a.startswith('--')]
+    flags = {a for a in argv if a.startswith('--')}
+    return (pos[1] if len(pos) > 1 else None,
+            pos[2] if len(pos) > 2 else None,
+            pos[3] if len(pos) > 3 else 'merge_spec.yaml',
+            flags)
 
 
 def main(argv):
@@ -306,12 +375,11 @@ def main(argv):
             return (EffectId if kind == 'eff' else ConditionId)(v).name
         except Exception:
             return str(v)
-    path = argv[1]
+    path, out_md, spec_path, flags = parse_argv(argv)
     sc = load(path)                       # 需留住參考：parser 以 uuid 回查 scenario，被回收會炸
     trigs = sc.trigger_manager.triggers
     # 套用 merge_spec.params.renames（s371 產物名稱），讓「觸發事件 N」也能依座位首碼成組
     import os, yaml
-    spec_path = argv[3] if len(argv) > 3 else 'merge_spec.yaml'
     if os.path.exists(spec_path):
         rows = (yaml.safe_load(open(spec_path, encoding='utf-8')).get('params') or {}).get('renames') or []
         by = {int(r['tid']): r for r in rows}
@@ -322,13 +390,23 @@ def main(argv):
                 t.name = r['new']; n += 1
         print(f'套用 renames {n}/{len(rows)}')
     findings, stats = audit(trigs)
-    md = render_md(path, findings, stats, tn)
-    if len(argv) > 2:
-        open(argv[2], 'w', encoding='utf-8').write(md)
+    from analysis.ledger import load as load_ledger, save as save_ledger, classify, summary, merge_pending
+    ledger_path = os.environ.get('AUDIT_LEDGER', 'audit_ledger.yaml')
+    led = load_ledger(ledger_path)
+    md = render_md(path, findings, stats, tn, ledger=led)
+    if out_md:
+        open(out_md, 'w', encoding='utf-8').write(md)
     print(md.split('\n')[2])
-    for r in findings:
+    cls = classify([(finding_key(r), r) for r in findings if r.sev != 'LOW'], led)
+    print('裁決帳本：' + summary(cls))
+    if '--record' in flags:                # 一次建檔：把新增條目以 pending 併入帳本
+        save_ledger(ledger_path, merge_pending(led, cls),
+                    header='六座位對稱稽核裁決帳本（analysis/ledger.py；不是建置輸入，真要修寫進 merge_spec）')
+        print(f'已把 {len(cls["new"])} 條新增併入 {ledger_path}（verdict: pending）')
+    for key, r in cls['new'] + cls['pending']:
         if r.sev == 'HIGH':
-            print(f'{r.pattern}\tT{r.tid}「{r.name}」\t{r.where}\t{r.field}\t{r.value}\t{r.majority}')
+            print(f'{"新" if any(k == key for k, _ in cls["new"]) else "待"}\t{r.pattern}\t'
+                  f'T{r.tid}「{r.name}」\t{r.where}\t{r.field}\t{r.value}\t{r.majority}')
     return 0
 
 

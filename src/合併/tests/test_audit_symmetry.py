@@ -115,3 +115,70 @@ def test_seat1_unnumbered_target_matches_numbered_pattern(f):
         return f.trig(tid=s, name=f'{s}當僧', effects=[f.eff_chat(sp=s, message='x'), f.eff_activate(200 + s)])
     findings, _ = audit(six(f, make) + list(targets.values()), HERO)
     assert not [r for r in findings if r.field == 'edge_missing']
+
+
+def test_absent_seats_flags_single_seat_shape_in_uneven_family(f):
+    """原型：西碼頭等級門檻只有座位 1 有（X船 座位1 4 支、其他 3 支）。"""
+    from analysis.audit_symmetry import absent_seats, seat_pattern
+    import collections
+    trigs = []
+    for s in range(1, 7):
+        trigs.append(f.trig(name=f'{s}船', conds=[f.cond_area(sp=s)], effects=[f.eff_chat(sp=s)]))
+    gate = f.trig(name='1船', conds=[f.cond_area(sp=1), f.cond_accumulate(sp=1, qty=1159)],
+                  effects=[f.eff_chat(sp=1), f.eff_task(sp=1)])
+    trigs.append(gate)
+    groups = collections.defaultdict(lambda: collections.defaultdict(list))
+    for t in trigs:
+        s, pat = seat_pattern(t.name)
+        groups[pat][s].append(t)
+    out = absent_seats(groups)
+    assert len(out) == 1 and out[0].tid == gate.trigger_id and out[0].field == 'absent'
+    assert out[0].sev == 'HIGH' and '僅座位 [1]' in out[0].value
+
+
+def test_absent_seats_ignores_class_exclusive_and_even_families(f):
+    from analysis.audit_symmetry import absent_seats, seat_pattern
+    import collections
+
+    def group(trigs):
+        g = collections.defaultdict(lambda: collections.defaultdict(list))
+        for t in trigs:
+            s, pat = seat_pattern(t.name)
+            g[pat][s].append(t)
+        return g
+    # 職業專屬（樣式只跨 1 座位）
+    solo = [f.trig(name='1狂', effects=[f.eff_chat(sp=1)]),
+            f.trig(name='1狂2', effects=[f.eff_chat(sp=1)])]
+    assert absent_seats(group(solo)) == []
+    # 各座位支數相同＝只是形狀差異，交給 C 類 struct
+    even = []
+    for s in range(1, 7):
+        even.append(f.trig(name=f'{s}教頭4', conds=[f.cond_area(sp=s)],
+                           effects=[f.eff_chat(sp=s)] * (s % 2 + 1)))
+    assert absent_seats(group(even)) == []
+
+
+def test_shape_of_ignores_area_coords(f):
+    from analysis.audit_symmetry import shape_of
+    a = f.trig(name='1草', conds=[f.cond_area(sp=1, area=(108, 221, 117, 231))], effects=[f.eff_chat(sp=1)])
+    b = f.trig(name='2草', conds=[f.cond_area(sp=2, area=(107, 222, 117, 231))], effects=[f.eff_chat(sp=2)])
+    assert shape_of(a) == shape_of(b)      # 原作各座位區域手抖差幾格，不該拆散家族
+
+
+def test_finding_key_is_stable_and_unique(f):
+    from analysis.audit_symmetry import Finding, finding_key
+    a = Finding('HIGH', 'X船', 0, 1, 3685, '1船', '整支', 'absent', 'v', 'm')
+    b = Finding('MED', 'X船', 0, 1, 3685, '1船', '整支', 'absent', '別的值', '別的多數')
+    c = Finding('HIGH', 'X船', 0, 2, 3707, '2船', 'E#0', 'sp', 'v', 'm')
+    assert finding_key(a) == finding_key(b)      # 值變動不改鍵（同一條 finding）
+    assert finding_key(a) != finding_key(c)
+
+
+def test_parse_argv_separates_flags_from_positionals():
+    """--record 曾被吃成 spec 路徑 → 那輪 renames 全沒套用、帳本用舊名建檔（2026-08-31）。"""
+    from analysis.audit_symmetry import parse_argv
+    p, out, spec, flags = parse_argv(['prog', 'base.aoe2scenario', 'r.md', '--record'])
+    assert (p, out, spec) == ('base.aoe2scenario', 'r.md', 'merge_spec.yaml')
+    assert flags == {'--record'}
+    p, out, spec, flags = parse_argv(['prog', 'b', 'r.md', 'other_spec.yaml'])
+    assert spec == 'other_spec.yaml' and flags == set()

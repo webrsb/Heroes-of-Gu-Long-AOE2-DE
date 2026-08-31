@@ -1,0 +1,665 @@
+# 六座位對稱稽核裁決帳本（analysis/ledger.py；不是建置輸入，真要修寫進 merge_spec）
+entries:
+  - {key: "$修端木N|1|T4896|整支|struct", verdict: pending, reason: ""}
+  - {key: "$修端木N|4|T4902|整支|struct", verdict: pending, reason: ""}
+  - {key: "$南宮尾葉N|1|T5200|→南宮尾葉|edge_missing", verdict: pending, reason: ""}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策11|edge_missing", verdict: pending, reason: ""}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策22|edge_missing", verdict: pending, reason: ""}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策33|edge_missing", verdict: pending, reason: ""}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策44|edge_missing", verdict: pending, reason: ""}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策55|edge_missing", verdict: pending, reason: ""}
+  - {key: "$南宮尾葉N|1|T5200|→完全教戰守策66|edge_missing", verdict: pending, reason: ""}
+  - {key: "$南宮尾葉N|1|T5200|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "$堡定N|6|T5020|→失血|edge_missing", verdict: pending, reason: ""}
+  - {key: "$堡定N|6|T5020|整支|struct", verdict: pending, reason: ""}
+  - {key: "$墓3~N|1|T5149|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "$墓3~N|2|T5150|整支|foreign", verdict: pending, reason: ""}
+  - {key: "$女N|3|T2873|整支|absent", verdict: pending, reason: ""}
+  - {key: "$女N|5|T5595|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "$女N|5|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "$女N|6|T5596|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "$女N|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "$完全教戰守策N|2|T4964|整支|struct", verdict: pending, reason: ""}
+  - {key: "$完全教戰守策N|3|T4965|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "$完全教戰守策N|3|T4965|整支|struct", verdict: pending, reason: ""}
+  - {key: "$殺豬N|1|T5113|整支|struct", verdict: pending, reason: ""}
+  - {key: "$殺豬N|2|T5115|整支|struct", verdict: pending, reason: ""}
+  - {key: "$漢娜斯N|1|T5491|→漢娜斯|edge_missing", verdict: pending, reason: ""}
+  - {key: "$漢娜斯N|1|T5491|整支|foreign", verdict: pending, reason: ""}
+  - {key: "$白N|2|T1811|整支|absent", verdict: pending, reason: ""}
+  - {key: "$白N|2|T1811|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "$白N|2|T1811|整支|struct", verdict: pending, reason: ""}
+  - {key: "$白N|2|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "$被擊敗N|1|T5051|整支|struct", verdict: pending, reason: ""}
+  - {key: "$被擊敗N|6|T5056|整支|struct", verdict: pending, reason: ""}
+  - {key: "$解咒N|6|T5034|整支|struct", verdict: pending, reason: ""}
+  - {key: "$金N|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "$金N|3|T4076|整支|foreign", verdict: pending, reason: ""}
+  - {key: "$金N|4|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "$金獅2~N|1|T5137|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "$金獅2~N|3|T5139|整支|foreign", verdict: pending, reason: ""}
+  - {key: "$魂移N|5|T5306|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "C1|5|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "C1|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "C2|2|T4834|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "C2|4|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "C333|3|T4840|整支|absent", verdict: pending, reason: ""}
+  - {key: "C333|3|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "C333|4|T4533|E#0|sp", verdict: pending, reason: ""}
+  - {key: "C333|4|T4533|整支|foreign", verdict: pending, reason: ""}
+  - {key: "C33|3|T4839|整支|absent", verdict: pending, reason: ""}
+  - {key: "C33|3|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "C555|4|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "C555|5|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "C55|4|T4847|整支|absent", verdict: pending, reason: ""}
+  - {key: "C55|4|T4871|整支|absent", verdict: pending, reason: ""}
+  - {key: "C55|4|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "C|1|T4459|整支|absent", verdict: pending, reason: ""}
+  - {key: "C|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "C客回血|1|T4773|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "C客斷魂推|1|T5296|整支|struct", verdict: pending, reason: ""}
+  - {key: "C客毀滅之魂|1|T5272|整支|struct", verdict: pending, reason: ""}
+  - {key: "C客毀滅之魂|1|T5273|→C客破壞之神|edge_missing", verdict: pending, reason: ""}
+  - {key: "C客毀滅之魂|5|T5284|→少林寺|edge_missing", verdict: pending, reason: ""}
+  - {key: "C客破壞之神|1|T5266|→X升級|edge_missing", verdict: pending, reason: ""}
+  - {key: "C客破壞之神|1|T5266|整支|struct", verdict: pending, reason: ""}
+  - {key: "C駝|6|T4799|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 1-5Lv|2|T3270|E#4|qty", verdict: pending, reason: ""}
+  - {key: "X 1-5Lv|6|T3290|E#3|sp", verdict: pending, reason: ""}
+  - {key: "X 1-5Lv|6|T3290|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X 100|6|T3523|→X神兵1|edge_missing", verdict: pending, reason: ""}
+  - {key: "X 100|6|T3523|→X神兵|edge_pol", verdict: pending, reason: ""}
+  - {key: "X 10|3|T3313|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 11-20Lv|3|T3354|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X 11-20Lv|3|T3354|E#5|qty", verdict: pending, reason: ""}
+  - {key: "X 11|1|T3333|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 11|6|T3388|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 12|2|T3345|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 16|1|T3338|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 18|2|T3351|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 20|1|T3342|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 20|3|T3364|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 21-30|3|T3420|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X 23|5|T3445|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 26|4|T3437|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 27|4|T3438|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 29|6|T3462|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 31-50|1|T961|E#4|qty", verdict: pending, reason: ""}
+  - {key: "X 31-50|4|T1024|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 31-50|5|T1045|E#1|qty", verdict: pending, reason: ""}
+  - {key: "X 31-50|5|T1045|E#5|qty", verdict: pending, reason: ""}
+  - {key: "X 31-50|6|T1066|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 31|2|T983|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 35|2|T987|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 38|3|T1011|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 41|6|T1077|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 42|3|T1015|C#0|qty", verdict: pending, reason: ""}
+  - {key: "X 42|5|T1057|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 48|5|T1063|C#0|qty", verdict: pending, reason: ""}
+  - {key: "X 49|5|T1064|C#0|qty", verdict: pending, reason: ""}
+  - {key: "X 58|2|T1708|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 6-10Lv|2|T3302|E#1|nsel", verdict: pending, reason: ""}
+  - {key: "X 6-10Lv|2|T3302|E#1|sel", verdict: pending, reason: ""}
+  - {key: "X 61-80|2|T44|E#4|qty", verdict: pending, reason: ""}
+  - {key: "X 61-80|3|T49|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 61-80|5|T59|E#1|nsel", verdict: pending, reason: ""}
+  - {key: "X 61-80|5|T59|E#1|sel", verdict: pending, reason: ""}
+  - {key: "X 61-80|6|T64|E#5|qty", verdict: pending, reason: ""}
+  - {key: "X 7|3|T3310|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 7|6|T3328|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 81|4|T736|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 81|5|T747|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 82|3|T726|C#0|qty", verdict: pending, reason: ""}
+  - {key: "X 86|2|T719|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 88|6|T765|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 89|3|T733|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 89|6|T766|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 8|3|T3311|C#0|qty", verdict: pending, reason: ""}
+  - {key: "X 8|6|T3329|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 90|3|T734|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 91|2|T3474|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 91|5|T3504|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 92|2|T3475|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 92|5|T3505|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 93|2|T3476|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 93|5|T3506|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 94|2|T3477|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 94|5|T3507|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 95|2|T3478|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 95|5|T3508|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 96|2|T3479|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 96|5|T3509|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 97|2|T3480|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 97|5|T3510|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 98|2|T3481|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 98|5|T3511|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 99|2|T3482|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 99|5|T3512|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 9|1|T3300|→X 6-10Lv|edge_pol", verdict: pending, reason: ""}
+  - {key: "X 9|1|T3300|整支|struct", verdict: pending, reason: ""}
+  - {key: "X 9|2|T3306|整支|struct", verdict: pending, reason: ""}
+  - {key: "X-61|6|T65|整支|struct", verdict: pending, reason: ""}
+  - {key: "X-62|1|T41|整支|struct", verdict: pending, reason: ""}
+  - {key: "X-62|3|T51|整支|struct", verdict: pending, reason: ""}
+  - {key: "X-64|1|T43|整支|struct", verdict: pending, reason: ""}
+  - {key: "X-64|5|T63|整支|struct", verdict: pending, reason: ""}
+  - {key: "X-69|4|T125|整支|struct", verdict: pending, reason: ""}
+  - {key: "X-70|1|T99|整支|struct", verdict: pending, reason: ""}
+  - {key: "X-74|1|T103|整支|struct", verdict: pending, reason: ""}
+  - {key: "X-79|6|T2030|C#0|qty", verdict: pending, reason: ""}
+  - {key: "XC2|1|T3094|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC2|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "XC2|4|T4064|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC2|4|T4140|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC2|4|T854|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC2|4|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "XC3|4|T4066|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC3|4|T4141|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC3|4|T855|→C333|edge_missing", verdict: pending, reason: ""}
+  - {key: "XC3|4|T855|→C33|edge_missing", verdict: pending, reason: ""}
+  - {key: "XC3|4|T855|→XC32|edge_missing", verdict: pending, reason: ""}
+  - {key: "XC3|4|T855|→XC3|edge_missing", verdict: pending, reason: ""}
+  - {key: "XC3|4|T855|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC3|4|T855|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "XC3|4|T855|整支|struct", verdict: pending, reason: ""}
+  - {key: "XC3|4|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "XC4|3|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "XC4|4|T4067|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC4|4|T4142|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC4|4|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "XC4|5|T353|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC4|5|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "XC5|3|T2078|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC5|4|T349|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC5|4|T349|整支|struct", verdict: pending, reason: ""}
+  - {key: "XC5|4|T857|→C555|edge_missing", verdict: pending, reason: ""}
+  - {key: "XC5|4|T857|→C55|edge_missing", verdict: pending, reason: ""}
+  - {key: "XC5|4|T857|→XC52|edge_missing", verdict: pending, reason: ""}
+  - {key: "XC5|4|T857|→XC5|edge_missing", verdict: pending, reason: ""}
+  - {key: "XC5|4|T857|整支|struct", verdict: pending, reason: ""}
+  - {key: "XC5|4|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "XC8|4|T2241|C#0|timer", verdict: pending, reason: ""}
+  - {key: "XC92|5|T2289|→XC92|edge_pol", verdict: pending, reason: ""}
+  - {key: "XC92|6|T2291|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "XC92|6|T2291|整支|struct", verdict: pending, reason: ""}
+  - {key: "XC9|6|T2290|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "XC9|6|T2290|整支|struct", verdict: pending, reason: ""}
+  - {key: "XC|1|T3093|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "XC|4|T4138|整支|absent", verdict: pending, reason: ""}
+  - {key: "XC|4|T853|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "XC|4|T853|整支|struct", verdict: pending, reason: ""}
+  - {key: "XC|4|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "XC合5|1|T2214|C#0|timer", verdict: pending, reason: ""}
+  - {key: "XC氣|1|T5448|E#1|qty", verdict: pending, reason: ""}
+  - {key: "XC氣|4|T5457|C#1|timer", verdict: pending, reason: ""}
+  - {key: "X九3|1|T3911|整支|struct", verdict: pending, reason: ""}
+  - {key: "X九3|4|T3920|整支|struct", verdict: pending, reason: ""}
+  - {key: "X九|5|T3921|整支|struct", verdict: pending, reason: ""}
+  - {key: "X仙3|3|T2555|整支|struct", verdict: pending, reason: ""}
+  - {key: "X仙3|5|T2565|整支|struct", verdict: pending, reason: ""}
+  - {key: "X仙4|1|T2546|整支|struct", verdict: pending, reason: ""}
+  - {key: "X仙4|4|T2561|整支|struct", verdict: pending, reason: ""}
+  - {key: "X佛4|1|T429|整支|struct", verdict: pending, reason: ""}
+  - {key: "X佛4|4|T312|E#3|qty", verdict: pending, reason: ""}
+  - {key: "X佛4|4|T312|E#6|qty", verdict: pending, reason: ""}
+  - {key: "X佛4|4|T444|E#3|qty", verdict: pending, reason: ""}
+  - {key: "X佛4|4|T444|E#6|qty", verdict: pending, reason: ""}
+  - {key: "X佛4|6|T454|整支|struct", verdict: pending, reason: ""}
+  - {key: "X偏|6|T1266|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X傷|5|T1489|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X僧|6|T2051|整支|struct", verdict: pending, reason: ""}
+  - {key: "X八|1|T1812|整支|struct", verdict: pending, reason: ""}
+  - {key: "X八|2|T1814|整支|struct", verdict: pending, reason: ""}
+  - {key: "X六|6|T688|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X刀1|2|T4710|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X刀2|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X刀3|3|T4716|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X刀3|3|T4716|E#1|qty", verdict: pending, reason: ""}
+  - {key: "X刀3|6|T4726|→X刀1|edge_missing", verdict: pending, reason: ""}
+  - {key: "X刀3|6|T4726|→X刀2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X刀3|6|T4726|→X失血|edge_missing", verdict: pending, reason: ""}
+  - {key: "X刀3|6|T4726|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X刀3|6|T4726|整支|struct", verdict: pending, reason: ""}
+  - {key: "X刀4|3|T4717|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X刀4|3|T4717|E#1|qty", verdict: pending, reason: ""}
+  - {key: "X刀4|6|T4727|→X刀1|edge_missing", verdict: pending, reason: ""}
+  - {key: "X刀4|6|T4727|→X刀2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X刀4|6|T4727|→X失血|edge_missing", verdict: pending, reason: ""}
+  - {key: "X刀4|6|T4727|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X刀4|6|T4727|整支|struct", verdict: pending, reason: ""}
+  - {key: "X功|6|T1348|整支|struct", verdict: pending, reason: ""}
+  - {key: "X南|3|T2042|整支|struct", verdict: pending, reason: ""}
+  - {key: "X南|4|T2043|整支|struct", verdict: pending, reason: ""}
+  - {key: "X南僧|4|T2035|C#0|type", verdict: pending, reason: ""}
+  - {key: "X南僧|4|T2035|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X南僧|6|T2037|C#0|type", verdict: pending, reason: ""}
+  - {key: "X卜2|4|T2540|→X卜|edge_missing", verdict: pending, reason: ""}
+  - {key: "X卜2|4|T2540|整支|struct", verdict: pending, reason: ""}
+  - {key: "X召|6|T4197|C#0|uo", verdict: pending, reason: ""}
+  - {key: "X司2|1|T4276|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X吹8|1|T4091|整支|struct", verdict: pending, reason: ""}
+  - {key: "X吹9|1|T4092|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X吹9|1|T4092|整支|struct", verdict: pending, reason: ""}
+  - {key: "X吹9|3|T4110|整支|struct", verdict: pending, reason: ""}
+  - {key: "X和|6|T2368|整支|struct", verdict: pending, reason: ""}
+  - {key: "X哥3|1|T4187|E#7|nsel", verdict: pending, reason: ""}
+  - {key: "X哥3|1|T4187|E#7|sel", verdict: pending, reason: ""}
+  - {key: "X哥4|1|T4188|E#5|nsel", verdict: pending, reason: ""}
+  - {key: "X哥4|1|T4188|E#5|sel", verdict: pending, reason: ""}
+  - {key: "X哥4|6|T4247|E#4|qty", verdict: pending, reason: ""}
+  - {key: "X哥4|6|T4247|E#6|qty", verdict: pending, reason: ""}
+  - {key: "X哥5|1|T4189|E#4|qty", verdict: pending, reason: ""}
+  - {key: "X哥5|2|T4220|E#2|nsel", verdict: pending, reason: ""}
+  - {key: "X哥5|2|T4220|E#2|sel", verdict: pending, reason: ""}
+  - {key: "X哥5|6|T4248|E#1|qty", verdict: pending, reason: ""}
+  - {key: "X哥5|6|T4248|E#2|qty", verdict: pending, reason: ""}
+  - {key: "X哥8|6|T4209|C#0|uo", verdict: pending, reason: ""}
+  - {key: "X唐|6|T2275|整支|absent", verdict: pending, reason: ""}
+  - {key: "X唐|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X商2|3|T4031|整支|struct", verdict: pending, reason: ""}
+  - {key: "X商2|4|T4033|整支|struct", verdict: pending, reason: ""}
+  - {key: "X商|3|T4030|整支|struct", verdict: pending, reason: ""}
+  - {key: "X啞3|1|T1661|整支|struct", verdict: pending, reason: ""}
+  - {key: "X啞4|5|T1682|整支|struct", verdict: pending, reason: ""}
+  - {key: "X啞|4|T1674|E#0|sp", verdict: pending, reason: ""}
+  - {key: "X啞|4|T1674|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X壁2|1|T3862|整支|struct", verdict: pending, reason: ""}
+  - {key: "X壁2|2|T3865|整支|struct", verdict: pending, reason: ""}
+  - {key: "X壁3|2|T3866|整支|struct", verdict: pending, reason: ""}
+  - {key: "X壁3|6|T3878|整支|struct", verdict: pending, reason: ""}
+  - {key: "X壁|5|T3873|整支|struct", verdict: pending, reason: ""}
+  - {key: "X大2|3|T4354|E#4|qty", verdict: pending, reason: ""}
+  - {key: "X大2|3|T4354|E#6|qty", verdict: pending, reason: ""}
+  - {key: "X大2|5|T4358|整支|struct", verdict: pending, reason: ""}
+  - {key: "X大2|6|T4360|E#9|sp", verdict: pending, reason: ""}
+  - {key: "X大3|2|T5154|整支|struct", verdict: pending, reason: ""}
+  - {key: "X大4|1|T5153|整支|struct", verdict: pending, reason: ""}
+  - {key: "X大師|2|T812|整支|struct", verdict: pending, reason: ""}
+  - {key: "X大師|6|T816|整支|struct", verdict: pending, reason: ""}
+  - {key: "X大師守候|5|T5474|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X大師守候|6|T5476|整支|struct", verdict: pending, reason: ""}
+  - {key: "X失血|3|T4730|E#1|qty", verdict: pending, reason: ""}
+  - {key: "X失血|5|T4732|E#1|sp", verdict: pending, reason: ""}
+  - {key: "X女2|2|T1829|整支|struct", verdict: pending, reason: ""}
+  - {key: "X女3|2|T1830|→~首  C2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X女3|2|T1830|整支|struct", verdict: pending, reason: ""}
+  - {key: "X女3|4|T1838|E#0|nsel", verdict: pending, reason: ""}
+  - {key: "X女3|4|T1838|E#0|sel", verdict: pending, reason: ""}
+  - {key: "X女4|1|T1827|整支|struct", verdict: pending, reason: ""}
+  - {key: "X女4|2|T1831|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X女4|2|T1831|整支|struct", verdict: pending, reason: ""}
+  - {key: "X子|4|T2576|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X子|4|T2576|E#1|qty", verdict: pending, reason: ""}
+  - {key: "X子|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X孽|2|T2911|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X客棧5扣|1|T5373|整支|struct", verdict: pending, reason: ""}
+  - {key: "X客棧5扣|2|T5376|整支|struct", verdict: pending, reason: ""}
+  - {key: "X客棧5罰|2|T5378|整支|struct", verdict: pending, reason: ""}
+  - {key: "X客棧8罰|3|T5399|E#2|sp", verdict: pending, reason: ""}
+  - {key: "X客棧8罰|3|T5399|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X客棧拒罰|1|T5409|整支|struct", verdict: pending, reason: ""}
+  - {key: "X實|3|T2385|整支|struct", verdict: pending, reason: ""}
+  - {key: "X屍|6|T3020|整支|struct", verdict: pending, reason: ""}
+  - {key: "X峨|6|T1097|→X升級|edge_missing", verdict: pending, reason: ""}
+  - {key: "X幫|1|T4157|E#0|sp", verdict: pending, reason: ""}
+  - {key: "X幫|1|T4157|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X平3|1|T590|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X平3|5|T610|整支|struct", verdict: pending, reason: ""}
+  - {key: "X幽|5|T2971|E#4|sp", verdict: pending, reason: ""}
+  - {key: "X幽|5|T2971|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X幽死2|6|T2986|整支|struct", verdict: pending, reason: ""}
+  - {key: "X打山賊|2|T29|整支|struct", verdict: pending, reason: ""}
+  - {key: "X打山賊|5|T35|整支|struct", verdict: pending, reason: ""}
+  - {key: "X收3|1|T3887|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X收3|6|T3907|E#3|qty", verdict: pending, reason: ""}
+  - {key: "X收4|1|T3888|整支|struct", verdict: pending, reason: ""}
+  - {key: "X收4|5|T3904|整支|struct", verdict: pending, reason: ""}
+  - {key: "X教頭2|2|T197|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X教頭4|2|T199|→X教頭5|edge_pol", verdict: pending, reason: ""}
+  - {key: "X教頭4|3|T203|→X教頭5|edge_pol", verdict: pending, reason: ""}
+  - {key: "X教頭4|4|T540|→X修|edge_missing", verdict: pending, reason: ""}
+  - {key: "X教頭|1|T516|整支|struct", verdict: pending, reason: ""}
+  - {key: "X教頭|5|T542|E#0|sp", verdict: pending, reason: ""}
+  - {key: "X教頭|5|T542|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X明|1|T1605|整支|struct", verdict: pending, reason: ""}
+  - {key: "X明|3|T1607|整支|struct", verdict: pending, reason: ""}
+  - {key: "X春4|2|T4332|整支|struct", verdict: pending, reason: ""}
+  - {key: "X木2|1|T4683|→X木4|edge_missing", verdict: pending, reason: ""}
+  - {key: "X木2|1|T4683|整支|struct", verdict: pending, reason: ""}
+  - {key: "X木2|6|T1945|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X木2|6|T1945|整支|struct", verdict: pending, reason: ""}
+  - {key: "X木4|1|T4685|整支|struct", verdict: pending, reason: ""}
+  - {key: "X木4|2|T4689|整支|struct", verdict: pending, reason: ""}
+  - {key: "X木|1|T2483|整支|struct", verdict: pending, reason: ""}
+  - {key: "X木|3|T2485|整支|struct", verdict: pending, reason: ""}
+  - {key: "X木|4|T1936|→X南僧|edge_missing", verdict: pending, reason: ""}
+  - {key: "X木|6|T1944|→X木2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X木|6|T1944|→X端2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X木|6|T1944|→X血2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X松2|2|T1205|E#4|nsel", verdict: pending, reason: ""}
+  - {key: "X松2|2|T1205|E#4|sel", verdict: pending, reason: ""}
+  - {key: "X林4|1|T3551|C#0|sp", verdict: pending, reason: ""}
+  - {key: "X林4|1|T3551|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X林4|6|T1188|→X林|edge_pol", verdict: pending, reason: ""}
+  - {key: "X楚|3|T2186|整支|struct", verdict: pending, reason: ""}
+  - {key: "X武2|1|T793|整支|struct", verdict: pending, reason: ""}
+  - {key: "X武|1|T792|整支|struct", verdict: pending, reason: ""}
+  - {key: "X武|6|T802|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X武死2|1|T2837|→X赤|edge_missing", verdict: pending, reason: ""}
+  - {key: "X武死3|1|T2843|→X赤|edge_missing", verdict: pending, reason: ""}
+  - {key: "X武死|1|T2831|→X赤|edge_missing", verdict: pending, reason: ""}
+  - {key: "X毒2|6|T956|整支|absent", verdict: pending, reason: ""}
+  - {key: "X毒2|6|T956|整支|struct", verdict: pending, reason: ""}
+  - {key: "X毒2|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X毒3|6|T957|→X毒2|edge_pol", verdict: pending, reason: ""}
+  - {key: "X毒3|6|T957|整支|absent", verdict: pending, reason: ""}
+  - {key: "X毒3|6|T957|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X毒3|6|T957|整支|struct", verdict: pending, reason: ""}
+  - {key: "X毒3|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X毒4|6|T958|→X毒2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X毒4|6|T958|→X毒3|edge_missing", verdict: pending, reason: ""}
+  - {key: "X毒4|6|T958|→X毒|edge_missing", verdict: pending, reason: ""}
+  - {key: "X毒4|6|T958|整支|absent", verdict: pending, reason: ""}
+  - {key: "X毒4|6|T958|整支|struct", verdict: pending, reason: ""}
+  - {key: "X毒4|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X毒|1|T4467|E#0|sp", verdict: pending, reason: ""}
+  - {key: "X毒|6|T955|→X毒4|edge_missing", verdict: pending, reason: ""}
+  - {key: "X毒|6|T955|整支|absent", verdict: pending, reason: ""}
+  - {key: "X毒|6|T955|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X毒|6|T955|整支|struct", verdict: pending, reason: ""}
+  - {key: "X毒|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X民團死|3|T23|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X治病|4|T368|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X流|2|T901|→X升級|edge_missing", verdict: pending, reason: ""}
+  - {key: "X流|2|T901|整支|absent", verdict: pending, reason: ""}
+  - {key: "X流|2|T901|整支|struct", verdict: pending, reason: ""}
+  - {key: "X流|2|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X渦|5|T2857|→X升級|edge_missing", verdict: pending, reason: ""}
+  - {key: "X渦|6|T2859|整支|struct", verdict: pending, reason: ""}
+  - {key: "X渦死5|5|T2907|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X渦死5|5|T2907|整支|struct", verdict: pending, reason: ""}
+  - {key: "X渦死5|6|T2908|→X珠|edge_missing", verdict: pending, reason: ""}
+  - {key: "X渦死5|6|T2908|整支|struct", verdict: pending, reason: ""}
+  - {key: "X漢|4|T1440|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X灸4|4|T1383|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X燒2|3|T4043|整支|struct", verdict: pending, reason: ""}
+  - {key: "X狂2|1|T896|→X狂|edge_missing", verdict: pending, reason: ""}
+  - {key: "X狂2|1|T896|整支|absent", verdict: pending, reason: ""}
+  - {key: "X狂2|1|T896|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X狂2|1|T896|整支|struct", verdict: pending, reason: ""}
+  - {key: "X狂2|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X狂3|1|T897|→X狂|edge_missing", verdict: pending, reason: ""}
+  - {key: "X狂3|1|T897|整支|absent", verdict: pending, reason: ""}
+  - {key: "X狂3|1|T897|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X狂3|1|T897|整支|struct", verdict: pending, reason: ""}
+  - {key: "X狂3|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X狂|1|T895|→X升級|edge_missing", verdict: pending, reason: ""}
+  - {key: "X狂|1|T895|整支|absent", verdict: pending, reason: ""}
+  - {key: "X狂|1|T895|整支|struct", verdict: pending, reason: ""}
+  - {key: "X狂|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X狂死2|6|T3164|→X狂|edge_pol", verdict: pending, reason: ""}
+  - {key: "X狂死7|2|T3190|→X狂|edge_pol", verdict: pending, reason: ""}
+  - {key: "X王3|2|T4371|整支|struct", verdict: pending, reason: ""}
+  - {key: "X王3|5|T4383|整支|struct", verdict: pending, reason: ""}
+  - {key: "X王3|6|T4387|E#3|qty", verdict: pending, reason: ""}
+  - {key: "X王4|2|T4372|整支|struct", verdict: pending, reason: ""}
+  - {key: "X王|4|T2302|整支|struct", verdict: pending, reason: ""}
+  - {key: "X珠2|2|T4261|整支|struct", verdict: pending, reason: ""}
+  - {key: "X珠2|3|T4264|整支|struct", verdict: pending, reason: ""}
+  - {key: "X珠3|5|T4271|整支|struct", verdict: pending, reason: ""}
+  - {key: "X珠3|6|T4274|整支|struct", verdict: pending, reason: ""}
+  - {key: "X珠4|4|T3611|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X珠|3|T4263|→X升級|edge_missing", verdict: pending, reason: ""}
+  - {key: "X珠|3|T4263|整支|struct", verdict: pending, reason: ""}
+  - {key: "X生2|3|T2674|E#0|sp", verdict: pending, reason: ""}
+  - {key: "X生2|3|T2674|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X生4|3|T2676|整支|struct", verdict: pending, reason: ""}
+  - {key: "X生4|4|T2681|E#4|qty", verdict: pending, reason: ""}
+  - {key: "X生4|4|T2681|E#6|qty", verdict: pending, reason: ""}
+  - {key: "X當2|1|T1191|E#4|qty", verdict: pending, reason: ""}
+  - {key: "X當2|4|T1197|E#1|sp", verdict: pending, reason: ""}
+  - {key: "X當2|4|T1197|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X當|4|T1196|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X破|6|T2151|整支|absent", verdict: pending, reason: ""}
+  - {key: "X破|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X神3|2|T2502|整支|struct", verdict: pending, reason: ""}
+  - {key: "X神4|4|T2513|E#4|qty", verdict: pending, reason: ""}
+  - {key: "X神4|4|T2513|E#8|qty", verdict: pending, reason: ""}
+  - {key: "X神|2|T2500|整支|struct", verdict: pending, reason: ""}
+  - {key: "X神|3|T2505|整支|struct", verdict: pending, reason: ""}
+  - {key: "X神|6|T4418|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X神兵2|1|T4737|整支|struct", verdict: pending, reason: ""}
+  - {key: "X神兵2|6|T4751|→X神兵1|edge_missing", verdict: pending, reason: ""}
+  - {key: "X神兵2|6|T4751|整支|struct", verdict: pending, reason: ""}
+  - {key: "X神兵|6|T4750|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X神兵|6|T4750|整支|struct", verdict: pending, reason: ""}
+  - {key: "X端|4|T1934|整支|struct", verdict: pending, reason: ""}
+  - {key: "X紅|4|T774|整支|struct", verdict: pending, reason: ""}
+  - {key: "X練|5|T1595|整支|struct", verdict: pending, reason: ""}
+  - {key: "X罩3|4|T2428|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船2|1|T3686|整支|absent", verdict: pending, reason: ""}
+  - {key: "X船2|1|T3686|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船2|1|T3703|→X船3|edge_pol", verdict: pending, reason: ""}
+  - {key: "X船2|1|T3703|整支|absent", verdict: pending, reason: ""}
+  - {key: "X船2|1|T3703|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船2|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X船2|2|T3708|整支|absent", verdict: pending, reason: ""}
+  - {key: "X船2|2|T3708|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船2|3|T3713|E#0|olu", verdict: pending, reason: ""}
+  - {key: "X船2|5|T3801|整支|absent", verdict: pending, reason: ""}
+  - {key: "X船2|5|T3801|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船3|1|T3687|→X船4|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船3|1|T3687|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X船3|1|T3687|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船3|1|T3704|→X船6|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船3|1|T3704|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X船3|1|T3704|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船3|1|T3747|→X船2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船3|1|T3747|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船3|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X船3|2|T3709|→X船4|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船3|2|T3709|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船4|1|T3688|→X船5|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船4|1|T3688|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X船4|1|T3688|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船4|1|T3705|→X船|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船4|1|T3705|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X船4|1|T3705|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船4|1|T3748|→X船2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船4|1|T3748|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船4|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X船4|5|T3725|整支|absent", verdict: pending, reason: ""}
+  - {key: "X船4|5|T3725|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船5|1|T3689|→X船5|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船5|1|T3689|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X船5|1|T3706|→X船|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船5|1|T3706|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X船5|1|T3706|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船5|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X船5|6|T3731|整支|absent", verdict: pending, reason: ""}
+  - {key: "X船6|1|T3690|→X頭暈起|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船6|1|T3690|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船6|1|T3750|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船6|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X船6|6|T3775|整支|absent", verdict: pending, reason: ""}
+  - {key: "X船6|6|T3775|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船|1|T3685|→X船2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船|1|T3685|→X船3|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船|1|T3685|整支|absent", verdict: fixed, reason: "西碼頭等級門檻只有座位1有；2026-08-31 已補 X船級西 2-6（merge_spec trigger_add）"}
+  - {key: "X船|1|T3685|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X船|1|T3702|→X船3|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船|1|T3702|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X船|1|T3702|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船|1|T3746|→X船2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船|1|T3746|整支|struct", verdict: pending, reason: ""}
+  - {key: "X船|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X船|2|T3707|→X船3|edge_missing", verdict: pending, reason: ""}
+  - {key: "X船|2|T3782|E#0|sp", verdict: pending, reason: ""}
+  - {key: "X船|2|T3782|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X船|5|T3800|E#0|sp", verdict: pending, reason: ""}
+  - {key: "X船船|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X船船|2|T3691|整支|absent", verdict: wontfix, reason: "同名不同族：五支各是獨立世界觸發（移除區域/DESTROY 等），非六座位家族；見遷移記錄「船船 同名不同族誤配」"}
+  - {key: "X船船|2|T3691|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X船船|3|T3692|整支|absent", verdict: wontfix, reason: "同上"}
+  - {key: "X船船|4|T3693|整支|absent", verdict: wontfix, reason: "同上"}
+  - {key: "X船船|5|T3694|整支|absent", verdict: wontfix, reason: "同上"}
+  - {key: "X船船|5|T3694|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X船船|6|T3695|整支|absent", verdict: wontfix, reason: "同上"}
+  - {key: "X草2|1|T3674|C#2|timer", verdict: pending, reason: ""}
+  - {key: "X草2|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X蕭|4|T1919|整支|struct", verdict: pending, reason: ""}
+  - {key: "X蠱4|1|T2456|整支|struct", verdict: pending, reason: ""}
+  - {key: "X血2|1|T1282|整支|absent", verdict: pending, reason: ""}
+  - {key: "X血2|1|T1282|整支|struct", verdict: pending, reason: ""}
+  - {key: "X血2|2|T2132|整支|absent", verdict: pending, reason: ""}
+  - {key: "X血2|2|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X血2|6|T1292|整支|absent", verdict: pending, reason: ""}
+  - {key: "X血2|6|T1292|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X血2|6|T1292|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X血2|6|T1292|整支|struct", verdict: pending, reason: ""}
+  - {key: "X血|2|T2131|整支|absent", verdict: pending, reason: ""}
+  - {key: "X血|2|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X血|6|T1291|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X血死2|6|T1304|C#1|timer", verdict: pending, reason: ""}
+  - {key: "X血死2|6|T1304|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X血死|4|T1299|C#1|timer", verdict: pending, reason: ""}
+  - {key: "X血死|4|T1299|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X變4|4|T1425|E#10|qty", verdict: pending, reason: ""}
+  - {key: "X變4|4|T1425|E#3|qty", verdict: pending, reason: ""}
+  - {key: "X谷2|1|T4007|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X谷2|6|T4402|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X谷|6|T4401|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X谷|6|T4401|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X賓|1|T4429|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X賓|1|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X賓|2|T4432|整支|absent", verdict: pending, reason: ""}
+  - {key: "X赤2|1|T2988|→X赤|edge_missing", verdict: pending, reason: ""}
+  - {key: "X赤|2|T2989|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X赤死2|1|T3005|→X赤|edge_missing", verdict: pending, reason: ""}
+  - {key: "X赤死|1|T2999|→X赤|edge_missing", verdict: pending, reason: ""}
+  - {key: "X軍|6|T1532|E#0|nsel", verdict: pending, reason: ""}
+  - {key: "X軍|6|T1532|E#0|sel", verdict: pending, reason: ""}
+  - {key: "X軒2|3|T1861|E#8|qty", verdict: pending, reason: ""}
+  - {key: "X軒2|4|T1863|整支|struct", verdict: pending, reason: ""}
+  - {key: "X軒2|6|T1867|E#2|qty", verdict: pending, reason: ""}
+  - {key: "X轅2|1|T1852|C#0|type", verdict: pending, reason: ""}
+  - {key: "X轅2|6|T1878|整支|struct", verdict: pending, reason: ""}
+  - {key: "X迪3|2|T4614|C#0|olu", verdict: pending, reason: ""}
+  - {key: "X迪3|2|T4614|C#1|olu", verdict: pending, reason: ""}
+  - {key: "X迪3|4|T4620|→$漢娜斯N|edge_missing", verdict: pending, reason: ""}
+  - {key: "X迪3|4|T4620|→X哥|edge_missing", verdict: pending, reason: ""}
+  - {key: "X迪3|4|T4620|整支|struct", verdict: pending, reason: ""}
+  - {key: "X進5|1|T2631|整支|struct", verdict: pending, reason: ""}
+  - {key: "X進|6|T2652|整支|struct", verdict: pending, reason: ""}
+  - {key: "X道3|1|T2086|E#1|nsel", verdict: pending, reason: ""}
+  - {key: "X道3|1|T2086|E#1|sel", verdict: pending, reason: ""}
+  - {key: "X道4|1|T261|E#6|nsel", verdict: pending, reason: ""}
+  - {key: "X道4|1|T261|E#6|sel", verdict: pending, reason: ""}
+  - {key: "X道4|2|T2108|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X道4|3|T277|E#9|type", verdict: pending, reason: ""}
+  - {key: "X道4|4|T2110|E#0|qty", verdict: pending, reason: ""}
+  - {key: "X道4|4|T2110|E#1|qty", verdict: pending, reason: ""}
+  - {key: "X道4|4|T282|E#6|qty", verdict: pending, reason: ""}
+  - {key: "X道4|4|T282|E#7|qty", verdict: pending, reason: ""}
+  - {key: "X道4|4|T282|E#8|qty", verdict: pending, reason: ""}
+  - {key: "X道4|4|T282|E#9|qty", verdict: pending, reason: ""}
+  - {key: "X道4|4|T414|整支|struct", verdict: pending, reason: ""}
+  - {key: "X道4|5|T287|→~首  C3|edge_missing", verdict: pending, reason: ""}
+  - {key: "X道4|5|T287|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X道4|6|T292|→~首  C2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X道4|6|T292|→~首  C3|edge_missing", verdict: pending, reason: ""}
+  - {key: "X道4|6|T292|整支|foreign", verdict: pending, reason: ""}
+  - {key: "X道|3|T274|整支|struct", verdict: pending, reason: ""}
+  - {key: "X道|4|T411|整支|struct", verdict: pending, reason: ""}
+  - {key: "X酒4|1|T4300|整支|struct", verdict: pending, reason: ""}
+  - {key: "X酒4|2|T4304|整支|struct", verdict: pending, reason: ""}
+  - {key: "X酒4|6|T4320|E#2|qty", verdict: pending, reason: ""}
+  - {key: "X醫3|5|T388|→X醫學者2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X醫4|4|T384|E#6|qty", verdict: pending, reason: ""}
+  - {key: "X醫4|4|T384|E#7|qty", verdict: pending, reason: ""}
+  - {key: "X醫4|4|T384|E#8|qty", verdict: pending, reason: ""}
+  - {key: "X醫4|4|T384|E#9|qty", verdict: pending, reason: ""}
+  - {key: "X醫5|5|T390|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X醫|6|T391|整支|struct", verdict: pending, reason: ""}
+  - {key: "X醫學者4|2|T230|→X治毒|edge_missing", verdict: pending, reason: ""}
+  - {key: "X醫學者4|4|T243|→X治毒|edge_missing", verdict: pending, reason: ""}
+  - {key: "X金2|5|T2271|整支|absent", verdict: pending, reason: ""}
+  - {key: "X金2|5|T2271|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X金2|5|T2271|整支|struct", verdict: pending, reason: ""}
+  - {key: "X金2|5|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X金3|4|T3634|整支|absent", verdict: pending, reason: ""}
+  - {key: "X金3|5|T2272|→X金|edge_missing", verdict: pending, reason: ""}
+  - {key: "X金3|5|T2272|整支|absent", verdict: pending, reason: ""}
+  - {key: "X金3|5|T2272|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X金3|5|T2272|整支|struct", verdict: pending, reason: ""}
+  - {key: "X金3|5|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X金4|5|T2273|→X金2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X金4|5|T2273|→X金|edge_missing", verdict: pending, reason: ""}
+  - {key: "X金4|5|T2273|整支|absent", verdict: pending, reason: ""}
+  - {key: "X金4|5|T2273|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X金4|5|T2273|整支|struct", verdict: pending, reason: ""}
+  - {key: "X金4|5|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X金|2|T4015|整支|absent", verdict: pending, reason: ""}
+  - {key: "X金|2|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X金|5|T2270|整支|absent", verdict: pending, reason: ""}
+  - {key: "X金|5|T2270|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X金|5|T2270|整支|struct", verdict: pending, reason: ""}
+  - {key: "X金|5|T2361|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X金|5|T2361|整支|struct", verdict: pending, reason: ""}
+  - {key: "X金|5|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X針5|2|T1632|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X青3|6|T5549|C#0|timer", verdict: pending, reason: ""}
+  - {key: "X青|1|T456|整支|struct", verdict: pending, reason: ""}
+  - {key: "X青|5|T464|C#1|timer", verdict: pending, reason: ""}
+  - {key: "X頭暈|6|T5368|→X頭暈|edge_missing", verdict: pending, reason: ""}
+  - {key: "X頭暈|6|T5368|整支|struct", verdict: pending, reason: ""}
+  - {key: "X頭暈起|1|T5358|整支|struct", verdict: pending, reason: ""}
+  - {key: "X頭暈起|4|T5365|→X頭暈|edge_missing", verdict: pending, reason: ""}
+  - {key: "X頭暈起|4|T5365|→X頭暈起|edge_pol", verdict: pending, reason: ""}
+  - {key: "X飛2|6|T2236|→X飛|edge_missing", verdict: pending, reason: ""}
+  - {key: "X飛2|6|T2236|整支|absent", verdict: pending, reason: ""}
+  - {key: "X飛2|6|T2236|整支|struct", verdict: pending, reason: ""}
+  - {key: "X飛2|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X飛|6|T2235|→C  減|edge_missing", verdict: pending, reason: ""}
+  - {key: "X飛|6|T2235|→X升級|edge_missing", verdict: pending, reason: ""}
+  - {key: "X飛|6|T2235|→X武|edge_missing", verdict: pending, reason: ""}
+  - {key: "X飛|6|T2235|整支|absent", verdict: pending, reason: ""}
+  - {key: "X飛|6|T2235|整支|struct", verdict: pending, reason: ""}
+  - {key: "X飛|6|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X首|2|T3963|整支|struct", verdict: pending, reason: ""}
+  - {key: "X馬2|1|T3818|→X資格查|edge_missing", verdict: pending, reason: ""}
+  - {key: "X馬2|1|T3818|整支|absent", verdict: pending, reason: ""}
+  - {key: "X馬2|1|T3818|整支|struct", verdict: pending, reason: ""}
+  - {key: "X馬2|3|T2261|→X死|edge_missing", verdict: pending, reason: ""}
+  - {key: "X馬2|3|T2261|→X資格查|edge_missing", verdict: pending, reason: ""}
+  - {key: "X馬2|3|T2261|→X馬3|edge_missing", verdict: pending, reason: ""}
+  - {key: "X馬2|3|T2261|→X馬|edge_missing", verdict: pending, reason: ""}
+  - {key: "X馬2|3|T2261|整支|absent", verdict: pending, reason: ""}
+  - {key: "X馬2|3|T2261|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X馬2|3|T2261|整支|struct", verdict: pending, reason: ""}
+  - {key: "X馬2|3|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X馬3|1|T3819|整支|absent", verdict: pending, reason: ""}
+  - {key: "X馬3|3|T2262|→X死2|edge_missing", verdict: pending, reason: ""}
+  - {key: "X馬3|3|T2262|整支|absent", verdict: pending, reason: ""}
+  - {key: "X馬3|3|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X馬3|6|T3851|整支|absent", verdict: pending, reason: ""}
+  - {key: "X馬4|3|T2263|整支|absent", verdict: pending, reason: ""}
+  - {key: "X馬4|3|T2263|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X馬4|3|T2263|整支|struct", verdict: pending, reason: ""}
+  - {key: "X馬4|3|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X馬4|5|T3848|整支|absent", verdict: pending, reason: ""}
+  - {key: "X馬4|5|T3848|整支|struct", verdict: pending, reason: ""}
+  - {key: "X馬|1|T3817|整支|struct", verdict: pending, reason: ""}
+  - {key: "X馬|3|T2260|整支|absent", verdict: pending, reason: ""}
+  - {key: "X馬|3|T2260|整支|enabled/looping", verdict: pending, reason: ""}
+  - {key: "X馬|3|T2260|整支|struct", verdict: pending, reason: ""}
+  - {key: "X馬|3|T3837|→X召|edge_missing", verdict: pending, reason: ""}
+  - {key: "X馬|3|T3837|→X哥8|edge_missing", verdict: pending, reason: ""}
+  - {key: "X馬|3|T3837|整支|struct", verdict: pending, reason: ""}
+  - {key: "X馬|3|TNone|組|count", verdict: pending, reason: ""}
+  - {key: "X馬召|6|T3958|C#0|uo", verdict: pending, reason: ""}
+  - {key: "X魔|6|T2931|E#1|qty", verdict: pending, reason: ""}
+  - {key: "X黃2|3|T4055|整支|struct", verdict: pending, reason: ""}
+  - {key: "X黃|1|T4050|整支|struct", verdict: pending, reason: ""}
+  - {key: "X黃|2|T4052|C#0|timer", verdict: pending, reason: ""}
