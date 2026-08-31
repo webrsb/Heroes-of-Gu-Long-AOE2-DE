@@ -374,10 +374,10 @@ params:
     - {trigger_id: 5306, name: 魂移5, kind: trigger, field: looping, old: 0, new: 1, reason: 同上}
     - {trigger_id: 4965, name: 完全教戰守策3, kind: trigger, field: enabled, old: 0, new: 1, reason: 「不得蓋建築」常駐清除規則（object_group 3/30），其餘五座位開局啟用，3P 整支關閉＝只有 3P 能蓋}
     # 2026-08-30 使用者裁決「補」：5/6 座位缺銀兩護欄（T4790–4793 只有 1–4），照 T4790 原樣新增（進貢 3=黃金/銀兩）
-    - {kind: trigger_add, name: 銀兩護欄5, enabled: 1, looping: 1, reason: 原作漏建 5P 銀兩 ≥50 萬上繳護欄（照 T4790）,
+    - {kind: trigger_add, name: 銀兩護欄5, key: seat, enabled: 1, looping: 1, reason: 原作漏建 5P 銀兩 ≥50 萬上繳護欄（照 T4790）,
        conditions: [{type: accumulate_attribute, source_player: 5, quantity: 500000, attribute: 3}],
        effects: [{type: tribute, source_player: 5, target_player: 0, quantity: 10000000, tribute_list: 3}]}
-    - {kind: trigger_add, name: 銀兩護欄6, enabled: 1, looping: 1, reason: 原作漏建 6P 銀兩 ≥50 萬上繳護欄（照 T4790）,
+    - {kind: trigger_add, name: 銀兩護欄6, key: seat, enabled: 1, looping: 1, reason: 原作漏建 6P 銀兩 ≥50 萬上繳護欄（照 T4790）,
        conditions: [{type: accumulate_attribute, source_player: 6, quantity: 500000, attribute: 3}],
        effects: [{type: tribute, source_player: 6, target_player: 0, quantity: 10000000, tribute_list: 3}]}
     # 2026-08-30 純文字瑕疵：少林寺六支訊息顏色標籤 <ROANGE> 打錯，遊戲內顯示白字並印出標籤
@@ -441,6 +441,7 @@ params:
     # 【2026-08-30 船夫搭船 DE 重做】由 tools/gen_ferry_spec.py 產生；設計見 docs/superpowers/specs/2026-08-30-船夫搭船-design.md
     - kind: trigger_add
       name: 1船暈東
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船東座位1：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -450,6 +451,7 @@ params:
       - {type: activate_trigger, trigger_id: 5358}
     - kind: trigger_add
       name: 1船入東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位1：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -458,6 +460,7 @@ params:
       - {type: teleport_object, source_player: 1, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 1船免東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位1：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -468,6 +471,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3750}
     - kind: trigger_add
       name: 1船窗止東
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船東座位1：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -479,6 +483,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 1船免東}
     - kind: trigger_add
       name: 1船清入東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位1：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -487,6 +492,7 @@ params:
       - {type: task_object, source_player: 1, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
       name: 1船出東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位1：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -496,6 +502,7 @@ params:
       - {type: task_object, source_player: 1, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 2船暈東
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船東座位2：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -505,6 +512,7 @@ params:
       - {type: activate_trigger, trigger_id: 5361}
     - kind: trigger_add
       name: 2船入東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位2：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -513,6 +521,7 @@ params:
       - {type: teleport_object, source_player: 2, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 2船免東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位2：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -523,6 +532,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3755}
     - kind: trigger_add
       name: 2船窗止東
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船東座位2：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -534,6 +544,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 2船免東}
     - kind: trigger_add
       name: 2船清入東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位2：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -542,6 +553,7 @@ params:
       - {type: task_object, source_player: 2, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
       name: 2船出東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位2：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -551,6 +563,7 @@ params:
       - {type: task_object, source_player: 2, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 3船暈東
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船東座位3：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -560,6 +573,7 @@ params:
       - {type: activate_trigger, trigger_id: 5363}
     - kind: trigger_add
       name: 3船入東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位3：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -568,6 +582,7 @@ params:
       - {type: teleport_object, source_player: 3, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 3船免東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位3：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -578,6 +593,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3760}
     - kind: trigger_add
       name: 3船窗止東
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船東座位3：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -589,6 +605,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 3船免東}
     - kind: trigger_add
       name: 3船清入東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位3：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -597,6 +614,7 @@ params:
       - {type: task_object, source_player: 3, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
       name: 3船出東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位3：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -606,6 +624,7 @@ params:
       - {type: task_object, source_player: 3, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 4船暈東
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船東座位4：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -615,6 +634,7 @@ params:
       - {type: activate_trigger, trigger_id: 5365}
     - kind: trigger_add
       name: 4船入東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位4：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -623,6 +643,7 @@ params:
       - {type: teleport_object, source_player: 4, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 4船免東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位4：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -633,6 +654,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3765}
     - kind: trigger_add
       name: 4船窗止東
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船東座位4：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -644,6 +666,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 4船免東}
     - kind: trigger_add
       name: 4船清入東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位4：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -652,6 +675,7 @@ params:
       - {type: task_object, source_player: 4, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
       name: 4船出東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位4：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -661,6 +685,7 @@ params:
       - {type: task_object, source_player: 4, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 5船暈東
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船東座位5：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -670,6 +695,7 @@ params:
       - {type: activate_trigger, trigger_id: 5367}
     - kind: trigger_add
       name: 5船入東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位5：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -678,6 +704,7 @@ params:
       - {type: teleport_object, source_player: 5, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 5船免東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位5：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -688,6 +715,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3770}
     - kind: trigger_add
       name: 5船窗止東
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船東座位5：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -699,6 +727,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 5船免東}
     - kind: trigger_add
       name: 5船清入東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位5：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -707,6 +736,7 @@ params:
       - {type: task_object, source_player: 5, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
       name: 5船出東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位5：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -716,6 +746,7 @@ params:
       - {type: task_object, source_player: 5, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 6船暈東
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船東座位6：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -725,6 +756,7 @@ params:
       - {type: activate_trigger, trigger_id: 5369}
     - kind: trigger_add
       name: 6船入東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位6：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -733,6 +765,7 @@ params:
       - {type: teleport_object, source_player: 6, area_x1: 112, area_y1: 226, area_x2: 112, area_y2: 226, location_x: 110, location_y: 225}
     - kind: trigger_add
       name: 6船免東
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船東座位6：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -743,6 +776,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3775}
     - kind: trigger_add
       name: 6船窗止東
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船東座位6：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -754,6 +788,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 6船免東}
     - kind: trigger_add
       name: 6船清入東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位6：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -762,6 +797,7 @@ params:
       - {type: task_object, source_player: 6, area_x1: 110, area_y1: 225, area_x2: 110, area_y2: 225, location_x: 110, location_y: 227}
     - kind: trigger_add
       name: 6船出東
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船東座位6：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -771,6 +807,7 @@ params:
       - {type: task_object, source_player: 6, area_x1: 112, area_y1: 228, area_x2: 112, area_y2: 228, location_x: 114, location_y: 228}
     - kind: trigger_add
       name: 1船暈西
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船西座位1：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -780,6 +817,7 @@ params:
       - {type: activate_trigger, trigger_id: 5358}
     - kind: trigger_add
       name: 1船入西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位1：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -788,6 +826,7 @@ params:
       - {type: teleport_object, source_player: 1, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 1船免西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位1：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -798,6 +837,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3781}
     - kind: trigger_add
       name: 1船窗止西
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船西座位1：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -809,6 +849,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 1船免西}
     - kind: trigger_add
       name: 1船清入西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位1：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -817,6 +858,7 @@ params:
       - {type: task_object, source_player: 1, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
       name: 1船出西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位1：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -826,6 +868,7 @@ params:
       - {type: task_object, source_player: 1, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 2船暈西
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船西座位2：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -835,6 +878,7 @@ params:
       - {type: activate_trigger, trigger_id: 5361}
     - kind: trigger_add
       name: 2船入西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位2：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -843,6 +887,7 @@ params:
       - {type: teleport_object, source_player: 2, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 2船免西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位2：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -853,6 +898,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3787}
     - kind: trigger_add
       name: 2船窗止西
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船西座位2：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -864,6 +910,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 2船免西}
     - kind: trigger_add
       name: 2船清入西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位2：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -872,6 +919,7 @@ params:
       - {type: task_object, source_player: 2, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
       name: 2船出西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位2：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -881,6 +929,7 @@ params:
       - {type: task_object, source_player: 2, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 3船暈西
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船西座位3：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -890,6 +939,7 @@ params:
       - {type: activate_trigger, trigger_id: 5363}
     - kind: trigger_add
       name: 3船入西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位3：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -898,6 +948,7 @@ params:
       - {type: teleport_object, source_player: 3, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 3船免西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位3：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -908,6 +959,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3793}
     - kind: trigger_add
       name: 3船窗止西
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船西座位3：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -919,6 +971,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 3船免西}
     - kind: trigger_add
       name: 3船清入西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位3：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -927,6 +980,7 @@ params:
       - {type: task_object, source_player: 3, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
       name: 3船出西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位3：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -936,6 +990,7 @@ params:
       - {type: task_object, source_player: 3, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 4船暈西
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船西座位4：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -945,6 +1000,7 @@ params:
       - {type: activate_trigger, trigger_id: 5365}
     - kind: trigger_add
       name: 4船入西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位4：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -953,6 +1009,7 @@ params:
       - {type: teleport_object, source_player: 4, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 4船免西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位4：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -963,6 +1020,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3799}
     - kind: trigger_add
       name: 4船窗止西
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船西座位4：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -974,6 +1032,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 4船免西}
     - kind: trigger_add
       name: 4船清入西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位4：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -982,6 +1041,7 @@ params:
       - {type: task_object, source_player: 4, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
       name: 4船出西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位4：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -991,6 +1051,7 @@ params:
       - {type: task_object, source_player: 4, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 5船暈西
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船西座位5：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -1000,6 +1061,7 @@ params:
       - {type: activate_trigger, trigger_id: 5367}
     - kind: trigger_add
       name: 5船入西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位5：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -1008,6 +1070,7 @@ params:
       - {type: teleport_object, source_player: 5, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 5船免西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位5：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -1018,6 +1081,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3805}
     - kind: trigger_add
       name: 5船窗止西
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船西座位5：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -1029,6 +1093,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 5船免西}
     - kind: trigger_add
       name: 5船清入西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位5：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -1037,6 +1102,7 @@ params:
       - {type: task_object, source_player: 5, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
       name: 5船出西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位5：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -1046,6 +1112,7 @@ params:
       - {type: task_object, source_player: 5, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 6船暈西
+      key: class
       enabled: 0
       looping: 0
       reason: 渡船西座位6：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈
@@ -1055,6 +1122,7 @@ params:
       - {type: activate_trigger, trigger_id: 5369}
     - kind: trigger_add
       name: 6船入西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位6：售票窗內踩進入點→傳一隻到內落點。**零條件迴圈**（使用者 SPIIKE傳點位置 的 in 寫法）：區域空時傳送效果自然 no-op，不必用 objects_in_area 條件。不設閱歷門檻——門檻由已反相的X草／1船 推人在到船夫前擋下，加在這裡只會變成無提示的靜默失敗
@@ -1063,6 +1131,7 @@ params:
       - {type: teleport_object, source_player: 6, area_x1: 79, area_y1: 233, area_x2: 79, area_y2: 233, location_x: 81, location_y: 232}
     - kind: trigger_add
       name: 6船免西
+      key: seat
       enabled: 0
       looping: 1
       reason: 渡船西座位6：售票窗開著＝這趟已付清，每輪壓住報價鏈（X船/X船3/X船6），重複進場不再扣費；X船4 每輪重啟 X船 沒關係——本支 id 較大、同輪稍後蓋回去
@@ -1073,6 +1142,7 @@ params:
       - {type: deactivate_trigger, trigger_id: 3811}
     - kind: trigger_add
       name: 6船窗止西
+      key: seat
       enabled: 0
       looping: 0
       reason: 渡船西座位6：售票窗 3 分鐘關閉（過期後重新走鏈＝重新收費）
@@ -1084,6 +1154,7 @@ params:
       - {type: deactivate_trigger, trigger_name: 6船免西}
     - kind: trigger_add
       name: 6船清入西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位6：內落點→內移動點（零條件迴圈）。**不能併進 X船入**：入只在售票窗 3 分鐘內啟用，而下船（船卸 UNLOAD）也落在內落點、常在窗關之後——疏散必須常開，否則落點被卡住
@@ -1092,6 +1163,7 @@ params:
       - {type: task_object, source_player: 6, area_x1: 81, area_y1: 232, area_x2: 81, area_y2: 232, location_x: 81, location_y: 234}
     - kind: trigger_add
       name: 6船出西
+      key: seat
       enabled: 1
       looping: 1
       reason: 渡船西座位6：踩出來點→傳到外落點，並把外落點上的單位叫到外移動點（照使用者 SPIIKE傳點位置 的 out：傳送＋任務併成一支、零條件、常開）
@@ -1101,6 +1173,7 @@ params:
       - {type: task_object, source_player: 6, area_x1: 79, area_y1: 235, area_x2: 79, area_y2: 235, location_x: 77, location_y: 235}
     - kind: trigger_add
       name: 船卸東
+      key: global
       enabled: 0
       looping: 0
       reason: 渡船東：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
@@ -1111,6 +1184,7 @@ params:
       - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 107, area_y1: 225, area_x2: 109, area_y2: 229, location_x: 109, location_y: 225}
     - kind: trigger_add
       name: 船卸西
+      key: global
       enabled: 0
       looping: 0
       reason: 渡船西：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）
@@ -1121,6 +1195,7 @@ params:
       - {type: unload, source_player: 8, object_list_unit_id: 545, area_x1: 82, area_y1: 233, area_x2: 84, area_y2: 235, location_x: 82, location_y: 232}
     - kind: trigger_add
       name: 船旗初始化
+      key: global
       enabled: 1
       looping: 0
       reason: 渡船：兩碼頭進入點／出來點 Gaia 旗（FLAG_A 600）
@@ -1133,6 +1208,7 @@ params:
       - {type: create_object, source_player: 0, object_list_unit_id: 600, location_x: 81, location_y: 235}
     - kind: trigger_add
       name: 1船血東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭精力不足封鎖座位 1（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
@@ -1142,6 +1218,7 @@ params:
       - {type: send_chat, source_player: 1, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
       name: 1船費東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭真扣費座位 1：零條件、由 X船6 武裝；血不足時已被 1船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
@@ -1159,6 +1236,7 @@ params:
       - {type: activate_trigger, trigger_name: 1船免東}
     - kind: trigger_add
       name: 2船血東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭精力不足封鎖座位 2（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
@@ -1168,6 +1246,7 @@ params:
       - {type: send_chat, source_player: 2, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
       name: 2船費東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭真扣費座位 2：零條件、由 X船6 武裝；血不足時已被 2船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
@@ -1185,6 +1264,7 @@ params:
       - {type: activate_trigger, trigger_name: 2船免東}
     - kind: trigger_add
       name: 3船血東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭精力不足封鎖座位 3（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
@@ -1194,6 +1274,7 @@ params:
       - {type: send_chat, source_player: 3, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
       name: 3船費東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭真扣費座位 3：零條件、由 X船6 武裝；血不足時已被 3船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
@@ -1211,6 +1292,7 @@ params:
       - {type: activate_trigger, trigger_name: 3船免東}
     - kind: trigger_add
       name: 4船血東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭精力不足封鎖座位 4（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
@@ -1220,6 +1302,7 @@ params:
       - {type: send_chat, source_player: 4, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
       name: 4船費東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭真扣費座位 4：零條件、由 X船6 武裝；血不足時已被 4船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
@@ -1237,6 +1320,7 @@ params:
       - {type: activate_trigger, trigger_name: 4船免東}
     - kind: trigger_add
       name: 5船血東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭精力不足封鎖座位 5（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
@@ -1246,6 +1330,7 @@ params:
       - {type: send_chat, source_player: 5, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
       name: 5船費東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭真扣費座位 5：零條件、由 X船6 武裝；血不足時已被 5船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
@@ -1263,6 +1348,7 @@ params:
       - {type: activate_trigger, trigger_name: 5船免東}
     - kind: trigger_add
       name: 6船血東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭精力不足封鎖座位 6（spike_objhp 2026-08-31：OBJECT_HP 與跨命 OR 極性皆實證可用）。極性刻意用「≤ 才封鎖」——object_hp 只吃 ref、會被 s39 展開成本體 OR 備身，「≥ 才允許」會被高血備身滿足＝等於沒檢查；「≤ 才封鎖」則任一具低血就擋，順帶保護備身不被 100,000 傷害連坐打死
@@ -1272,6 +1358,7 @@ params:
       - {type: send_chat, source_player: 6, message: <ORANGE>船夫：你精力不足十萬，這趟撐不住，先去養好精力再來。}
     - kind: trigger_add
       name: 6船費東
+      key: seat
       enabled: 0
       looping: 0
       reason: 東碼頭真扣費座位 6：零條件、由 X船6 武裝；血不足時已被 6船血東（較小 id）拆掉，所以扣費與售票窗都不會發生
@@ -1337,6 +1424,7 @@ params:
       reason: 扣費成功→關掉封鎖，免得扣完血變低又跳一句「精力不足」
     - kind: trigger_add
       name: 2船級西
+      key: seat
       enabled: 1
       looping: 1
       reason: 西碼頭等級門檻座位 2：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
@@ -1348,6 +1436,7 @@ params:
       - {type: task_object, source_player: 2, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
     - kind: trigger_add
       name: 3船級西
+      key: seat
       enabled: 1
       looping: 1
       reason: 西碼頭等級門檻座位 3：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
@@ -1359,6 +1448,7 @@ params:
       - {type: task_object, source_player: 3, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
     - kind: trigger_add
       name: 4船級西
+      key: seat
       enabled: 1
       looping: 1
       reason: 西碼頭等級門檻座位 4：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
@@ -1370,6 +1460,7 @@ params:
       - {type: task_object, source_player: 4, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
     - kind: trigger_add
       name: 5船級西
+      key: seat
       enabled: 1
       looping: 1
       reason: 西碼頭等級門檻座位 5：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推
@@ -1381,6 +1472,7 @@ params:
       - {type: task_object, source_player: 5, area_x1: 72, area_y1: 230, area_x2: 82, area_y2: 239, location_x: 73, location_y: 226}
     - kind: trigger_add
       name: 6船級西
+      key: seat
       enabled: 1
       looping: 1
       reason: 西碼頭等級門檻座位 6：基底只有座位 1（1船 T3685），2–6 座位從來沒有檢查（2026-08-31 使用者實測「西岸等級檢查失效」）；照 T3685 鏡像，條件已反相＝<1159 才推

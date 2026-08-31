@@ -62,9 +62,10 @@ def _rect(r):
     return dict(area_x1=r[0], area_y1=r[1], area_x2=r[2], area_y2=r[3])
 
 
-def _add(name, enabled, looping, conditions, effects, reason):
-    return dict(kind='trigger_add', name=name, enabled=enabled, looping=looping, reason=reason,
-                conditions=conditions, effects=effects)
+def _add(name, enabled, looping, conditions, effects, reason, key='seat'):
+    """key＝s39 分類契約（seat 座位鍵/class 職業鍵-shared/global 全域），由 s91 對帳實際變體數。"""
+    return dict(kind='trigger_add', name=name, key=key, enabled=enabled, looping=looping,
+                reason=reason, conditions=conditions, effects=effects)
 
 
 def seat_triggers(s, p):
@@ -75,7 +76,7 @@ def seat_triggers(s, p):
         _add(f'{s}船暈{p}', 0, 0,
              [dict(type='bring_object_to_area', unit_object=HERO_REF[s], **_tile(c['enter']))],
              [dict(type='activate_trigger', trigger_id=DIZZY[s])],
-             f'{tag}：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈'),
+             f'{tag}：英雄踩進入點（窗開）→ 啟動 X頭暈起；取代原作付費即暈', key='class'),
         _add(f'{s}船入{p}', 0, 1,
              [],
              [dict(type='teleport_object', source_player=s, **_tile(c['enter']),
@@ -123,12 +124,12 @@ def global_triggers():
                         [dict(type='unload', source_player=8, object_list_unit_id=TRANSPORT, **_rect(c['dock']),
                               location_x=c['dock_out'][0], location_y=c['dock_out'][1])],
                         f'渡船{p}：一次性，派船時武裝，TIMER 8 待離港船駛出水域，對岸船抵達即 UNLOAD 到牆內落點一次'
-                        f'（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）'))
+                        f'（不可迴圈：兩船開局即在水域內，會把剛登船者卸回；spike_ferry ①／v4）', key='global'))
     flags = [dict(type='create_object', source_player=0, object_list_unit_id=FLAG_A,
                   location_x=PIER[p][k][0], location_y=PIER[p][k][1])
              for p in PIER for k in ('enter', 'in_flag')]
     out.append(_add('船旗初始化', 1, 0, [dict(type='timer', timer=0)], flags,
-                    '渡船：兩碼頭進入點／出來點 Gaia 旗（FLAG_A 600）'))
+                    '渡船：兩碼頭進入點／出來點 Gaia 旗（FLAG_A 600）', key='global'))
     # 東碼頭扣費改成兩支：血東（封鎖，先建＝小 id）→ 費東（真扣費，後建＝大 id）。
     # 兩支由 X船6 同一 tick 一起武裝，小 id 先跑，血不足就把費東拆掉。
     # 為什麼不能沿用「封鎖器拆原作扣費」：spike_objhp D 組實測，同 tick 內大 id 攔不住小 id；
