@@ -149,7 +149,7 @@ def main(argv):
     findings = audit(sc.trigger_manager.triggers, var_map)
     md = render_md(argv[1], findings, len(var_map))
     if len(argv) > 3:
-        open(argv[3], 'w', encoding='utf-8').write(md)
+        open(argv[3], 'w', encoding='utf-8', newline='\n').write(md)
     print(md.split('\n')[2])
     shown = [x for x in findings if not (x.kind.startswith('A2') or x.kind.startswith('D2'))]
     parts = md.split('\n')

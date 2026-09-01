@@ -405,7 +405,7 @@ def main(argv):
     led = load_ledger(ledger_path)
     md = render_md(path, findings, stats, tn, ledger=led)
     if out_md:
-        open(out_md, 'w', encoding='utf-8').write(md)
+        open(out_md, 'w', encoding='utf-8', newline='\n').write(md)
     print(md.split('\n')[2])
     cls = classify([(finding_key(r), r) for r in findings if r.sev != 'LOW'], led)
     print('裁決帳本：' + summary(cls))

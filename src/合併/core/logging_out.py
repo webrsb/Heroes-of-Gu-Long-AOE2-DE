@@ -11,7 +11,7 @@ def write_step_logs(step_id: str, title: str, intro: str,
     tsv_p = logs_dir / f'{nn}_{title}.tsv'
     md_p = logs_dir / f'{nn}_{title}.md'
     tsv_p.write_text('\n'.join([TSV_HEADER] + [to_tsv_row(c) for c in changes]) + '\n',
-                     encoding='utf-8')
+                     encoding='utf-8', newline='\n')
     kinds = Counter(c.kind for c in changes)
     reasons = sorted({c.reason for c in changes})
     lines = [f'# {step_id} {title}', '', intro, '']
@@ -21,5 +21,5 @@ def write_step_logs(step_id: str, title: str, intro: str,
         lines.append(f'共 **{len(changes)}** 筆異動：')
         lines += [f'- {k}: {n}' for k, n in kinds.most_common()]
         lines += ['', '依據：'] + [f'- {r}' for r in reasons]
-    md_p.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    md_p.write_text('\n'.join(lines) + '\n', encoding='utf-8', newline='\n')
     return tsv_p, md_p

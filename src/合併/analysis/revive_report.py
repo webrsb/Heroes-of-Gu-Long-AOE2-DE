@@ -133,7 +133,7 @@ def main(src, out_md):
         L.append(f'- lives={lives}: 現有 {len(tm.triggers)} ＋ matrix {matrix_total}×5 '
                  f'＋ locref {locref_trigs}×{lives - 1} ＋ 鏈 {chains} ＋ 連動a型 {dl_a}×5 '
                  f'＋ 啟動器約200 ≈ **{est}** → {verdict}')
-    open(out_md, 'w', encoding='utf-8').write('\n'.join(L) + '\n')
+    open(out_md, 'w', encoding='utf-8', newline='\n').write('\n'.join(L) + '\n')
     print(f'報表完成: {out_md}（死亡連動 {len(dl_rows)} 行、const過濾 '
           f'{len(set(inv.const_filtered))} 支、cross {len(inv.cross)} 支）')
 

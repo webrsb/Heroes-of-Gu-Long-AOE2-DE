@@ -101,11 +101,13 @@ def write_report() -> int:
                  unmatched_b_names=[repr(by_id_b[i].name) for i in pt.unmatched_b])
     REPORTS.mkdir(exist_ok=True)
     (REPORTS / '盤點報告.md').write_text(
-        render_report(reports, diff_rows, fuzzy_rows, orphans, stats), encoding='utf-8')
+        render_report(reports, diff_rows, fuzzy_rows, orphans, stats),
+        encoding='utf-8', newline='\n')
     tsv = ['群\t成員id\t判定\t原因']
     tsv += [f'{r.label}\t{sorted(r.members)}\t{r.classification}\t{"；".join(r.reasons)}'
             for r in reports]
-    (REPORTS / '盤點明細.tsv').write_text('\n'.join(tsv) + '\n', encoding='utf-8')
+    (REPORTS / '盤點明細.tsv').write_text('\n'.join(tsv) + '\n', encoding='utf-8',
+                                       newline='\n')
     print(f'盤點報告：{REPORTS / "盤點報告.md"}（{len(reports)} 群、'
           f'{len(diff_rows)} 筆同名差異、{len(fuzzy_rows)} 組模糊配對）')
     return 0

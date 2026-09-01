@@ -88,7 +88,7 @@ def main(src, out_txt):
             if msg:
                 parts.append(f'訊息「{msg}」')
             L.append(' '.join(parts))
-    open(out_txt, 'w', encoding='utf-8').write('\n'.join(L) + '\n')
+    open(out_txt, 'w', encoding='utf-8', newline='\n').write('\n'.join(L) + '\n')
     print(f'DUMP 完成: {out_txt}（{len(tm.triggers)} 支）')
 
 

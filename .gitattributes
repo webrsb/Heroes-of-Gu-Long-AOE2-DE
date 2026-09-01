@@ -1,0 +1,12 @@
+# 建置產出的對帳報表由 Python 的 write_text() 寫（換行都是 \n），但 Windows 上
+# open() 預設會把 \n 轉成 \r\n。兩台機器交替建置時，內容一模一樣的 log 會因行尾
+# 反覆出現在 diff 裡（實例：34_任務欄文字校正.tsv，內文本身還含 CR 字元）。統一存 LF。
+src/合併/logs/*.tsv  text eol=lf
+src/合併/logs/*.md   text eol=lf
+src/合併/reports/*.md text eol=lf
+
+# 二進位：別讓 git 誤判成文字而做行尾轉換（會直接毀檔）
+*.aoe2scenario binary
+*.scx          binary
+*.exe          binary
+*.dll          binary

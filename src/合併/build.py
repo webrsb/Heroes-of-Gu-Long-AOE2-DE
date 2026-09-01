@@ -58,7 +58,8 @@ def main():
     suffix = f'_until_{a.until}' if a.until else ''
     out_path = OUT / f'古龍921_合併{suffix}.aoe2scenario'
     scenario_io.write_out(ctx.base, out_path)
-    (LOGS / '測試指引.md').write_text(render_guide(results), encoding='utf-8')
+    (LOGS / '測試指引.md').write_text(render_guide(results), encoding='utf-8',
+                                   newline='\n')
     print(f'產出：{out_path}')
     if a.deploy:
         print(f'部署：{scenario_io.deploy(out_path)}')

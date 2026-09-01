@@ -205,7 +205,7 @@ def main(argv):
         return 1
     if '--check' not in argv:
         out = Path('reports/字型缺字裁決.md')
-        out.write_text(render_md(scenario), encoding='utf-8')
+        out.write_text(render_md(scenario), encoding='utf-8', newline='\n')
         print(f'報告：{out}')
         if '--spec' in argv:
             print('    # 【2026-09-01 DE 字型缺字換字裁決】由 tools/gen_glyph_fixes.py 產生')

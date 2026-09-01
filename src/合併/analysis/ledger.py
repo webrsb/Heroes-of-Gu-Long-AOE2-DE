@@ -62,7 +62,7 @@ def save(path, entries, header=''):
         e = entries[key]
         lines.append(f'  - {{key: "{_esc(key)}", verdict: {e.get("verdict", "pending")}, '
                      f'reason: "{_esc(e.get("reason", ""))}"}}')
-    Path(path).write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    Path(path).write_text('\n'.join(lines) + '\n', encoding='utf-8', newline='\n')
 
 
 def classify(keyed_findings, ledger):

@@ -173,7 +173,7 @@ def main(src, out_md=None):
             lines.append(f'- {s}')
     text = '\n'.join(lines) + '\n'
     if out_md:
-        open(out_md, 'w', encoding='utf-8').write(text)
+        open(out_md, 'w', encoding='utf-8', newline='\n').write(text)
         print(f'報表: {out_md}')
     print(f'違規 {len(vio)} 項、複核 {len(review)} 項')
     for k, s in vio[:40]:

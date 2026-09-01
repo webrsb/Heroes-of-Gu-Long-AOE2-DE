@@ -24,3 +24,12 @@ def test_overwrites_same_filename(tmp_path):
     write_step_logs('s30', '攻擊力修復', 'x', [_c(), _c()], tmp_path)
     tsv, _ = write_step_logs('s30', '攻擊力修復', 'x', [_c()], tmp_path)
     assert len(tsv.read_text(encoding='utf-8').splitlines()) == 2
+
+def test_writes_lf_even_on_windows(tmp_path):
+    """行尾必須是 LF，不能交給 Python 的平台預設（Windows 會寫 CRLF）。
+    兩台機器交替建置時，內容相同的 log 會因行尾反覆進 diff；更糟的是 git 的
+    eol=lf clean filter 會把「剛好落在行尾的內文 CR」一起吃掉（實例：
+    34_任務欄文字校正.tsv 的對白含裸 CR）。所以在寫檔端就固定 LF。"""
+    tsv, md = write_step_logs('s30', '攻擊力修復', 'x', [_c()], tmp_path)
+    for p in (tsv, md):
+        assert b'\r\n' not in p.read_bytes(), f'{p.name} 寫出了 CRLF'
