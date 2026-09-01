@@ -2,3 +2,5 @@ src/合併/*攻略*.md
 攻略.txt
 tmp/
 .venv/
+__pycache__/
+*.py[cod]
