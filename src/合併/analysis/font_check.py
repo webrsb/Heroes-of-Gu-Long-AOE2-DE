@@ -35,17 +35,38 @@ MARKUP = re.compile(r'<(?:%s)>' % '|'.join(COLORS))
 ANGLE = re.compile(r'<[^<>\r\n]{1,20}>')
 
 
-def load_coverage(fonts_dir=FONTS):
-    """→ 可顯示字元集。兩份圖集清單取聯集（實測相同，取聯集只為保險）。"""
+SNAPSHOT = Path(__file__).with_name('de_font_coverage.txt')
+
+
+def load_coverage(fonts_dir=FONTS, allow_snapshot=True):
+    """→ 可顯示字元集。優先讀遊戲目錄的兩份圖集清單（取聯集，實測相同，聯集只為保險）；
+    讀不到就退回版控裡的快照——s90 的缺字閘門不該依賴「這台機器裝了遊戲」。"""
     files = [p for p in (Path(fonts_dir) / 'combined.txt',
                          Path(fonts_dir) / 'combined_sansserif.txt') if p.exists()]
-    if not files:
-        raise FileNotFoundError(f'找不到字圖集清單：{fonts_dir}\\combined.txt')
-    cov = set()
-    for p in files:
-        for a, b in GLYPH.findall(p.read_text(encoding='utf-8')):
-            cov.add(a if a else chr(int(b)))
-    return cov
+    if files:
+        cov = set()
+        for p in files:
+            for a, b in GLYPH.findall(p.read_text(encoding='utf-8')):
+                cov.add(a if a else chr(int(b)))
+        return cov
+    if allow_snapshot and SNAPSHOT.exists():
+        return {chr(int(tok, 16)) for line in SNAPSHOT.read_text(encoding='utf-8').splitlines()
+                if not line.startswith('#') for tok in line.split()}
+    raise FileNotFoundError(f'找不到字圖集清單（{fonts_dir}\\combined.txt）也沒有快照（{SNAPSHOT}）')
+
+
+def write_snapshot(fonts_dir=FONTS):
+    """把遊戲目錄的覆蓋表存成版控快照（遊戲更新後重產）。"""
+    import textwrap
+    cov = sorted(ord(c) for c in load_coverage(fonts_dir, allow_snapshot=False))
+    head = ('# DE 點陣字圖集覆蓋表快照（碼位，十六進位）\n'
+            '# 由 analysis/font_check.py --snapshot 從 AoE2DE/resources/_common/fonts/combined.txt 產生。\n'
+            '# 存快照的理由：s90 的缺字閘門不該依賴「這台機器裝了遊戲」；遊戲更新後用 --snapshot 重產。\n'
+            f'# 共 {len(cov)} 字（CJK 統一漢字 '
+            f'{sum(1 for c in cov if 0x4E00 <= c <= 0x9FFF)} 個）。\n')
+    body = '\n'.join(textwrap.wrap(' '.join(f'{c:04X}' for c in cov), 100))
+    SNAPSHOT.write_text(head + body + '\n', encoding='utf-8', newline='\n')
+    return SNAPSHOT, len(cov)
 
 
 def visible_texts(scn):
@@ -101,7 +122,11 @@ def main(argv):
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
     from core.scenario_io import load
-    cov = load_coverage(argv[2] if len(argv) > 2 else FONTS)
+    if '--snapshot' in argv:
+        p, n = write_snapshot()
+        print(f'快照已更新：{p}（{n} 字）')
+        return 0
+    cov = load_coverage(next((a for a in argv[2:] if not a.startswith('--')), FONTS))
     print(f'字圖集覆蓋 {len(cov)} 字（CJK 統一漢字 '
           f'{sum(1 for c in cov if 0x4E00 <= ord(c) <= 0x9FFF)} 個）')
     scn = load(argv[1])

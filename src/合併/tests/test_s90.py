@@ -38,3 +38,18 @@ def test_check_no_empty_effects():
     assert check_no_empty_effects(ok) == []
     v = check_no_empty_effects(bad)
     assert len(v) == 1 and 'T0' in v[0] and '2' in v[0]
+
+
+def test_glyph_gate_catches_chars_outside_the_de_atlas():
+    """缺字閘門：玩家看得到的文字用了字圖集以外的字即中止建置（以前只有進遊戲才發現）。
+    覆蓋表讀不到遊戲目錄時退回版控快照，所以這條在沒裝遊戲的機器上也成立。"""
+    from types import SimpleNamespace as NS
+    from steps.s90_audit import check_glyphs
+    def scn(msg):
+        return NS(message_manager=NS(hints=''),
+                  player_manager=NS(players=[]),
+                  trigger_manager=NS(triggers=[NS(trigger_id=5, name='1棧', short_description='',
+                                                  description='', effects=[NS(message=msg)])]))
+    bad = check_glyphs(scn('<ORANGE>本客棧不提供'))
+    assert len(bad) == 1 and 'U+68E7' in bad[0] and 'glyph_fixes' in bad[0]
+    assert check_glyphs(scn('<ORANGE>本客店不提供')) == []       # 換字後放行

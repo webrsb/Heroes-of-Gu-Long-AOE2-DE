@@ -70,6 +70,20 @@ def check_no_empty_effects(scn):
     return out
 
 
+def check_glyphs(scn):
+    """玩家看得到的文字不得含 DE 點陣字圖集以外的字——那些字**不 fallback、直接開天窗**，
+    以前只有進遊戲才發現（2026-09-01 使用者實報）。覆蓋表優先讀遊戲目錄，讀不到用版控快照。
+    新寫的對白若用了罕用字，會在這裡擋下來，回頭補 params.glyph_fixes 的裁決。"""
+    from analysis.font_check import load_coverage, missing
+    cov = load_coverage()
+    out = []
+    for ch, hits in sorted(missing(scn, cov).items(), key=lambda kv: -len(kv[1])):
+        src, ctx_ = hits[0]
+        out.append(f'缺字 U+{ord(ch):04X}「{ch}」×{len(hits)}（{src}｜…{ctx_}…）'
+                   f'——不在 DE 字圖集，遊戲中會開天窗；請補 params.glyph_fixes.char 的裁決')
+    return out
+
+
 def check_boss_refs(spec, notes):
     targets = (spec.params.get('boss_hp') or {}).get('targets') or []
     refs = notes.get('boss_refs') or {}
@@ -80,7 +94,7 @@ def check_boss_refs(spec, notes):
 class AuditStep(Step):
     id = 's90'
     title = '終檢'
-    intro = '六項不變量稽核（spec §8 五項＋空效果殼零殘留），任一失敗即中止建置。'
+    intro = '七項不變量稽核（spec §8 五項＋空效果殼零殘留＋字型缺字零殘留），任一失敗即中止建置。'
 
     def apply(self, ctx):
         violations = []
@@ -90,9 +104,10 @@ class AuditStep(Step):
         violations += check_reconciliation(ctx.base, ctx.notes)
         violations += check_boss_refs(ctx.spec, ctx.notes)
         violations += check_no_empty_effects(ctx.base)
+        violations += check_glyphs(ctx.base)
         if violations:
             raise BuildError('終檢未過：\n  ' + '\n  '.join(violations))
-        return [Change(self.id, 'audit', '全檔', '—', '', '6/6 通過', 'spec §8＋空殼')]
+        return [Change(self.id, 'audit', '全檔', '—', '', '7/7 通過', 'spec §8＋空殼＋缺字')]
 
 
 STEP = AuditStep()

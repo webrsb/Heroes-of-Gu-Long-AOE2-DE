@@ -34,12 +34,19 @@ WORD = [
     ('口訣', '口令', '同上；開門用的口訣＝口令，語意不變'),
     ('衙門', '官府', '衙字級換成「府門」不成詞；整詞換「官府」最直白'),
     ('磹斧兵', '擲斧兵', '原作錯字：AoE2 的 Throwing Axeman 正式譯名是「擲斧兵」'),
-    # U+F6F3 是 Big5 造字區殘留（轉碼時落進私用區），同一個碼位在兩處扮不同角色，只能分別處理
-    ('新任務', '新任務：', 'U+F6F3 在此作分隔號 → 全形冒號'),
-    ('殺１', '殺１　', 'U+F6F3 在此作對齊填充（原字已不可考）→ 全形空白，不編造語意'),
     # 不是缺字，但同一族的「只有遊玩才發現」：DE 把 <…> 當標記解析，不認識的可能整段吃掉
     ('<迪加>', '「迪加」', '`<迪加>任務學家` 的角括號會被 DE 的標籤解析器吃掉（同「不可用半形 <>」'
                           '那條理由）；改成引號保住名字'),
+]
+
+# ── 私用區殘留（跑在 word 之後、char 之前）──────────────────
+# U+F6F3 是 Big5 造字區殘留（轉碼時落進 Unicode 私用區），同一碼位在兩處扮不同角色，
+# 只能各自處理。**以碼位而非字元本身入 spec**：raw PUA 字元寫進 YAML 會變成看不見的地雷，
+# 編輯器一動就壞（merge_spec 曾被原生 DEL 咬過兩次）。`after` 是錨點，換掉錨點後那一個字。
+PUA = [
+    ('F6F3', '新任務', '：', 'U+F6F3 在此作分隔號（「新增兩項新任務□哈囉德哈」）→ 全形冒號'),
+    ('F6F3', '殺１', '　', 'U+F6F3 在此作對齊填充（「周賓殺１□4000」，原字已不可考）→ '
+                          '全形空白，不編造語意。錨點帶全形１，故必須排在字級降半形之前'),
 ]
 
 # ── 字級規則 ────────────────────────────────────────────────────────────────
@@ -85,12 +92,10 @@ CHAR = [
 
 
 def apply_all(text):
-    """套用全部規則（詞級先、字級後）。"""
-    for old, new, _ in WORD:
-        text = text.replace(old, new)
-    for old, new, _, _ in CHAR:
-        text = text.replace(old, new)
-    return text
+    """套用全部規則。實作在 steps/s85_glyph.apply_rules（建置期跑的那份），這裡只是同一份
+    裁決表餵進去——驗證與實際施作共用同一條路徑，才不會驗過了卻做出別的結果。"""
+    from steps.s85_glyph import apply_rules
+    return apply_rules(text, WORD, PUA, CHAR)
 
 
 def validate(scenario=SCENARIO):
@@ -100,12 +105,12 @@ def validate(scenario=SCENARIO):
     cov = load_coverage()
     out = []
     for old, new, why in WORD:
-        # 詞級結果還會被字級規則掃一遍（例：'殺１　' 的全形１由字級降半形），故先套字級再驗
-        after = new
-        for a, b, _, _ in CHAR:
-            after = after.replace(a, b)
-        bad = [c for c in after if c not in cov]
+        bad = [c for c in apply_all(new) if c not in cov]
         out.append((not bad, f'詞級「{old}」→「{new}」：'
+                             + (f'替代字 {bad} 自己也缺字！' if bad else '替代字全在覆蓋表')))
+    for code, after, new, why in PUA:
+        bad = [c for c in apply_all(new) if c not in cov]
+        out.append((not bad, f'私用區 U+{code} 於「{after}」後 →「{new}」：'
                              + (f'替代字 {bad} 自己也缺字！' if bad else '替代字全在覆蓋表')))
     for old, new, kind, why in CHAR:
         bad = [c for c in new if c not in cov]
@@ -114,7 +119,7 @@ def validate(scenario=SCENARIO):
     scn = load(scenario)
     miss = missing(scn, cov)
     covered = set(miss) - {''}
-    ruled = {c for c, *_ in CHAR}
+    ruled = {c for c, *_ in CHAR} | {chr(int(code, 16)) for code, *_ in PUA}
     orphan = sorted(covered - ruled)
     out.append((not orphan, f'實檔缺字 {len(miss)} 種都有裁決'
                             + (f'；缺裁決：{orphan}' if orphan else '')))
@@ -154,6 +159,10 @@ def render_md(scenario=SCENARIO):
           '| 原詞 | 換成 | 理由 |', '|---|---|---|']
     for old, new, why in WORD:
         L.append(f'| `{old}` | `{new}` | {why} |')
+    L += ['', '### 私用區殘留（以碼位入 spec，不讓看不見的字元進 YAML）', '',
+          '| 碼位 | 錨點 | 換成 | 理由 |', '|---|---|---|---|']
+    for code, after, new, why in PUA:
+        L.append(f'| U+{code} | `{after}` | `{new}` | {why} |')
     sus = suspect_tags(scn)
     L += ['', '## 順帶抓到：可疑 `<…>` 片段（不是缺字，但同族的「只有遊玩才發現」）', '',
           'DE 把 `<…>` 當標記解析，不認識的可能整段吃掉——玩家看到的是憑空少一段。', '',
@@ -172,6 +181,17 @@ def render_md(scenario=SCENARIO):
     return '\n'.join(L) + '\n'
 
 
+def render():
+    """→ merge_spec 用的 params.glyph_fixes 區塊（已縮排）。"""
+    import textwrap
+    import yaml
+    data = {'word': [list(r) for r in WORD],
+            'pua': [list(r) for r in PUA],
+            'char': [list(r) for r in CHAR]}
+    return textwrap.indent(yaml.safe_dump(data, allow_unicode=True, sort_keys=False,
+                                          default_flow_style=None, width=250), '    ')
+
+
 def main(argv):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
     scenario = next((a for a in argv[1:] if not a.startswith('--')), SCENARIO)
@@ -187,6 +207,10 @@ def main(argv):
         out = Path('reports/字型缺字裁決.md')
         out.write_text(render_md(scenario), encoding='utf-8')
         print(f'報告：{out}')
+        if '--spec' in argv:
+            print('    # 【2026-09-01 DE 字型缺字換字裁決】由 tools/gen_glyph_fixes.py 產生')
+            print('    glyph_fixes:')
+            print(render(), end='')
     return 0
 
 
