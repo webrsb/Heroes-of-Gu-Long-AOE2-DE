@@ -1,0 +1,4 @@
+# 建置與稽核用。裝法：python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+AoE2ScenarioParser==0.8.4   # 版本鎖死：升版會改寫檔行為，本專案所有實測都基於 0.8.4
+PyYAML>=6                   # merge_spec.yaml / audit_ledger.yaml / verdicts
+pytest>=8                   # src/合併/tests（304 條）

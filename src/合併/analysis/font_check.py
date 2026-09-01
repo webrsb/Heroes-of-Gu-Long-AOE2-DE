@@ -21,11 +21,19 @@
 用法（在 src/合併 下）：
     python -m analysis.font_check <scenario> [fonts_dir]
 """
+import os
 import re
 import sys
 from pathlib import Path
 
-FONTS = Path(r'D:\Program Files (x86)\Steam\steamapps\common\AoE2DE\resources\_common\fonts')
+# 字圖集清單所在。同一份程式碼要能在兩台機器跑，所以列候選、依序取第一個含 combined.txt 的；
+# 環境變數 AOE2_FONTS_DIR 蓋過全部。macOS 是 Feral Interactive 的原生移植，資料多一層
+# AgeOfEmpires2Data。找不到不算錯——load_coverage() 會退回版控快照。
+FONTS_DIRS = (
+    r'D:\Program Files (x86)\Steam\steamapps\common\AoE2DE\resources\_common\fonts',
+    '~/Library/Application Support/Steam/steamapps/common/AoE2DE'
+    '/AgeOfEmpires2Data/resources/_common/fonts',
+)
 GLYPH = re.compile(r"^Glyph - (?:'(.)'|(\d+))\s", re.M)
 # DE 的顏色標籤（不顯示，故不算缺字）。**只認這七個**——寫成通用的 `<[^<>]+>` 會把
 # 「差<3 且 x>5」這種比較式整段吃掉，反而藏住裡面的缺字。非顏色標籤的 `<…>` 交給
@@ -38,11 +46,23 @@ ANGLE = re.compile(r'<[^<>\r\n]{1,20}>')
 SNAPSHOT = Path(__file__).with_name('de_font_coverage.txt')
 
 
-def load_coverage(fonts_dir=FONTS, allow_snapshot=True):
+def find_fonts_dir():
+    """→ 這台機器上含 combined.txt 的字圖集目錄；沒裝遊戲就回 None。"""
+    env = os.environ.get('AOE2_FONTS_DIR')
+    for cand in ((env,) if env else ()) + FONTS_DIRS:
+        p = Path(cand).expanduser()
+        if (p / 'combined.txt').exists():
+            return p
+    return None
+
+
+def load_coverage(fonts_dir=None, allow_snapshot=True):
     """→ 可顯示字元集。優先讀遊戲目錄的兩份圖集清單（取聯集，實測相同，聯集只為保險）；
     讀不到就退回版控裡的快照——s90 的缺字閘門不該依賴「這台機器裝了遊戲」。"""
-    files = [p for p in (Path(fonts_dir) / 'combined.txt',
-                         Path(fonts_dir) / 'combined_sansserif.txt') if p.exists()]
+    fonts_dir = Path(fonts_dir).expanduser() if fonts_dir else find_fonts_dir()
+    files = [p for p in ((fonts_dir / 'combined.txt',
+                          fonts_dir / 'combined_sansserif.txt') if fonts_dir else ())
+             if p.exists()]
     if files:
         cov = set()
         for p in files:
@@ -52,10 +72,12 @@ def load_coverage(fonts_dir=FONTS, allow_snapshot=True):
     if allow_snapshot and SNAPSHOT.exists():
         return {chr(int(tok, 16)) for line in SNAPSHOT.read_text(encoding='utf-8').splitlines()
                 if not line.startswith('#') for tok in line.split()}
-    raise FileNotFoundError(f'找不到字圖集清單（{fonts_dir}\\combined.txt）也沒有快照（{SNAPSHOT}）')
+    tried = '、'.join(str(Path(c).expanduser()) for c in FONTS_DIRS)
+    raise FileNotFoundError(
+        f'找不到字圖集清單（試過 {tried}，可用 AOE2_FONTS_DIR 指定）也沒有快照（{SNAPSHOT}）')
 
 
-def write_snapshot(fonts_dir=FONTS):
+def write_snapshot(fonts_dir=None):
     """把遊戲目錄的覆蓋表存成版控快照（遊戲更新後重產）。"""
     import textwrap
     cov = sorted(ord(c) for c in load_coverage(fonts_dir, allow_snapshot=False))
@@ -126,7 +148,7 @@ def main(argv):
         p, n = write_snapshot()
         print(f'快照已更新：{p}（{n} 字）')
         return 0
-    cov = load_coverage(next((a for a in argv[2:] if not a.startswith('--')), FONTS))
+    cov = load_coverage(next((a for a in argv[2:] if not a.startswith('--')), None))
     print(f'字圖集覆蓋 {len(cov)} 字（CJK 統一漢字 '
           f'{sum(1 for c in cov if 0x4E00 <= ord(c) <= 0x9FFF)} 個）')
     scn = load(argv[1])

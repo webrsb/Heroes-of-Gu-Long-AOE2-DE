@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 """DE 字型缺字稽核：字圖集清單解析、標記剝除、玩家可見文字盤點、換字規則。
-不碰真實字型檔（在 D: 遊戲目錄，CI 不一定有），全部用合成資料。"""
+不碰真實字型檔（在遊戲安裝目錄，不是每台機器都有），全部用合成資料或版控快照。"""
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from types import SimpleNamespace as NS
 
-from analysis.font_check import GLYPH, MARKUP, visible_texts, missing, suspect_tags
+import pytest
+
+from analysis import font_check
+from analysis.font_check import (
+    GLYPH, MARKUP, visible_texts, missing, suspect_tags)
 from tools.gen_glyph_fixes import WORD, CHAR, apply_all
 
 ATLAS = """Font File Atlas Summary
@@ -105,3 +109,24 @@ def test_pipeline_converges_for_every_rule():
     sources = {c for c, *_ in CHAR}
     for old, new, *_ in list(WORD) + [(o, n) for o, n, _, _ in CHAR]:
         assert not (set(apply_all(new)) & sources), f'{old}→{new} 套完管線仍含缺字'
+
+
+def test_find_fonts_dir_takes_first_candidate_with_combined_txt(tmp_path, monkeypatch):
+    good = tmp_path / 'good'; good.mkdir(); (good / 'combined.txt').write_text('', encoding='utf-8')
+    empty = tmp_path / 'empty'; empty.mkdir()          # 目錄在、但沒 combined.txt → 跳過
+    monkeypatch.delenv('AOE2_FONTS_DIR', raising=False)
+    monkeypatch.setattr(font_check, 'FONTS_DIRS', (r'D:\沒有這台碟', str(empty), str(good)))
+    assert font_check.find_fonts_dir() == good
+    monkeypatch.setenv('AOE2_FONTS_DIR', str(good))    # 環境變數蓋過候選清單
+    monkeypatch.setattr(font_check, 'FONTS_DIRS', ())
+    assert font_check.find_fonts_dir() == good
+
+
+def test_load_coverage_falls_back_to_snapshot_without_game_install(monkeypatch):
+    """沒裝遊戲的機器也要能跑 s90 缺字閘門——退回版控快照，不是炸掉。"""
+    monkeypatch.delenv('AOE2_FONTS_DIR', raising=False)
+    monkeypatch.setattr(font_check, 'FONTS_DIRS', ())
+    cov = font_check.load_coverage()
+    assert len(cov) == 7697 and sum(1 for c in cov if 0x4E00 <= ord(c) <= 0x9FFF) == 5510
+    with pytest.raises(FileNotFoundError):
+        font_check.load_coverage(allow_snapshot=False)

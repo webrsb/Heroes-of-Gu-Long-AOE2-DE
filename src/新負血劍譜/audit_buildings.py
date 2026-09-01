@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """全面盤點：哪些建築物會被灌血 / 改上限（含區域指定的效果）"""
 import sys, collections
+from pathlib import Path
 sys.stdout.reconfigure(encoding='utf-8')
 from AoE2ScenarioParser.scenarios.aoe2_de_scenario import AoE2DEScenario
 from AoE2ScenarioParser.datasets.buildings import BuildingInfo
@@ -8,7 +9,9 @@ from AoE2ScenarioParser.datasets.units import UnitInfo
 from AoE2ScenarioParser.datasets.heroes import HeroInfo
 from AoE2ScenarioParser.datasets.other import OtherInfo
 
-SRC = r'F:\aoe2de\src\- 古龍 ９２１ 新負血劍譜５ -utf8.aoe2scenario'
+# 舊的寫死路徑在 repo 改組後已失效，一律用參數傳入（同 audit.py）。
+DEFAULT = str(Path(__file__).resolve().parents[2] / 'src/origin/古龍921_新負血劍譜5.aoe2scenario')
+SRC = sys.argv[1] if len(sys.argv) > 1 else DEFAULT
 CHANGE_HP, DAMAGE = 27, 24
 BLD = {b.ID for b in BuildingInfo}
 
