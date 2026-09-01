@@ -54,7 +54,13 @@ python src/新負血劍譜/fix_attack.py [--dry-run]              # 修 473 個�
 寫檔前務必設定 `trigger_manager.legacy_execution_order = True`，否則 DE 會重排觸發執行順序。
 
 **合併管線的靜態關卡（2026-08-31 起）**：`src/合併/build.py` 末端有兩道，任一失敗即中止、不出檔：
-- `s90 終檢`：全檔通用不變量（攻擊力編碼／trigger_id 超界／dangling ref／觸發數對帳／空效果殼）。
+- `s90 終檢`：全檔通用不變量（攻擊力編碼／trigger_id 超界／dangling ref／觸發數對帳／空效果殼／
+  **字型缺字**）。缺字那條：DE 的 CJK 走預烘點陣字圖集（只有 5510 個漢字）、清單外**不 fallback
+  直接開天窗**，所以玩家看得到的文字用了覆蓋表外的字即中止，要回頭補
+  `params.glyph_fixes` 的換字裁決（施作 `s85_glyph`，裁決表產生器 `tools/gen_glyph_fixes.py`，
+  報告 `reports/字型缺字裁決.md`）。覆蓋表優先讀遊戲目錄，讀不到退回版控快照
+  `analysis/de_font_coverage.txt`（遊戲更新後 `python -m analysis.font_check --snapshot` 重產）。
+  **新寫對白時**：罕用字會被這道擋下來，別繞過它——改用覆蓋表內的字，或補裁決。
 - `s91 結構不變量`：**本次施工的結構契約**。`merge_spec.yaml` 每個 `kind: trigger_add` 都必須宣告
   `key: seat|class|global`（座位鍵／職業鍵-shared／全域），s91 拿實際變體數對帳（seat 5、其餘 0）；
   另檢查「帶座位的觸發啟停邊必須指同座位那支」、「同 tick 攔截順序（id 較小才攔得住零條件目標）」、
