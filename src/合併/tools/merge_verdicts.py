@@ -57,11 +57,12 @@ def spec_covers(key, idx):
     if where == '整支' and field in ('foreign', 'struct', 'absent'):
         # 整支層級的 finding 說的是「這支與兄弟座位不一樣」，spec 只要在這支做過結構性修正就算已處理。
         # （foreign 也可能是「指錯目標」＝改 trigger_id；struct／absent 的修法多半是 effect_add。）
-        hit = [e for e in fixes if e.get('kind') == 'effect_add' or e.get('field') in STRUCTURAL_FIELDS]
+        hit = [e for e in fixes if e.get('kind') in ('effect_add', 'condition_add')
+               or e.get('field') in STRUCTURAL_FIELDS]
         if hit:
             k = hit[0]
-            desc = 'effect_add 補效果' if k.get('kind') == 'effect_add' \
-                else f'{k.get("kind")} #{k.get("index")} 的 {k.get("field")}'
+            desc = {'effect_add': 'effect_add 補效果', 'condition_add': 'condition_add 補條件'}.get(
+                k.get('kind'), f'{k.get("kind")} #{k.get("index")} 的 {k.get("field")}')
             return True, f'spec 已在該支做結構性修正（{desc}）'
     if where.startswith('→') and field in ('edge_pol', 'edge_missing'):
         # 邊類 finding 的「位置」是目標樣式不是 E#n，無法逐位比對；
@@ -89,12 +90,16 @@ def merge(ledger, verdict_files, spec_entries):
     from analysis.ledger import load as lload
     idx = spec_index(spec_entries)
     out = dict(ledger)
-    stats = {'verdict_files': 0, 'from_agents': 0, 'auto_fixed': 0, 'unknown_key': 0}
+    stats = {'verdict_files': 0, 'from_agents': 0, 'auto_fixed': 0, 'unknown_key': 0,
+             'kept_resolved': 0}
     for p in sorted(verdict_files):
         stats['verdict_files'] += 1
         for key, rec in lload(p).items():
             if key not in out:
                 stats['unknown_key'] += 1
+                continue
+            if out[key]['verdict'] in ('fixed', 'wontfix') and rec['verdict'] == 'pending':
+                stats['kept_resolved'] += 1     # 帳本已結案者不被代理檔的 pending 蓋回去（2026-09-01）
                 continue
             out[key] = dict(rec)
             stats['from_agents'] += 1

@@ -110,3 +110,26 @@ def test_merge_never_autofixes_items_needing_human_decision(tmp_path):
     save(vf, {'X船|2|T3782|E#0|sp': {'verdict': 'pending', 'reason': '需裁決：平衡取捨'}})
     new, _ = merge(led, [vf], SPEC)
     assert new['X船|2|T3782|E#0|sp']['verdict'] == 'pending'
+
+
+def test_merge_keeps_ledger_resolved_over_agent_pending(tmp_path):
+    """帳本已結案（人工裁決）不該被代理檔的 pending 蓋回去——重跑合併不得倒退。"""
+    from analysis.ledger import save
+    led = {'k1': {'verdict': 'wontfix', 'reason': '人工裁決：刻意設計'},
+           'k2': {'verdict': 'pending', 'reason': ''}}
+    vf = tmp_path / 'a.yaml'
+    save(vf, {'k1': {'verdict': 'pending', 'reason': '需裁決：舊的代理意見'},
+              'k2': {'verdict': 'wontfix', 'reason': '同名不同族'}})
+    new, stats = merge(led, [vf], [])
+    assert new['k1']['verdict'] == 'wontfix' and '人工裁決' in new['k1']['reason']
+    assert new['k2']['verdict'] == 'wontfix'          # 未結案者照收代理裁決
+    assert stats['kept_resolved'] == 1
+
+
+def test_spec_covers_condition_add():
+    """s37 2026-09-01 起支援 condition_add（補原作漏抄的前置檢查／冷卻）。"""
+    spec = SPEC + [{'trigger_id': 792, 'name': '1武', 'kind': 'condition_add',
+                    'condition': {'type': 'objects_in_area', 'quantity': 1, 'source_player': 1},
+                    'reason': '缺在場檢查'}]
+    idx = spec_index(spec)
+    assert spec_covers('X武|1|T792|整支|struct', idx)[0]

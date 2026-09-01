@@ -373,3 +373,8 @@ s37	effect_field	T4138「4棍」E#0	selected_object_ids	[]	[28463]	CHANGE_OWNERS
 s37	condition_field	T2241「4棍8」C#0	timer	5	1	每秒回血技週期，3槍8／5拳8 皆 1 秒且回血量未加倍補償
 s37	condition_field	T2108「2道4」C#0	timer	2	1	同上；2P 週期加倍但回血量沒跟著加倍＝速率減半
 s37	effect_field	T4189「1哥5」E#4	armour_attack_quantity	50	100	卸鐵甲扣攻：本尊 E#2 為 100、其餘座位分身亦 100；1P 分身只扣 50
+s37	condition_add	T2652「6進」condition_add	objects_in_area		quantity=1 source_player=6 area_x1=229 area_y1=234 area_x2=229 area_y2=234	6進 缺「推薦書在位」條件（1P(229,239)／5P(229,235) 同序列）；箭客可跳過第二試練直接學醫8
+s37	condition_add	T792「1武」condition_add	objects_in_area		quantity=1 source_player=1 area_x1=133 area_y1=32 area_x2=144 area_y2=66	1武 缺「玩家在武僧刷怪區」檢查（他座皆有）；離區也會誤發 51 閱歷擊殺獎
+s37	condition_add	T793「1武2」condition_add	timer		timer=20	1武2 是重新武裝器，他座每 20 秒一次；1P 缺 TIMER 等於冷卻被拿掉、可同殺雙領
+s37	effect_field	T1867「6軒2」E#2	quantity	10000	-1000	軒轅任務正常收支＝+2000+1000−10000＝淨 −7000；6P 同支扣兩次（E#2 也扣 10000）＝淨 −20000
+s37	effect_field	T1867「6軒2」E#3	message	<AQUA>失去了　10000　點江湖閱歷	<AQUA>得到了　1000　點江湖閱歷	隨上一條改回「得到 1000」，與其餘五座位訊息一致

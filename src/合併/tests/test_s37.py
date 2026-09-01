@@ -235,3 +235,24 @@ def test_trigger_add_ignores_key_declaration(f):
                    'conditions': [{'type': 'timer', 'timer': 3}], 'reason': 'r'})
     t = tm.triggers[-1]
     assert t.name == 'X' and t.new_condition.calls == [('timer', {'timer': 3})]
+
+
+def test_condition_add_appends_condition(f):
+    """原作漏抄的前置檢查／冷卻計時要能補回（2026-09-01：1武 缺在場檢查、1武2 缺 20 秒冷卻、6進 缺推薦書）。"""
+    t = f.trig(name='1武')
+    tm = f.tm([t])
+    c = apply_fix(tm, {'trigger_id': t.trigger_id, 'name': '1武', 'kind': 'condition_add',
+                       'condition': {'type': 'objects_in_area', 'quantity': 1, 'source_player': 1,
+                                     'area_x1': 133, 'area_y1': 32, 'area_x2': 144, 'area_y2': 66},
+                       'reason': '缺在場檢查'})
+    assert t.new_condition.calls == [('objects_in_area', {'quantity': 1, 'source_player': 1,
+                                                          'area_x1': 133, 'area_y1': 32,
+                                                          'area_x2': 144, 'area_y2': 66})]
+    assert c.kind == 'condition_add' and c.field == 'objects_in_area' and 'source_player=1' in c.new
+
+
+def test_condition_add_name_guard(f):
+    t = f.trig(name='別支')
+    with pytest.raises(BuildError):
+        apply_fix(f.tm([t]), {'trigger_id': t.trigger_id, 'name': '1武', 'kind': 'condition_add',
+                              'condition': {'type': 'timer', 'timer': 20}, 'reason': 'r'})

@@ -23,6 +23,12 @@ def apply_fix(tm, entry) -> Change:
             raise BuildError(f'缺裁決：T{tid} 名稱「{t.name}」≠ spec 預期「{entry.get("name", "")}」，'
                              f'基底觸發編號可能位移，請重查')
     kind = entry['kind']
+    if kind == 'condition_add':                   # 尾端新增條件（原作漏抄的前置檢查／冷卻計時）
+        spec = entry['condition']
+        tag = f'T{tid}「{t.name}」condition_add'
+        _build_part(t.new_condition, spec, tag)
+        desc = ' '.join(f'{k}={v}' for k, v in spec.items() if k != 'type')
+        return Change('s37', 'condition_add', tag, spec['type'], '', desc, entry.get('reason', ''))
     if kind == 'effect_add':                      # 尾端新增效果：啟停（id+名防呆，或以名指）或座位私訊
         spec = entry['effect']
         tag = f'T{tid}「{t.name}」effect_add'

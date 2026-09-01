@@ -109,6 +109,24 @@ FIXES = [
     # ── 改攻擊力：s30 之後量值走 armour_attack_quantity（見檔頭說明）──
     dict(trigger_id=4189, name='1哥5', kind='effect', index=4, field='armour_attack_quantity',
          old=50, new=100, reason='卸鐵甲扣攻：本尊 E#2 為 100、其餘座位分身亦 100；1P 分身只扣 50'),
+    # ── 2026-09-01 攻略 session 查證後追加（原作漏抄的前置檢查／冷卻）──────────
+    dict(kind='condition_add', trigger_id=2652, name='6進',
+         condition=dict(type='objects_in_area', quantity=1, source_player=6,
+                        area_x1=229, area_y1=234, area_x2=229, area_y2=234),
+         reason='6進 缺「推薦書在位」條件（1P(229,239)／5P(229,235) 同序列）；箭客可跳過第二試練直接學醫8'),
+    dict(kind='condition_add', trigger_id=792, name='1武',
+         condition=dict(type='objects_in_area', quantity=1, source_player=1,
+                        area_x1=133, area_y1=32, area_x2=144, area_y2=66),
+         reason='1武 缺「玩家在武僧刷怪區」檢查（他座皆有）；離區也會誤發 51 閱歷擊殺獎'),
+    dict(kind='condition_add', trigger_id=793, name='1武2',
+         condition=dict(type='timer', timer=20),
+         reason='1武2 是重新武裝器，他座每 20 秒一次；1P 缺 TIMER 等於冷卻被拿掉、可同殺雙領'),
+    dict(trigger_id=1867, name='6軒2', kind='effect', index=2, field='quantity',
+         old=10000, new=-1000,
+         reason='軒轅任務正常收支＝+2000+1000−10000＝淨 −7000；6P 同支扣兩次（E#2 也扣 10000）＝淨 −20000'),
+    dict(trigger_id=1867, name='6軒2', kind='effect', index=3, field='message',
+         old='<AQUA>失去了　10000　點江湖閱歷', new='<AQUA>得到了　1000　點江湖閱歷',
+         reason='隨上一條改回「得到 1000」，與其餘五座位訊息一致'),
 ]
 
 
@@ -123,6 +141,9 @@ def validate(path=UNTIL_S36):
         tag = f'T{tid}「{f.get("name")}」{f.get("kind")}#{f.get("index")}.{f.get("field", "")}'
         if t is None or (t.name or '') != f['name']:
             out.append((False, f'{tag} 名稱不符：實得「{getattr(t, "name", None)}」'))
+            continue
+        if f['kind'] == 'condition_add':
+            out.append((True, f'{tag} 追加條件 {f["condition"]["type"]}（無舊值可驗，s37 名稱防呆把關）'))
             continue
         if f['kind'] == 'effect_add':
             tgt = f['effect']['trigger_id']
@@ -166,7 +187,10 @@ def check_duplicates(spec_path='merge_spec.yaml'):
             have.add((e.get('trigger_id'), 'effect_add', e['effect']['type'], e['effect']['trigger_id']))
     out = []
     for f in FIXES:
-        if f['kind'] == 'effect_add':
+        if f['kind'] == 'condition_add':
+            k = (f['trigger_id'], 'condition_add', f['condition']['type'],
+                 f['condition'].get('timer', f['condition'].get('area_x1')))
+        elif f['kind'] == 'effect_add':
             k = (f['trigger_id'], 'effect_add', f['effect']['type'], f['effect']['trigger_id'])
         else:
             k = (f['trigger_id'], f['kind'], f.get('index'), f.get('field'))
@@ -192,6 +216,9 @@ def main(argv):
     for ok, m in results:
         if not ok:
             print('FAIL ' + m)
+    for m in bad:
+        if not any(m == x for _, x in results):
+            print('DUP  ' + m)
     print(f'{len(results)} 條，{len(bad)} 條不符')
     if bad:
         return 1

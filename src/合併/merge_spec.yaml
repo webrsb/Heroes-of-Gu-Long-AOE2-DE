@@ -1860,6 +1860,23 @@ params:
     - {trigger_id: 2241, name: 4棍8, kind: condition, index: 0, field: timer, old: 5, new: 1, reason: 每秒回血技週期，3槍8／5拳8 皆 1 秒且回血量未加倍補償}
     - {trigger_id: 2108, name: 2道4, kind: condition, index: 0, field: timer, old: 2, new: 1, reason: 同上；2P 週期加倍但回血量沒跟著加倍＝速率減半}
     - {trigger_id: 4189, name: 1哥5, kind: effect, index: 4, field: armour_attack_quantity, old: 50, new: 100, reason: 卸鐵甲扣攻：本尊 E#2 為 100、其餘座位分身亦 100；1P 分身只扣 50}
+    - kind: condition_add
+      trigger_id: 2652
+      name: 6進
+      condition: {type: objects_in_area, quantity: 1, source_player: 6, area_x1: 229, area_y1: 234, area_x2: 229, area_y2: 234}
+      reason: 6進 缺「推薦書在位」條件（1P(229,239)／5P(229,235) 同序列）；箭客可跳過第二試練直接學醫8
+    - kind: condition_add
+      trigger_id: 792
+      name: 1武
+      condition: {type: objects_in_area, quantity: 1, source_player: 1, area_x1: 133, area_y1: 32, area_x2: 144, area_y2: 66}
+      reason: 1武 缺「玩家在武僧刷怪區」檢查（他座皆有）；離區也會誤發 51 閱歷擊殺獎
+    - kind: condition_add
+      trigger_id: 793
+      name: 1武2
+      condition: {type: timer, timer: 20}
+      reason: 1武2 是重新武裝器，他座每 20 秒一次；1P 缺 TIMER 等於冷卻被拿掉、可同殺雙領
+    - {trigger_id: 1867, name: 6軒2, kind: effect, index: 2, field: quantity, old: 10000, new: -1000, reason: 軒轅任務正常收支＝+2000+1000−10000＝淨 −7000；6P 同支扣兩次（E#2 也扣 10000）＝淨 −20000}
+    - {trigger_id: 1867, name: 6軒2, kind: effect, index: 3, field: message, old: <AQUA>失去了　10000　點江湖閱歷, new: <AQUA>得到了　1000　點江湖閱歷, reason: 隨上一條改回「得到 1000」，與其餘五座位訊息一致}
 
   # 【2026-08-29 Fable裁決代理定案】死亡連動42支：a×6/a+flag×6/b×6/d×24（c=0）
   # 詳細逐支語意與斷邊清單見 docs spec §七之二 與裁決報告；extras 為施工指令。
