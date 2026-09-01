@@ -7,8 +7,8 @@
 2. 退役邊——任何啟動(8)效果指向 退役_ 觸發（deactivate 允許）
 3. 死亡路徑越權——監視/重生/命盡/馬監視 觸發啟動了非白名單目標
    （白名單＝復活鏈家族：監視|重生|命盡|馬監視|訊|啟動|選角、dl ◇位 變體）
-4. ◇命 副本旗防——每支 ◇命 觸發必須帶命旗條件(Gaia 720 單格)或命 ref 條件，
-   否則它一被打開就無條件生效（銀龍事故根因）
+4. ◇命 副本閘防——每支 ◇命 觸發必須帶命數條件(變數 V_LIFE==L；舊制為 Gaia 720 單格旗)
+   或命 ref 條件，否則它一被打開就無條件生效（銀龍事故根因）
 5. 死亡路徑停用越權——同 3 但查停用(9)邊
 6. 重生區條件——◇命副本綁單位的區域條件涵蓋重生點（備身駐軍即提前成立）
 7. 啟動來源清單——選角/啟動器對非鏈觸發的啟動明細（人工複核用，不判錯）
@@ -22,6 +22,7 @@ CHAIN_RE = re.compile(r'^(監視|重生|命盡|馬監視|訊|啟動|選角|轉�
 DEATH_RE = re.compile(r'^(監視|重生|命盡|馬監視)')
 FLAG_CONST = 720
 ACTIVATE, DEACTIVATE = 8, 9
+VARIABLE_VALUE = 22        # 條件：變數 vs 常數（命數閘）
 
 
 def audit_killvar(tm, offsets):
@@ -56,7 +57,8 @@ def audit_killvar(tm, offsets):
     return vio
 
 
-def audit(tm, life_xs=None, life_refs=None, respawn=None, var_offsets=None):
+def audit(tm, life_xs=None, life_refs=None, respawn=None, var_offsets=None,
+          life_vars=None):
     """回傳 (violations, review_lines)。violations=[(類別, 說明)]。"""
     n = len(tm.triggers)
     by_id = {t.trigger_id: t for t in tm.triggers}
@@ -93,16 +95,24 @@ def audit(tm, life_xs=None, life_refs=None, respawn=None, var_offsets=None):
                 review.append(f'T{t.trigger_id}「{tn}」→T{tid}「{gn}」'
                               f'(enabled={tgt.enabled})')
 
-    # ◇命 副本旗防：必須有命旗條件（Gaia 720 單格 @life_xs 欄）或命 ref 條件
+    # ◇命 副本閘防：必須有命數條件（變數 V_LIFE，2026-09-01 起；或舊制 Gaia 720
+    # 單格 @life_xs 欄）或命 ref 條件
+    life_var_set = {int(v) for v in (life_vars or {}).values()} or None
     for t in tm.triggers:
         tn = name(t)
         if '◇命' not in tn or tn.startswith('退役_'):
             continue
-        has_flag = any(
+        # 旗分支：僅在給了 life_xs（舊制命旗欄）時成立——2026-09-01 起命數走變數，
+        # 若無條件放行任何單格 Gaia 720，命盡旗/騎馬旗會被誤認成命閘（比原本鬆）。
+        has_flag = life_xs is not None and any(
             getattr(c, 'object_list', -1) == FLAG_CONST
             and getattr(c, 'source_player', -1) == 0
             and getattr(c, 'area_x1', -1) == getattr(c, 'area_x2', -2)
-            and (life_xs is None or getattr(c, 'area_x1', -1) in life_xs)
+            and getattr(c, 'area_x1', -1) in life_xs
+            for c in t.conditions)
+        has_flag = has_flag or any(
+            getattr(c, 'condition_type', -1) == VARIABLE_VALUE
+            and (life_var_set is None or getattr(c, 'variable', -1) in life_var_set)
             for c in t.conditions)
         # 命 ref 閘：副本條件已改綁該命備身 ref（expand_conditions 多ref路徑、
         # X馬3◇命L 的 BRING 改命）。給定 life_refs 時精確比對，否則任何
@@ -115,7 +125,7 @@ def audit(tm, life_xs=None, life_refs=None, respawn=None, var_offsets=None):
                                for c in t.conditions for f in ('unit_object', 'next_object'))
         if not (has_flag or has_life_ref):
             vio.append(('◇命無旗防',
-                        f'T{t.trigger_id}「{tn}」無命旗/命ref條件——被打開即無條件生效'))
+                        f'T{t.trigger_id}「{tn}」無命數/命旗/命ref條件——被打開即無條件生效'))
 
     # ◇命副本的區域條件涵蓋重生點：備身駐容器疊於重生點且駐軍計入區域條件，
     # 家族一啟用該副本條件即提前成立（BRING/區域類）
@@ -150,13 +160,15 @@ def main(src, out_md=None):
     spec = yaml.safe_load(open(os.path.join(here, 'merge_spec.yaml'), encoding='utf-8'))
     rv = (spec.get('params') or spec).get('revive') or {}
     life_xs = set(int(x) for x in (rv.get('cells') or {}).get('life_xs') or []) or None
+    lvo = rv.get('life_var_offset')
+    life_vars = {cid: int(lvo) + cid for cid in range(1, 7)} if lvo is not None else None
 
     respawn = rv.get('respawn')
     kv = (spec.get('params') or spec).get('killvar') or {}
     var_offsets = (int(kv['v_kills_offset']), int(kv['v_base_offset'])) if kv else None
     scn = AoE2DEScenario.from_file(src)
     vio, review = audit(scn.trigger_manager, life_xs=life_xs, respawn=respawn,
-                        var_offsets=var_offsets)
+                        var_offsets=var_offsets, life_vars=life_vars)
 
     lines = [f'# 啟動稽核 — {os.path.basename(src)}', '']
     lines.append(f'觸發總數: {len(scn.trigger_manager.triggers)}')

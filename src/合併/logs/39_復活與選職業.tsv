@@ -1,4 +1,10 @@
 step	kind	target	field	old	new	reason
+s39	var_add	V21	variable		命數職業1	命數變數（取代命旗）
+s39	var_add	V22	variable		命數職業2	命數變數（取代命旗）
+s39	var_add	V23	variable		命數職業3	命數變數（取代命旗）
+s39	var_add	V24	variable		命數職業4	命數變數（取代命旗）
+s39	var_add	V25	variable		命數職業5	命數變數（取代命旗）
+s39	var_add	V26	variable		命數職業6	命數變數（取代命旗）
 s39	trigger_add	3-6打坐◇騎池1	trigger		T5726	looping 池 -1/輪 旗標閘控灌備身
 s39	trigger_add	3-6打坐◇騎池2	trigger		T5727	looping 池 -1/輪 旗標閘控灌備身
 s39	trigger_add	3-6打坐◇騎池3	trigger		T5728	looping 池 -1/輪 旗標閘控灌備身
@@ -35009,249 +35015,249 @@ s39	cond_or	T31054C0	unit_object	45117	OR×3	跨命展開
 s39	cond_or	T31077C0	unit_object	45117	OR×3	跨命展開
 s39	trigger_add	T1527→命2	trigger		T31319	locref 每命複製
 s39	trigger_add	T1527→命3	trigger		T31320	locref 每命複製
-s39	cond_add	T1527	life_flag		(232, 239)	職業1命1旗選路
-s39	cond_add	T31319	life_flag		(231, 239)	職業1命2旗選路
-s39	cond_add	T31320	life_flag		(230, 239)	職業1命3旗選路
+s39	cond_add	T1527	life_var		V21==1	職業1命1變數選路
+s39	cond_add	T31319	life_var		V21==2	職業1命2變數選路
+s39	cond_add	T31320	life_var		V21==3	職業1命3變數選路
 s39	trigger_add	T1528→命2	trigger		T31321	locref 每命複製
 s39	trigger_add	T1528→命3	trigger		T31322	locref 每命複製
-s39	cond_add	T1528	life_flag		(232, 238)	職業2命1旗選路
-s39	cond_add	T31321	life_flag		(231, 238)	職業2命2旗選路
-s39	cond_add	T31322	life_flag		(230, 238)	職業2命3旗選路
+s39	cond_add	T1528	life_var		V22==1	職業2命1變數選路
+s39	cond_add	T31321	life_var		V22==2	職業2命2變數選路
+s39	cond_add	T31322	life_var		V22==3	職業2命3變數選路
 s39	trigger_add	T1529→命2	trigger		T31323	locref 每命複製
 s39	trigger_add	T1529→命3	trigger		T31324	locref 每命複製
-s39	cond_add	T1529	life_flag		(232, 237)	職業3命1旗選路
-s39	cond_add	T31323	life_flag		(231, 237)	職業3命2旗選路
-s39	cond_add	T31324	life_flag		(230, 237)	職業3命3旗選路
+s39	cond_add	T1529	life_var		V23==1	職業3命1變數選路
+s39	cond_add	T31323	life_var		V23==2	職業3命2變數選路
+s39	cond_add	T31324	life_var		V23==3	職業3命3變數選路
 s39	trigger_add	T1530→命2	trigger		T31325	locref 每命複製
 s39	trigger_add	T1530→命3	trigger		T31326	locref 每命複製
-s39	cond_add	T1530	life_flag		(232, 236)	職業4命1旗選路
-s39	cond_add	T31325	life_flag		(231, 236)	職業4命2旗選路
-s39	cond_add	T31326	life_flag		(230, 236)	職業4命3旗選路
+s39	cond_add	T1530	life_var		V24==1	職業4命1變數選路
+s39	cond_add	T31325	life_var		V24==2	職業4命2變數選路
+s39	cond_add	T31326	life_var		V24==3	職業4命3變數選路
 s39	trigger_add	T1531→命2	trigger		T31327	locref 每命複製
 s39	trigger_add	T1531→命3	trigger		T31328	locref 每命複製
-s39	cond_add	T1531	life_flag		(232, 235)	職業5命1旗選路
-s39	cond_add	T31327	life_flag		(231, 235)	職業5命2旗選路
-s39	cond_add	T31328	life_flag		(230, 235)	職業5命3旗選路
+s39	cond_add	T1531	life_var		V25==1	職業5命1變數選路
+s39	cond_add	T31327	life_var		V25==2	職業5命2變數選路
+s39	cond_add	T31328	life_var		V25==3	職業5命3變數選路
 s39	trigger_add	T1532→命2	trigger		T31329	locref 每命複製
 s39	trigger_add	T1532→命3	trigger		T31330	locref 每命複製
-s39	cond_add	T1532	life_flag		(232, 234)	職業6命1旗選路
-s39	cond_add	T31329	life_flag		(231, 234)	職業6命2旗選路
-s39	cond_add	T31330	life_flag		(230, 234)	職業6命3旗選路
+s39	cond_add	T1532	life_var		V26==1	職業6命1變數選路
+s39	cond_add	T31329	life_var		V26==2	職業6命2變數選路
+s39	cond_add	T31330	life_var		V26==3	職業6命3變數選路
 s39	trigger_add	T4075→命2	trigger		T31331	locref 每命複製
 s39	trigger_add	T4075→命3	trigger		T31332	locref 每命複製
-s39	cond_add	T4075	life_flag		(232, 238)	職業2命1旗選路
-s39	cond_add	T31331	life_flag		(231, 238)	職業2命2旗選路
-s39	cond_add	T31332	life_flag		(230, 238)	職業2命3旗選路
+s39	cond_add	T4075	life_var		V22==1	職業2命1變數選路
+s39	cond_add	T31331	life_var		V22==2	職業2命2變數選路
+s39	cond_add	T31332	life_var		V22==3	職業2命3變數選路
 s39	trigger_add	T4078→命2	trigger		T31333	locref 每命複製
 s39	trigger_add	T4078→命3	trigger		T31334	locref 每命複製
-s39	cond_add	T4078	life_flag		(232, 235)	職業5命1旗選路
-s39	cond_add	T31333	life_flag		(231, 235)	職業5命2旗選路
-s39	cond_add	T31334	life_flag		(230, 235)	職業5命3旗選路
+s39	cond_add	T4078	life_var		V25==1	職業5命1變數選路
+s39	cond_add	T31333	life_var		V25==2	職業5命2變數選路
+s39	cond_add	T31334	life_var		V25==3	職業5命3變數選路
 s39	trigger_add	T5040→命2	trigger		T31335	locref 每命複製
 s39	trigger_add	T5040→命3	trigger		T31336	locref 每命複製
-s39	cond_add	T5040	life_flag		(232, 239)	職業1命1旗選路
-s39	cond_add	T31335	life_flag		(231, 239)	職業1命2旗選路
-s39	cond_add	T31336	life_flag		(230, 239)	職業1命3旗選路
+s39	cond_add	T5040	life_var		V21==1	職業1命1變數選路
+s39	cond_add	T31335	life_var		V21==2	職業1命2變數選路
+s39	cond_add	T31336	life_var		V21==3	職業1命3變數選路
 s39	trigger_add	T5042→命2	trigger		T31337	locref 每命複製
 s39	trigger_add	T5042→命3	trigger		T31338	locref 每命複製
-s39	cond_add	T5042	life_flag		(232, 238)	職業2命1旗選路
-s39	cond_add	T31337	life_flag		(231, 238)	職業2命2旗選路
-s39	cond_add	T31338	life_flag		(230, 238)	職業2命3旗選路
+s39	cond_add	T5042	life_var		V22==1	職業2命1變數選路
+s39	cond_add	T31337	life_var		V22==2	職業2命2變數選路
+s39	cond_add	T31338	life_var		V22==3	職業2命3變數選路
 s39	trigger_add	T5044→命2	trigger		T31339	locref 每命複製
 s39	trigger_add	T5044→命3	trigger		T31340	locref 每命複製
-s39	cond_add	T5044	life_flag		(232, 237)	職業3命1旗選路
-s39	cond_add	T31339	life_flag		(231, 237)	職業3命2旗選路
-s39	cond_add	T31340	life_flag		(230, 237)	職業3命3旗選路
+s39	cond_add	T5044	life_var		V23==1	職業3命1變數選路
+s39	cond_add	T31339	life_var		V23==2	職業3命2變數選路
+s39	cond_add	T31340	life_var		V23==3	職業3命3變數選路
 s39	trigger_add	T5046→命2	trigger		T31341	locref 每命複製
 s39	trigger_add	T5046→命3	trigger		T31342	locref 每命複製
-s39	cond_add	T5046	life_flag		(232, 236)	職業4命1旗選路
-s39	cond_add	T31341	life_flag		(231, 236)	職業4命2旗選路
-s39	cond_add	T31342	life_flag		(230, 236)	職業4命3旗選路
+s39	cond_add	T5046	life_var		V24==1	職業4命1變數選路
+s39	cond_add	T31341	life_var		V24==2	職業4命2變數選路
+s39	cond_add	T31342	life_var		V24==3	職業4命3變數選路
 s39	trigger_add	T5048→命2	trigger		T31343	locref 每命複製
 s39	trigger_add	T5048→命3	trigger		T31344	locref 每命複製
-s39	cond_add	T5048	life_flag		(232, 235)	職業5命1旗選路
-s39	cond_add	T31343	life_flag		(231, 235)	職業5命2旗選路
-s39	cond_add	T31344	life_flag		(230, 235)	職業5命3旗選路
+s39	cond_add	T5048	life_var		V25==1	職業5命1變數選路
+s39	cond_add	T31343	life_var		V25==2	職業5命2變數選路
+s39	cond_add	T31344	life_var		V25==3	職業5命3變數選路
 s39	trigger_add	T5274→命2	trigger		T31345	locref 每命複製
 s39	trigger_add	T5274→命3	trigger		T31346	locref 每命複製
-s39	cond_add	T5274	life_flag		(232, 239)	職業1命1旗選路
-s39	cond_add	T31345	life_flag		(231, 239)	職業1命2旗選路
-s39	cond_add	T31346	life_flag		(230, 239)	職業1命3旗選路
+s39	cond_add	T5274	life_var		V21==1	職業1命1變數選路
+s39	cond_add	T31345	life_var		V21==2	職業1命2變數選路
+s39	cond_add	T31346	life_var		V21==3	職業1命3變數選路
 s39	trigger_add	T5277→命2	trigger		T31347	locref 每命複製
 s39	trigger_add	T5277→命3	trigger		T31348	locref 每命複製
-s39	cond_add	T5277	life_flag		(232, 238)	職業2命1旗選路
-s39	cond_add	T31347	life_flag		(231, 238)	職業2命2旗選路
-s39	cond_add	T31348	life_flag		(230, 238)	職業2命3旗選路
+s39	cond_add	T5277	life_var		V22==1	職業2命1變數選路
+s39	cond_add	T31347	life_var		V22==2	職業2命2變數選路
+s39	cond_add	T31348	life_var		V22==3	職業2命3變數選路
 s39	trigger_add	T5280→命2	trigger		T31349	locref 每命複製
 s39	trigger_add	T5280→命3	trigger		T31350	locref 每命複製
-s39	cond_add	T5280	life_flag		(232, 237)	職業3命1旗選路
-s39	cond_add	T31349	life_flag		(231, 237)	職業3命2旗選路
-s39	cond_add	T31350	life_flag		(230, 237)	職業3命3旗選路
+s39	cond_add	T5280	life_var		V23==1	職業3命1變數選路
+s39	cond_add	T31349	life_var		V23==2	職業3命2變數選路
+s39	cond_add	T31350	life_var		V23==3	職業3命3變數選路
 s39	trigger_add	T5283→命2	trigger		T31351	locref 每命複製
 s39	trigger_add	T5283→命3	trigger		T31352	locref 每命複製
-s39	cond_add	T5283	life_flag		(232, 236)	職業4命1旗選路
-s39	cond_add	T31351	life_flag		(231, 236)	職業4命2旗選路
-s39	cond_add	T31352	life_flag		(230, 236)	職業4命3旗選路
+s39	cond_add	T5283	life_var		V24==1	職業4命1變數選路
+s39	cond_add	T31351	life_var		V24==2	職業4命2變數選路
+s39	cond_add	T31352	life_var		V24==3	職業4命3變數選路
 s39	trigger_add	T5286→命2	trigger		T31353	locref 每命複製
 s39	trigger_add	T5286→命3	trigger		T31354	locref 每命複製
-s39	cond_add	T5286	life_flag		(232, 235)	職業5命1旗選路
-s39	cond_add	T31353	life_flag		(231, 235)	職業5命2旗選路
-s39	cond_add	T31354	life_flag		(230, 235)	職業5命3旗選路
+s39	cond_add	T5286	life_var		V25==1	職業5命1變數選路
+s39	cond_add	T31353	life_var		V25==2	職業5命2變數選路
+s39	cond_add	T31354	life_var		V25==3	職業5命3變數選路
 s39	trigger_add	T5289→命2	trigger		T31355	locref 每命複製
 s39	trigger_add	T5289→命3	trigger		T31356	locref 每命複製
-s39	cond_add	T5289	life_flag		(232, 234)	職業6命1旗選路
-s39	cond_add	T31355	life_flag		(231, 234)	職業6命2旗選路
-s39	cond_add	T31356	life_flag		(230, 234)	職業6命3旗選路
+s39	cond_add	T5289	life_var		V26==1	職業6命1變數選路
+s39	cond_add	T31355	life_var		V26==2	職業6命2變數選路
+s39	cond_add	T31356	life_var		V26==3	職業6命3變數選路
 s39	trigger_add	T6772→命2	trigger		T31357	locref 每命複製
 s39	trigger_add	T6772→命3	trigger		T31358	locref 每命複製
-s39	cond_add	T6772	life_flag		(232, 239)	職業1命1旗選路
-s39	cond_add	T31357	life_flag		(231, 239)	職業1命2旗選路
-s39	cond_add	T31358	life_flag		(230, 239)	職業1命3旗選路
+s39	cond_add	T6772	life_var		V21==1	職業1命1變數選路
+s39	cond_add	T31357	life_var		V21==2	職業1命2變數選路
+s39	cond_add	T31358	life_var		V21==3	職業1命3變數選路
 s39	trigger_add	T7601→命2	trigger		T31359	locref 每命複製
 s39	trigger_add	T7601→命3	trigger		T31360	locref 每命複製
-s39	cond_add	T7601	life_flag		(232, 239)	職業1命1旗選路
-s39	cond_add	T31359	life_flag		(231, 239)	職業1命2旗選路
-s39	cond_add	T31360	life_flag		(230, 239)	職業1命3旗選路
+s39	cond_add	T7601	life_var		V21==1	職業1命1變數選路
+s39	cond_add	T31359	life_var		V21==2	職業1命2變數選路
+s39	cond_add	T31360	life_var		V21==3	職業1命3變數選路
 s39	trigger_add	T8430→命2	trigger		T31361	locref 每命複製
 s39	trigger_add	T8430→命3	trigger		T31362	locref 每命複製
-s39	cond_add	T8430	life_flag		(232, 239)	職業1命1旗選路
-s39	cond_add	T31361	life_flag		(231, 239)	職業1命2旗選路
-s39	cond_add	T31362	life_flag		(230, 239)	職業1命3旗選路
+s39	cond_add	T8430	life_var		V21==1	職業1命1變數選路
+s39	cond_add	T31361	life_var		V21==2	職業1命2變數選路
+s39	cond_add	T31362	life_var		V21==3	職業1命3變數選路
 s39	trigger_add	T9259→命2	trigger		T31363	locref 每命複製
 s39	trigger_add	T9259→命3	trigger		T31364	locref 每命複製
-s39	cond_add	T9259	life_flag		(232, 239)	職業1命1旗選路
-s39	cond_add	T31363	life_flag		(231, 239)	職業1命2旗選路
-s39	cond_add	T31364	life_flag		(230, 239)	職業1命3旗選路
+s39	cond_add	T9259	life_var		V21==1	職業1命1變數選路
+s39	cond_add	T31363	life_var		V21==2	職業1命2變數選路
+s39	cond_add	T31364	life_var		V21==3	職業1命3變數選路
 s39	trigger_add	T10088→命2	trigger		T31365	locref 每命複製
 s39	trigger_add	T10088→命3	trigger		T31366	locref 每命複製
-s39	cond_add	T10088	life_flag		(232, 239)	職業1命1旗選路
-s39	cond_add	T31365	life_flag		(231, 239)	職業1命2旗選路
-s39	cond_add	T31366	life_flag		(230, 239)	職業1命3旗選路
+s39	cond_add	T10088	life_var		V21==1	職業1命1變數選路
+s39	cond_add	T31365	life_var		V21==2	職業1命2變數選路
+s39	cond_add	T31366	life_var		V21==3	職業1命3變數選路
 s39	trigger_add	T10923→命2	trigger		T31367	locref 每命複製
 s39	trigger_add	T10923→命3	trigger		T31368	locref 每命複製
-s39	cond_add	T10923	life_flag		(232, 238)	職業2命1旗選路
-s39	cond_add	T31367	life_flag		(231, 238)	職業2命2旗選路
-s39	cond_add	T31368	life_flag		(230, 238)	職業2命3旗選路
+s39	cond_add	T10923	life_var		V22==1	職業2命1變數選路
+s39	cond_add	T31367	life_var		V22==2	職業2命2變數選路
+s39	cond_add	T31368	life_var		V22==3	職業2命3變數選路
 s39	trigger_add	T11763→命2	trigger		T31369	locref 每命複製
 s39	trigger_add	T11763→命3	trigger		T31370	locref 每命複製
-s39	cond_add	T11763	life_flag		(232, 238)	職業2命1旗選路
-s39	cond_add	T31369	life_flag		(231, 238)	職業2命2旗選路
-s39	cond_add	T31370	life_flag		(230, 238)	職業2命3旗選路
+s39	cond_add	T11763	life_var		V22==1	職業2命1變數選路
+s39	cond_add	T31369	life_var		V22==2	職業2命2變數選路
+s39	cond_add	T31370	life_var		V22==3	職業2命3變數選路
 s39	trigger_add	T12603→命2	trigger		T31371	locref 每命複製
 s39	trigger_add	T12603→命3	trigger		T31372	locref 每命複製
-s39	cond_add	T12603	life_flag		(232, 238)	職業2命1旗選路
-s39	cond_add	T31371	life_flag		(231, 238)	職業2命2旗選路
-s39	cond_add	T31372	life_flag		(230, 238)	職業2命3旗選路
+s39	cond_add	T12603	life_var		V22==1	職業2命1變數選路
+s39	cond_add	T31371	life_var		V22==2	職業2命2變數選路
+s39	cond_add	T31372	life_var		V22==3	職業2命3變數選路
 s39	trigger_add	T13443→命2	trigger		T31373	locref 每命複製
 s39	trigger_add	T13443→命3	trigger		T31374	locref 每命複製
-s39	cond_add	T13443	life_flag		(232, 238)	職業2命1旗選路
-s39	cond_add	T31373	life_flag		(231, 238)	職業2命2旗選路
-s39	cond_add	T31374	life_flag		(230, 238)	職業2命3旗選路
+s39	cond_add	T13443	life_var		V22==1	職業2命1變數選路
+s39	cond_add	T31373	life_var		V22==2	職業2命2變數選路
+s39	cond_add	T31374	life_var		V22==3	職業2命3變數選路
 s39	trigger_add	T14283→命2	trigger		T31375	locref 每命複製
 s39	trigger_add	T14283→命3	trigger		T31376	locref 每命複製
-s39	cond_add	T14283	life_flag		(232, 238)	職業2命1旗選路
-s39	cond_add	T31375	life_flag		(231, 238)	職業2命2旗選路
-s39	cond_add	T31376	life_flag		(230, 238)	職業2命3旗選路
+s39	cond_add	T14283	life_var		V22==1	職業2命1變數選路
+s39	cond_add	T31375	life_var		V22==2	職業2命2變數選路
+s39	cond_add	T31376	life_var		V22==3	職業2命3變數選路
 s39	trigger_add	T15111→命2	trigger		T31377	locref 每命複製
 s39	trigger_add	T15111→命3	trigger		T31378	locref 每命複製
-s39	cond_add	T15111	life_flag		(232, 237)	職業3命1旗選路
-s39	cond_add	T31377	life_flag		(231, 237)	職業3命2旗選路
-s39	cond_add	T31378	life_flag		(230, 237)	職業3命3旗選路
+s39	cond_add	T15111	life_var		V23==1	職業3命1變數選路
+s39	cond_add	T31377	life_var		V23==2	職業3命2變數選路
+s39	cond_add	T31378	life_var		V23==3	職業3命3變數選路
 s39	trigger_add	T15937→命2	trigger		T31379	locref 每命複製
 s39	trigger_add	T15937→命3	trigger		T31380	locref 每命複製
-s39	cond_add	T15937	life_flag		(232, 237)	職業3命1旗選路
-s39	cond_add	T31379	life_flag		(231, 237)	職業3命2旗選路
-s39	cond_add	T31380	life_flag		(230, 237)	職業3命3旗選路
+s39	cond_add	T15937	life_var		V23==1	職業3命1變數選路
+s39	cond_add	T31379	life_var		V23==2	職業3命2變數選路
+s39	cond_add	T31380	life_var		V23==3	職業3命3變數選路
 s39	trigger_add	T16763→命2	trigger		T31381	locref 每命複製
 s39	trigger_add	T16763→命3	trigger		T31382	locref 每命複製
-s39	cond_add	T16763	life_flag		(232, 237)	職業3命1旗選路
-s39	cond_add	T31381	life_flag		(231, 237)	職業3命2旗選路
-s39	cond_add	T31382	life_flag		(230, 237)	職業3命3旗選路
+s39	cond_add	T16763	life_var		V23==1	職業3命1變數選路
+s39	cond_add	T31381	life_var		V23==2	職業3命2變數選路
+s39	cond_add	T31382	life_var		V23==3	職業3命3變數選路
 s39	trigger_add	T17589→命2	trigger		T31383	locref 每命複製
 s39	trigger_add	T17589→命3	trigger		T31384	locref 每命複製
-s39	cond_add	T17589	life_flag		(232, 237)	職業3命1旗選路
-s39	cond_add	T31383	life_flag		(231, 237)	職業3命2旗選路
-s39	cond_add	T31384	life_flag		(230, 237)	職業3命3旗選路
+s39	cond_add	T17589	life_var		V23==1	職業3命1變數選路
+s39	cond_add	T31383	life_var		V23==2	職業3命2變數選路
+s39	cond_add	T31384	life_var		V23==3	職業3命3變數選路
 s39	trigger_add	T18415→命2	trigger		T31385	locref 每命複製
 s39	trigger_add	T18415→命3	trigger		T31386	locref 每命複製
-s39	cond_add	T18415	life_flag		(232, 237)	職業3命1旗選路
-s39	cond_add	T31385	life_flag		(231, 237)	職業3命2旗選路
-s39	cond_add	T31386	life_flag		(230, 237)	職業3命3旗選路
+s39	cond_add	T18415	life_var		V23==1	職業3命1變數選路
+s39	cond_add	T31385	life_var		V23==2	職業3命2變數選路
+s39	cond_add	T31386	life_var		V23==3	職業3命3變數選路
 s39	trigger_add	T19250→命2	trigger		T31387	locref 每命複製
 s39	trigger_add	T19250→命3	trigger		T31388	locref 每命複製
-s39	cond_add	T19250	life_flag		(232, 236)	職業4命1旗選路
-s39	cond_add	T31387	life_flag		(231, 236)	職業4命2旗選路
-s39	cond_add	T31388	life_flag		(230, 236)	職業4命3旗選路
+s39	cond_add	T19250	life_var		V24==1	職業4命1變數選路
+s39	cond_add	T31387	life_var		V24==2	職業4命2變數選路
+s39	cond_add	T31388	life_var		V24==3	職業4命3變數選路
 s39	trigger_add	T20085→命2	trigger		T31389	locref 每命複製
 s39	trigger_add	T20085→命3	trigger		T31390	locref 每命複製
-s39	cond_add	T20085	life_flag		(232, 236)	職業4命1旗選路
-s39	cond_add	T31389	life_flag		(231, 236)	職業4命2旗選路
-s39	cond_add	T31390	life_flag		(230, 236)	職業4命3旗選路
+s39	cond_add	T20085	life_var		V24==1	職業4命1變數選路
+s39	cond_add	T31389	life_var		V24==2	職業4命2變數選路
+s39	cond_add	T31390	life_var		V24==3	職業4命3變數選路
 s39	trigger_add	T20920→命2	trigger		T31391	locref 每命複製
 s39	trigger_add	T20920→命3	trigger		T31392	locref 每命複製
-s39	cond_add	T20920	life_flag		(232, 236)	職業4命1旗選路
-s39	cond_add	T31391	life_flag		(231, 236)	職業4命2旗選路
-s39	cond_add	T31392	life_flag		(230, 236)	職業4命3旗選路
+s39	cond_add	T20920	life_var		V24==1	職業4命1變數選路
+s39	cond_add	T31391	life_var		V24==2	職業4命2變數選路
+s39	cond_add	T31392	life_var		V24==3	職業4命3變數選路
 s39	trigger_add	T21755→命2	trigger		T31393	locref 每命複製
 s39	trigger_add	T21755→命3	trigger		T31394	locref 每命複製
-s39	cond_add	T21755	life_flag		(232, 236)	職業4命1旗選路
-s39	cond_add	T31393	life_flag		(231, 236)	職業4命2旗選路
-s39	cond_add	T31394	life_flag		(230, 236)	職業4命3旗選路
+s39	cond_add	T21755	life_var		V24==1	職業4命1變數選路
+s39	cond_add	T31393	life_var		V24==2	職業4命2變數選路
+s39	cond_add	T31394	life_var		V24==3	職業4命3變數選路
 s39	trigger_add	T22590→命2	trigger		T31395	locref 每命複製
 s39	trigger_add	T22590→命3	trigger		T31396	locref 每命複製
-s39	cond_add	T22590	life_flag		(232, 236)	職業4命1旗選路
-s39	cond_add	T31395	life_flag		(231, 236)	職業4命2旗選路
-s39	cond_add	T31396	life_flag		(230, 236)	職業4命3旗選路
+s39	cond_add	T22590	life_var		V24==1	職業4命1變數選路
+s39	cond_add	T31395	life_var		V24==2	職業4命2變數選路
+s39	cond_add	T31396	life_var		V24==3	職業4命3變數選路
 s39	trigger_add	T23419→命2	trigger		T31397	locref 每命複製
 s39	trigger_add	T23419→命3	trigger		T31398	locref 每命複製
-s39	cond_add	T23419	life_flag		(232, 235)	職業5命1旗選路
-s39	cond_add	T31397	life_flag		(231, 235)	職業5命2旗選路
-s39	cond_add	T31398	life_flag		(230, 235)	職業5命3旗選路
+s39	cond_add	T23419	life_var		V25==1	職業5命1變數選路
+s39	cond_add	T31397	life_var		V25==2	職業5命2變數選路
+s39	cond_add	T31398	life_var		V25==3	職業5命3變數選路
 s39	trigger_add	T24249→命2	trigger		T31399	locref 每命複製
 s39	trigger_add	T24249→命3	trigger		T31400	locref 每命複製
-s39	cond_add	T24249	life_flag		(232, 235)	職業5命1旗選路
-s39	cond_add	T31399	life_flag		(231, 235)	職業5命2旗選路
-s39	cond_add	T31400	life_flag		(230, 235)	職業5命3旗選路
+s39	cond_add	T24249	life_var		V25==1	職業5命1變數選路
+s39	cond_add	T31399	life_var		V25==2	職業5命2變數選路
+s39	cond_add	T31400	life_var		V25==3	職業5命3變數選路
 s39	trigger_add	T25079→命2	trigger		T31401	locref 每命複製
 s39	trigger_add	T25079→命3	trigger		T31402	locref 每命複製
-s39	cond_add	T25079	life_flag		(232, 235)	職業5命1旗選路
-s39	cond_add	T31401	life_flag		(231, 235)	職業5命2旗選路
-s39	cond_add	T31402	life_flag		(230, 235)	職業5命3旗選路
+s39	cond_add	T25079	life_var		V25==1	職業5命1變數選路
+s39	cond_add	T31401	life_var		V25==2	職業5命2變數選路
+s39	cond_add	T31402	life_var		V25==3	職業5命3變數選路
 s39	trigger_add	T25909→命2	trigger		T31403	locref 每命複製
 s39	trigger_add	T25909→命3	trigger		T31404	locref 每命複製
-s39	cond_add	T25909	life_flag		(232, 235)	職業5命1旗選路
-s39	cond_add	T31403	life_flag		(231, 235)	職業5命2旗選路
-s39	cond_add	T31404	life_flag		(230, 235)	職業5命3旗選路
+s39	cond_add	T25909	life_var		V25==1	職業5命1變數選路
+s39	cond_add	T31403	life_var		V25==2	職業5命2變數選路
+s39	cond_add	T31404	life_var		V25==3	職業5命3變數選路
 s39	trigger_add	T26739→命2	trigger		T31405	locref 每命複製
 s39	trigger_add	T26739→命3	trigger		T31406	locref 每命複製
-s39	cond_add	T26739	life_flag		(232, 235)	職業5命1旗選路
-s39	cond_add	T31405	life_flag		(231, 235)	職業5命2旗選路
-s39	cond_add	T31406	life_flag		(230, 235)	職業5命3旗選路
+s39	cond_add	T26739	life_var		V25==1	職業5命1變數選路
+s39	cond_add	T31405	life_var		V25==2	職業5命2變數選路
+s39	cond_add	T31406	life_var		V25==3	職業5命3變數選路
 s39	trigger_add	T27595→命2	trigger		T31407	locref 每命複製
 s39	trigger_add	T27595→命3	trigger		T31408	locref 每命複製
-s39	cond_add	T27595	life_flag		(232, 234)	職業6命1旗選路
-s39	cond_add	T31407	life_flag		(231, 234)	職業6命2旗選路
-s39	cond_add	T31408	life_flag		(230, 234)	職業6命3旗選路
+s39	cond_add	T27595	life_var		V26==1	職業6命1變數選路
+s39	cond_add	T31407	life_var		V26==2	職業6命2變數選路
+s39	cond_add	T31408	life_var		V26==3	職業6命3變數選路
 s39	trigger_add	T28452→命2	trigger		T31409	locref 每命複製
 s39	trigger_add	T28452→命3	trigger		T31410	locref 每命複製
-s39	cond_add	T28452	life_flag		(232, 234)	職業6命1旗選路
-s39	cond_add	T31409	life_flag		(231, 234)	職業6命2旗選路
-s39	cond_add	T31410	life_flag		(230, 234)	職業6命3旗選路
+s39	cond_add	T28452	life_var		V26==1	職業6命1變數選路
+s39	cond_add	T31409	life_var		V26==2	職業6命2變數選路
+s39	cond_add	T31410	life_var		V26==3	職業6命3變數選路
 s39	trigger_add	T29309→命2	trigger		T31411	locref 每命複製
 s39	trigger_add	T29309→命3	trigger		T31412	locref 每命複製
-s39	cond_add	T29309	life_flag		(232, 234)	職業6命1旗選路
-s39	cond_add	T31411	life_flag		(231, 234)	職業6命2旗選路
-s39	cond_add	T31412	life_flag		(230, 234)	職業6命3旗選路
+s39	cond_add	T29309	life_var		V26==1	職業6命1變數選路
+s39	cond_add	T31411	life_var		V26==2	職業6命2變數選路
+s39	cond_add	T31412	life_var		V26==3	職業6命3變數選路
 s39	trigger_add	T30166→命2	trigger		T31413	locref 每命複製
 s39	trigger_add	T30166→命3	trigger		T31414	locref 每命複製
-s39	cond_add	T30166	life_flag		(232, 234)	職業6命1旗選路
-s39	cond_add	T31413	life_flag		(231, 234)	職業6命2旗選路
-s39	cond_add	T31414	life_flag		(230, 234)	職業6命3旗選路
+s39	cond_add	T30166	life_var		V26==1	職業6命1變數選路
+s39	cond_add	T31413	life_var		V26==2	職業6命2變數選路
+s39	cond_add	T31414	life_var		V26==3	職業6命3變數選路
 s39	trigger_add	T31023→命2	trigger		T31415	locref 每命複製
 s39	trigger_add	T31023→命3	trigger		T31416	locref 每命複製
-s39	cond_add	T31023	life_flag		(232, 234)	職業6命1旗選路
-s39	cond_add	T31415	life_flag		(231, 234)	職業6命2旗選路
-s39	cond_add	T31416	life_flag		(230, 234)	職業6命3旗選路
+s39	cond_add	T31023	life_var		V26==1	職業6命1變數選路
+s39	cond_add	T31415	life_var		V26==2	職業6命2變數選路
+s39	cond_add	T31416	life_var		V26==3	職業6命3變數選路
 s39	eff_append	T1548	啟停扇出		+2	家族狀態一致化
 s39	eff_append	T1553	啟停扇出		+2	家族狀態一致化
 s39	eff_append	T1558	啟停扇出		+2	家族狀態一致化

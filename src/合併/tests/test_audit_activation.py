@@ -57,3 +57,15 @@ def test_life_copy_requires_flag_condition(f):
                    life_refs={1: [0, 900, 901]})
     bad = [s for k, s in vio if k == '◇命無旗防']
     assert len(bad) == 1 and '◇命2' in bad[0] and '神弓' in bad[0]
+
+
+def test_life_copy_gated_by_variable_passes(f):
+    """命旗→變數（2026-09-01）：命數條件 variable_value 也算閘，但別班的變數不算。"""
+    gated = f.trig(name='神弓之洛5~1◇命2',
+                   conds=[f._cond(22, variable=21, quantity=2, comparison=0)])
+    wrong = f.trig(name='神弓之洛5~1◇命3',
+                   conds=[f._cond(22, variable=2, quantity=2, comparison=0)])  # 擊殺變數
+    vio, _ = audit(f.tm([gated, wrong]), life_vars={1: 21, 2: 22},
+                   life_refs={1: [0, 900, 901]})
+    bad = [s for k, s in vio if k == '◇命無旗防']
+    assert len(bad) == 1 and '◇命3' in bad[0]

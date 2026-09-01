@@ -8,12 +8,21 @@ from .base import trig_by_id
 
 FLAG_CONST = 720          # 角落旗標單位（地圖原生慣用法：NINE_BANDS）
 REVEALER = 837
+SET = 1                   # Operation.SET（change_variable）
+
+# 命數改用 DE 變數（2026-09-01 裁決）：原本第 L 命＝「Gaia 720 立在 life_cells[L-1]」，
+# 但那些格子正是原作技能表（const 285）所在，選角後旗桿遮住「佛」那一格，且 720 就是
+# 原作的任務道具（九環旗），玩家看到會以為觸發了什麼（使用者回報）。移欄查無好格
+# （角落僅 229/239 兩欄乾淨、外圍 204-208 在極練場活動區、(206,235) 是斬狂生成格），
+# 故改為 V_LIFE[cid]：0＝未選角、L＝目前第 L 命。命盡旗/騎馬旗/轉生旗仍是旗（格子乾淨、
+# 且被原作條件原地轉換讀取），不在本次範圍。
 
 
 def build_chains(tm, rv):
     """rv 必備鍵：spec(lives/respawn/hero_refs/displays)、life_refs、containers、
     class_names{cid:(客名,俠名)}、invuln_tids、base_hp、enable_lists、
-    mount{cid:{mount_ref,flag_cell,rebirth_cell,final_cell}}、classes、slots。
+    mount{cid:{mount_ref,flag_cell,rebirth_cell,final_cell}}、classes、slots、
+    life_vars{cid:變數id}（命數，取代命旗）。
     可選 dl_hooks{(cid,slot):{'watch_activate':[tid],'timer_deactivate':[tid],
     'timer_activate':[tid]}}。"""
     spec = rv['spec']
@@ -24,6 +33,7 @@ def build_chains(tm, rv):
     mount = rv['mount']
     classes = rv.get('classes', tuple(sorted(life)))
     slots = rv.get('slots', (1, 2, 3, 4, 5, 6))
+    life_vars = {int(k): int(v) for k, v in (rv.get('life_vars') or {}).items()}
     hooks = rv.get('dl_hooks', {})
     out = NS(select={}, watch={}, timer={}, final={}, horse={},
              msgs={}, final_msgs={}, activators={}, changes=[])
@@ -50,6 +60,12 @@ def build_chains(tm, rv):
         t.new_effect.remove_object(source_player=0, object_list_unit_id=FLAG_CONST,
                                    area_x1=cell[0], area_y1=cell[1],
                                    area_x2=cell[0], area_y2=cell[1])
+
+    def set_life(t, cid, value):
+        """命數變數寫入（locref 家族選路）。value：0＝熄火、L＝第 L 命。"""
+        if cid in life_vars:
+            t.new_effect.change_variable(variable=life_vars[cid], quantity=value,
+                                         operation=SET)
 
     def msg_trio(cid, s, tag, fmt):
         g1, g2 = names[cid]
@@ -80,8 +96,7 @@ def build_chains(tm, rv):
                                          location_x=int(spec.respawn[0]),
                                          location_y=int(spec.respawn[1]))
             create_flag(fin, m['final_cell'])
-            if m.get('life_cells'):
-                remove_flag(fin, m['life_cells'][lives - 1])   # 末命旗除→locref 家族熄火
+            set_life(fin, cid, 0)          # 末命歸零→locref 家族熄火
             for x in hk.get('watch_activate', []):
                 fin.new_effect.activate_trigger(trigger_id=x)
             out.final[(cid, s)] = fin.trigger_id
@@ -99,9 +114,7 @@ def build_chains(tm, rv):
                     tmr.new_effect.deactivate_trigger(trigger_id=x)
                 for x in hk.get('timer_activate', []):
                     tmr.new_effect.activate_trigger(trigger_id=x)
-                if m.get('life_cells'):
-                    remove_flag(tmr, m['life_cells'][L - 1])   # 命旗遞移：L→L+1
-                    create_flag(tmr, m['life_cells'][L])       # （locref 家族選路）
+                set_life(tmr, cid, L + 1)      # 命數遞移 L→L+1（locref 家族選路）
                 tmr.new_effect.activate_trigger(trigger_id=next_tid)
                 out.timer[(cid, s, L)] = tmr.trigger_id
 
@@ -132,8 +145,7 @@ def build_chains(tm, rv):
                                          location_x=int(spec.respawn[0]),
                                          location_y=int(spec.respawn[1]))
             create_flag(hwf, m['final_cell'])
-            if m.get('life_cells'):
-                remove_flag(hwf, m['life_cells'][lives - 1])
+            set_life(hwf, cid, 0)
             out.horse[(cid, s, lives)] = hwf.trigger_id
             # ---- 啟動器（enable_lists 分塊 ≤200）----
             acts = []
@@ -161,8 +173,7 @@ def build_chains(tm, rv):
                                                 selected_object_ids=[mir])   # 鏡像預設P8
             sel.new_effect.change_object_caption(
                 selected_object_ids=[spec.hero_refs[cid]], message=' ')   # 清除職業名字幕
-            if mount[cid].get('life_cells'):
-                create_flag(sel, mount[cid]['life_cells'][0])   # 第1命旗（locref 選路）
+            set_life(sel, cid, 1)          # 第1命（locref 選路起點）
             for x in rv.get('anti_lists', {}).get((cid, s), []):
                 sel.new_effect.deactivate_trigger(trigger_id=x)
             sel.new_effect.activate_trigger(

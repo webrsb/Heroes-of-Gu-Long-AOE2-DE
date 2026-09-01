@@ -12,10 +12,11 @@
 import copy
 from core.change import Change
 from .base import trig_by_id, Step, BuildError
-from .revive_chains import build_chains, FLAG_CONST, REVEALER  # T9a 復活鏈
+from .revive_chains import build_chains, REVEALER  # T9a 復活鏈
 
 APPEND_TYPES = {26, 24, 27, 28}          # 改名/傷害/改血/改攻
 PLAYERS = range(1, 7)
+EQUAL = 0                                # Comparison.EQUAL（命數等值選路）
 _COND_RESET = dict(unit_object=-1, next_object=-1, object_list=-1, source_player=-1,
                    timer=-1, quantity=-1, area_x1=-1, area_y1=-1, area_x2=-1, area_y2=-1)
 
@@ -118,13 +119,15 @@ def expand_conditions(tm, life_refs, death_linked, use_or=True):
     return changes, dups
 
 
-def dup_locref(tm, life_refs, life_cells):
+def dup_locref(tm, life_refs, life_vars):
     """locref 效果逐命複製（家族狀態一致模型，2026-08-30 修正銀龍/神弓越權啟動）：
-    副本繼承原觸發 enabled；每份（含原觸發＝第1命）加「當前命旗」條件
-    objects_in_area(Gaia 720 @ life_cells[cid][L-1])，由旗標選路——啟停狀態
+    副本繼承原觸發 enabled；每份（含原觸發＝第1命）加「當前命數」條件
+    variable_value(V_LIFE[cid] == L)，由變數選路——啟停狀態
     交由 fanout_family_edges 使家族與原觸發永遠一致，復活鏈不再直接啟停副本
     （舊設計會把休眠中的擂台/任務觸發強行打開）。
-    life_cells={cid: [(x,y)×lives]}。回傳 (changes, families={orig_tid: {L: tid}})。"""
+    2026-09-01 由 Gaia 720 命旗改為變數：旗落在原作技能表格上會遮住技能名，
+    且 720 是原作任務道具（詳 revive_chains 檔頭）。
+    life_vars={cid: 變數id}。回傳 (changes, families={orig_tid: {L: tid}})。"""
     prim = _primary_ref2cid(life_refs)
     changes, families = [], {}
     for t in list(tm.triggers):
@@ -139,7 +142,7 @@ def dup_locref(tm, life_refs, life_cells):
         cid = cids.pop()
         if any(getattr(c, 'condition_type', None) == 29 for c in t.conditions):
             raise BuildError(f'缺裁決：locref T{t.trigger_id} 條件含 OR 節點，'
-                             f'尾插命旗條件的分組語意未實證——需人工裁決')
+                             f'尾插命數條件的分組語意未實證——需人工裁決')
         fam = {1: t.trigger_id}
         for L in range(2, len(life_refs[cid]) + 1):
             v = tm.copy_trigger(t.trigger_id, append_after_source=False, add_suffix=False)
@@ -150,12 +153,11 @@ def dup_locref(tm, life_refs, life_cells):
             changes.append(Change('s39', 'trigger_add', f'T{t.trigger_id}→命{L}',
                                   'trigger', '', f'T{v.trigger_id}', 'locref 每命複製'))
         for L, tid in fam.items():
-            cell = life_cells[cid][L - 1]
-            trig_by_id(tm, tid).new_condition.objects_in_area(
-                quantity=1, source_player=0, object_list=FLAG_CONST,
-                area_x1=cell[0], area_y1=cell[1], area_x2=cell[0], area_y2=cell[1])
-            changes.append(Change('s39', 'cond_add', f'T{tid}', 'life_flag',
-                                  '', f'{cell}', f'職業{cid}命{L}旗選路'))
+            var = life_vars[cid]
+            trig_by_id(tm, tid).new_condition.variable_value(
+                variable=var, quantity=L, comparison=EQUAL)
+            changes.append(Change('s39', 'cond_add', f'T{tid}', 'life_var',
+                                  '', f'V{var}=={L}', f'職業{cid}命{L}變數選路'))
         families[t.trigger_id] = fam
     return changes, families
 
@@ -269,15 +271,29 @@ def run_revive(ctx):
         mu = by_ref.get(mount_refs[cid])
         if mu is None:
             raise BuildError(f'缺裁決：職業{cid} 預置馬騎 ref{mount_refs[cid]} 不存在')
-        life_xs = cells.get('life_xs')
-        if not life_xs or len(life_xs) < rspec.lives:
-            raise BuildError(f'缺裁決：cells.life_xs 不足 lives={rspec.lives} 欄')
         mount[cid] = dict(mount_ref=mount_refs[cid], mount_const=mu.unit_const,
                           flag_cell=(221, row),
                           rebirth_cell=(int(cells['rebirth_x']), row),
                           final_cell=(int(cells['final_x']), row),
-                          life_cells=[(int(x), row) for x in life_xs[:rspec.lives]],
                           pool_cells=[(int(x), row) for x in cells['pool_xs']])
+
+    # ---- 命數變數（取代命旗；詳 revive_chains 檔頭裁決）----
+    if 'life_var_offset' not in params:
+        raise BuildError('缺裁決：params.revive.life_var_offset 不存在'
+                         '（命數變數編號基底；命旗已於 2026-09-01 改為變數）')
+    lvo = int(params['life_var_offset'])
+    kvo = ctx.spec.params.get('killvar') or {}
+    taken = {int(kvo[k]) + s for k in ('v_kills_offset', 'v_base_offset') if k in kvo
+             for s in range(1, 7)}
+    life_vars = {cid: lvo + cid for cid in range(1, 7)}
+    clash = sorted(set(life_vars.values()) & taken)
+    if clash:
+        raise BuildError(f'缺裁決：命數變數 {clash} 與 killvar 變數撞號'
+                         f'（life_var_offset={lvo}）')
+    for cid, var in life_vars.items():
+        tm.add_variable(f'命數職業{cid}', variable_id=var)
+        changes.append(Change('s39', 'var_add', f'V{var}', 'variable', '',
+                              f'命數職業{cid}', '命數變數（取代命旗）'))
 
     retired_all = set(rspec.retired) | {int(x) for x in (params.get('retired_extra') or [])}
     rulings = ctx.spec.params.get('death_linked_rulings')
@@ -338,8 +354,7 @@ def run_revive(ctx):
     for orig, m in dups.items():
         if orig in el_index:
             el[el_index[orig]] += list(m.values())
-    lch, loc_fams = dup_locref(tm, life_refs,
-                               {cid: mount[cid]['life_cells'] for cid in range(1, 7)})
+    lch, loc_fams = dup_locref(tm, life_refs, life_vars)
     changes += lch
     # 家族狀態一致化（locref 命旗選路 + 多ref條件每命副本）：
     # 副本啟停永遠跟隨原觸發，復活鏈不再直接啟停副本（防休眠越權啟動）。
@@ -356,7 +371,8 @@ def run_revive(ctx):
         enable_lists=el, anti_lists=anti_lists, mount=mount,
         navigators=rv0.get('navigators', {}),
         mirrors={int(k): int(v) for k, v in (params.get('mirrors') or {}).items()},
-        classes=tuple(range(1, 7)), slots=slots, dl_hooks=hooks))
+        classes=tuple(range(1, 7)), slots=slots, dl_hooks=hooks,
+        life_vars=life_vars))
     changes += chains.changes
     mo = rebuild_mount(tm, x3_variants={(cid, s): vm[(x3[cid], s)]
                                         for cid in range(1, 7) for s in slots},
@@ -420,6 +436,8 @@ class ReviveStep(Step):
                 '打坐跨命 → 連動（召寵陪葬/修端木護送失敗/哥8命盡才發）→ 騎馬全流程'
                 '（上馬不燒命、預存池、馬死重生仍馬形態）→ 命盡訊息 → 未選職業鎖定 → 存讀檔迴圈。\n'
                 '陽性對照：原有任一技能照常運作。\n'
+                '命旗→變數（2026-09-01）：角落技能表那格不該再有九環旗（原本遮住「佛」）；'
+                '第2命起仍能正常升級/打坐/接任務＝變數選路生效（前置實測 spike_lifevar）。\n'
                 '警告：步行箭俠勿踩叛變格(31-33,14-16)——沒收無解（原作設計）。')
 
 

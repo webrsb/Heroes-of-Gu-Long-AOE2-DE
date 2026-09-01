@@ -8,9 +8,7 @@ from steps.s39_revive import (append_life_refs, expand_conditions, dup_locref,
                               fanout_family_edges, build_matrix)
 
 LIFE = {1: [0, 900, 901], 2: [1, 910, 911], 6: [45117, 960, 961]}
-CELLS = {1: [(50, 239), (51, 239), (52, 239)],
-         2: [(50, 238), (51, 238), (52, 238)],
-         6: [(50, 234), (51, 234), (52, 234)]}
+LIFE_VARS = {1: 21, 2: 22, 6: 26}        # 命數變數（取代命旗，2026-09-01）
 
 
 # ---------- append_life_refs ----------
@@ -79,24 +77,25 @@ def test_death_linked_not_expanded(f):
     assert len(t.conditions) == 1 and dups == {}
 
 
-# ---------- dup_locref（家族狀態一致＋命旗選路）----------
+# ---------- dup_locref（家族狀態一致＋命數變數選路）----------
 
-def test_dup_locref_flag_routing_and_enabled_inherit(f):
+def test_dup_locref_var_routing_and_enabled_inherit(f):
     t = f.trig(effects=[f.eff_task(sel=[555], sp=1, locref=0)], enabled=False)
     tm = f.tm([t])
-    changes, fams = dup_locref(tm, LIFE, CELLS)
+    changes, fams = dup_locref(tm, LIFE, LIFE_VARS)
     fam = fams[t.trigger_id]
     assert fam[1] == t.trigger_id
     for L in (2, 3):
         v = tm.triggers_by_id[fam[L]]
         assert v.effects[0].location_object_reference == LIFE[1][L - 1]
         assert v.enabled == t.enabled          # 繼承（休眠者不得被強行打開）
-        conds = [kw for n, kw in v.new_condition.calls if n == 'objects_in_area']
-        assert conds[0]['object_list'] == 720 and conds[0]['source_player'] == 0
-        assert (conds[0]['area_x1'], conds[0]['area_y1']) == CELLS[1][L - 1]
-    # 原觸發（＝第1命）也掛第1命旗條件
-    c0 = [kw for n, kw in t.new_condition.calls if n == 'objects_in_area']
-    assert (c0[0]['area_x1'], c0[0]['area_y1']) == CELLS[1][0]
+        conds = [kw for n, kw in v.new_condition.calls if n == 'variable_value']
+        assert conds[0] == dict(variable=LIFE_VARS[1], quantity=L, comparison=0)
+        # 舊制的 Gaia 720 命旗條件不該再出現（旗落在原作技能表格上）
+        assert [kw for n, kw in v.new_condition.calls if n == 'objects_in_area'] == []
+    # 原觸發（＝第1命）也掛 V==1 條件
+    c0 = [kw for n, kw in t.new_condition.calls if n == 'variable_value']
+    assert c0[0]['quantity'] == 1 and c0[0]['variable'] == LIFE_VARS[1]
 
 
 def test_dup_locref_or_condition_raises(f):
@@ -105,7 +104,7 @@ def test_dup_locref_or_condition_raises(f):
     t = f.trig(conds=[f.cond_timer(1), or_node, f.cond_timer(2)],
                effects=[f.eff_task(sel=[555], sp=1, locref=0)])
     with pytest.raises(BuildError):
-        dup_locref(f.tm([t]), LIFE, CELLS)
+        dup_locref(f.tm([t]), LIFE, LIFE_VARS)
 
 
 def test_fanout_family_edges_external_and_self(f):
