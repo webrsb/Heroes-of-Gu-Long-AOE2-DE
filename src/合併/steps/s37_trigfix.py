@@ -37,7 +37,10 @@ def apply_fix(tm, entry) -> Change:
             return Change('s37', 'effect_add', tag, 'send_chat', '',
                           f'sp{spec["source_player"]}「{spec["message"][:20]}」', entry.get('reason', ''))
         if spec['type'] not in ('activate_trigger', 'deactivate_trigger'):
-            raise BuildError(f'缺裁決：{tag} 只支援 activate/deactivate_trigger/send_chat，得到 {spec["type"]}')
+            # 其餘效果型別照 spec 直建（原作漏抄的獎勵效果用；啟停另走下面的目標名防呆）
+            _build_part(t.new_effect, spec, tag, player_fields=('source_player', 'target_player'))
+            desc = ' '.join(f'{k}={v}' for k, v in spec.items() if k != 'type')
+            return Change('s37', 'effect_add', tag, spec['type'], '', desc[:120], entry.get('reason', ''))
         if 'trigger_name' in spec:
             target = _resolve_by_name(tm, spec['trigger_name'], tag)
         else:

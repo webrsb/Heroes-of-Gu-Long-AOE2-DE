@@ -153,11 +153,15 @@ def test_effect_add_send_chat(f):
     assert c.kind == 'effect_add' and c.field == 'send_chat'
 
 
-def test_effect_add_rejects_other_types(f):
-    buyer = f.trig(name='1船6')
-    with pytest.raises(BuildError):
-        apply_fix(f.tm([buyer]), {'trigger_id': buyer.trigger_id, 'name': '1船6', 'kind': 'effect_add',
-                                  'effect': {'type': 'teleport_object', 'source_player': 1}, 'reason': 'r'})
+def test_effect_add_builds_other_types(f):
+    """啟停／send_chat 以外的效果照 spec 直建（原作漏抄的獎勵效果用，如 1仙4 的血量上限獎）。"""
+    t = f.trig(name='1仙4')
+    eff = {'type': 'change_object_hp', 'source_player': 1, 'selected_object_ids': [26109],
+           'quantity': 2100, 'operation': -1}
+    ch = apply_fix(f.tm([t]), {'trigger_id': t.trigger_id, 'name': '1仙4', 'kind': 'effect_add',
+                               'effect': eff, 'reason': 'r'})
+    assert ch.field == 'change_object_hp' and '2100' in ch.new
+    assert t.new_effect.calls == [('change_object_hp', {k: v for k, v in eff.items() if k != 'type'})]
 
 
 def test_trigger_add_effect_trigger_name_must_hit_exactly_one(f):

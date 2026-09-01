@@ -127,6 +127,23 @@ FIXES = [
     dict(trigger_id=1867, name='6軒2', kind='effect', index=3, field='message',
          old='<AQUA>失去了　10000　點江湖閱歷', new='<AQUA>得到了　1000　點江湖閱歷',
          reason='隨上一條改回「得到 1000」，與其餘五座位訊息一致'),
+    # ── 2026-09-01 第二批（攻略 session 查證：8 條裡 2 修 6 不修）─────────────
+    dict(kind='condition_add', trigger_id=5113, name='殺豬1',
+         condition=dict(type='objects_in_area', quantity=1, source_player=1,
+                        area_x1=233, area_y1=61, area_x2=239, area_y2=69, object_group=6),
+         reason='殺豬1 只有擊殺數條件，他座還要求「人在領獎區」（2P 帶 object_group=6 步兵過濾，'
+                '刀客同為步兵）；缺檢查＝P1 不在場也領 500 閱歷。區域取 1P 自己的武裝觸發 殺豬1~1 用的範圍。'
+                '不補 TIMER：他座那筆只是延遲（殺豬N 非循環，不具冷卻作用），且 2P 版本來就沒有'),
+    dict(kind='effect_add', trigger_id=2546, name='1仙4',
+         effect=dict(type='change_object_hp', source_player=1, selected_object_ids=[0],
+                     quantity=1000, operation=-1),
+         reason='仙子附體（道9）學會時的一次性上限獎：2P 本體+1000/馬+2100、3P 900/900、5P 900/1600、'
+                '6P 1000/1000，P1 兩筆皆無＝抄漏（P1 面板同為「1秒171精力」，非 4P 那種改成 221 的補償型設計）。'
+                '對齊同型近戰、面板同值的最近鄰 2P。sel=0 為 P1 本體（P8 馬列 x=91.5→P1…96.5→P6 可對）'),
+    dict(kind='effect_add', trigger_id=2546, name='1仙4',
+         effect=dict(type='change_object_hp', source_player=1, selected_object_ids=[26109],
+                     quantity=2100, operation=-1),
+         reason='同上，P1 馬騎本體（ref 26109，P8 馬列 x=91.5 那隻）；量值對齊 2P 的 26186 +2100'),
 ]
 
 
@@ -144,6 +161,11 @@ def validate(path=UNTIL_S36):
             continue
         if f['kind'] == 'condition_add':
             out.append((True, f'{tag} 追加條件 {f["condition"]["type"]}（無舊值可驗，s37 名稱防呆把關）'))
+            continue
+        if f['kind'] == 'effect_add' and 'trigger_id' not in f['effect']:
+            sel = f['effect'].get('selected_object_ids') or []
+            out.append((True, f'{tag} 追加效果 {f["effect"]["type"]} sel={sel}（無舊值可驗，'
+                              f's37 名稱防呆＋幽靈玩家欄防呆把關）'))
             continue
         if f['kind'] == 'effect_add':
             tgt = f['effect']['trigger_id']
@@ -191,7 +213,8 @@ def check_duplicates(spec_path='merge_spec.yaml'):
             k = (f['trigger_id'], 'condition_add', f['condition']['type'],
                  f['condition'].get('timer', f['condition'].get('area_x1')))
         elif f['kind'] == 'effect_add':
-            k = (f['trigger_id'], 'effect_add', f['effect']['type'], f['effect']['trigger_id'])
+            k = (f['trigger_id'], 'effect_add', f['effect']['type'],
+                 f['effect'].get('trigger_id', tuple(f['effect'].get('selected_object_ids') or ())))
         else:
             k = (f['trigger_id'], f['kind'], f.get('index'), f.get('field'))
         if k in have:

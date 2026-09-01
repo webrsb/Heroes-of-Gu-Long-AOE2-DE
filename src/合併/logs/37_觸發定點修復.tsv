@@ -378,3 +378,6 @@ s37	condition_add	T792「1武」condition_add	objects_in_area		quantity=1 source
 s37	condition_add	T793「1武2」condition_add	timer		timer=20	1武2 是重新武裝器，他座每 20 秒一次；1P 缺 TIMER 等於冷卻被拿掉、可同殺雙領
 s37	effect_field	T1867「6軒2」E#2	quantity	10000	-1000	軒轅任務正常收支＝+2000+1000−10000＝淨 −7000；6P 同支扣兩次（E#2 也扣 10000）＝淨 −20000
 s37	effect_field	T1867「6軒2」E#3	message	<AQUA>失去了　10000　點江湖閱歷	<AQUA>得到了　1000　點江湖閱歷	隨上一條改回「得到 1000」，與其餘五座位訊息一致
+s37	condition_add	T5113「殺豬1」condition_add	objects_in_area		quantity=1 source_player=1 area_x1=233 area_y1=61 area_x2=239 area_y2=69 object_group=6	殺豬1 只有擊殺數條件，他座還要求「人在領獎區」（2P 帶 object_group=6 步兵過濾，刀客同為步兵）；缺檢查＝P1 不在場也領 500 閱歷。區域取 1P 自己的武裝觸發 殺豬1~1 用的範圍。不補 TIMER：他座那筆只是延遲（殺豬N 非循環，不具冷卻作用），且 2P 版本來就沒有
+s37	effect_add	T2546「1仙4」effect_add	change_object_hp		source_player=1 selected_object_ids=[0] quantity=1000 operation=-1	仙子附體（道9）學會時的一次性上限獎：2P 本體+1000/馬+2100、3P 900/900、5P 900/1600、6P 1000/1000，P1 兩筆皆無＝抄漏（P1 面板同為「1秒171精力」，非 4P 那種改成 221 的補償型設計）。對齊同型近戰、面板同值的最近鄰 2P。sel=0 為 P1 本體（P8 馬列 x=91.5→P1…96.5→P6 可對）
+s37	effect_add	T2546「1仙4」effect_add	change_object_hp		source_player=1 selected_object_ids=[26109] quantity=2100 operation=-1	同上，P1 馬騎本體（ref 26109，P8 馬列 x=91.5 那隻）；量值對齊 2P 的 26186 +2100

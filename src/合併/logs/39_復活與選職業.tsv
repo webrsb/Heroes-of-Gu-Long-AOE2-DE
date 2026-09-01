@@ -26495,6 +26495,7 @@ s39	eff_append	T2527E0	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
 s39	eff_append	T2528E0	sel+sp	1refs/sp4	3refs/sp-1	備身追加+中性化
 s39	eff_append	T2529E0	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
 s39	eff_append	T2530E0	sel+sp	1refs/sp6	3refs/sp-1	備身追加+中性化
+s39	eff_append	T2546E5	sel+sp	1refs/sp1	3refs/sp-1	備身追加+中性化
 s39	eff_append	T2551E5	sel+sp	1refs/sp2	3refs/sp-1	備身追加+中性化
 s39	eff_append	T2556E6	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
 s39	eff_append	T2565E2	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
@@ -27545,6 +27546,7 @@ s39	eff_append	T6379E5	sel+sp	1refs/sp2	3refs/sp-1	備身追加+中性化
 s39	eff_append	T6385E3	sel+sp	1refs/sp2	3refs/sp-1	備身追加+中性化
 s39	eff_append	T6385E7	sel+sp	1refs/sp2	3refs/sp-1	備身追加+中性化
 s39	eff_append	T6392E4	sel+sp	1refs/sp2	3refs/sp-1	備身追加+中性化
+s39	eff_append	T6399E5	sel+sp	1refs/sp2	3refs/sp-1	備身追加+中性化
 s39	eff_append	T6416E4	sel+sp	1refs/sp2	3refs/sp-1	備身追加+中性化
 s39	eff_append	T6498E0	sel+sp	1refs/sp2	3refs/sp-1	備身追加+中性化
 s39	eff_append	T6498E1	sel+sp	1refs/sp2	3refs/sp-1	備身追加+中性化
@@ -27736,6 +27738,7 @@ s39	eff_append	T7208E5	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
 s39	eff_append	T7214E3	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
 s39	eff_append	T7214E7	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
 s39	eff_append	T7221E4	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
+s39	eff_append	T7228E5	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
 s39	eff_append	T7245E4	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
 s39	eff_append	T7327E0	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
 s39	eff_append	T7327E1	sel+sp	1refs/sp3	3refs/sp-1	備身追加+中性化
@@ -27927,6 +27930,7 @@ s39	eff_append	T8037E5	sel+sp	1refs/sp4	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8043E3	sel+sp	1refs/sp4	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8043E7	sel+sp	1refs/sp4	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8050E4	sel+sp	1refs/sp4	3refs/sp-1	備身追加+中性化
+s39	eff_append	T8057E5	sel+sp	1refs/sp4	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8074E4	sel+sp	1refs/sp4	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8156E0	sel+sp	1refs/sp4	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8156E1	sel+sp	1refs/sp4	3refs/sp-1	備身追加+中性化
@@ -28118,6 +28122,7 @@ s39	eff_append	T8866E5	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8872E3	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8872E7	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8879E4	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
+s39	eff_append	T8886E5	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8903E4	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8985E0	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
 s39	eff_append	T8985E1	sel+sp	1refs/sp5	3refs/sp-1	備身追加+中性化
@@ -28309,6 +28314,7 @@ s39	eff_append	T9695E5	sel+sp	1refs/sp6	3refs/sp-1	備身追加+中性化
 s39	eff_append	T9701E3	sel+sp	1refs/sp6	3refs/sp-1	備身追加+中性化
 s39	eff_append	T9701E7	sel+sp	1refs/sp6	3refs/sp-1	備身追加+中性化
 s39	eff_append	T9708E4	sel+sp	1refs/sp6	3refs/sp-1	備身追加+中性化
+s39	eff_append	T9715E5	sel+sp	1refs/sp6	3refs/sp-1	備身追加+中性化
 s39	eff_append	T9732E4	sel+sp	1refs/sp6	3refs/sp-1	備身追加+中性化
 s39	eff_append	T9814E0	sel+sp	1refs/sp6	3refs/sp-1	備身追加+中性化
 s39	eff_append	T9814E1	sel+sp	1refs/sp6	3refs/sp-1	備身追加+中性化
