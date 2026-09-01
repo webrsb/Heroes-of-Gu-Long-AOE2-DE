@@ -11,6 +11,12 @@
 sel 都指同一隻、只有 sp 不同（8／0／-1），傷害值刻意不同以便從血量反推誰生效。
 陽性對照：sp=-1 那支（本專案慣用的中性寫法）必須生效，否則整個測試檔作廢。
 
+**結果（使用者 2026-09-01 實跑）：靶子 30040 → 28810 ＝ 扣 1230 ＝ 1000+200+30，三支全生效。**
+結論：**效果一旦填了 `selected_object_ids`，`source_player` 就不再當過濾條件。**
+故 `6大2` 的 sp=0 與 1–5P 的 sp=8 都有效，差異純屬寫法 → wontfix。
+推論到稽核：「同位效果各座位 sp 不一」若 sel 有值就不是 bug（條件不同——條件沒有指名機制，
+其 source_player 一定是實質過濾）。已寫進 `src/AoC_to_DE_migration_guide.md` §7.1。
+
 用法: python spikes/spike_spfilter.py <template> <輸出>"""
 import sys, io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')

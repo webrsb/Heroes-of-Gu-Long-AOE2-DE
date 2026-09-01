@@ -306,7 +306,12 @@ def audit(triggers, hero=None):
                             if f in ('sel', 'sp', 'tp', 'uo', 'qty') and \
                                     bag(normed[s], part, f) == bag(normed[top_seat], part, f):
                                 continue                       # 只是順序對調
-                            F(Finding(SEV[f], pat, k, s, row[s].trigger_id, row[s].name, f'{tag}#{i}', f, v, top))
+                            sev, exp = SEV[f], top
+                            if f == 'sp' and part == 1 and normed[s][part][i]['nsel'] \
+                                    and normed[top_seat][part][i]['nsel']:
+                                # 效果一旦填 sel，sp 就不再過濾（SPIKE_sp過濾 實測，指南 §7.1）＝行為無差
+                                sev, exp = 'LOW', f'{top}（sel 已指名，sp 不過濾）'
+                            F(Finding(sev, pat, k, s, row[s].trigger_id, row[s].name, f'{tag}#{i}', f, v, exp))
     findings += absent_seats(groups)              # D 族內座位缺席（形狀配對，不受主迴圈索引配對限制）
     order = {'HIGH': 0, 'MED': 1, 'LOW': 2}
     findings.sort(key=lambda r: (order[r.sev], r.pattern, r.occ, r.seat))
@@ -321,7 +326,12 @@ def render_md(path, findings, stats, type_names=None, ledger=None):
     cls = None
     if led is not None:
         from analysis.ledger import classify, summary
-        cls = classify([(finding_key(r), r) for r in findings if r.sev != 'LOW'], led)
+        # LOW 不列表，但**帳本已收錄**的 LOW 仍要餵進 classify——否則規則收窄（HIGH→LOW）
+        # 會被誤報成「消失」（2026-09-01：sel 已指名時 sp 降級那兩條）。新出現的 LOW 不進帳本免噪音。
+        rows = [(finding_key(r), r) for r in findings if r.sev != 'LOW']
+        rows += [(k, r) for r, k in ((r, finding_key(r)) for r in findings if r.sev == 'LOW')
+                 if k in led]
+        cls = classify(rows, led)
     lines = [f'# 六座位對稱稽核 — {path}', '',
              f'座位樣式 {stats["groups"]} 組（≥3 座位）；孿生逐欄比對 {stats["twin_groups"]} 次；'
              f'結構各異略過 {stats["struct_skipped"]} 次；'

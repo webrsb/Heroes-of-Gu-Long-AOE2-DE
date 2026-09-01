@@ -182,3 +182,22 @@ def test_parse_argv_separates_flags_from_positionals():
     assert flags == {'--record'}
     p, out, spec, flags = parse_argv(['prog', 'b', 'r.md', 'other_spec.yaml'])
     assert spec == 'other_spec.yaml' and flags == set()
+
+
+def test_sp_diff_downgraded_when_sel_names_the_target(f):
+    """效果填了 sel，sp 就不再過濾（SPIKE_sp過濾 實測）→ 各座位 sp 不一不是 bug，降級 LOW 不佔 HIGH。
+    對照：同形狀但 sel 為空時，sp 才是實質過濾 → 仍是 HIGH。"""
+    def make(s, f):
+        return f.trig(tid=s, name=f'{s}大2',
+                      effects=[f.eff_chat(sp=s, message='大環丹'),          # 讓該組成為帶座位組
+                               f.eff_damage(sel=[43835], sp=0 if s == 6 else 8)])
+    findings, _ = audit(six(f, make), HERO)
+    sp = [r for r in findings if r.field == 'sp']
+    assert [(r.seat, r.sev) for r in sp] == [(6, 'LOW')] and 'sp 不過濾' in sp[0].majority
+
+    def make_nosel(s, f):
+        return f.trig(tid=s, name=f'{s}大3',
+                      effects=[f.eff_chat(sp=s, message='大環丹'),
+                               f.eff_damage(sel=[], sp=0 if s == 6 else 8)])
+    findings, _ = audit(six(f, make_nosel), HERO)
+    assert [(r.seat, r.sev) for r in findings if r.field == 'sp'] == [(6, 'HIGH')]

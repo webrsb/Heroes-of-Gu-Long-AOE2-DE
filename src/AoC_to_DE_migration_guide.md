@@ -301,6 +301,13 @@ def targets(e, all_objects):
             and (無 area 或 o 在 area 內)]
 ```
 
+**`selected_object_ids` 一填，其餘欄位就不再過濾**（2026-09-01 `SPIKE_sp過濾` 實測）：
+同一隻 Gaia 單位、三支效果各 `sp=8`／`sp=0`／`sp=-1` 且 sel 都指它，
+傷害 1000+200+30 全部到帳（30040→28810）。所以指名式效果的 `source_player`
+**是被忽略的殘留欄位**，不必與物件實際歸屬一致——稽核到「同位效果各座位 sp 不一」
+時，若 sel 有值就不是 bug。反之，寫新效果一律填 `-1`（中性）最不易誤讀。
+⚠ 條件不同：條件沒有 sel 這種指名機制，`source_player` 一定是實質過濾。
+
 ### 7.2 🔴 「是不是建築」不能用 parser 資料集判定
 
 parser 的 `BuildingInfo` 不含未知 ID —— 用它過濾會**跳過所有未知 ID**，

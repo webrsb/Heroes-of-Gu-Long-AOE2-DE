@@ -272,7 +272,7 @@ entries:
   - {key: "X大2|3|T4354|E#4|qty", verdict: wontfix, reason: "「N大2＝買大環丹」整支 3P 都被放大：E#3/E#4 給英雄回 -2000（別人 -1000，P6 是 -1200）、E#6 給隨從 -270、E#7 -2296（別人 -100/-80/-100）、E#9 -10000（別人 -1000）。唯一有數字的訊息是「失去了 1000 兩銀」，講的是**售價**不是回血量，沒有矛盾。整支等比放大＝刻意。"}
   - {key: "X大2|3|T4354|E#6|qty", verdict: wontfix, reason: "同 X大2|3|E#4：3P 整支放大（E#7 甚至是 -2296、E#9 -10000），非單點抄錯。"}
   - {key: "X大2|5|T4358|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
-  - {key: "X大2|6|T4360|E#9|sp", verdict: pending, reason: "**需裁決：** T4360「6大2」E9 DAMAGE_OBJECT（回復大環丹商販 ref 43835）寫 sp=0，1–5P 同位皆 sp=8——但這次少數派可能才是對的：開場觸發 T1「名」E59 CHANGE_OWNERSHIP sp=8 → tp=0 sel=[43835] 已把「流動商人夏侯象」交給 Gaia，T4950「馬」E39 對 43835 也用 sp=0。若 sp 會過濾 sel 指定的物件，則錯的是 1–5P（該把 T4350/4352/4354/4356/4358 的 E9 sp 由 8 改 0），6P 不動；若 sp 不過濾（merge_spec 既有註解「sp 是否過濾未實測」），六支都無影響。請使用者擇一：(a) 不動，(b) 6P 改 8 對齊多數，(c) 1–5P 改 0 對齊實際擁有者。建議先實測 sp 對 sel 型效果是否過濾再定案"}
+  - {key: "X大2|6|T4360|E#9|sp", verdict: wontfix, reason: "實測結案（SPIKE_sp過濾，使用者 2026-09-01 回報）：靶子 30040→28810＝扣 1230＝1000+200+30，sp=8／sp=0／sp=-1 三支全生效 → 效果已指定 selected_object_ids 時 source_player 不當過濾條件。故 6P 的 sp=0 與 1–5P 的 sp=8 皆能回復已轉給 Gaia 的大環丹商販（ref 43835），差異純屬寫法，不改。"}
   - {key: "X大3|2|T5154|整支|struct", verdict: wontfix, reason: "條件／效果的多重集與他座完全相同，只差排列順序（DE 觸發內條件是 AND、效果依序執行），無語意差異。"}
   - {key: "X大4|1|T5153|整支|struct", verdict: wontfix, reason: "1大4 只是比他座多一筆對 sp=7 NPC 的 DAMAGE_OBJECT -100（他座一筆、1P 兩筆），玩家側的扣銀、訊息、補血完全一致。"}
   - {key: "X大師|2|T812|整支|struct", verdict: wontfix, reason: "2P 只是效果順序對調；6P（箭客）走的是專屬支線——條件用九節鞭而非火把、少 TIMER、多啟動「6當僧」，與「6大師守候」要求解 3 個任務的設計一致，屬原作為 P6 另寫的劇情分支。"}
