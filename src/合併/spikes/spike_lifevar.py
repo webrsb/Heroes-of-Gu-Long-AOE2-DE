@@ -23,6 +23,14 @@
 陽性對照：同一時刻用「Gaia 720 單格」旗閘做一模一樣的判斷（[B*] 行）。
 旗閘有出、變數閘沒出 ＝ 變數路線壞；兩者都沒出 ＝ 測試檔本身壞掉（別誤判）。
 
+**結果（使用者 2026-09-01 實跑）：四項全過**——`[P][A1][A>=][B1][A3][X1][A2][B2][A0]`、
+迴圈靶 30040→29440（掉 600＝6 秒×100/輪，t15 停用後停住）。EQUAL／SET 覆寫／晚啟／looping
+皆有效，命旗已改為變數（V_LIFE=21..26）。
+`[X1]` 是本檔設計瑕疵不是失效：`timer(6)+V==2` 的一次性觸發在 t9 V 變 2 時補觸發
+（一次性觸發的條件持續複評），而 `[X2]`／`[X3]` 皆未出現、`[A0]` 有出現 → EQUAL 確在辨值。
+教訓：寫「不該成立」的否證觸發別用 timer＋待驗條件的一次性觸發，要當時點後立刻停用。
+詳 `spike_lifevar_指引.md`。
+
 用法: python spikes/spike_lifevar.py <template> <輸出>
       python spikes/spike_lifevar.py "C:/.../scenario/0_E3_Scenario.aoe2scenario" out/SPIKE變數閘.aoe2scenario
 """
