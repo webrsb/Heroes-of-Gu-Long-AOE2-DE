@@ -19,11 +19,14 @@ from pathlib import Path
 sys.path.insert(0, __file__.rsplit('tools', 1)[0])
 
 # 稽核欄位名 → merge_spec 欄位名
-FIELD_MAP = {'sp': 'source_player', 'tp': 'target_player', 'uo': 'unit_object',
-             'sel': 'selected_object_ids', 'nsel': 'selected_object_ids',
-             'qty': 'quantity', 'timer': 'timer', 'olu': 'object_list_unit_id',
-             'type': 'effect_type', 'attr': 'attribute', 'var': 'variable'}
+FIELD_MAP = {'sp': ('source_player',), 'tp': ('target_player',), 'uo': ('unit_object',),
+             'sel': ('selected_object_ids',), 'nsel': ('selected_object_ids',),
+             # 改攻效果在 s30 之後量值走 armour_attack_quantity，spec 條目會寫那個欄位
+             'qty': ('quantity', 'armour_attack_quantity'),
+             'timer': ('timer',), 'olu': ('object_list_unit_id',),
+             'type': ('effect_type', 'condition_type'), 'attr': ('attribute',), 'var': ('variable',)}
 REF_FIELDS = {'source_player', 'target_player', 'unit_object', 'selected_object_ids'}
+STRUCTURAL_FIELDS = REF_FIELDS | {'trigger_id', 'effect_type', 'condition_type', 'enabled', 'looping'}
 
 
 def spec_index(entries):
@@ -51,10 +54,15 @@ def spec_covers(key, idx):
         hit = [e for e in fixes if e.get('kind') == 'trigger']
         if hit:
             return True, f'spec 已改整支旗標（{hit[0].get("field")}: {hit[0].get("old")}→{hit[0].get("new")}）'
-    if where == '整支' and field == 'foreign':
-        hit = [e for e in fixes if e.get('field') in REF_FIELDS]
+    if where == '整支' and field in ('foreign', 'struct', 'absent'):
+        # 整支層級的 finding 說的是「這支與兄弟座位不一樣」，spec 只要在這支做過結構性修正就算已處理。
+        # （foreign 也可能是「指錯目標」＝改 trigger_id；struct／absent 的修法多半是 effect_add。）
+        hit = [e for e in fixes if e.get('kind') == 'effect_add' or e.get('field') in STRUCTURAL_FIELDS]
         if hit:
-            return True, f'spec 已改 {hit[0].get("kind")} #{hit[0].get("index")} 的 {hit[0].get("field")}'
+            k = hit[0]
+            desc = 'effect_add 補效果' if k.get('kind') == 'effect_add' \
+                else f'{k.get("kind")} #{k.get("index")} 的 {k.get("field")}'
+            return True, f'spec 已在該支做結構性修正（{desc}）'
     if where.startswith('→') and field in ('edge_pol', 'edge_missing'):
         # 邊類 finding 的「位置」是目標樣式不是 E#n，無法逐位比對；
         # spec 若在該支改過 effect_type（啟停極性抄反）或 trigger_id（指錯目標）或補過啟停效果，即視為已修。
@@ -67,10 +75,10 @@ def spec_covers(key, idx):
             return True, f'spec 已改該支的啟停邊（{desc}）'
     if where[:2] in ('E#', 'C#') and where[2:].isdigit():
         want_kind = 'effect' if where[0] == 'E' else 'condition'
-        want_field = FIELD_MAP.get(field)
+        want_fields = FIELD_MAP.get(field)
         i = int(where[2:])
         hit = [e for e in fixes if e.get('kind') == want_kind and e.get('index') == i
-               and (want_field is None or e.get('field') == want_field)]
+               and (want_fields is None or e.get('field') in want_fields)]
         if hit:
             return True, f'spec 已改 {where} 的 {hit[0].get("field")}（{hit[0].get("old")}→{hit[0].get("new")}）'
     return False, ''
@@ -93,6 +101,8 @@ def merge(ledger, verdict_files, spec_entries):
     for key, rec in out.items():
         if rec['verdict'] != 'pending':
             continue
+        if '需裁決' in rec.get('reason', ''):
+            continue        # 代理明說要人判的，不准被 spec 對帳自動結案（2026-09-01）
         ok, why = spec_covers(key, idx)
         if ok:
             out[key] = {'verdict': 'fixed',

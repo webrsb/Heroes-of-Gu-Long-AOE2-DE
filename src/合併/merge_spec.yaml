@@ -1786,6 +1786,81 @@ params:
     - {trigger_id: 3745, name: 6草2, kind: effect, index: 0, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
     - {trigger_id: 3745, name: 6草2, kind: effect, index: 1, field: effect_type, old: 8, new: 0, reason: 基底 ID 位移：指到周賓橋；E2 關 X草2 等級提示迴圈須保留}
 
+    # 【2026-09-01 六座位對稱稽核裁決：原作 bug 修正】由 tools/gen_audit_fixes.py 產生
+    - {trigger_id: 1097, name: 6峨, kind: effect, index: 2, field: trigger_id, old: 1097, new: 18, reason: 自指；1–5峨 皆 ACTIVATE 自家 N升級（稽核 edge_missing）}
+    - {trigger_id: 2857, name: 5渦, kind: effect, index: 1, field: trigger_id, old: 2857, new: 15, reason: 自指；其餘座位皆 ACTIVATE 自家 N升級（稽核 edge_missing）}
+    - {trigger_id: 388, name: 5醫3, kind: effect, index: 3, field: trigger_id, old: 209, new: 247, reason: 抄錯族：停用 5教頭2 應為 5醫學者2（稽核 edge_missing）}
+    - kind: effect_add
+      trigger_id: 1936
+      name: 4木
+      effect: {type: activate_trigger, trigger_id: 2035, target_name: 4南僧}
+      reason: 4木 漏抄「啟動 4南僧」；1/2/3/5/6木 皆有，致 T2035 全檔無啟動來源
+    - {trigger_id: 2035, name: 4南僧, kind: trigger, field: enabled, old: 1, new: 0, reason: 南僧六支應出廠停用、由 N木 啟動；4P 出廠即開（配合上一條補回啟動邊）}
+    - kind: effect_add
+      trigger_id: 2540
+      name: 4卜2
+      effect: {type: deactivate_trigger, trigger_id: 2534, target_name: 4卜}
+      reason: 4卜2 有 2 條件卻 0 效果；其餘座位皆停用自家 N卜，致 4卜 迴圈永不停
+    - kind: effect_add
+      trigger_id: 4263
+      name: 3珠
+      effect: {type: activate_trigger, trigger_id: 9, target_name: 3升級}
+      reason: 3珠 漏抄「啟動 3升級」；撿到珠寶項飾不做升級結算
+    - kind: effect_add
+      trigger_id: 5266
+      name: 刀客破壞之神
+      effect: {type: activate_trigger, trigger_id: 7, target_name: 1升級}
+      reason: 1P 漏抄「啟動 1升級」；2–6P 對應支皆有
+    - kind: effect_add
+      trigger_id: 4620
+      name: 4迪3
+      effect: {type: activate_trigger, trigger_id: 4230, target_name: 4哥}
+      reason: 4迪3 漏接「啟動 4哥」；其餘五座位皆有
+    - kind: effect_add
+      trigger_id: 4620
+      name: 4迪3
+      effect: {type: deactivate_trigger, trigger_id: 5497, target_name: 漢娜斯4}
+      reason: 4迪3 漏接「停用 漢娜斯4」；其餘五座位皆有，致 P4 對白不結束
+    - kind: effect_add
+      trigger_id: 5020
+      name: 堡定6
+      effect: {type: activate_trigger, trigger_id: 4677, target_name: 失血}
+      reason: 堡定6 只有 2 效果；1–5 皆 4 效果（漏 失血）
+    - kind: effect_add
+      trigger_id: 5020
+      name: 堡定6
+      effect: {type: activate_trigger, trigger_id: 5050, target_name: 神弓之洛6~1}
+      reason: 同上，漏 神弓之洛6~1
+    - {trigger_id: 4418, name: 6神, kind: effect, index: 0, field: quantity, old: -7000, new: -49, reason: OBJECT_HAS_TARGET 每 tick 回血，1–5P 皆 -49；-7000＝143 倍等於無敵}
+    - {trigger_id: 4401, name: 6谷, kind: effect, index: 0, field: quantity, old: -1000, new: -19, reason: N谷 小回血 1–5P 皆 -19；-1000 是下一支「谷2」的值貼錯}
+    - {trigger_id: 4007, name: 1谷2, kind: effect, index: 0, field: quantity, old: -3000, new: -1000, reason: N谷2 大回血其餘座位皆 -1000；1P 三倍等於半無敵}
+    - {trigger_id: 1063, name: 5 48, kind: condition, index: 0, field: quantity, old: 33936, new: 22936, reason: lv48 其餘五座位 22936；33936 高過自家 lv50(25725)，等級會跳號倒退}
+    - {trigger_id: 1064, name: 5 49, kind: condition, index: 0, field: quantity, old: 34304, new: 24304, reason: lv49 其餘五座位 24304；同上斷裂}
+    - {trigger_id: 2030, name: 6-79, kind: condition, index: 0, field: quantity, old: 97945, new: 94474, reason: lv79 與自家 lv80 撞值，6箭 吃掉一級；其餘五座位 94474}
+    - {trigger_id: 1015, name: 3 42, kind: condition, index: 0, field: quantity, old: 15875, new: 15785, reason: lv42 其餘五座位 15785（78/87 對調手誤）}
+    - {trigger_id: 726, name: 3 82, kind: condition, index: 0, field: quantity, old: 105187, new: 105137, reason: lv82 其餘五座位 105137（13/18 對調手誤）}
+    - {trigger_id: 3311, name: 3 8, kind: condition, index: 0, field: quantity, old: 194, new: 196, reason: lv8 其餘五座位 196}
+    - {trigger_id: 3270, name: 2 1-5Lv, kind: effect, index: 4, field: quantity, old: 0, new: 5, reason: 升級加上限血：本尊 E#0 給 5，分身 E#4 給 0；其餘座位皆 5/5}
+    - {trigger_id: 961, name: 1 31-50, kind: effect, index: 4, field: quantity, old: 8, new: 10, reason: 升級加上限血：本尊 10、分身 8；其餘座位皆 10/10}
+    - {trigger_id: 1191, name: 1當2, kind: effect, index: 4, field: quantity, old: 0, new: -100, reason: 當歸丸回 100 精力，分身那份給 0；NPC 台詞與同支 E#3 皆 100}
+    - {trigger_id: 4387, name: 6王3, kind: effect, index: 3, field: quantity, old: -2000, new: -1000, reason: 醉酒回血本尊/分身應同值；同支 E#2 為 -1000}
+    - {trigger_id: 4320, name: 6酒4, kind: effect, index: 2, field: quantity, old: -1000, new: -100, reason: 解酒回血應與同支上限血 -100、分身 E#5 -100 成對}
+    - {trigger_id: 1291, name: 6血, kind: effect, index: 0, field: quantity, old: -42, new: -51, reason: 同支訊息寫「51 點江湖閱歷」，其餘五座位亦 -51（訊息未改＝抄錯）}
+    - {trigger_id: 2931, name: 6魔, kind: effect, index: 1, field: quantity, old: -330, new: -600, reason: 最後一擊獎勵 1–5P 皆 -600，且六座位訊息同為「800 兩銀」}
+    - {trigger_id: 5448, name: 觸發事件 刀氣, kind: effect, index: 1, field: quantity, old: -200, new: -400, reason: 毀學群體回血 2–6P 皆 -400}
+    - {trigger_id: 3713, name: 3船2, kind: effect, index: 0, field: object_list_unit_id, old: 723, new: 837, reason: 座位旗標是 MAP_REVEALER(837)；723 CRATER 清不到東西}
+    - trigger_id: 4138
+      name: 4棍
+      kind: effect
+      index: 0
+      field: selected_object_ids
+      old: []
+      new: [28463]
+      reason: CHANGE_OWNERSHIP 8→7 三種目標全空＝P8 全圖物件轉 P7；同支線他支皆帶 sel
+    - {trigger_id: 2241, name: 4棍8, kind: condition, index: 0, field: timer, old: 5, new: 1, reason: 每秒回血技週期，3槍8／5拳8 皆 1 秒且回血量未加倍補償}
+    - {trigger_id: 2108, name: 2道4, kind: condition, index: 0, field: timer, old: 2, new: 1, reason: 同上；2P 週期加倍但回血量沒跟著加倍＝速率減半}
+    - {trigger_id: 4189, name: 1哥5, kind: effect, index: 4, field: armour_attack_quantity, old: 50, new: 100, reason: 卸鐵甲扣攻：本尊 E#2 為 100、其餘座位分身亦 100；1P 分身只扣 50}
+
   # 【2026-08-29 Fable裁決代理定案】死亡連動42支：a×6/a+flag×6/b×6/d×24（c=0）
   # 詳細逐支語意與斷邊清單見 docs spec §七之二 與裁決報告；extras 為施工指令。
   death_linked_rulings:

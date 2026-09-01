@@ -27,7 +27,8 @@ def test_spec_covers_trigger_flag_and_foreign():
     idx = spec_index(SPEC)
     assert spec_covers('XC4|2|T4713|整支|enabled/looping', idx)[0]
     assert spec_covers('X船|2|T3782|整支|foreign', idx)[0]     # A 與 C 常是同一 bug 的兩份報告
-    assert not spec_covers('X船|2|T3782|整支|struct', idx)[0]
+    assert spec_covers('X船|2|T3782|整支|struct', idx)[0]      # 2026-09-01 起：整支層級一律認結構性修正
+    assert not spec_covers('X船|2|T3782|組|count', idx)[0]     # 組層級統計不指單支，不該被當成已修
 
 
 def test_spec_covers_ignores_unknown_tid_and_bad_key():
@@ -76,3 +77,36 @@ def test_spec_covers_edge_findings_by_effect_type_or_trigger_id():
     assert spec_covers('X教頭4|2|T199|→X教頭5|edge_pol', idx)[0]        # 極性抄反（effect_type）
     assert spec_covers('X某|1|T999|→X某2|edge_missing', idx)[0]         # effect_add 補邊
     assert not spec_covers('X某|1|T4713|→X某2|edge_pol', idx)[0]        # 該支只改過整支旗標，不算
+
+
+def test_spec_covers_attack_quantity_alias():
+    """改攻效果在 s30 後量值走 armour_attack_quantity，稽核欄位仍叫 qty。"""
+    spec = SPEC + [{'trigger_id': 4248, 'name': '6哥5', 'kind': 'effect', 'index': 2,
+                    'field': 'armour_attack_quantity', 'old': 50, 'new': 100, 'reason': '卸鐵甲'}]
+    idx = spec_index(spec)
+    assert spec_covers('X哥5|6|T4248|E#2|qty', idx)[0]
+
+
+def test_spec_covers_whole_trigger_findings():
+    """整支層級（foreign/struct/absent）：spec 只要在該支做過結構性修正即算已處理。"""
+    spec = SPEC + [
+        {'trigger_id': 2540, 'name': '4卜2', 'kind': 'effect_add',
+         'effect': {'type': 'deactivate_trigger', 'trigger_id': 2534}, 'reason': '補停用邊'},
+        {'trigger_id': 5491, 'name': '漢娜斯1', 'kind': 'effect', 'index': 0, 'field': 'trigger_id',
+         'old': 5489, 'new': 5490, 'reason': '指錯目標'},
+    ]
+    idx = spec_index(spec)
+    assert spec_covers('X卜2|4|T2540|整支|struct', idx)[0]         # effect_add 補效果
+    assert spec_covers('$漢娜斯N|1|T5491|整支|foreign', idx)[0]     # 指錯目標＝改 trigger_id
+    assert spec_covers('XC|4|T3782|整支|absent', idx)[0]           # 該支改過 source_player
+    assert not spec_covers('X某|1|T2540|整支|enabled/looping', idx)[0]   # 旗標另有專用規則
+
+
+def test_merge_never_autofixes_items_needing_human_decision(tmp_path):
+    """代理標「需裁決」的條目不得被 spec 對帳自動結案——那是要人判的。"""
+    from analysis.ledger import save
+    led = {'X船|2|T3782|E#0|sp': {'verdict': 'pending', 'reason': ''}}
+    vf = tmp_path / 'a.yaml'
+    save(vf, {'X船|2|T3782|E#0|sp': {'verdict': 'pending', 'reason': '需裁決：平衡取捨'}})
+    new, _ = merge(led, [vf], SPEC)
+    assert new['X船|2|T3782|E#0|sp']['verdict'] == 'pending'
