@@ -49,3 +49,17 @@ def test_block_order_violation_aborts_and_allowlist_works(f):
     # 非本次施工的同型形狀：不擋建置，但要出現在報告裡
     changes = STEP.apply(_ctx(f, [fee, blk, src], []))
     assert any(c.kind == 'report' and '攔不住' in c.new for c in changes)
+
+
+def test_s91_mob_balance_feature_gate(f):
+    """params.mob_balance 存在時，s91 須跑 check_mob_balance 並把違規升為 BuildError。"""
+    t = f.trig(name='民團', tid=0, effects=[
+        f._eff(11, source_player=7, object_list_unit_id=74, location_x=1, location_y=1)])
+    ctx = _ctx(f, [t], [])
+    # 無 27/28 效果 → 實值 60+0 ≠ 70 → 違規
+    ctx.spec.params['mob_balance'] = [dict(
+        tid=0, name='民團', const=74, lv=1, kind='m', itv=2.0,
+        base_hp=60, base_atk=17, hp=70, atk=17)]
+    with pytest.raises(BuildError) as ei:
+        STEP.apply(ctx)
+    assert '≠' in str(ei.value)

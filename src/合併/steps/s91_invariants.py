@@ -31,6 +31,9 @@ class InvariantStep(Step):
 
         features = {'渡船': check_ferry(tm)} if any(
                 e.get('kind') == 'trigger_add' and '船' in (e.get('name') or '') for e in entries) else {}
+        if ctx.spec.params.get('mob_balance'):
+            from analysis.balance_check import check_mob_balance
+            features['野怪平衡'] = check_mob_balance(tm, ctx.spec.params['mob_balance'])
         n_feature = 0
         for tag, results in features.items():
             n_feature += len(results)
