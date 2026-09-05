@@ -2,14 +2,16 @@
 """s374 野怪平衡曲線（params.mob_balance；spec docs/superpowers/specs/2026-09-01-野怪平衡曲線-design.md）。
 
 生成觸發結構＝每建立點「移除(15)→建立(11)→改血(27,格)→改攻(28,格)」＋部分觸發的全域 28。
-本步把每格 27 改成 hp−base_hp、每格 28 改成 atk−base_atk（class0/ADD，同 s30 編碼），
-全域 28 一律歸零（總量已折入格效果）。hp: null＝表二血不動。差值必 ≥0（設計夾0）且 ≤int16。
+本步把每格 27 改成 hp−base_hp、每格 28 改成 atk−base_atk，沿用 class0/ADD 慣例
+（s30 已先把全檔 28 正規化為 class0），全域 28 一律歸零（總量已折入格效果）。
+hp: null＝表二血不動。差值必 ≥0（設計夾0）且 ≤int16。
 渦鬼(2713/2714)、頭目、表三不入表＝維持現值。觸發名比對防基底位移（同 s373）。"""
+from AoE2ScenarioParser.datasets.trigger_lists import Operation
 from core.change import Change
 from .base import trig_by_id, Step, BuildError
 
 CREATE, CH_HP, CH_ATK, P7 = 11, 27, 28, 7
-ADD = 2                       # Operation.ADD；假件無 datasets，寫死同 s30 實值
+ADD = int(Operation.ADD)
 
 
 def _tile(e):
@@ -51,8 +53,11 @@ def apply_mob_balance(tm, rows):
                    if getattr(e, 'effect_type', None) == CREATE and getattr(e, 'source_player', -1) == P7
                    and getattr(e, 'location_x', -1) not in (-1, None)]
         present = {e.object_list_unit_id for e in creates}
-        if present != set(rows_t):
-            raise BuildError(f'缺裁決：{tag} 建立單位 const {sorted(present)} ≠ 表 {sorted(rows_t)}')
+        missing, unused = present - set(rows_t), set(rows_t) - present
+        if missing:
+            raise BuildError(f'缺裁決：{tag} 建立單位 const {sorted(missing)} 無對照行')
+        if unused:
+            raise BuildError(f'缺裁決：{tag} 對照行 const {sorted(unused)} 未出現於觸發')
         tiles = [((e.location_x, e.location_y), e.object_list_unit_id) for e in creates]
         if len({xy for xy, _ in tiles}) != len(tiles):
             raise BuildError(f'缺裁決：{tag} 多個建立效果共用同一格，格效果無法歸屬')

@@ -49,7 +49,8 @@ def test_single_const_rewrites_tile_and_zeroes_global(f):
     assert (t.effects[2].armour_attack_class, t.effects[2].armour_attack_quantity) == (0, 0)  # 17-17
     assert t.effects[2].operation == 2
     assert t.effects[6].armour_attack_quantity == 0                              # 全域歸零
-    assert changes
+    assert [c.kind for c in changes] == ['effect'] * len(changes)
+    assert [c.field for c in changes] == ['hp_add', 'atk_add', 'hp_add', 'atk_add', 'global_atk']
 
 
 def test_two_consts_scoped_by_tile(f):
@@ -91,3 +92,22 @@ def test_duplicate_tile_effects_first_wins_rest_zeroed(f):
     assert t.effects[1].quantity == 10 and t.effects[2].quantity == 0
     assert t.effects[3].armour_attack_quantity == 0                              # delta 0
     assert t.effects[4].armour_attack_quantity == 0
+
+
+def test_upper_bound_delta_raises(f):
+    t = f.trig(name='民團', tid=0, effects=[_create(f, 74, 1, 1), _hp(f, 1, 1, 1), _atk(f, 1, 1, 1)])
+    with pytest.raises(BuildError):
+        apply_mob_balance(f.tm([t]), [row(hp=40000)])         # 40000-60=39940 > 32767
+
+
+def test_noise_effect_of_other_const_untouched(f):
+    t = f.trig(name='民團', tid=0, effects=[
+        _create(f, 74, 1, 1),
+        _hp(f, 1, 1, 30), _hp(f, 1, 1, 50, const=999),
+        _atk(f, 1, 1, 9), _atk(f, 1, 1, 7, const=999)])
+    tm = f.tm([t])
+    apply_mob_balance(tm, [row()])
+    assert t.effects[1].quantity == 10                                           # 70-60，正常格
+    assert t.effects[2].quantity == 50                                           # 雜訊 const 不動
+    assert t.effects[3].armour_attack_quantity == 0                              # 17-17，正常格
+    assert t.effects[4].armour_attack_quantity == 7                              # 雜訊 const 不動
