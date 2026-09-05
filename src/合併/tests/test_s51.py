@@ -178,7 +178,9 @@ def test_mount_setter_includes_mount_ref(f):
     ctx, _ = make_ctx(f, extra_trigs=[m3])
     StatusCaptionStep().apply(ctx)
     calls = caption_calls(m3)
+    assert len(calls) == 1
     assert calls[0]['selected_object_ids'] == LIFE[3] + [MOUNT[3]]
+    assert calls[0]['source_player'] == -1
 
 
 def test_unknown_text_raises_with_text_listed(f):
@@ -212,3 +214,55 @@ def test_derive_duplicate_board_claim_raises(f):
     trigs[1].effects = [f.eff_rename([B_OF[1]], message=POISON_RAW)]
     with pytest.raises(BuildError, match='同時被職業'):
         derive_boards(f.tm(trigs), LIFE, set(BOARDS))
+
+
+def test_two_writes_same_trigger_keep_order(f):
+    # 順序契約：同觸發先設後清 → caption 依效果序附掛，淨結果鏡射牌面最終態
+    from steps.s51_status_caption import StatusCaptionStep, CLEAR
+    both = f.trig(name='設後清', effects=[f.eff_rename([20501], message=POISON_RAW),
+                                       f.eff_rename([20501], message='正常　狀態')])
+    ctx, _ = make_ctx(f, extra_trigs=[both])
+    StatusCaptionStep().apply(ctx)
+    calls = caption_calls(both)
+    assert [c['message'] for c in calls] == [POISON_HEAD, CLEAR]
+    assert calls[1]['selected_object_ids'] == LIFE[1] + [MOUNT[1]]
+
+
+def test_ghost_write_raises(f):
+    # 反向哨兵：非牌 sel 卻寫裁決表文字＝掃描盲點，中止不默默漏
+    from steps.s51_status_caption import StatusCaptionStep
+    ghost = f.trig(name='盲點', effects=[f.eff_rename([999], message=POISON_RAW)])
+    ctx, _ = make_ctx(f, extra_trigs=[ghost])
+    with pytest.raises(BuildError, match='掃描盲點'):
+        StatusCaptionStep().apply(ctx)
+
+
+def test_scan_problems_reported_together(f):
+    # 混搭與表外同時存在 → 一次掃完統一報，兩者都在訊息裡
+    from steps.s51_status_caption import StatusCaptionStep
+    bad = f.trig(name='混搭', effects=[f.eff_rename([20501, 999], message=POISON_RAW)])
+    odd = f.trig(name='怪字', effects=[f.eff_rename([20502], message='不明狀態')])
+    ctx, _ = make_ctx(f, extra_trigs=[bad, odd])
+    with pytest.raises(BuildError) as ei:
+        StatusCaptionStep().apply(ctx)
+    assert '混搭' in str(ei.value) and '不明狀態' in str(ei.value)
+
+
+def test_unknown_texts_aggregated_and_counted(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    odd1 = f.trig(name='怪字1', effects=[f.eff_rename([20501], message='不明甲')])
+    odd2 = f.trig(name='怪字2', effects=[f.eff_rename([20502], message='不明乙')])
+    odd3 = f.trig(name='怪字3', effects=[f.eff_rename([20503], message='不明甲')])   # 重複只記首見
+    ctx, _ = make_ctx(f, extra_trigs=[odd1, odd2, odd3])
+    with pytest.raises(BuildError) as ei:
+        StatusCaptionStep().apply(ctx)
+    msg = str(ei.value)
+    assert '2 種' in msg and '怪字1' in msg and '怪字3' not in msg
+
+
+def test_mount_refs_incomplete_raises(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    ctx, _ = make_ctx(f)
+    ctx.spec.params['revive']['mount_refs'] = {1: 901}
+    with pytest.raises(BuildError, match='覆蓋不齊'):
+        StatusCaptionStep().apply(ctx)

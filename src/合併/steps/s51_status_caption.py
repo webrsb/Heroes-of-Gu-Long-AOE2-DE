@@ -95,40 +95,48 @@ class StatusCaptionStep(Step):
         derived = derive_boards(tm, life_refs, set(boards))
         if derived != boards:
             raise BuildError(f'缺裁決：牌ref→職業推導 {derived} 與 boards {boards} 不一致')
+        rv_params = ctx.spec.params.get('revive') or {}
+        mount_refs = {int(k): int(v) for k, v in (rv_params.get('mount_refs') or {}).items()}
+        if sorted(mount_refs) != [1, 2, 3, 4, 5, 6]:
+            raise BuildError(f'缺裁決：params.revive.mount_refs 職業覆蓋不齊：{mount_refs}')
         board_set = set(boards)
-        changes, unknown, writes = [], {}, []
+        changes, unknown, writes, mixed, ghost = [], {}, [], [], []
         for t in tm.triggers:
             for e in t.effects:
                 if getattr(e, 'effect_type', None) != RENAME:
                     continue
                 sel = list(getattr(e, 'selected_object_ids', None) or [])
+                raw = (getattr(e, 'message', '') or '').strip()
                 if not (set(sel) & board_set):
+                    if raw in texts:   # 反向哨兵：非牌 sel 卻寫裁決表文字＝掃描盲點（區域模式/漏 ref）
+                        ghost.append(f'T{t.trigger_id}「{t.name}」sel={sel}')
                     continue
                 if len(sel) != 1:
-                    raise BuildError(f'T{t.trigger_id}「{t.name}」狀態牌 sel 混搭：{sel}')
-                raw = (getattr(e, 'message', '') or '').strip()
+                    mixed.append(f'T{t.trigger_id}「{t.name}」sel={sel}')
+                    continue
                 if raw not in texts:
                     unknown.setdefault(raw, f'T{t.trigger_id}「{t.name}」')
                     continue
                 writes.append((t, boards[sel[0]], raw))
+        problems = []          # 一次掃完統一報，分診不斷頭
+        if mixed:
+            problems.append('缺前置：狀態牌 sel 混搭：' + '；'.join(mixed))
+        if ghost:
+            problems.append('缺前置：非牌 sel 寫裁決表文字（掃描盲點）：' + '；'.join(ghost))
         if unknown:
             lst = '\n  '.join(f'「{k}」首見 {v}' for k, v in sorted(unknown.items()))
-            raise BuildError(
-                f'缺裁決：狀態牌文字不在 status_caption.texts（{len(unknown)} 種）：\n  {lst}')
+            problems.append(f'缺裁決：狀態牌文字不在 status_caption.texts（{len(unknown)} 種）：\n  {lst}')
+        if problems:
+            raise BuildError('\n'.join(problems))
 
-        rv_params = ctx.spec.params.get('revive') or {}
-        if 'mount_refs' not in rv_params:
-            raise BuildError('缺裁決：params.revive.mount_refs 未提供（狀態字幕馬規則需要）')
-        mount_refs = {int(k): int(v) for k, v in rv_params['mount_refs'].items()}
         for t, cid, raw in writes:        # 先收集後附掛：不在迭代 effects 時 append
             head = texts[raw]
-            target = list(life_refs[cid])
-            if head == CLEAR or mount_refs[cid] in cond_refs(t):
-                target.append(mount_refs[cid])
+            with_mount = head == CLEAR or mount_refs[cid] in cond_refs(t)
+            target = list(life_refs[cid]) + ([mount_refs[cid]] if with_mount else [])
             t.new_effect.change_object_caption(message=head, source_player=-1,
                                                selected_object_ids=target)
-            tag = '清除' if head == CLEAR else f'「{head}」'
-            tag += f'（職業{cid}{"＋馬" if len(target) > len(life_refs[cid]) else ""}）'
+            tag = ('清除' if head == CLEAR else f'「{head}」') + \
+                  f'（職業{cid}{"＋馬" if with_mount else ""}）'
             changes.append(Change(self.id, 'effect', f'T{t.trigger_id}「{t.name}」',
                                   'caption', f'「{raw}」', tag, 'spec §二.1 掛字規則'))
         return changes
