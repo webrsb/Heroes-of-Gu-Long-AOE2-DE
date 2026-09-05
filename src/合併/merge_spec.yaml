@@ -2131,39 +2131,41 @@ params:
     - {tid: 4787, name: 劍勇, const: 765, display: 飛鵬幫先鋒, lv: '90~100'}
     - {tid: 4787, name: 劍勇, const: 640, display: 飛鵬幫戰將, lv: 90}
 
-  # 【2026-09-01 野怪平衡曲線】spec docs/superpowers/specs/2026-09-01-野怪平衡曲線-design.md。
-  # 曲線：近戰基準DPS(Lv)=7.5×1.051^(Lv−1)、血(Lv)=70×1.042^(Lv−1)；折扣 m×1.0/r×0.7/f×0.85/rf×0.6；
-  # 攻=round(折後DPS×開火)。hp/atk＝目標實值（含基礎）；hp: null＝表二血不動。
-  # base_hp/base_atk＝該單位 dat＋P7 帝王科技實值（野怪比較.md）。步驟寫入加值＝目標−基礎。
-  # 渦鬼(2713/2714)、頭目、表三不入表＝維持現值。kind: m近戰/r遠程/f快速/rf遠快（快速=移速≥1.2）。
+  # 【2026-09-01 野怪平衡曲線／2026-09-02 v2 玩家鏈重校準】spec docs/superpowers/specs/2026-09-01-野怪平衡曲線-design.md。
+  # v2 曲線（實測回饋：14等秒殺同級怪）：P_atk(Lv)=20+0.6×玩家等級鏈累計攻（lv15=149 與面板實測吻合）；
+  # 血(Lv)=max(4.5×P_atk, 70×1.042^(Lv−1))＝同級 4.5 刀；基準DPS(Lv)=max(0.365×P_atk, 7.5×1.051^(Lv−1))
+  # ＝Lv14 攻100 錨（使用者裁決）；高段取 max 保留無法無天作者水準（交叉約 Lv73/105）。
+  # 折扣 m×1.0/r×0.7/f×0.85/rf×0.6；攻=round(折後DPS×開火)。hp/atk＝目標實值（含基礎）；hp: null＝表二血不動。
+  # base_hp/base_atk＝該單位 dat＋P7 科技推算值（野怪比較.md；面板實測獵狼攻差 −4，誤差已接受）。
+  # 青銅獅移速面板實測 1.10 → 近戰組（原誤判快速）。渦鬼(2713/2714)、頭目、表三不入表＝維持現值。
   mob_balance:
-    - {tid: 2746, name: 民團, const: 74, lv: 1, kind: m, itv: 2.0, base_hp: 60, base_atk: 17, hp: 70, atk: 17}
-    - {tid: 2745, name: 山賊, const: 448, lv: 4, kind: f, itv: 1.9, base_hp: 95, base_atk: 11, hp: 95, atk: 14}
-    - {tid: 2744, name: 獵人, const: 93, lv: 9, kind: m, itv: 3.0, base_hp: 45, base_atk: 11, hp: 97, atk: 33}
-    - {tid: 2743, name: 青銅獅, const: 700, lv: 14, kind: f, itv: 2.0, base_hp: 100, base_atk: 16, hp: 120, atk: 24}
-    - {tid: 2742, name: 獅頭族人, const: 751, lv: 18, kind: f, itv: 2.0, base_hp: 100, base_atk: 17, hp: 141, atk: 30}
-    - {tid: 2741, name: 官兵, const: 692, lv: 21, kind: m, itv: 2.0, base_hp: 54, base_atk: 20, hp: 159, atk: 41}
-    - {tid: 2740, name: 六扇門門生, const: 686, lv: 24, kind: r, itv: 2.0, base_hp: 55, base_atk: 11, hp: 180, atk: 33}
-    - {tid: 2739, name: 紅鞋子幫眾, const: 5, lv: 26, kind: r, itv: 3.45, base_hp: 40, base_atk: 17, hp: 196, atk: 63}
-    - {tid: 2738, name: 武僧, const: 281, lv: 28, kind: r, itv: 2.0, base_hp: 60, base_atk: 7, hp: 213, atk: 40}
-    - {tid: 2736, name: 峨嵋弟子(男), const: 555, lv: 35, kind: m, itv: 2.0, base_hp: 70, base_atk: 20, hp: 284, atk: 81}
-    - {tid: 2737, name: 峨嵋弟子(女), const: 629, lv: 35, kind: f, itv: 2.0, base_hp: 220, base_atk: 21, hp: 284, atk: 69}
-    - {tid: 2735, name: 仙童, const: 41, lv: 38, kind: m, itv: 2.0, base_hp: 60, base_atk: 18, hp: 321, atk: 94}
-    - {tid: 2734, name: 青衣樓殺手, const: 77, lv: 43, kind: m, itv: 2.0, base_hp: 60, base_atk: 17, hp: 394, atk: 121}
-    - {tid: 2733, name: 鏢師, const: 232, lv: 45, kind: f, itv: 2.0, base_hp: 70, base_atk: 19, hp: 428, atk: 114}
-    - {tid: 2732, name: 偏將, const: 73, lv: 48, kind: r, itv: 3.0, base_hp: 50, base_atk: 14, hp: 484, atk: 163}
-    - {tid: 2711, name: 母夜叉, const: 430, lv: 52, kind: m, itv: 2.0, base_hp: 100, base_atk: 12, hp: 571, atk: 190}
-    - {tid: 2712, name: 青武, const: 763, lv: 55, kind: rf, itv: 1.9, base_hp: 50, base_atk: 9, hp: 646, atk: 125}
-    - {tid: 2715, name: 孽僧, const: 726, lv: 59, kind: m, itv: 2.0, base_hp: 75, base_atk: 27, hp: 761, atk: 269}
-    - {tid: 2716, name: 獅頭魔, const: 752, lv: 60, kind: f, itv: 2.0, base_hp: 100, base_atk: 17, hp: 793, atk: 240}
-    - {tid: 2717, name: 石獅, const: 168, lv: 61, kind: f, itv: 2.0, base_hp: 450, base_atk: 18, hp: 826, atk: 252}
-    - {tid: 2718, name: 斬狂, const: 556, lv: 61, kind: rf, itv: 2.0, base_hp: 120, base_atk: 10, hp: 826, atk: 178}
-    - {tid: 2719, name: 幽靈武士, const: 291, lv: 65, kind: m, itv: 1.9, base_hp: 70, base_atk: 18, hp: 974, atk: 344}
-    - {tid: 2722, name: 血鋼爪, const: 860, lv: 65, kind: m, itv: 0.9, base_hp: 9, base_atk: 99, hp: 974, atk: 163}
-    - {tid: 2720, name: 赤武, const: 771, lv: 66, kind: rf, itv: 2.9, base_hp: 90, base_atk: 19, hp: 1015, atk: 331}
-    - {tid: 2721, name: 狂屍, const: 25, lv: 87, kind: m, itv: 2.0, base_hp: 110, base_atk: 25, hp: 2408, atk: 1081}
-    - {tid: 2727, name: 狂夜叉(上), const: 783, lv: 101, kind: m, itv: 2.0, base_hp: 100, base_atk: 12, hp: 4284, atk: 2170}
-    - {tid: 2726, name: 狂夜叉(下), const: 783, lv: 101, kind: m, itv: 2.0, base_hp: 100, base_atk: 12, hp: 4284, atk: 2170}
+    - {tid: 2746, name: 民團, const: 74, lv: 1, kind: m, itv: 2.0, base_hp: 60, base_atk: 17, hp: 90, atk: 17}
+    - {tid: 2745, name: 山賊, const: 448, lv: 4, kind: f, itv: 1.9, base_hp: 95, base_atk: 11, hp: 171, atk: 22}
+    - {tid: 2744, name: 獵人, const: 93, lv: 9, kind: m, itv: 3.0, base_hp: 45, base_atk: 11, hp: 360, atk: 88}
+    - {tid: 2743, name: 青銅獅, const: 700, lv: 14, kind: m, itv: 2.0, base_hp: 100, base_atk: 16, hp: 616, atk: 100}
+    - {tid: 2742, name: 獅頭族人, const: 751, lv: 18, kind: f, itv: 2.0, base_hp: 100, base_atk: 17, hp: 832, atk: 115}
+    - {tid: 2741, name: 官兵, const: 692, lv: 21, kind: m, itv: 2.0, base_hp: 54, base_atk: 20, hp: 994, atk: 161}
+    - {tid: 2740, name: 六扇門門生, const: 686, lv: 24, kind: r, itv: 2.0, base_hp: 55, base_atk: 11, hp: 1156, atk: 131}
+    - {tid: 2739, name: 紅鞋子幫眾, const: 5, lv: 26, kind: r, itv: 3.45, base_hp: 40, base_atk: 17, hp: 1264, atk: 248}
+    - {tid: 2738, name: 武僧, const: 281, lv: 28, kind: r, itv: 2.0, base_hp: 60, base_atk: 7, hp: 1372, atk: 156}
+    - {tid: 2736, name: 峨嵋弟子(男), const: 555, lv: 35, kind: m, itv: 2.0, base_hp: 70, base_atk: 20, hp: 1750, atk: 284}
+    - {tid: 2737, name: 峨嵋弟子(女), const: 629, lv: 35, kind: f, itv: 2.0, base_hp: 220, base_atk: 21, hp: 1750, atk: 241}
+    - {tid: 2735, name: 仙童, const: 41, lv: 38, kind: m, itv: 2.0, base_hp: 60, base_atk: 18, hp: 1912, atk: 310}
+    - {tid: 2734, name: 青衣樓殺手, const: 77, lv: 43, kind: m, itv: 2.0, base_hp: 60, base_atk: 17, hp: 2182, atk: 354}
+    - {tid: 2733, name: 鏢師, const: 232, lv: 45, kind: f, itv: 2.0, base_hp: 70, base_atk: 19, hp: 2290, atk: 316}
+    - {tid: 2732, name: 偏將, const: 73, lv: 48, kind: r, itv: 3.0, base_hp: 50, base_atk: 14, hp: 2452, atk: 418}
+    - {tid: 2711, name: 母夜叉, const: 430, lv: 52, kind: m, itv: 2.0, base_hp: 100, base_atk: 12, hp: 2668, atk: 433}
+    - {tid: 2712, name: 青武, const: 763, lv: 55, kind: rf, itv: 1.9, base_hp: 50, base_atk: 9, hp: 2830, atk: 262}
+    - {tid: 2715, name: 孽僧, const: 726, lv: 59, kind: m, itv: 2.0, base_hp: 75, base_atk: 27, hp: 3046, atk: 494}
+    - {tid: 2716, name: 獅頭魔, const: 752, lv: 60, kind: f, itv: 2.0, base_hp: 100, base_atk: 17, hp: 3100, atk: 428}
+    - {tid: 2717, name: 石獅, const: 168, lv: 61, kind: f, itv: 2.0, base_hp: 450, base_atk: 18, hp: 3128, atk: 431}
+    - {tid: 2718, name: 斬狂, const: 556, lv: 61, kind: rf, itv: 2.0, base_hp: 120, base_atk: 10, hp: 3128, atk: 304}
+    - {tid: 2719, name: 幽靈武士, const: 291, lv: 65, kind: m, itv: 1.9, base_hp: 70, base_atk: 18, hp: 3236, atk: 499}
+    - {tid: 2722, name: 血鋼爪, const: 860, lv: 65, kind: m, itv: 0.9, base_hp: 9, base_atk: 99, hp: 3236, atk: 236}
+    - {tid: 2720, name: 赤武, const: 771, lv: 66, kind: rf, itv: 2.9, base_hp: 90, base_atk: 19, hp: 3262, atk: 460}
+    - {tid: 2721, name: 狂屍, const: 25, lv: 87, kind: m, itv: 2.0, base_hp: 110, base_atk: 25, hp: 4018, atk: 1081}
+    - {tid: 2727, name: 狂夜叉(上), const: 783, lv: 101, kind: m, itv: 2.0, base_hp: 100, base_atk: 12, hp: 4774, atk: 2170}
+    - {tid: 2726, name: 狂夜叉(下), const: 783, lv: 101, kind: m, itv: 2.0, base_hp: 100, base_atk: 12, hp: 4774, atk: 2170}
     - {tid: 2728, name: 炎武(左), const: 569, lv: 110, kind: f, itv: 1.9, base_hp: 180, base_atk: 18, hp: 6204, atk: 2741}
     - {tid: 2729, name: 炎武(右), const: 569, lv: 110, kind: f, itv: 1.9, base_hp: 180, base_atk: 18, hp: 6204, atk: 2741}
     - {tid: 2730, name: 靈鳳劍仙, const: 629, lv: 120, kind: f, itv: 2.0, base_hp: 220, base_atk: 21, hp: 9362, atk: 4745}
@@ -2174,9 +2176,9 @@ params:
     - {tid: 3854, name: 渦怪手下, const: 171, lv: 80, kind: m, itv: 2.0, base_hp: 440, base_atk: 17, hp: null, atk: 763}
     - {tid: 4785, name: 紅衣, const: 171, lv: 80, kind: m, itv: 2.0, base_hp: 440, base_atk: 17, hp: null, atk: 763}
     - {tid: 4786, name: 9天, const: 165, lv: 100, kind: rf, itv: 2.0, base_hp: 200, base_atk: 7, hp: null, atk: 397}
-    - {tid: 4787, name: 劍勇, const: 765, lv: 90, kind: rf, itv: 1.9, base_hp: 65, base_atk: 9, hp: null, atk: 716}
+    - {tid: 4787, name: 劍勇, const: 765, lv: 90, kind: rf, itv: 1.9, base_hp: 65, base_atk: 9, hp: null, atk: 715}
     - {tid: 4787, name: 劍勇, const: 640, lv: 90, kind: f, itv: 2.0, base_hp: 200, base_atk: 26, hp: null, atk: 1067}
-    - {tid: 4788, name: 遊俠, const: 773, lv: 66, kind: rf, itv: 2.9, base_hp: 90, base_atk: 19, hp: null, atk: 331}
+    - {tid: 4788, name: 遊俠, const: 773, lv: 66, kind: rf, itv: 2.9, base_hp: 90, base_atk: 19, hp: null, atk: 450}
     - {tid: 5372, name: 非魂, const: 424, lv: 90, kind: rf, itv: 1.0, base_hp: 180, base_atk: 13, hp: null, atk: 377}
 
   # 【2026-08-30 擊殺獎勵變數化】Kill Ratio(屬性44)=擊殺−損失，英雄死亡算損失→復活後獎勵停擺；
