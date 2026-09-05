@@ -1,5 +1,5 @@
 step	kind	target	field	old	new	reason
-s91	audit	全檔	—		K/E/O/G 0 違規；特徵斷言 274 項全過	audit_structure ＋ ferry_check
+s91	audit	全檔	—		K/E/O/G 0 違規；特徵斷言 591 項全過	audit_structure ＋ ferry_check
 s91	report	—	—		A 我方格 (110,225)［T5603「1船入東」E#0 傳送目的］落在「1草」C#0 的玩家區域條件 (108,221)-(117,231) sp=1 內	複核用，不擋建置
 s91	report	—	—		A 我方格 (110,227)［T5606「1船清入東」E#0 任務目的］落在「1草」C#0 的玩家區域條件 (108,221)-(117,231) sp=1 內	複核用，不擋建置
 s91	report	—	—		A 我方格 (112,228)［T5607「1船出東」E#0 傳送目的］落在「1草」C#0 的玩家區域條件 (108,221)-(117,231) sp=1 內	複核用，不擋建置
