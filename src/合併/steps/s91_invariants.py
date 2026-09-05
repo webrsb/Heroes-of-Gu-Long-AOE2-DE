@@ -36,6 +36,9 @@ class InvariantStep(Step):
         if ctx.spec.params.get('mob_balance'):
             from analysis.balance_check import check_mob_balance
             features['野怪平衡'] = check_mob_balance(tm, ctx.spec.params['mob_balance'])
+        if ctx.spec.params.get('status_caption'):
+            from analysis.status_check import check_status_caption
+            features['狀態字幕'] = check_status_caption(tm, ctx.spec.params, ctx.notes)
         n_feature = 0
         for tag, results in features.items():
             n_feature += len(results)
