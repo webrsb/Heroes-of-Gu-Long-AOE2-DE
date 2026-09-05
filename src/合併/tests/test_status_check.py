@@ -144,3 +144,23 @@ def test_missing_mount_refs_single_row(f):
     params = {'status_caption': PARAMS['status_caption'], 'revive': {}}
     res = check_status_caption(tm, params, notes)
     assert len(res) == 1 and not res[0][0] and '覆蓋不齊' in res[0][1]
+
+
+def test_timer_double_deploy_flagged(f):
+    # 冗餘守衛回歸網：同一支重生觸發帶兩個 sp=0 換主效果 → 形狀不合，該列必須紅
+    res, _, _ = run(f, write_effects=[f.eff_rename([20501], message=RAW),
+                                      f.eff_caption(LIFE[1], message=HEAD)],
+                    timer_effects=[f.eff_ownership([LIFE[1][1]], sp=0, tp=1),
+                                   f.eff_ownership([LIFE[1][2]], sp=0, tp=1),
+                                   f.eff_caption([LIFE[1][1]], message=' ')])
+    assert any('重生' in m for m in bad(res))
+
+
+def test_notes_pointing_to_missing_trigger_flagged(f):
+    from analysis.status_check import check_status_caption
+    tm, notes = build(f, write_effects=[f.eff_rename([20501], message=RAW),
+                                        f.eff_caption(LIFE[1], message=HEAD)])
+    notes['revive_out']['chains']['timer'] = {(1, 1, 1): 99999}
+    notes['revive_out']['mount_copies'] = {(1, 1, 1): 99998}
+    res = check_status_caption(tm, PARAMS, notes)
+    assert any('不存在' in m for m in bad(res))
