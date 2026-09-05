@@ -31,6 +31,8 @@ class InvariantStep(Step):
 
         features = {'渡船': check_ferry(tm)} if any(
                 e.get('kind') == 'trigger_add' and '船' in (e.get('name') or '') for e in entries) else {}
+        # 兩種掛載條件來源不同，刻意不三元統一：渡船由 entries（本輪施工項）自動判定是否涉船；
+        # 野怪平衡則由 params.mob_balance 這張裁決表本身是否存在來驅動，與 entries 無關。
         if ctx.spec.params.get('mob_balance'):
             from analysis.balance_check import check_mob_balance
             features['野怪平衡'] = check_mob_balance(tm, ctx.spec.params['mob_balance'])

@@ -54,9 +54,10 @@ def test_block_order_violation_aborts_and_allowlist_works(f):
 def test_s91_mob_balance_feature_gate(f):
     """params.mob_balance 存在時，s91 須跑 check_mob_balance 並把違規升為 BuildError。"""
     t = f.trig(name='民團', tid=0, effects=[
-        f._eff(11, source_player=7, object_list_unit_id=74, location_x=1, location_y=1)])
+        f.eff_create(sp=7, olu=74, x=1, y=1)])
     ctx = _ctx(f, [t], [])
     # 無 27/28 效果 → 實值 60+0 ≠ 70 → 違規
+    # const=單位種類、hp/atk=目標實值（含基礎）、base_*=dat+科技基礎值
     ctx.spec.params['mob_balance'] = [dict(
         tid=0, name='民團', const=74, lv=1, kind='m', itv=2.0,
         base_hp=60, base_atk=17, hp=70, atk=17)]
