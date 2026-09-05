@@ -146,3 +146,69 @@ def test_apply_missing_life_refs_raises(f):
     ctx, _ = make_ctx(f, notes_patch=drop)
     with pytest.raises(BuildError, match='life_refs'):
         StatusCaptionStep().apply(ctx)
+
+
+def test_caption_appended_on_life_refs(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    ctx, tm = make_ctx(f)
+    StatusCaptionStep().apply(ctx)
+    t1 = next(t for t in tm.triggers if t.name == '1毒')
+    calls = caption_calls(t1)
+    assert len(calls) == 1
+    assert calls[0]['message'] == POISON_HEAD
+    assert calls[0]['selected_object_ids'] == LIFE[1]          # 毒條件不含 mount → 不加掛
+    assert calls[0]['source_player'] == -1
+
+
+def test_clear_includes_mount_ref(f):
+    from steps.s51_status_caption import StatusCaptionStep, CLEAR
+    cure = f.trig(name='1毒4', effects=[f.eff_rename([20501], message='正常　狀態')])
+    ctx, _ = make_ctx(f, extra_trigs=[cure])
+    StatusCaptionStep().apply(ctx)
+    calls = caption_calls(cure)
+    assert len(calls) == 1
+    assert calls[0]['message'] == CLEAR
+    assert calls[0]['selected_object_ids'] == LIFE[1] + [MOUNT[1]]
+
+
+def test_mount_setter_includes_mount_ref(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    m3 = f.trig(name='3毒3', conds=[f.cond_bring_obj(777, MOUNT[3])],
+                effects=[f.eff_rename([20504], message=POISON_RAW)])
+    ctx, _ = make_ctx(f, extra_trigs=[m3])
+    StatusCaptionStep().apply(ctx)
+    calls = caption_calls(m3)
+    assert calls[0]['selected_object_ids'] == LIFE[3] + [MOUNT[3]]
+
+
+def test_unknown_text_raises_with_text_listed(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    odd = f.trig(name='怪字', effects=[f.eff_rename([20502], message='不明狀態')])
+    ctx, _ = make_ctx(f, extra_trigs=[odd])
+    with pytest.raises(BuildError, match='不明狀態'):
+        StatusCaptionStep().apply(ctx)
+
+
+def test_mixed_sel_raises(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    bad = f.trig(name='混搭', effects=[f.eff_rename([20501, 999], message=POISON_RAW)])
+    ctx, _ = make_ctx(f, extra_trigs=[bad])
+    with pytest.raises(BuildError, match='混搭'):
+        StatusCaptionStep().apply(ctx)
+
+
+def test_crlf_and_fullwidth_strip(f):
+    from steps.s51_status_caption import StatusCaptionStep, CLEAR
+    crlf = f.trig(name='2頭暈', effects=[f.eff_rename([20502], message='正常　狀態\r\n')])
+    ctx, _ = make_ctx(f, extra_trigs=[crlf])
+    StatusCaptionStep().apply(ctx)
+    assert caption_calls(crlf)[0]['message'] == CLEAR
+
+
+def test_derive_duplicate_board_claim_raises(f):
+    # 覆審備忘：單射分支自身的測試——「2毒」也寫牌 B_OF[1]，走「同時被職業」中止
+    from steps.s51_status_caption import derive_boards
+    trigs = poison_trigs(f)
+    trigs[1].effects = [f.eff_rename([B_OF[1]], message=POISON_RAW)]
+    with pytest.raises(BuildError, match='同時被職業'):
+        derive_boards(f.tm(trigs), LIFE, set(BOARDS))

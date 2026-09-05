@@ -95,7 +95,43 @@ class StatusCaptionStep(Step):
         derived = derive_boards(tm, life_refs, set(boards))
         if derived != boards:
             raise BuildError(f'缺裁決：牌ref→職業推導 {derived} 與 boards {boards} 不一致')
-        return []          # 掃描附掛與清字 hooks 由 Task 4/5 補上
+        board_set = set(boards)
+        changes, unknown, writes = [], {}, []
+        for t in tm.triggers:
+            for e in t.effects:
+                if getattr(e, 'effect_type', None) != RENAME:
+                    continue
+                sel = list(getattr(e, 'selected_object_ids', None) or [])
+                if not (set(sel) & board_set):
+                    continue
+                if len(sel) != 1:
+                    raise BuildError(f'T{t.trigger_id}「{t.name}」狀態牌 sel 混搭：{sel}')
+                raw = (getattr(e, 'message', '') or '').strip()
+                if raw not in texts:
+                    unknown.setdefault(raw, f'T{t.trigger_id}「{t.name}」')
+                    continue
+                writes.append((t, boards[sel[0]], raw))
+        if unknown:
+            lst = '\n  '.join(f'「{k}」首見 {v}' for k, v in sorted(unknown.items()))
+            raise BuildError(
+                f'缺裁決：狀態牌文字不在 status_caption.texts（{len(unknown)} 種）：\n  {lst}')
+
+        rv_params = ctx.spec.params.get('revive') or {}
+        if 'mount_refs' not in rv_params:
+            raise BuildError('缺裁決：params.revive.mount_refs 未提供（狀態字幕馬規則需要）')
+        mount_refs = {int(k): int(v) for k, v in rv_params['mount_refs'].items()}
+        for t, cid, raw in writes:        # 先收集後附掛：不在迭代 effects 時 append
+            head = texts[raw]
+            target = list(life_refs[cid])
+            if head == CLEAR or mount_refs[cid] in cond_refs(t):
+                target.append(mount_refs[cid])
+            t.new_effect.change_object_caption(message=head, source_player=-1,
+                                               selected_object_ids=target)
+            tag = '清除' if head == CLEAR else f'「{head}」'
+            tag += f'（職業{cid}{"＋馬" if len(target) > len(life_refs[cid]) else ""}）'
+            changes.append(Change(self.id, 'effect', f'T{t.trigger_id}「{t.name}」',
+                                  'caption', f'「{raw}」', tag, 'spec §二.1 掛字規則'))
+        return changes
 
     def test_guide(self, changes):
         return None
