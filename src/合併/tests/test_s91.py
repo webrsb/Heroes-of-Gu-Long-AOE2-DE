@@ -64,3 +64,14 @@ def test_s91_mob_balance_feature_gate(f):
     with pytest.raises(BuildError) as ei:
         STEP.apply(ctx)
     assert '≠' in str(ei.value)
+
+
+def test_s91_status_caption_feature_gate(f):
+    """params.status_caption 存在時，s91 須跑 check_status_caption 並把違規升為 BuildError。"""
+    t = f.trig(name='空', tid=0, effects=[])
+    ctx = _ctx(f, [t], [])
+    # notes 缺 revive.life_refs → checker 回單列 False → 應升 BuildError
+    ctx.spec.params['status_caption'] = {'boards': {20501: 1}, 'texts': []}
+    with pytest.raises(BuildError) as ei:
+        STEP.apply(ctx)
+    assert 'F[狀態字幕]' in str(ei.value)
