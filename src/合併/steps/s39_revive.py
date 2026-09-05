@@ -413,6 +413,7 @@ def run_revive(ctx):
 
     ctx.notes['revive_out'] = dict(enable_lists=el, anti_lists=anti_lists,
                                    variant_count=len(vm), pools=len(pools),
+                                   mount_copies=mo.copies,
                                    chains=dict(watch=chains.watch, timer=chains.timer,
                                                final=chains.final, horse=chains.horse,
                                                select=chains.select))

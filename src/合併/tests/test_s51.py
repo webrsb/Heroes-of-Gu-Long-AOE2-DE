@@ -310,6 +310,8 @@ def test_non_ref_keyed_writer_reported(f):
     r1 = [c for c in changes if c.kind == 'report' and '1酒3' in c.target]
     r2 = [c for c in changes if c.kind == 'report' and '6刀3' in c.target]
     assert len(r1) == 1 and '1酒2' in r1[0].new
+    assert r1[0].field == '職業1'
+    assert POISON_RAW in r1[0].old
     assert len(r2) == 1 and '無' in r2[0].new
 
 
@@ -347,7 +349,7 @@ def test_timer_deploy_ref_mismatch_raises(f):
     ctx, tm = make_ctx(f)
     tmr = next(t for t in tm.triggers if t.name == '重生1位1命1')
     tmr.effects = [f.eff_ownership([999], sp=0, tp=1)]
-    with pytest.raises(BuildError, match='不一致'):
+    with pytest.raises(BuildError, match='部署 ref'):
         StatusCaptionStep().apply(ctx)
 
 
