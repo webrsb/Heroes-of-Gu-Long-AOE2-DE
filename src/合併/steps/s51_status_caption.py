@@ -151,7 +151,7 @@ class StatusCaptionStep(Step):
                 # 報告項：非本體ref鍵寫入器（spec §四）——條件未引用該職業命ref/mount_ref 的
                 # 狀態設定（醉酒零條件型、6刀3 純TIMER型）；騎預置馬期間可能顯示缺口。清除類不列。
                 changes.append(Change(self.id, 'report', f'T{t.trigger_id}「{t.name}」',
-                                      '—', '',
+                                      f'職業{cid}', f'「{raw}」',
                                       f'非本體ref鍵寫入器；父觸發：'
                                       f'{"、".join(parents_of.get(t.trigger_id, [])) or "無"}',
                                       '騎預置馬期間可能顯示缺口，複核用'))
@@ -160,23 +160,34 @@ class StatusCaptionStep(Step):
         timer = (rvo.get('chains') or {}).get('timer') or {}
         if not timer:
             raise BuildError('缺前置：notes[revive_out].chains.timer 空（s39 未跑？）')
-        for key, tid in sorted(timer.items()):
+        for (cid, _s, L), tid in sorted(timer.items()):
             t = trig_by_id(tm, tid)
             deploy = [e for e in t.effects
                       if getattr(e, 'effect_type', None) == OWNERSHIP
                       and getattr(e, 'source_player', -1) == 0]
             if len(deploy) != 1 or len(deploy[0].selected_object_ids or []) != 1:
                 raise BuildError(f'缺前置：重生觸發 T{tid} 部署效果不是恰一個單一 ref')
+            # 部署 ref 讀自觸發自身效果、再與 notes 鍵對帳：鏈建置改形狀時響亮失敗，不默默清錯 ref
             ref = deploy[0].selected_object_ids[0]
+            if ref != life_refs[cid][L]:
+                raise BuildError(f'缺前置：重生觸發 T{tid} 部署 ref{ref} 與 '
+                                 f'life_refs[{cid}][{L}]={life_refs[cid][L]} 不一致（鏈形狀改了？）')
             t.new_effect.change_object_caption(message=CLEAR, source_player=-1,
                                                selected_object_ids=[ref])
             changes.append(Change(self.id, 'effect', f'T{tid}「{t.name}」', 'caption',
                                   '', f'清字 ref{ref}', 'spec §三.1 重生清字'))
         mc = rvo.get('mount_copies')
-        if mc is None:
-            raise BuildError('缺前置：notes[revive_out].mount_copies 未曝露（s39 需增列）')
-        for (cid, s, L), tid in sorted(mc.items()):
+        if not mc:
+            raise BuildError('缺前置：notes[revive_out].mount_copies 未曝露或為空'
+                             '（s39 需增列；確無上馬系統時需明確裁決）')
+        for (cid, _s, _L), tid in sorted(mc.items()):
             t = trig_by_id(tm, tid)
+            refs = set(cond_refs(t))
+            for e in t.effects:
+                refs.update(getattr(e, 'selected_object_ids', None) or [])
+            if mount_refs[cid] not in refs:   # 對稱於 timer 側：全盤信任 notes 鍵之前先對帳
+                raise BuildError(f'缺前置：上馬拷貝 T{tid}「{t.name}」未引用職業{cid}馬騎 '
+                                 f'ref{mount_refs[cid]}（notes 鍵錯位？）')
             t.new_effect.change_object_caption(message=CLEAR, source_player=-1,
                                                selected_object_ids=[mount_refs[cid]])
             changes.append(Change(self.id, 'effect', f'T{tid}「{t.name}」', 'caption',

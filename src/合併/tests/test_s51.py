@@ -23,9 +23,9 @@ def poison_trigs(f):
 
 
 def hook_trigs(f):
-    """最小清字 hook 固定件：一支重生 timer＋一支上馬拷貝。"""
+    """最小清字 hook 固定件：一支重生 timer＋一支上馬拷貝（帶馬騎轉讓效果，鏡射真形狀）。"""
     tmr = f.trig(name='重生1位1命1', effects=[f.eff_ownership([LIFE[1][1]], sp=0, tp=1)])
-    mcp = f.trig(name='1馬3◇命1')
+    mcp = f.trig(name='1馬3◇命1', effects=[f.eff_ownership([MOUNT[1]], sp=8, tp=1)])
     return tmr, mcp
 
 
@@ -314,12 +314,50 @@ def test_non_ref_keyed_writer_reported(f):
 
 
 def test_clear_writer_not_reported(f):
-    # 清除類（正常）不列報告——455 筆會淹掉真正的缺口候選
+    # 清除類（正常）不列報告——270 筆清除寫入會淹掉真正的缺口候選（實測值）
     from steps.s51_status_caption import StatusCaptionStep
     cure = f.trig(name='1毒4', effects=[f.eff_rename([20501], message='正常　狀態')])
     ctx, _ = make_ctx(f, extra_trigs=[cure])
     changes = StatusCaptionStep().apply(ctx)
     assert not [c for c in changes if c.kind == 'report' and '1毒4' in c.target]
+
+
+def test_empty_mount_copies_raises(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    def empty(notes):
+        notes['revive_out']['mount_copies'] = {}
+        return notes
+    ctx, _ = make_ctx(f, notes_patch=empty)
+    with pytest.raises(BuildError, match='mount_copies'):
+        StatusCaptionStep().apply(ctx)
+
+
+def test_empty_timer_map_raises(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    def empty(notes):
+        notes['revive_out']['chains']['timer'] = {}
+        return notes
+    ctx, _ = make_ctx(f, notes_patch=empty)
+    with pytest.raises(BuildError, match='chains.timer'):
+        StatusCaptionStep().apply(ctx)
+
+
+def test_timer_deploy_ref_mismatch_raises(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    ctx, tm = make_ctx(f)
+    tmr = next(t for t in tm.triggers if t.name == '重生1位1命1')
+    tmr.effects = [f.eff_ownership([999], sp=0, tp=1)]
+    with pytest.raises(BuildError, match='不一致'):
+        StatusCaptionStep().apply(ctx)
+
+
+def test_mount_copy_without_mount_ref_raises(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    ctx, tm = make_ctx(f)
+    mcp = next(t for t in tm.triggers if t.name == '1馬3◇命1')
+    mcp.effects = []
+    with pytest.raises(BuildError, match='馬騎'):
+        StatusCaptionStep().apply(ctx)
 
 
 def test_noop_without_params(f):
