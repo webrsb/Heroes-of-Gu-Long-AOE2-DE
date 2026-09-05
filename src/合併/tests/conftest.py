@@ -145,6 +145,9 @@ class Factory:
         return self._eff(17, source_player=sp, object_list_unit_id=olu, location_x=x, location_y=y,
                          area_x1=area[0], area_y1=area[1], area_x2=area[2], area_y2=area[3])
 
+    def eff_caption(self, sel, sp=-1, message=''):
+        return self._eff(88, selected_object_ids=list(sel), source_player=sp, message=message)
+
     def eff_activate(self, tid):
         return self._eff(8, trigger_id=tid)
 
