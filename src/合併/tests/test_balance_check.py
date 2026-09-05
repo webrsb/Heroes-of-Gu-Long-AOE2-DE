@@ -23,6 +23,13 @@ def _atk(f, x, y, amount, cls=0, const=-1):
     return e
 
 
+def _rect_atk(f, x1, y1, x2, y2, amount, const, cls=0):
+    e = f._eff(28, source_player=P7, object_list_unit_id=const, quantity=amount,
+               operation=2, area_x1=x1, area_y1=y1, area_x2=x2, area_y2=y2)
+    e.armour_attack_class, e.armour_attack_quantity = cls, amount
+    return e
+
+
 ROWS = [
     dict(tid=0, name='民團', const=74, lv=1, kind='m', itv=2.0,
          base_hp=60, base_atk=17, hp=70, atk=17),
@@ -96,6 +103,20 @@ def test_two_creates_same_const_each_tile_reconciled(f):
     assert any('格(1,1)' in msg for _, msg in results) and any('格(3,3)' in msg for _, msg in results)
 
 
+def test_same_const_explicit_tag_not_cross_summed_across_tiles(f):
+    # 2026-09-02 品質審查回歸測：T4785 型真實資料——多生成格共用同一 const，且每格 tile 效果
+    # 各自 olu=該 const（非 -1）。曾誤加「olu==const 即算」旁支，導致同 const 的其他格數值被
+    # 錯誤疊加進本格對帳（12+5+5=22≠17），已改回純幾何涵蓋（只認自己格）。
+    t0 = f.trig(name='民團', tid=0, effects=[
+        _create(f, 74, 1, 1), _hp(f, 1, 1, 10, const=74), _atk(f, 1, 1, 5, const=74),
+        _create(f, 74, 3, 3), _hp(f, 3, 3, 10, const=74), _atk(f, 3, 3, 5, const=74)])
+    t1 = f.trig(name='山賊', tid=1, effects=[_create(f, 448, 2, 2), _hp(f, 2, 2, 0), _atk(f, 2, 2, 3)])
+    rows = [dict(tid=0, name='民團', const=74, lv=1, kind='m', itv=2.0,
+                 base_hp=60, base_atk=12, hp=70, atk=17), ROWS[1]]
+    results = check_mob_balance(f.tm([t0, t1]), rows)
+    assert all(ok for ok, _ in results)
+
+
 def test_noise_const_not_accumulated(f):
     t0 = f.trig(name='民團', tid=0, effects=[
         _create(f, 74, 1, 1), _hp(f, 1, 1, 10), _hp(f, 1, 1, 999, const=999),
@@ -111,6 +132,21 @@ def test_real_parser_path_without_triggers_by_id(f):
     tm = SimpleNamespace(triggers=[t0, t1])           # 無 triggers_by_id：模擬正式 parser
     results = check_mob_balance(tm, ROWS)
     assert results and all(ok for ok, _ in results)
+
+
+def test_rect_atk_counted_in_reconciliation(f):
+    # T2711 母夜叉案例：矩形涵蓋生成格、olu=表列 const，未歸零前應被抓 not ok；歸零後對帳過
+    row = dict(tid=0, name='母夜叉', const=430, lv=52, kind='m', itv=2.0,
+               base_hp=100, base_atk=12, hp=571, atk=190)
+    t = f.trig(name='母夜叉', tid=0, effects=[
+        _create(f, 430, 180, 149), _hp(f, 180, 149, 471), _atk(f, 180, 149, 178),
+        _rect_atk(f, 180, 149, 207, 168, 3164, const=430)])
+    results = check_mob_balance(f.tm([t]), [row])
+    assert any(not ok and '攻' in msg for ok, msg in results)          # 12+178+3164≠190
+
+    t.effects[3].armour_attack_quantity = 0                            # 寫入端修完後的狀態
+    results = check_mob_balance(f.tm([t]), [row])
+    assert all(ok for ok, msg in results)                              # 12+178+0＝190
 
 
 def test_real_parser_path_out_of_range_tid_reports_not_ok(f):

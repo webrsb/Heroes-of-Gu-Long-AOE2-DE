@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 """s374 野怪平衡曲線（params.mob_balance；spec docs/superpowers/specs/2026-09-01-野怪平衡曲線-design.md）。
 
-生成觸發結構＝每建立點「移除(15)→建立(11)→改血(27,格)→改攻(28,格)」＋部分觸發的全域 28。
-本步把每格 27 改成 hp−base_hp、每格 28 改成 atk−base_atk，沿用 class0/ADD 慣例
-（s30 已先把全檔 28 正規化為 class0），全域 28 一律歸零（總量已折入格效果）。
+生成觸發結構＝每建立點「移除(15)→建立(11)→改血(27,格)→改攻(28,格)」＋部分觸發的全域 28，
+另有少數觸發帶指名 const 的**區域加攻**（矩形涵蓋多個生成格，如 T2711 母夜叉 olu=430 涵蓋
+三格、總量已含在單格加攻之外，2026-09-02 品質審查抓出的漏網形狀）。三種形狀分開處理：
+格 27 改成 hp−base_hp、格 28 改成 atk−base_atk，沿用 class0/ADD 慣例
+（s30 已先把全檔 28 正規化為 class0）；全域 28、區域加攻 28 一律歸零（總量已折入格效果）。
 hp: null＝表二血不動。差值必 ≥0（設計夾0）且 ≤int16。
-渦鬼(2713/2714)、頭目、表三不入表＝維持現值。觸發名比對防基底位移（同 s373）。"""
+渦鬼(2713/2714)、頭目、表三不入表＝維持現值。觸發名比對防基底位移（同 s373）。
+處理完格／全域後，觸發內若還有 sp=P7 的 27/28 效果落在未知形狀（olu 為表列 const 但非上述
+三種、或 olu=-1 且區域涵蓋任一生成格）→ raise BuildError 交人工裁決；其餘（olu 指他種單位、
+或不涵蓋任何生成格）視為與本表無關，略過不動（如 T2712 青武 olu=166 矩形）。"""
 from AoE2ScenarioParser.datasets.trigger_lists import Operation
 from core.change import Change
 from .base import trig_by_id, Step, BuildError
@@ -61,6 +66,9 @@ def apply_mob_balance(tm, rows):
         tiles = [((e.location_x, e.location_y), e.object_list_unit_id) for e in creates]
         if len({xy for xy, _ in tiles}) != len(tiles):
             raise BuildError(f'缺裁決：{tag} 多個建立效果共用同一格，格效果無法歸屬')
+        consts = set(rows_t)
+        coords = [xy for xy, _ in tiles]
+        handled = set()
         for (x, y), const in tiles:
             r = rows_t[const]
             area = (x, y, x, y)
@@ -71,6 +79,8 @@ def apply_mob_balance(tm, rows):
 
             hps = [e for e in t.effects if scoped(e, CH_HP)]
             atks = [e for e in t.effects if scoped(e, CH_ATK)]
+            handled.update(id(e) for e in hps)
+            handled.update(id(e) for e in atks)
             if r.get('hp') is not None:
                 if not hps:
                     raise BuildError(f'缺裁決：{tag} 格({x},{y}) 無 ChangeHP 效果')
@@ -91,11 +101,31 @@ def apply_mob_balance(tm, rows):
             changes.append(Change('s374', 'effect', f'{tag}({x},{y})', 'atk_add',
                                   str(old), str(d), f"Lv{r['lv']} 目標攻 {r['atk']}（{r['kind']}）"))
         for e in t.effects:
-            if getattr(e, 'effect_type', None) == CH_ATK and _tile(e) == (-1, -1, -1, -1):
+            if (getattr(e, 'effect_type', None) == CH_ATK and getattr(e, 'source_player', -1) == P7
+                    and _tile(e) == (-1, -1, -1, -1)):
                 old = getattr(e, 'armour_attack_quantity', e.quantity)
                 _set_atk(e, 0)
+                handled.add(id(e))
                 changes.append(Change('s374', 'effect', tag, 'global_atk',
                                       str(old), '0', '全域加攻歸零，總量折入格效果'))
+        for e in t.effects:
+            et = getattr(e, 'effect_type', None)
+            if et not in (CH_HP, CH_ATK) or getattr(e, 'source_player', -1) != P7 or id(e) in handled:
+                continue
+            olu = getattr(e, 'object_list_unit_id', -1)
+            if et == CH_ATK and olu in consts:
+                old = getattr(e, 'armour_attack_quantity', e.quantity)
+                _set_atk(e, 0)
+                changes.append(Change('s374', 'effect', tag, 'area_atk',
+                                      str(old), '0', '區域加攻歸零，總量折入格效果'))
+                continue
+            area_e = _tile(e)
+            covers = olu == -1 and any(area_e[0] <= x <= area_e[2] and area_e[1] <= y <= area_e[3]
+                                       for x, y in coords)
+            if olu in consts or covers:
+                raise BuildError(f'缺裁決：{tag} 未知形狀的效果（type={et}, olu={olu}, '
+                                 f'area={area_e}），需人工裁決')
+            # 其餘：olu 指他種單位、或不涵蓋任何生成格的 olu=-1 效果，與本表無關，略過不動
     return changes
 
 

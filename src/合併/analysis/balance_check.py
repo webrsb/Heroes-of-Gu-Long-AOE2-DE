@@ -1,16 +1,33 @@
 # -*- coding: utf-8 -*-
 """野怪平衡特徵斷言（s91 掛載，回傳 [(ok, msg)]，比照 ferry_check）。
 
-從建置後觸發重推實值：血＝base_hp＋Σ格27、攻＝base_atk＋Σ格28＋Σ全域28（class 必為 0），
-與 params.mob_balance 目標對帳；另斷言表本身對 Lv 單調（近戰基準 DPS 與血，2% 容差吸收取整）。
+從建置後觸發重推實值：血＝base_hp＋Σ（涵蓋該生成格的）27、攻＝base_atk＋Σ（涵蓋該生成格的）28
+（class 必為 0），與 params.mob_balance 目標對帳；另斷言表本身對 Lv 單調（近戰基準 DPS 與血，
+2% 容差吸收取整）。
 
-常數與 tile 過濾語意鏡像 steps/s374_mobbalance.py（寫入端），兩邊改動需同步。"""
+「涵蓋」＝幾何模型：area 全 -1（全域）或 area_x1<=x<=area_x2 且 area_y1<=y<=area_y2（矩形涵蓋該點，
+單格效果是退化情形）。母夜叉矩形（T2711 olu=430、範圍涵蓋 3 個生成格）落在此模型內自然算數，
+不需另立「olu==const 即算」的旁支——2026-09-02 品質審查一度加了這條旁支，結果在 T4785/T4786/
+T4787/T4788/T5372 這類「多生成格共用同一 const、且每格各自 olu=該 const 而非 -1」的既有正確資料
+上重複計數（同一 const 的四格效果互相加總），實測建置直接假警報。已改回純幾何涵蓋，兩型別對稱。
+
+2026-09-02 品質審查發現：舊版用「單格精確比對＋全域」兩種形狀，漏掉了矩形涵蓋多格的區域加攻
+（T2711 母夜叉 olu=430 矩形），導致 s91 沒抓到寫入端 s374 的同款漏洞。本模組獨立實作這個幾何
+涵蓋模型（刻意不 import steps.s374_mobbalance 的謂詞，不信任寫入端邏輯）；兩邊改動需個別驗證，
+不可只改一邊、假設另一邊語意同步跟上。"""
 CREATE, CH_HP, CH_ATK, P7 = 11, 27, 28, 7
 DISCOUNT = {'m': 1.0, 'r': 0.7, 'f': 0.85, 'rf': 0.6}
 
 
 def _tile(e):
     return (e.area_x1, e.area_y1, e.area_x2, e.area_y2)
+
+
+def _covers(e, x, y):
+    ax1, ay1, ax2, ay2 = _tile(e)
+    if (ax1, ay1, ax2, ay2) == (-1, -1, -1, -1):
+        return True
+    return ax1 <= x <= ax2 and ay1 <= y <= ay2
 
 
 def _trig(tm, tid):
@@ -50,22 +67,25 @@ def _check_reconciliation(tm, rows):
             if r is None:
                 results.append((False, f'T{tid}「{name}」const {ce.object_list_unit_id} 不在表內'))
                 continue
-            area = (ce.location_x, ce.location_y, ce.location_x, ce.location_y)
+            x, y = ce.location_x, ce.location_y
             const = ce.object_list_unit_id
             hp_add = atk_add = 0
             bad_cls = None
             for e in t.effects:
                 et = getattr(e, 'effect_type', None)
-                scoped = _tile(e) == area and getattr(e, 'object_list_unit_id', -1) in (-1, const)
-                glob = _tile(e) == (-1, -1, -1, -1) and getattr(e, 'object_list_unit_id', -1) in (-1, const)
-                if et == CH_HP and scoped:
+                if getattr(e, 'source_player', -1) != P7:
+                    continue
+                olu = getattr(e, 'object_list_unit_id', -1)
+                if olu not in (-1, const):
+                    continue
+                if et == CH_HP and _covers(e, x, y):
                     hp_add += int(e.quantity or 0)
-                elif et == CH_ATK and (scoped or glob):
+                elif et == CH_ATK and _covers(e, x, y):
                     cls = getattr(e, 'armour_attack_class', 0)
                     if cls not in (0, None):
                         bad_cls = cls
                     atk_add += int(getattr(e, 'armour_attack_quantity', None) or 0)
-            tag = f'T{tid}「{name}」格({ce.location_x},{ce.location_y})'
+            tag = f'T{tid}「{name}」格({x},{y})'
             if bad_cls is not None:
                 results.append((False, f'{tag} 攻擊效果 class={bad_cls}≠0'))
             if r.get('hp') is not None:

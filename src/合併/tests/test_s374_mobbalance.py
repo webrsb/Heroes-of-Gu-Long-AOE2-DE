@@ -31,6 +31,18 @@ def _gatk(f, amount, const=-1):
     return e
 
 
+def _rect_atk(f, x1, y1, x2, y2, amount, const):
+    e = f._eff(28, source_player=P7, object_list_unit_id=const, quantity=amount,
+               operation=2, area_x1=x1, area_y1=y1, area_x2=x2, area_y2=y2)
+    e.armour_attack_class, e.armour_attack_quantity = 0, amount
+    return e
+
+
+def _rect_hp(f, x1, y1, x2, y2, qty, const):
+    return f._eff(27, source_player=P7, object_list_unit_id=const, quantity=qty,
+                  operation=-1, area_x1=x1, area_y1=y1, area_x2=x2, area_y2=y2)
+
+
 def row(**kw):
     d = dict(tid=0, name='民團', const=74, lv=1, kind='m', itv=2.0,
              base_hp=60, base_atk=17, hp=70, atk=17)
@@ -111,3 +123,40 @@ def test_noise_effect_of_other_const_untouched(f):
     assert t.effects[2].quantity == 50                                           # 雜訊 const 不動
     assert t.effects[3].armour_attack_quantity == 0                              # 17-17，正常格
     assert t.effects[4].armour_attack_quantity == 7                              # 雜訊 const 不動
+
+
+def test_area_atk_of_listed_const_zeroed(f):
+    # T2711 母夜叉案例：矩形涵蓋生成格、olu=表列 const，總量已折入格效果，須歸零
+    t = f.trig(name='民團', tid=0, effects=[
+        _create(f, 74, 80, 84), _hp(f, 80, 84, 30), _atk(f, 80, 84, 9),
+        _rect_atk(f, 70, 70, 100, 100, 3164, const=74)])
+    tm = f.tm([t])
+    changes = apply_mob_balance(tm, [row()])
+    assert t.effects[3].armour_attack_quantity == 0
+    assert any(c.field == 'area_atk' for c in changes)
+
+
+def test_area_atk_olu_minus1_covering_raises(f):
+    t = f.trig(name='民團', tid=0, effects=[
+        _create(f, 74, 80, 84), _hp(f, 80, 84, 30), _atk(f, 80, 84, 9),
+        _rect_atk(f, 70, 70, 100, 100, 500, const=-1)])
+    with pytest.raises(BuildError):
+        apply_mob_balance(f.tm([t]), [row()])
+
+
+def test_area_hp_of_listed_const_raises(f):
+    t = f.trig(name='民團', tid=0, effects=[
+        _create(f, 74, 80, 84), _hp(f, 80, 84, 30), _atk(f, 80, 84, 9),
+        _rect_hp(f, 70, 70, 100, 100, 500, const=74)])
+    with pytest.raises(BuildError):
+        apply_mob_balance(f.tm([t]), [row()])
+
+
+def test_area_atk_of_other_const_untouched(f):
+    # T2712 青武案例：矩形 olu 非本表 const（就算幾何涵蓋生成格），與本表無關，略過不動
+    t = f.trig(name='民團', tid=0, effects=[
+        _create(f, 74, 80, 84), _hp(f, 80, 84, 30), _atk(f, 80, 84, 9),
+        _rect_atk(f, 70, 70, 100, 100, 500, const=999)])
+    tm = f.tm([t])
+    apply_mob_balance(tm, [row()])
+    assert t.effects[3].armour_attack_quantity == 500

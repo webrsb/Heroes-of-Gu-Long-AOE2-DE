@@ -7,7 +7,7 @@
 s90 查的是全檔通用不變量（攻擊力編碼／trigger_id 超界／dangling ref／觸發數對帳／空殼），
 s91 查的是**這次施工的結構契約**：
 
-  閘門（BuildError）：analysis.audit_structure 的 K/E/O/G ＋ 各特徵斷言（目前：渡船 274 項）
+  閘門（BuildError）：analysis.audit_structure 的 K/E/O/G ＋ 各特徵斷言（渡船／野怪平衡）
   報告（寫進 log 供人看）：座位覆蓋 S、血量數值 H
 
 spec 可用 `params.invariant_allow.block_order: [[a, b], ...]` 對「刻意讓大 id 停用小 id」放行。
@@ -48,7 +48,7 @@ class InvariantStep(Step):
                              + ('\n  …（其餘省略）' if len(violations) > 40 else ''))
         changes = [Change(self.id, 'audit', '全檔', '—', '',
                           f'K/E/O/G 0 違規；特徵斷言 {n_feature} 項全過',
-                          'audit_structure ＋ ferry_check')]
+                          'audit_structure ＋ ferry_check ＋ balance_check')]
         changes += [Change(self.id, 'report', '—', '—', '', r, '複核用，不擋建置') for r in reports]
         return changes
 
