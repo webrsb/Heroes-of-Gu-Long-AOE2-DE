@@ -46,20 +46,20 @@ def caption_calls(t):
     return [obj for name, obj in t.new_effect.calls if name == 'change_object_caption']
 
 
-def test_load_rejects_incomplete_boards(f):
+def test_load_rejects_incomplete_boards():
     from steps.s51_status_caption import load_status_caption
     with pytest.raises(BuildError):
         load_status_caption({'boards': {20501: 1}, 'texts': TEXTS})
 
 
-def test_load_rejects_duplicate_find(f):
+def test_load_rejects_duplicate_find():
     from steps.s51_status_caption import load_status_caption
     with pytest.raises(BuildError):
         load_status_caption({'boards': BOARDS,
                              'texts': TEXTS + [{'find': POISON_RAW, 'to': 'X'}]})
 
 
-def test_load_maps_null_to_clear(f):
+def test_load_maps_null_to_clear():
     from steps.s51_status_caption import load_status_caption, CLEAR
     _, texts = load_status_caption({'boards': BOARDS, 'texts': TEXTS})
     assert texts['正常　狀態'] == CLEAR
@@ -77,7 +77,7 @@ def test_derive_boards_mismatch_raises(f):
     swapped = dict(BOARDS)
     swapped[20503], swapped[20504] = swapped[20504], swapped[20503]   # 抹掉 3/4 對調
     ctx, _ = make_ctx(f, boards=swapped)
-    with pytest.raises(BuildError):
+    with pytest.raises(BuildError, match='不一致'):
         StatusCaptionStep().apply(ctx)
 
 
@@ -94,3 +94,55 @@ def test_derive_boards_tolerates_name_collision(f):
     decoy = f.trig(name='6毒', effects=[f.eff_chat(sp=6, message='學毒鏢')])
     tm = f.tm([decoy] + poison_trigs(f))
     assert derive_boards(tm, LIFE, set(BOARDS)) == BOARDS
+
+
+def test_load_rejects_missing_to_key():
+    from steps.s51_status_caption import load_status_caption
+    with pytest.raises(BuildError, match='缺 find/to 欄'):
+        load_status_caption({'boards': BOARDS, 'texts': [{'find': POISON_RAW}]})
+
+
+def test_load_rejects_empty_to():
+    from steps.s51_status_caption import load_status_caption
+    with pytest.raises(BuildError, match='空字串'):
+        load_status_caption({'boards': BOARDS, 'texts': [{'find': POISON_RAW, 'to': ' '}]})
+
+
+def test_load_rejects_unsupported_caption_chars():
+    from steps.s51_status_caption import load_status_caption
+    with pytest.raises(BuildError, match='不支援字元'):
+        load_status_caption({'boards': BOARDS,
+                             'texts': [{'find': POISON_RAW, 'to': '中毒％'}]})
+
+
+def test_load_rejects_empty_texts():
+    from steps.s51_status_caption import load_status_caption
+    with pytest.raises(BuildError, match='空表'):
+        load_status_caption({'boards': BOARDS, 'texts': []})
+
+
+def test_derive_condition_without_hero_ref_raises(f):
+    from steps.s51_status_caption import derive_boards
+    trigs = poison_trigs(f)
+    trigs[0].conditions = []                     # 「1毒」失去本體 ref 條件
+    with pytest.raises(BuildError, match='未引用職業1本體'):
+        derive_boards(f.tm(trigs), LIFE, set(BOARDS))
+
+
+def test_derive_two_writers_same_name_raises(f):
+    from steps.s51_status_caption import derive_boards
+    dup = f.trig(name='6毒', conds=[f.cond_bring_obj(777, LIFE[6][0])],
+                 effects=[f.eff_rename([20506], message=POISON_RAW)])
+    tm = f.tm(poison_trigs(f) + [dup])
+    with pytest.raises(BuildError, match=r'T\d+\(牌'):
+        derive_boards(tm, LIFE, set(BOARDS))
+
+
+def test_apply_missing_life_refs_raises(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    def drop(notes):
+        notes['revive'] = {}
+        return notes
+    ctx, _ = make_ctx(f, notes_patch=drop)
+    with pytest.raises(BuildError, match='life_refs'):
+        StatusCaptionStep().apply(ctx)

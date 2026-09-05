@@ -8,7 +8,7 @@ from core.change import Change
 from .base import Step, BuildError, trig_by_id
 
 CLEAR = ' '                       # caption 清除慣用手法（s39 清職業名同式）
-RENAME, CAPTION, ACTIVATE, OWNERSHIP = 26, 88, 8, 18
+RENAME, ACTIVATE, OWNERSHIP = 26, 8, 18
 
 
 def load_status_caption(sc: dict):
@@ -18,11 +18,22 @@ def load_status_caption(sc: dict):
         raise BuildError(f'缺裁決：status_caption.boards 職業覆蓋不齊：{boards}')
     texts = {}
     for row in sc.get('texts') or []:
+        if 'find' not in row or 'to' not in row:
+            raise BuildError(f'缺裁決：status_caption.texts 列缺 find/to 欄：{row}（清除請明寫 to: null）')
         find = str(row['find']).strip()
         if find in texts:
             raise BuildError(f'缺裁決：status_caption.texts 重複 find「{find}」')
-        to = row.get('to')
-        texts[find] = CLEAR if to is None else str(to)
+        to = row['to']
+        if to is None:
+            head = CLEAR
+        else:
+            head = str(to)
+            if not head.strip():
+                raise BuildError(f'缺裁決：texts「{find}」to 為空字串（清除請明寫 to: null）')
+        bad = [ch for ch in head if not (ch.isascii() or '一' <= ch <= '鿿')]
+        if bad:
+            raise BuildError(f'缺裁決：texts「{find}」頭頂文含 caption 不支援字元 {bad}（僅 ASCII＋中日韓，§5.7a）')
+        texts[find] = head
     if not texts:
         raise BuildError('缺裁決：status_caption.texts 空表')
     return boards, texts
@@ -54,11 +65,14 @@ def derive_boards(tm, life_refs, candidates):
             if len(hits) == 1:
                 cands.append((t, hits[0]))
         if len(cands) != 1:
+            surv = '、'.join(f'T{t.trigger_id}(牌{b})' for t, b in cands)
             raise BuildError(f'缺前置：「{cid}毒」帶恰一個狀態牌寫入的觸發不是恰一支'
-                             f'（同名 {len(named)}、倖存 {len(cands)}）')
+                             f'（同名 {len(named)}、倖存 {len(cands)}：{surv or "無"}）')
         t, board = cands[0]
         if life_refs[cid][0] not in cond_refs(t):
             raise BuildError(f'缺前置：「{cid}毒」條件未引用職業{cid}本體 ref{life_refs[cid][0]}')
+        if board in derived:
+            raise BuildError(f'缺前置：牌 ref{board} 同時被職業 {derived[board]} 與 {cid} 宣告')
         derived[board] = cid
     return derived
 
