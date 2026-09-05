@@ -129,6 +129,13 @@ class StatusCaptionStep(Step):
         if problems:
             raise BuildError('\n'.join(problems))
 
+        parents_of = {}          # activate 目標 → 父觸發（報告項用，一次線性掃建索引）
+        for p in tm.triggers:
+            for pe in p.effects:
+                if getattr(pe, 'effect_type', None) == ACTIVATE:
+                    parents_of.setdefault(getattr(pe, 'trigger_id', -1), []).append(
+                        f'T{p.trigger_id}「{p.name}」')
+
         for t, cid, raw in writes:        # 先收集後附掛：不在迭代 effects 時 append
             head = texts[raw]
             with_mount = head == CLEAR or mount_refs[cid] in cond_refs(t)
@@ -139,10 +146,52 @@ class StatusCaptionStep(Step):
                   f'（職業{cid}{"＋馬" if with_mount else ""}）'
             changes.append(Change(self.id, 'effect', f'T{t.trigger_id}「{t.name}」',
                                   'caption', f'「{raw}」', tag, 'spec §二.1 掛字規則'))
+            keyset = set(life_refs[cid]) | {mount_refs[cid]}
+            if head != CLEAR and not (cond_refs(t) & keyset):
+                # 報告項：非本體ref鍵寫入器（spec §四）——條件未引用該職業命ref/mount_ref 的
+                # 狀態設定（醉酒零條件型、6刀3 純TIMER型）；騎預置馬期間可能顯示缺口。清除類不列。
+                changes.append(Change(self.id, 'report', f'T{t.trigger_id}「{t.name}」',
+                                      '—', '',
+                                      f'非本體ref鍵寫入器；父觸發：'
+                                      f'{"、".join(parents_of.get(t.trigger_id, [])) or "無"}',
+                                      '騎預置馬期間可能顯示缺口，複核用'))
+
+        rvo = ctx.notes.get('revive_out') or {}
+        timer = (rvo.get('chains') or {}).get('timer') or {}
+        if not timer:
+            raise BuildError('缺前置：notes[revive_out].chains.timer 空（s39 未跑？）')
+        for key, tid in sorted(timer.items()):
+            t = trig_by_id(tm, tid)
+            deploy = [e for e in t.effects
+                      if getattr(e, 'effect_type', None) == OWNERSHIP
+                      and getattr(e, 'source_player', -1) == 0]
+            if len(deploy) != 1 or len(deploy[0].selected_object_ids or []) != 1:
+                raise BuildError(f'缺前置：重生觸發 T{tid} 部署效果不是恰一個單一 ref')
+            ref = deploy[0].selected_object_ids[0]
+            t.new_effect.change_object_caption(message=CLEAR, source_player=-1,
+                                               selected_object_ids=[ref])
+            changes.append(Change(self.id, 'effect', f'T{tid}「{t.name}」', 'caption',
+                                  '', f'清字 ref{ref}', 'spec §三.1 重生清字'))
+        mc = rvo.get('mount_copies')
+        if mc is None:
+            raise BuildError('缺前置：notes[revive_out].mount_copies 未曝露（s39 需增列）')
+        for (cid, s, L), tid in sorted(mc.items()):
+            t = trig_by_id(tm, tid)
+            t.new_effect.change_object_caption(message=CLEAR, source_player=-1,
+                                               selected_object_ids=[mount_refs[cid]])
+            changes.append(Change(self.id, 'effect', f'T{tid}「{t.name}」', 'caption',
+                                  '', f'清字 mount ref{mount_refs[cid]}', 'spec §三.2 上馬清字'))
         return changes
 
     def test_guide(self, changes):
-        return None
+        n = sum(1 for c in changes if c.kind == 'effect')
+        rep = sum(1 for c in changes if c.kind == 'report')
+        return (f'狀態頭頂字幕：附掛＋清字共 {n} 效果、報告項 {rep}（非本體ref鍵寫入器）。\n'
+                '怎麼測：選角後讓毒物碰英雄 → 頭上出「中毒 2秒-100精力」且狀態牌同步；\n'
+                '走解毒區 → 頭上清空；死亡重生 → 新身體頭上必乾淨（毒未解也不顯示）；\n'
+                '上馬後再觸發震懾/中毒/內傷 → 馬頭上出字；買神弓 → 上膛亮「一觸即發」、卸下窗口乾淨。\n'
+                '陽性對照：狀態牌本身照舊改名（原作行為未動）。\n'
+                '異常判讀：頭上無字但牌有字＝附掛沒生效（回報觸發名）；替身/伯樂馬有字＝清字或掛字規則漏。')
 
 
 STEP = StatusCaptionStep()

@@ -266,3 +266,63 @@ def test_mount_refs_incomplete_raises(f):
     ctx.spec.params['revive']['mount_refs'] = {1: 901}
     with pytest.raises(BuildError, match='覆蓋不齊'):
         StatusCaptionStep().apply(ctx)
+
+
+def test_hooks_append_clear(f):
+    from steps.s51_status_caption import StatusCaptionStep, CLEAR
+    ctx, tm = make_ctx(f)
+    StatusCaptionStep().apply(ctx)
+    tmr = next(t for t in tm.triggers if t.name == '重生1位1命1')
+    mcp = next(t for t in tm.triggers if t.name == '1馬3◇命1')
+    tc, mc = caption_calls(tmr), caption_calls(mcp)
+    assert tc[0]['message'] == CLEAR and tc[0]['selected_object_ids'] == [LIFE[1][1]]
+    assert mc[0]['message'] == CLEAR and mc[0]['selected_object_ids'] == [MOUNT[1]]
+
+
+def test_missing_mount_copies_raises(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    def drop(notes):
+        del notes['revive_out']['mount_copies']
+        return notes
+    ctx, _ = make_ctx(f, notes_patch=drop)
+    with pytest.raises(BuildError, match='mount_copies'):
+        StatusCaptionStep().apply(ctx)
+
+
+def test_timer_without_deploy_effect_raises(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    ctx, tm = make_ctx(f)
+    tmr = next(t for t in tm.triggers if t.name == '重生1位1命1')
+    tmr.effects = []                       # 抽掉部署效果
+    with pytest.raises(BuildError, match='部署'):
+        StatusCaptionStep().apply(ctx)
+
+
+def test_non_ref_keyed_writer_reported(f):
+    # 零條件寫入器（醉酒 X酒3 型）與純 TIMER 寫入器（神弓 6刀3 型）都要列報告
+    from steps.s51_status_caption import StatusCaptionStep
+    child = f.trig(name='1酒3', effects=[f.eff_rename([20501], message=POISON_RAW)])
+    parent = f.trig(name='1酒2', effects=[f.eff_activate(child.trigger_id)])
+    bow = f.trig(name='6刀3', conds=[f.cond_timer(7)],
+                 effects=[f.eff_rename([20506], message=POISON_RAW)])
+    ctx, _ = make_ctx(f, extra_trigs=[child, parent, bow])
+    changes = StatusCaptionStep().apply(ctx)
+    r1 = [c for c in changes if c.kind == 'report' and '1酒3' in c.target]
+    r2 = [c for c in changes if c.kind == 'report' and '6刀3' in c.target]
+    assert len(r1) == 1 and '1酒2' in r1[0].new
+    assert len(r2) == 1 and '無' in r2[0].new
+
+
+def test_clear_writer_not_reported(f):
+    # 清除類（正常）不列報告——455 筆會淹掉真正的缺口候選
+    from steps.s51_status_caption import StatusCaptionStep
+    cure = f.trig(name='1毒4', effects=[f.eff_rename([20501], message='正常　狀態')])
+    ctx, _ = make_ctx(f, extra_trigs=[cure])
+    changes = StatusCaptionStep().apply(ctx)
+    assert not [c for c in changes if c.kind == 'report' and '1毒4' in c.target]
+
+
+def test_noop_without_params(f):
+    from steps.s51_status_caption import StatusCaptionStep
+    ctx = NS(base=NS(trigger_manager=f.tm([])), spec=NS(params={}), notes={})
+    assert StatusCaptionStep().apply(ctx) == []
