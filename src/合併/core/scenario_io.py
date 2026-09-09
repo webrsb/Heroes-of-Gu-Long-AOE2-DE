@@ -12,9 +12,14 @@ ORIGIN_SOURCE = REPO / 'src/origin/古龍921_新負血劍譜5.aoe2scenario'
 # 遊戲的劇情資料夾（丟進去，遊戲內 單人→劇情 就看得到）。同一份程式碼要能在兩台機器跑，
 # 所以列候選、依序取第一個存在的；順序即優先序，環境變數 AOE2_SCENARIO_DIR 蓋過全部。
 # macOS 是 Feral Interactive 的原生移植，玩家資料在它的 VFS 目錄下，不是 ~/Games。
+# macOS 有兩個 Steam profile 目錄並存，兩個都 is_dir()——**新的必須排在舊的前面**，
+# 否則 --deploy 會安靜地部署到已經不用的那個（2026-09-09 使用者指定改用 …009144897）。
 GAME_SCENARIO_DIRS = (
     'C:/Users/Ricky/Games/Age of Empires 2 DE'
     '/76561198023399153/resources/_common/scenario',
+    '~/Library/Application Support/Feral Interactive/Age Of Empires II'
+    '/VFS/User/Games/Age of Empires 2 DE'
+    '/76561198009144897/resources/_common/scenario',
     '~/Library/Application Support/Feral Interactive/Age Of Empires II'
     '/VFS/User/Games/Age of Empires 2 DE'
     '/76561198023399153/resources/_common/scenario',

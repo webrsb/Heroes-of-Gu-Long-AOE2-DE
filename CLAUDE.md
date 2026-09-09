@@ -45,7 +45,9 @@ Windows 是 `F:\aoe2de`，macOS 是 `~/develop/Heroes-of-Gu-Long-AOE2-DE`——
   （`build.py --deploy` 走這條，環境變數 `AOE2_SCENARIO_DIR` 可蓋過）：
   - Windows：`C:\Users\Ricky\Games\Age of Empires 2 DE\76561198023399153\resources\_common\scenario\`
   - macOS（**Feral Interactive 的原生移植**，不是模擬器；玩家資料在它的 VFS 下，不是 `~/Games`）：
-    `~/Library/Application Support/Feral Interactive/Age Of Empires II/VFS/User/Games/Age of Empires 2 DE/76561198023399153/resources/_common/scenario/`
+    `~/Library/Application Support/Feral Interactive/Age Of Empires II/VFS/User/Games/Age of Empires 2 DE/76561198009144897/resources/_common/scenario/`
+    （2026-09-09 起改用這個 profile；舊的 `…/76561198023399153/…` 目錄還在、也還是候選，
+    但排在後面。兩個都存在，所以**新 profile 必須排在舊的前面**，否則會安靜地部署到不用的那個。）
 
 ## 常用指令
 
