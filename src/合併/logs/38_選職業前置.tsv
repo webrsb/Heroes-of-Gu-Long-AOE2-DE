@@ -5,6 +5,12 @@ s38	unit_field	ref14165	owner	P3	P8	職業3鏡像預設P8
 s38	unit_field	ref14164	owner	P4	P8	職業4鏡像預設P8
 s38	unit_field	ref14168	owner	P5	P8	職業5鏡像預設P8
 s38	unit_field	ref45318	owner	P6	P8	職業6鏡像預設P8
+s38	unit_field	ref14523	owner	P1	P8	職業1九環旗預設P8
+s38	unit_field	ref14745	owner	P2	P8	職業2九環旗預設P8
+s38	unit_field	ref14771	owner	P3	P8	職業3九環旗預設P8
+s38	unit_field	ref14778	owner	P4	P8	職業4九環旗預設P8
+s38	unit_field	ref14784	owner	P5	P8	職業5九環旗預設P8
+s38	unit_field	ref14791	owner	P6	P8	職業6九環旗預設P8
 s38	unit_add	ref50438	unit		const1291	位1保命隱形物件
 s38	unit_add	ref50439	unit		const1291	位2保命隱形物件
 s38	unit_add	ref50440	unit		const1291	位3保命隱形物件
