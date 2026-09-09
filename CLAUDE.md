@@ -75,7 +75,11 @@ python src/新負血劍譜/fix_attack.py [--dry-run]              # 修 473 個�
 - `s91 結構不變量`：**本次施工的結構契約**。`merge_spec.yaml` 每個 `kind: trigger_add` 都必須宣告
   `key: seat|class|global`（座位鍵／職業鍵-shared／全域），s91 拿實際變體數對帳（seat 5、其餘 0）；
   另檢查「帶座位的觸發啟停邊必須指同座位那支」、「同 tick 攔截順序（id 較小才攔得住零條件目標）」、
-  「傳送／任務目的格不得落在傳送來源區內」，以及各功能的特徵斷言（`analysis/ferry_check.py`）。
+  「傳送／任務目的格不得落在傳送來源區內」，以及各功能的特徵斷言（`analysis/ferry_check.py`、
+  `balance_check.py`、`status_check.py`、`class_bound_check.py`）。
+  **職業綁定物件**那條：座位≠職業以後，凡「屬於某職業、開場就在圖上」的物件都必須
+  開場歸 P8、選角時轉讓給入座玩家；宣告在 `merge_spec.yaml` 的 `revive.hero_refs`／
+  `mirrors`／`class_flags`，s91 逐表重驗最終檔（漏一種物件或漏一個座位都是無聲錯誤）。
   報告項（不擋建置）寫在 `logs/91_結構不變量.tsv`：我方新增格子落在原作玩家區域條件內（A）、
   基底既有的攔截形狀（O）、Change HP 超 int16（H）、座位覆蓋不齊（S）。
   新增功能時「S新增」那類要自己看——座位沒補齊是最常見的漏。

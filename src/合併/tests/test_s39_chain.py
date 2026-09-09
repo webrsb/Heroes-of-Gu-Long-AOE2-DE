@@ -22,6 +22,7 @@ def rv(f):
                 displays={1: (78.5, 108.5), 2: (80.5, 108.5)}),
         life_refs=LIFE, containers=CONTAINERS, class_names=NAMES,
         mirrors={1: 14162, 2: 14163},
+        class_flags={1: 14523, 2: 14745},
         enable_lists={(c, s): [] for c in (1, 2) for s in (1, 2)},
         mount=MOUNT, classes=(1, 2), slots=(1, 2), life_vars=LIFE_VARS)
 
@@ -124,6 +125,14 @@ def test_selection_trigger(f):
     assert any(kw['selected_object_ids'] == [14162] and kw['target_player'] == 2
                and kw['source_player'] == 8
                for kw in owns)                                     # 鏡像預設P8隨選角轉讓
+    assert any(kw['selected_object_ids'] == [14523] and kw['target_player'] == 2
+               and kw['source_player'] == 8
+               for kw in owns)                                     # 九環旗種子同轉讓
+    sel2 = tm.triggers_by_id[out.select[(2, 1)]]
+    owns2 = _effs(sel2, 'change_ownership')
+    assert any(kw['selected_object_ids'] == [14745] and kw['target_player'] == 1
+               for kw in owns2)                                    # 種子跟職業走，不是跟座位
+    assert not any(kw['selected_object_ids'] == [14523] for kw in owns2)
     caps = _effs(sel, 'change_object_caption')
     assert any(kw['selected_object_ids'] == [0] for kw in caps)               # 清職業名字幕
     # 命數＝1：locref 家族選路起點（不再建旗）

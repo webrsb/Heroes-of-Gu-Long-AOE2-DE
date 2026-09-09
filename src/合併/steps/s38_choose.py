@@ -36,23 +36,32 @@ def _move_owner(um, unit, new_player):
         um.units[new_player].append(unit)
 
 
-def setup_bodies(um, tm, rspec, extract=extract_class_names, mirrors=None, survival=None):
+def _park_p8(um, by_ref, table, label, changes):
+    """職業綁定的角落物件開場一律歸 P8，選角時才轉讓給入座玩家（轉讓端＝revive_chains 選角）。
+    座位≠職業時若留在 P{cid}，該物件就跟錯人——鏡像是視覺錯位，九環旗是任務計數整體差 1。"""
+    for cid, ref in sorted({int(k): int(v) for k, v in (table or {}).items()}.items()):
+        u = by_ref.get(ref)
+        if u is None:
+            raise BuildError(f'缺裁決：{label} ref{ref}（職業{cid}）不存在')
+        old_p = u.player
+        _move_owner(um, u, 8)
+        changes.append(Change('s38', 'unit_field', f'ref{ref}', 'owner',
+                              f'P{old_p}', 'P8', f'職業{cid}{label}預設P8'))
+
+
+def setup_bodies(um, tm, rspec, extract=extract_class_names, mirrors=None, survival=None,
+                 class_flags=None):
     """本體→P8＋展示位；備身×(lives−1)/職業（P8 建檔、駐各自 1291 容器疊重生點）；
-    鏡像預設 P8＋每位玩家保命隱形物件（阿提拉手法）；初始化觸發。回傳 notes dict。"""
+    鏡像／九環旗種子預設 P8＋每位玩家保命隱形物件（阿提拉手法）；初始化觸發。回傳 notes dict。"""
     changes = []
     by_ref = {u.reference_id: u for p in range(9) for u in um.units[p]}
     if by_ref[rspec.hero_refs[5]].unit_const == 94:
         raise BuildError('缺裁決：P5 本體仍是 const94——s35 換皮未先執行（步驟順序異常）')
 
     # 角落鏡像開場預設 P8（選角時才轉讓給入座玩家；2026-08-30 裁決）
-    for cid, ref in sorted({int(k): int(v) for k, v in (mirrors or {}).items()}.items()):
-        u = by_ref.get(ref)
-        if u is None:
-            raise BuildError(f'缺裁決：鏡像 ref{ref}（職業{cid}）不存在')
-        old_p = u.player
-        _move_owner(um, u, 8)
-        changes.append(Change('s38', 'unit_field', f'ref{ref}', 'owner',
-                              f'P{old_p}', 'P8', f'職業{cid}鏡像預設P8'))
+    _park_p8(um, by_ref, mirrors, '鏡像', changes)
+    # 九環旗任務計數種子同辦（2026-09-06 補漏：漏改就是任務門檻整體差 1）
+    _park_p8(um, by_ref, class_flags, '九環旗', changes)
     # 保命隱形物件：玩家無單位時擋征服判負（C1_Attila_1 官方手法，837 不保命）
     if survival:
         sx, sy = survival['cell']
@@ -132,13 +141,15 @@ class ChooseStep(Step):
         from core.revive_model import load_revive
         rspec = load_revive(params)
         out = setup_bodies(ctx.base.unit_manager, ctx.base.trigger_manager, rspec,
-                           mirrors=params.get('mirrors'), survival=params.get('survival'))
+                           mirrors=params.get('mirrors'), survival=params.get('survival'),
+                           class_flags=params.get('class_flags'))
         ctx.notes['revive'] = out
         return out['changes']
 
     def test_guide(self, changes):
         return ('選職業前置：六展示英雄站廣場（P8、凍結、職業名 caption、殺不死）；'
                 '重生點應乾淨無兵（備身全在隱形容器）。\n'
+                '角落職業列（鏡像 x=236／九環旗 x=234）開場一律不屬任何玩家，選角後才歸入座者。\n'
                 '陽性對照：點展示英雄看數值正常。')
 
 

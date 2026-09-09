@@ -24,7 +24,8 @@ def build_chains(tm, rv):
     mount{cid:{mount_ref,flag_cell,rebirth_cell,final_cell}}、classes、slots、
     life_vars{cid:變數id}（命數，取代命旗）。
     可選 dl_hooks{(cid,slot):{'watch_activate':[tid],'timer_deactivate':[tid],
-    'timer_activate':[tid]}}。"""
+    'timer_activate':[tid]}}、mirrors{cid:ref}／class_flags{cid:ref}（開場 P8 託管、
+    選角時轉讓給入座玩家的職業綁定物件）。"""
     spec = rv['spec']
     lives = spec.lives
     life = rv['life_refs']
@@ -171,6 +172,12 @@ def build_chains(tm, rv):
             if mir is not None:
                 sel.new_effect.change_ownership(source_player=8, target_player=s,
                                                 selected_object_ids=[mir])   # 鏡像預設P8
+            flg = rv.get('class_flags', {}).get(cid)
+            if flg is not None:
+                # 九環旗任務計數種子（角落 x=234 職業列）：關卡條件是 OBJECTS_IN_AREA sp=座位
+                # qty=2..9，種子沒跟著轉讓的話該座位在該格是 0，所有任務門檻整體差 1。
+                sel.new_effect.change_ownership(source_player=8, target_player=s,
+                                                selected_object_ids=[flg])
             sel.new_effect.change_object_caption(
                 selected_object_ids=[spec.hero_refs[cid]], message=' ')   # 清除職業名字幕
             set_life(sel, cid, 1)          # 第1命（locref 選路起點）

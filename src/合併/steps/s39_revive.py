@@ -371,6 +371,7 @@ def run_revive(ctx):
         enable_lists=el, anti_lists=anti_lists, mount=mount,
         navigators=rv0.get('navigators', {}),
         mirrors={int(k): int(v) for k, v in (params.get('mirrors') or {}).items()},
+        class_flags={int(k): int(v) for k, v in (params.get('class_flags') or {}).items()},
         classes=tuple(range(1, 7)), slots=slots, dl_hooks=hooks,
         life_vars=life_vars))
     changes += chains.changes
@@ -439,6 +440,8 @@ class ReviveStep(Step):
                 '陽性對照：原有任一技能照常運作。\n'
                 '命旗→變數（2026-09-01）：角落技能表那格不該再有九環旗（原本遮住「佛」）；'
                 '第2命起仍能正常升級/打坐/接任務＝變數選路生效（前置實測 spike_lifevar）。\n'
+                '九環旗種子（2026-09-06 補漏）：座位≠職業時也要能接任務——選角後完成第一個任務'
+                '即可解到下一段（門檻 qty=2＝種子＋1）；種子沒轉讓的話會整體卡住差一支。\n'
                 '警告：步行箭俠勿踩叛變格(31-33,14-16)——沒收無解（原作設計）。')
 
 

@@ -106,18 +106,24 @@ def test_setup_bodies_p5_not_swapped_raises(f):
 
 def test_setup_bodies_mirrors_to_p8_and_survival_objects(f):
     um = make_um()
-    mirrors = {}
+    mirrors, flags = {}, {}
     for cid in range(1, 7):
         m = NS(reference_id=14000 + cid, unit_const=99, x=236.5, y=240.0 - cid, player=cid)
         um.units[cid].append(m)
         mirrors[cid] = m.reference_id
+        g = NS(reference_id=14500 + cid, unit_const=720, x=234.5, y=240.0 - cid, player=cid)
+        um.units[cid].append(g)
+        flags[cid] = g.reference_id
     setup_bodies(um, f.tm([]), rspec(),
                  extract=lambda *_: {c: ('x', 'y') for c in range(1, 7)},
-                 mirrors=mirrors, survival={'const': 1291, 'cell': [80.5, 111.5]})
-    # 鏡像全轉 P8
+                 mirrors=mirrors, survival={'const': 1291, 'cell': [80.5, 111.5]},
+                 class_flags=flags)
+    # 鏡像與九環旗種子全轉 P8（座位≠職業時才不會跟錯人）
     for cid in range(1, 7):
-        m = next(u for u in um.units[8] if u.reference_id == 14000 + cid)
-        assert m.player == 8
+        for ref in (14000 + cid, 14500 + cid):
+            m = next(u for u in um.units[8] if u.reference_id == ref)
+            assert m.player == 8
+        assert not [u for u in um.units[cid] if u.reference_id in (14000 + cid, 14500 + cid)]
     # 保命隱形物件：P1..P6 各一顆 1291（非駐軍、非容器）
     surv = [u for u in um.added if u.unit_const == 1291
             and getattr(u, 'garrisoned_in_id', -1) == -1 and u.player != 0]
@@ -143,3 +149,10 @@ def test_setup_bodies_builds_init_triggers(f):
     assert len(freezes) == 6
     assert len(gaias) == 12                       # 備身 P8→Gaia（防歸順）
     assert [t for t in tm.triggers if (t.name or '').startswith('展示無敵')] == []
+def test_setup_bodies_class_flag_missing_raises(f):
+    """九環旗 ref 抄錯（不在單位表）＝缺裁決，不可默默略過。"""
+    um = make_um()
+    with pytest.raises(BuildError):
+        setup_bodies(um, f.tm([]), rspec(),
+                     extract=lambda *_: {c: ('x', 'y') for c in range(1, 7)},
+                     class_flags={1: 999999})
